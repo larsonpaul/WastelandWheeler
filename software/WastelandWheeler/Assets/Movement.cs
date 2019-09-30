@@ -14,11 +14,19 @@ public class Movement : MonoBehaviour
 
     private Rigidbody2D rbody;
 
+    public float angle;
+
+    private Camera cam;
+
     // Start is called before the first frame update
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
+        cam = Camera.main;
+
     }
+
+    public float mouseX, mouseY, mouseZ;
 
     // Update is called once per frame
     void Update()
@@ -29,7 +37,15 @@ public class Movement : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
+        Vector3 mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 playerpos = rbody.position;
 
+        mouseX = mousepos.x;
+        mouseY = mousepos.y;
+        mouseZ = mousepos.z;
+
+        //rbody.MoveRotation(angle);
+        //rbody.rotation = angle;
 
         switch (movement_type)
         {
