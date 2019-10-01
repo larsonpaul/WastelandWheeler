@@ -21,6 +21,11 @@ public class player_movement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        if (movement.magnitude > 1)
+        {
+            movement.Normalize();
+        }
+
         mouse_position = cam.ScreenToWorldPoint(Input.mousePosition);
         
     }
