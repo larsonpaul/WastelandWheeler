@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement_Side : MonoBehaviour
 {
 
     public float fallspeed = 1.5f;
