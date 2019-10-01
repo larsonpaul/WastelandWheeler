@@ -375,12 +375,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 7f6e5cdcdd587db4cb42b020ac4f33a3, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 187255663}
+        m_MethodName: Play_game
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2286,8 +2286,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 7f6e5cdcdd587db4cb42b020ac4f33a3, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 1763308644}
+        m_MethodName: Play_game
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
