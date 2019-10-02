@@ -1,7 +1,7 @@
 ﻿/**
  *  Make sure that the enemy has Rigid body 2D, Enemy body and Collision 2D.
  *  For rigid body:Choose Kinimatic Body Type
- *  Layer: Add them to the enemy layer
+ *  Layer: Choose everything, then go back in and deselect enemy.
  *  For Enemy Body script, Choose Speed
  */
 
