@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 188446997}
   - component: {fileID: 188446996}
   - component: {fileID: 188446995}
+  - component: {fileID: 188446998}
   m_Layer: 8
   m_Name: Grass (1)
   m_TagString: Untagged
@@ -286,7 +287,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -363,6 +364,25 @@ Transform:
   m_Father: {fileID: 816119695}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &188446998
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188446994}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &245934220
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +507,7 @@ GameObject:
   - component: {fileID: 559369358}
   - component: {fileID: 559369357}
   - component: {fileID: 559369356}
+  - component: {fileID: 559369359}
   m_Layer: 8
   m_Name: GrassCliffLeft (4)
   m_TagString: Untagged
@@ -505,7 +526,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -582,6 +603,25 @@ Transform:
   m_Father: {fileID: 816119695}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &559369359
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559369355}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &635829620
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,6 +729,7 @@ GameObject:
   - component: {fileID: 656244627}
   - component: {fileID: 656244626}
   - component: {fileID: 656244625}
+  - component: {fileID: 656244628}
   m_Layer: 8
   m_Name: GrassCliffLeft (1)
   m_TagString: Untagged
@@ -707,7 +748,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -784,6 +825,25 @@ Transform:
   m_Father: {fileID: 816119695}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &656244628
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656244624}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &816119694
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +974,7 @@ GameObject:
   - component: {fileID: 1207797869}
   - component: {fileID: 1207797868}
   - component: {fileID: 1207797867}
+  - component: {fileID: 1207797870}
   m_Layer: 8
   m_Name: GrassCliffLeft (2)
   m_TagString: Untagged
@@ -932,7 +993,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -1009,6 +1070,25 @@ Transform:
   m_Father: {fileID: 816119695}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &1207797870
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207797866}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1308963635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,6 +1100,7 @@ GameObject:
   - component: {fileID: 1308963637}
   - component: {fileID: 1308963636}
   - component: {fileID: 1308963638}
+  - component: {fileID: 1308963639}
   m_Layer: 8
   m_Name: GrassCliffLeft
   m_TagString: Untagged
@@ -1100,7 +1181,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -1115,6 +1196,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!251 &1308963639
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308963635}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1326903819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,6 +1225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1326903821}
   - component: {fileID: 1326903820}
+  - component: {fileID: 1326903822}
   m_Layer: 8
   m_Name: GrassHillLeft2
   m_TagString: Untagged
@@ -1194,6 +1295,25 @@ Transform:
   m_Father: {fileID: 816119695}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &1326903822
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326903819}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1335043248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1335043250}
   - component: {fileID: 1335043249}
+  - component: {fileID: 1335043251}
   m_Layer: 8
   m_Name: GrassHillLeft
   m_TagString: Untagged
@@ -1273,6 +1394,25 @@ Transform:
   m_Father: {fileID: 816119695}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &1335043251
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335043248}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1348277839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,6 +1569,7 @@ GameObject:
   - component: {fileID: 1421539888}
   - component: {fileID: 1421539887}
   - component: {fileID: 1421539886}
+  - component: {fileID: 1421539889}
   m_Layer: 8
   m_Name: Grass (2)
   m_TagString: Untagged
@@ -1447,7 +1588,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -1524,6 +1665,25 @@ Transform:
   m_Father: {fileID: 816119695}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &1421539889
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421539885}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1732969619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,8 +1904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c7bd50c603144c8994a51573dadc9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallspeed: 1.5
-  hopMultiplier: 2.5
+  fallspeed: 4
+  hopMultiplier: 2
   jumpSpeed: 20
   Ground:
     serializedVersion: 2
@@ -1763,6 +1923,7 @@ GameObject:
   - component: {fileID: 1759479865}
   - component: {fileID: 1759479864}
   - component: {fileID: 1759479863}
+  - component: {fileID: 1759479866}
   m_Layer: 8
   m_Name: GrassCliffLeft (3)
   m_TagString: Untagged
@@ -1781,7 +1942,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -1858,6 +2019,25 @@ Transform:
   m_Father: {fileID: 816119695}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &1759479866
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759479862}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1840182596
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,6 +2373,7 @@ GameObject:
   - component: {fileID: 2052406655}
   - component: {fileID: 2052406654}
   - component: {fileID: 2052406653}
+  - component: {fileID: 2052406656}
   m_Layer: 8
   m_Name: Grass
   m_TagString: Untagged
@@ -2211,7 +2392,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -2288,6 +2469,25 @@ Transform:
   m_Father: {fileID: 816119695}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &2052406656
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052406652}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &2138721459
 GameObject:
   m_ObjectHideFlags: 0
