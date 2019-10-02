@@ -9338,7 +9338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 758529fbe558ed04194674359c1983e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 904335851}
   offset: {x: 0, y: 0, z: -5}
 --- !u!20 &519420031
 Camera:
@@ -17070,10 +17069,11 @@ GameObject:
   - component: {fileID: 904335851}
   - component: {fileID: 904335850}
   - component: {fileID: 904335849}
-  - component: {fileID: 904335848}
   - component: {fileID: 904335852}
-  - component: {fileID: 904335854}
   - component: {fileID: 904335853}
+  - component: {fileID: 904335848}
+  - component: {fileID: 904335854}
+  - component: {fileID: 904335855}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -17093,9 +17093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b030b18e24fba444b9abedc12adc7913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_speed: 10
-  r_body: {fileID: 904335849}
-  cam: {fileID: 519420031}
 --- !u!50 &904335849
 Rigidbody2D:
   serializedVersion: 4
@@ -17226,7 +17223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  rate_of_fire: 2
+  move_speed: 10
+  rate_of_fire: 0.2
   bullet_size: 2
 --- !u!114 &904335854
 MonoBehaviour:
@@ -17244,8 +17242,19 @@ MonoBehaviour:
   bulletPreFab: {fileID: 755707363379987826, guid: 4e3a840ac26eaf84b8b243e1d8674f36,
     type: 3}
   bullet_force: 10
-  fire_rate: 2
-  fire_timer: 0.5
+--- !u!114 &904335855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904335847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281a5d947ad18524389c387e30573baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1014893128181177944, guid: 2aca6360d824dcc4ab77f6e6d7b7d791, type: 3}
 --- !u!1 &906989128
 GameObject:
   m_ObjectHideFlags: 0
