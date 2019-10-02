@@ -8,6 +8,7 @@ TagManager:
   - Platformer
   - Power_Up
   - Shot
+  - Enemy
   layers:
   - Default
   - TransparentFX
