@@ -7,6 +7,13 @@ public class Speed_up : MonoBehaviour
     public float multiplier = 1.5f;
     public float duration = 10f;
 
+    private static Player_stats stats;
+
+    void Start()
+    {
+        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -17,16 +24,14 @@ public class Speed_up : MonoBehaviour
 
     IEnumerator Pickup(Collider2D player)
     {
-        player_movement move_speed = player.GetComponent<player_movement>();
-
-        move_speed.move_speed *= multiplier;
+        stats.move_speed *= multiplier;
 
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<PolygonCollider2D>().enabled = false;
 
         yield return new WaitForSeconds(duration);
 
-        move_speed.move_speed /= multiplier;
+        stats.move_speed /= multiplier;
 
         Destroy(gameObject);
     }
