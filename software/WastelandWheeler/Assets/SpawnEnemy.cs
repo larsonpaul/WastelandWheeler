@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class SpawnEnemy : MonoBehaviour
 {
-
     public GameObject prefab;
 
     void Update()
@@ -18,16 +17,4 @@ public class SpawnEnemy : MonoBehaviour
             GameObject enemy = Instantiate(prefab, pos, Quaternion.identity);
         }
     }
-
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log("Click!");
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            Debug.Log("Right Click!");
-            GameObject enemy = Instantiate(prefab, Camera.main.ViewportToWorldPoint(Input.mousePosition), Quaternion.identity);
-        }
-    }
-
 }
