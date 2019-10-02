@@ -13,23 +13,17 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (fire_timer > 0)
         {
-            if (fire_timer == 0)
-            {
-                Shoot();
-                //ROF_up fast_rof = gameObject.GetComponent<ROF_up>();
-                //fire_timer = fast_rof.new_rof;
-                fire_timer = 0.2f;
-            }
-            else
-            {
-                fire_timer -= Time.deltaTime;
-            }
-            if (fire_timer < 0)
-            {
-                fire_timer = 0f;
-            }
+            fire_timer = Mathf.Max(0, fire_timer - Time.deltaTime);
+        }
+
+        if (Input.GetButton("Fire1") && fire_timer <= 0)
+        {
+            Shoot();
+            //ROF_up fast_rof = gameObject.GetComponent<ROF_up>();
+            //fire_timer = fast_rof.new_rof;
+            fire_timer = 0.2f;
         }
     }
 
