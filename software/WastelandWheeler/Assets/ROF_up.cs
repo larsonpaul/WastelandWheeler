@@ -20,14 +20,14 @@ public class ROF_up : MonoBehaviour
     {
         Shooting ROF = player.GetComponent<Shooting>();
 
-        new_rof = ROF.fire_timer /= multiplier;
+        ROF.fire_rate /= multiplier;
 
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<PolygonCollider2D>().enabled = false;
 
         yield return new WaitForSeconds(duration);
 
-        new_rof = ROF.fire_timer *= multiplier;
+        ROF.fire_rate *= multiplier;
 
         Destroy(gameObject);
     }
