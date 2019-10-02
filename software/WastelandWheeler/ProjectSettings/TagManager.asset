@@ -4,8 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Top_down
-  - Platformer
   - Power_Up
   - Shot
   - Enemy
