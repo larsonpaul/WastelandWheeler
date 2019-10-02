@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player_stats : MonoBehaviour
 {
-    public float health = 100f;
+    public float healthMax = 100f;
+    public float healthCurrent = 100f;
     public float move_speed = 10f;
     public float rate_of_fire = 0.2f;
     public float bullet_size = 2f;
@@ -14,15 +15,15 @@ public class Player_stats : MonoBehaviour
 
     public float getHealth()
     {
-        return health;
+        return healthCurrent;
     }
 
     public void addHealth(float num)
     {
         if (num < 0 && isInvincible) return;
 
-        health += num;
-        if (health <= 0)
+        healthCurrent = Mathf.Min(healthCurrent + num, healthMax);
+        if (healthCurrent <= 0)
         {
             GameOver();
         }

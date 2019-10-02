@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class Health_up : MonoBehaviour
 {
-    public float multiplier = 1.2f;
+    public float heal = 20f;
+
+    private static Player_stats stats;
+
+    void Start()
+    {
+        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Pickup(collision);
+            Destroy(gameObject);
+
+            stats.addHealth(heal);
         }
-    }
-
-    void Pickup(Collider2D player)
-    {
-        Player_stats stats = player.GetComponent<Player_stats>();
-
-        stats.health *= multiplier;
-
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<BoxCollider2D>().enabled = false;
-
-
-        Destroy(gameObject);
     }
 }

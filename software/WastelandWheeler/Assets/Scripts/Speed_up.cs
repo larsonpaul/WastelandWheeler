@@ -16,23 +16,19 @@ public class Speed_up : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            StartCoroutine(Pickup(collision));
+            gameObject.SetActive(false);
+
+            stats.move_speed *= multiplier;
+
+            Invoke("Disable", duration);
         }
     }
 
-    IEnumerator Pickup(Collider2D player)
+    void Disable()
     {
-        stats.move_speed *= multiplier;
-
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<PolygonCollider2D>().enabled = false;
-
-        yield return new WaitForSeconds(duration);
-
         stats.move_speed /= multiplier;
-
         Destroy(gameObject);
     }
 }

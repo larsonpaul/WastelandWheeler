@@ -6,7 +6,6 @@ public class ROF_up : MonoBehaviour
 {
     public float multiplier = 2f;
     public float duration = 10f;
-    public float new_rof;
 
     private static Player_stats stats;
 
@@ -19,21 +18,17 @@ public class ROF_up : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            StartCoroutine(Pickup(collision));
+            gameObject.SetActive(false);
+
+            stats.rate_of_fire /= multiplier;
+
+            Invoke("Disable", duration);
         }
     }
 
-    IEnumerator Pickup(Collider2D player)
+    void Disable()
     {
-        stats.rate_of_fire /= multiplier;
-
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<PolygonCollider2D>().enabled = false;
-
-        yield return new WaitForSeconds(duration);
-
         stats.rate_of_fire *= multiplier;
-
         Destroy(gameObject);
     }
 }
