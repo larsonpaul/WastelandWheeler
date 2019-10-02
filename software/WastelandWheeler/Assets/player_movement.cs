@@ -8,12 +8,17 @@ public class player_movement : MonoBehaviour
 
     public float move_speed = 5f;
 
-    public Rigidbody2D r_body;
-
-    public Camera cam;
+    private Rigidbody2D r_body;
+    private Camera cam;
 
     Vector2 movement;
     Vector2 mouse_position;
+
+    void Start()
+    {
+        r_body = GetComponent<Rigidbody2D>();
+        cam = Camera.main;
+    }
 
     // Update is called once per frame
     void Update()
