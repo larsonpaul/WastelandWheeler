@@ -8,6 +8,13 @@ public class ROF_up : MonoBehaviour
     public float duration = 10f;
     public float new_rof;
 
+    private static Player_stats stats;
+
+    void Start()
+    {
+        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -18,16 +25,14 @@ public class ROF_up : MonoBehaviour
 
     IEnumerator Pickup(Collider2D player)
     {
-        Shooting ROF = player.GetComponent<Shooting>();
-
-        ROF.fire_rate /= multiplier;
+        stats.rate_of_fire /= multiplier;
 
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<PolygonCollider2D>().enabled = false;
 
         yield return new WaitForSeconds(duration);
 
-        ROF.fire_rate *= multiplier;
+        stats.rate_of_fire *= multiplier;
 
         Destroy(gameObject);
     }

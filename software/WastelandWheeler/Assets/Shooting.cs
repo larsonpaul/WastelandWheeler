@@ -7,8 +7,14 @@ public class Shooting : MonoBehaviour
     public Transform fire_point;
     public GameObject bulletPreFab;
     public float bullet_force = 20f;
-    public float fire_rate = 0.2f;
-    public float fire_timer = 0f;
+    private float fire_timer = 0f;
+
+    private static Player_stats stats;
+
+    void Start()
+    {
+        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -23,7 +29,7 @@ public class Shooting : MonoBehaviour
             Shoot();
             //ROF_up fast_rof = gameObject.GetComponent<ROF_up>();
             //fire_timer = fast_rof.new_rof;
-            fire_timer = fire_rate;
+            fire_timer = stats.rate_of_fire;
         }
     }
 

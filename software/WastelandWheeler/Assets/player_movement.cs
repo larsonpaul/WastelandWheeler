@@ -19,7 +19,7 @@ public class player_movement : MonoBehaviour
         r_body = GetComponent<Rigidbody2D>();
         cam = Camera.main;
 
-        stats = GetComponent<Player_stats>();
+        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
     }
 
     // Update is called once per frame
