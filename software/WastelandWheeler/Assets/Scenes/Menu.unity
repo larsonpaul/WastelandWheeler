@@ -306,7 +306,6 @@ GameObject:
   - component: {fileID: 187255661}
   - component: {fileID: 187255665}
   - component: {fileID: 187255664}
-  - component: {fileID: 187255663}
   - component: {fileID: 187255662}
   m_Layer: 5
   m_Name: Platformer_launcher
@@ -375,8 +374,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 187255663}
-        m_MethodName: Play_game
+      - m_Target: {fileID: 403873069}
+        m_MethodName: StartPlatformer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -388,18 +387,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &187255663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187255660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6e5cdcdd587db4cb42b020ac4f33a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &187255664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,12 +1225,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 736028429}
-        m_MethodName: 
+      - m_Target: {fileID: 403873069}
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2218,7 +2205,6 @@ GameObject:
   - component: {fileID: 1763308643}
   - component: {fileID: 1763308642}
   - component: {fileID: 1763308641}
-  - component: {fileID: 1763308644}
   m_Layer: 5
   m_Name: Top_down_launcher
   m_TagString: Top_down
@@ -2286,8 +2272,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1763308644}
-        m_MethodName: Play_game
+      - m_Target: {fileID: 403873069}
+        m_MethodName: StartTopdown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2336,18 +2322,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763308639}
   m_CullTransparentMesh: 0
---- !u!114 &1763308644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763308639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6e5cdcdd587db4cb42b020ac4f33a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1809546330
 GameObject:
   m_ObjectHideFlags: 0

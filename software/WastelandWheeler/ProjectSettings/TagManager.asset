@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Top_down
   - Platformer
+  - Power_Up
+  - Shot
   layers:
   - Default
   - TransparentFX

@@ -6,15 +6,20 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public void Play_game()
+    public void StartTopdown()
     {
-        if (gameObject.CompareTag("Top_down"))
-        {
-            SceneManager.LoadScene(1);
-        }
-        if (gameObject.CompareTag("Platformer"))
-        {
-            SceneManager.LoadScene(2);
-        }
+        SceneManager.LoadScene(1);
     }
+
+    public void StartPlatformer()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting the game.");
+        Application.Quit();
+    }
+
 }
