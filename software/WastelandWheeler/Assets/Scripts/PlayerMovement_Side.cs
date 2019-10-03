@@ -12,6 +12,7 @@ public class PlayerMovement_Side : MonoBehaviour
     public float groundDetect = 0.9f;
     private Rigidbody2D rbody; 
     public float velocity; // speed of velocity-based movement
+    public Animator animator; //the player animator component
     
     void Start()
     {
@@ -56,6 +57,8 @@ public class PlayerMovement_Side : MonoBehaviour
         //get player input
         float h = Input.GetAxis("Horizontal");
         rbody.velocity = new Vector2((h * velocity),rbody.velocity.y);
+
+        animator.SetFloat("Direction", h);
 
         if (Input.GetKeyDown("space"))
         {
