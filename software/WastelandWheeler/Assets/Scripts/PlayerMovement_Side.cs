@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement_Side : MonoBehaviour
 {
 
-    public float fallspeed = 1.5f;
-    public float hopMultiplier = 2.5f;
+    public float fallspeed = 2.5f;
+    public float hopMultiplier = 2f;
     public float jumpSpeed = 20f;
     public LayerMask Ground;
     public float groundDetect = 0.9f;
@@ -63,6 +63,15 @@ public class PlayerMovement_Side : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             Jumpcheck();
+        }
+
+        if(rbody.velocity.y < 0)
+        {
+            rbody.velocity += Vector2.up * Physics2D.gravity.y * (fallspeed - 1) * Time.deltaTime;
+        }
+        else if (rbody.velocity.y >0 && !Input.GetKey("space"))
+        {
+            rbody.velocity += Vector2.up * Physics2D.gravity.y * (hopMultiplier - 1) * Time.deltaTime;
         }
     }
 
