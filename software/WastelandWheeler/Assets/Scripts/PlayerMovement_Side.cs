@@ -12,14 +12,11 @@ public class PlayerMovement_Side : MonoBehaviour
     public float groundDetect = 0.9f;
     private Rigidbody2D rbody; 
     public float velocity; // speed of velocity-based movement
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
+    public Animator animator; //the player animator component
     
     void Start()
     {
-        rbody = gameObject.GetComponent<Rigidbody2D>();
-        animator = gameObject.GetComponent<Animator>();
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        rbody = gameObject.GetComponent<Rigidbody2D>(); 
     }
 
 
@@ -61,15 +58,7 @@ public class PlayerMovement_Side : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         rbody.velocity = new Vector2((h * velocity),rbody.velocity.y);
 
-        animator.SetFloat("Direction", Mathf.Abs(h)); //Get direction for animation controller
-
-        if(h < 0)
-        {
-            spriteRenderer.flipX = true;
-        } else if(h > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
+        animator.SetFloat("Direction", h); //Get direction for animation controller
 
         if (Input.GetKeyDown("space"))
         {
