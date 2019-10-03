@@ -1914,6 +1914,7 @@ MonoBehaviour:
   groundDetect: 0.9
   velocity: 8
   animator: {fileID: 1743360498}
+  spriteRenderer: {fileID: 0}
 --- !u!95 &1743360498
 Animator:
   serializedVersion: 3
