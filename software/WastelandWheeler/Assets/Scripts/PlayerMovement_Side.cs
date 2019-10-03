@@ -58,7 +58,7 @@ public class PlayerMovement_Side : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         rbody.velocity = new Vector2((h * velocity),rbody.velocity.y);
 
-        animator.SetFloat("Direction", h);
+        animator.SetFloat("Direction", h); //Get direction for animation controller
 
         if (Input.GetKeyDown("space"))
         {
