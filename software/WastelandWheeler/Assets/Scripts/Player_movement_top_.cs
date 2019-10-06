@@ -5,11 +5,8 @@ using UnityEngine;
 public class Player_movement : MonoBehaviour
 {
     public float move_speed = 2f;
-
     public Rigidbody2D r_body;
-
     public Camera cam;
-
     Vector2 movement;
     Vector2 mouse_position;
 

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Class that contains varaibles that control player attributes and has getters for those variables
+ */
 public class Player_stats : MonoBehaviour
 {
     public float healthMax = 100f;
@@ -9,19 +12,19 @@ public class Player_stats : MonoBehaviour
     public float move_speed = 10f;
     public float rate_of_fire = 0.2f;
     public float bullet_size = 2f;
-
     public bool isInvincible = false;
 
-
+    // Function to grab the current health of the player
     public float getHealth()
     {
         return healthCurrent;
     }
 
+    // Function that adds health to the player until a maximum amount
     public void addHealth(float num)
     {
-        if (num < 0 && isInvincible) return;
-
+        if (num < 0 && isInvincible)
+            return;
         healthCurrent = Mathf.Min(healthCurrent + num, healthMax);
         if (healthCurrent <= 0)
         {
@@ -29,21 +32,25 @@ public class Player_stats : MonoBehaviour
         }
     }
 
+    // Function to get the move speed of the player
     public float getSpeed()
     {
         return move_speed;
     }
 
+    // Function to get the ROF of the player
     public float getROF()
     {
         return rate_of_fire;
     }
 
+    // Function to get the bullet size of the player
     public float getBulletSize()
     {
         return bullet_size;
     }
 
+    // Game over state based on health (may have to make this its own script)
     void GameOver()
     {
         Destroy(gameObject);
