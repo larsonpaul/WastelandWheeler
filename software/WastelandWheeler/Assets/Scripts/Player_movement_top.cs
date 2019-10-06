@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_movement : MonoBehaviour
+public class Player_movement_top : MonoBehaviour
 {
     public float move_speed = 2f;
     public Rigidbody2D r_body;
     public Camera cam;
     Vector2 movement;
     Vector2 mouse_position;
+    public Sprite[] player_sprites;
 
     // Update is called once per frame
     void Update()
@@ -35,5 +36,16 @@ public class Player_movement : MonoBehaviour
 
         // Set rotation to calculated angle
         r_body.rotation= angle;
+
+        if (r_body.rotation > -90 && r_body.rotation < 90)
+        {
+            GetComponent<SpriteRenderer>().sprite = player_sprites[1];
+            Debug.Log("Front");
+        }
+        if (r_body.rotation < -270 && r_body.rotation > -90)
+        {
+            GetComponent<SpriteRenderer>().sprite = player_sprites[0];
+            Debug.Log("Back");
+        }
     }
 }
