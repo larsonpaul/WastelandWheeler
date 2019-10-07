@@ -23,7 +23,7 @@ public class Health_up : MonoBehaviour
         {
             Destroy(gameObject);
 
-            stats.addHealth(heal);
+            stats.AddHealth(heal);
         }
     }
 }
