@@ -14,42 +14,70 @@ public class Player_stats : MonoBehaviour
     public float bullet_size = 2f;
     public bool isInvincible = false;
 
+    public float iFrameMax = 20f;
+    public float iFrameCur = 0f;
+
     [SerializeField] private GameManager game;
 
+
+    void Update()
+    {
+        if (iFrameCur > 0)
+        {
+            iFrameCur -= 1;
+        }
+    }
+
     // Function to grab the current health of the player
-    public float getHealth()
+    public float GetHealth()
     {
         return healthCurrent;
     }
 
     // Function that changes the player's health by a given amount, 
     // increasing it if positive and decreasing if negative
-    public void addHealth(float num)
+    public void AddHealth(float num)
     {
-        if (num < 0 && isInvincible)
-            return;
-        healthCurrent = Mathf.Min(healthCurrent + num, healthMax);
-        if (healthCurrent <= 0)
+        if (num < 0)
         {
-            GameOver();
+            Debug.LogError("AddHealth() given negative float " + num);
+            return;
         }
+        healthCurrent = Mathf.Min(healthCurrent + num, healthMax);
+        game.SetHealth(healthCurrent / healthMax);
+    }
+
+    public void RemoveHealth(float num)
+    {
+        if (num < 0)
+        {
+            Debug.LogError("RemoveHealth() given negative float " + num);
+            return;
+        }
+        if (isInvincible || iFrameCur > 0) return;
+        if (num > 0)
+        {
+            healthCurrent -= num;
+            iFrameCur = iFrameMax;
+        }
+        if (healthCurrent <= 0) GameOver();
         game.SetHealth(healthCurrent / healthMax);
     }
 
     // Function to get the move speed of the player
-    public float getSpeed()
+    public float GetSpeed()
     {
         return move_speed;
     }
 
     // Function to get the ROF of the player
-    public float getROF()
+    public float GetROF()
     {
         return rate_of_fire;
     }
 
     // Function to get the bullet size of the player
-    public float getBulletSize()
+    public float GetBulletSize()
     {
         return bullet_size;
     }
