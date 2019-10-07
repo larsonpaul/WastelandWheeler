@@ -14,13 +14,16 @@ public class Player_stats : MonoBehaviour
     public float bullet_size = 2f;
     public bool isInvincible = false;
 
+    [SerializeField] private GameManager game;
+
     // Function to grab the current health of the player
     public float getHealth()
     {
         return healthCurrent;
     }
 
-    // Function that adds health to the player until a maximum amount
+    // Function that changes the player's health by a given amount, 
+    // increasing it if positive and decreasing if negative
     public void addHealth(float num)
     {
         if (num < 0 && isInvincible)
@@ -30,6 +33,7 @@ public class Player_stats : MonoBehaviour
         {
             GameOver();
         }
+        game.SetHealth(healthCurrent / healthMax);
     }
 
     // Function to get the move speed of the player
@@ -54,6 +58,6 @@ public class Player_stats : MonoBehaviour
     void GameOver()
     {
         Destroy(gameObject);
-        FindObjectOfType<GameManager>().EndGame();
+        game.EndGame();
     }
 }
