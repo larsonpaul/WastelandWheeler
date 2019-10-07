@@ -2,13 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Class that creates and shoots bullets from a fire point
+ * The Rate of Fire is controlled in this class
+ */
 public class Shooting : MonoBehaviour
 {
     public Transform fire_point;
     public GameObject bulletPreFab;
     public float bullet_force = 20f;
-    public float fire_rate = 2f;
-    public float fire_timer = 0.2f;
+    private float fire_timer = 0f;
+    private static Player_stats stats;
+
+    // Start is called before the first frame update, get the player's stats
+    void Start()
+    {
+        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -21,12 +31,11 @@ public class Shooting : MonoBehaviour
         if (Input.GetButton("Fire1") && fire_timer <= 0)
         {
             Shoot();
-            //ROF_up fast_rof = gameObject.GetComponent<ROF_up>();
-            //fire_timer = fast_rof.new_rof;
-            fire_timer = 0.2f;
+            fire_timer = stats.rate_of_fire;
         }
     }
 
+    // Function that instatiates a bullet object from the player's fire point and adds force to propel it across a stage
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPreFab, fire_point.position, fire_point.rotation);

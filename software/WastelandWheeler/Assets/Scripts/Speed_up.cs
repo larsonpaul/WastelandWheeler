@@ -2,32 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Class that controls the player's move speed
+ */
 public class Speed_up : MonoBehaviour
 {
     public float multiplier = 1.5f;
     public float duration = 10f;
+    private static Player_stats stats;
 
+    // Start is called before the first frame update, get the player's stats
+    void Start()
+    {
+        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+    }
+
+    // On collision, check the player tag and increase the move speed based on a multiplier
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            StartCoroutine(Pickup(collision));
+            gameObject.SetActive(false);
+            stats.move_speed *= multiplier;
+            Invoke("Disable", duration);
         }
     }
 
-    IEnumerator Pickup(Collider2D player)
+    // Remove players increased move speed after a duration
+    void Disable()
     {
-        player_movement move_speed = player.GetComponent<player_movement>();
-
-        move_speed.move_speed *= multiplier;
-
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<PolygonCollider2D>().enabled = false;
-
-        yield return new WaitForSeconds(duration);
-
-        move_speed.move_speed /= multiplier;
-
+        stats.move_speed /= multiplier;
         Destroy(gameObject);
     }
 }

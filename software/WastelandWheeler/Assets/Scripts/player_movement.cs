@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class player_movement : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    public float move_speed = 5f;
-
     private Rigidbody2D r_body;
     private Camera cam;
+
+    private static Player_stats stats;
+    private float move_speed;
 
     Vector2 movement;
     Vector2 mouse_position;
 
+    // Start is called before the first frame update
     void Start()
     {
         r_body = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+
+        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        move_speed = stats.move_speed;
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -32,6 +36,7 @@ public class player_movement : MonoBehaviour
         }
 
         mouse_position = cam.ScreenToWorldPoint(Input.mousePosition);
+        
         
     }
 

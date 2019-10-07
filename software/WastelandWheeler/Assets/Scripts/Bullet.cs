@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Bullet class that will destroy a bullet object when it collides with an enemy or a surface
+ */
 public class Bullet : MonoBehaviour
 {
-
     //public GameObject hit_effect;
 
+    // on collision destroy the bullet object
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //GameObject effect = Instantiate(hit_effect, transform.position, Quaternion.identity);
