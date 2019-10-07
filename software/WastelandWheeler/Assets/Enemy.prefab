@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 1014893128181177940}
-  damage: -10
+  damage: 10
 --- !u!60 &1272187647381016119
 PolygonCollider2D:
   m_ObjectHideFlags: 0

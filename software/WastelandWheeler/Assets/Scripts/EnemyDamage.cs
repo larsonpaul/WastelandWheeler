@@ -8,7 +8,7 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour
 {
     public Rigidbody2D rbody;
-    public float damage = -10f;
+    public float damage = 10f;
 
     // Start is called before the first frame update, find the rbody of the object 
     void Start()
@@ -22,7 +22,14 @@ public class EnemyDamage : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             rbody.velocity *= -2;
-            col.gameObject.GetComponent<Player_stats>().addHealth(damage);
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
         }
     }
 }
