@@ -17,7 +17,16 @@ public class EnemyDamage : MonoBehaviour
     }
 
     // When a collision occurs, check for a player tag and reduce the player health by damage.
-    void OnCollisionEnter2D(Collision2D col)
+    //void OnCollisionEnter2D(Collision2D col)
+    //{
+    //    if (col.gameObject.CompareTag("Player"))
+    //    {
+    //        rbody.velocity *= -2;
+    //        col.gameObject.GetComponent<Player_stats>().addHealth(damage);
+    //    }
+    //}
+
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
