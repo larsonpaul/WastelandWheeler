@@ -17261,6 +17261,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b030b18e24fba444b9abedc12adc7913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  img1: {fileID: 21300000, guid: 5287e6914fd1cdc4a80cbc5a24062fec, type: 3}
+  img2: {fileID: 21300000, guid: 49db351d89c22e24b80d2c1884430940, type: 3}
+  img3: {fileID: 21300000, guid: 38955599b113ccb469f7f594d94b9605, type: 3}
+  img4: {fileID: 0}
+  img5: {fileID: 21300000, guid: 5659091095d3093489cf9a1d00faf8ca, type: 3}
+  img6: {fileID: 0}
+  img7: {fileID: 21300000, guid: 463fd609f81964a4f8f32e8d75cf3273, type: 3}
+  img8: {fileID: 21300000, guid: 8862c4013380dad42a31a5dccc7daecc, type: 3}
 --- !u!50 &904335849
 Rigidbody2D:
   serializedVersion: 4
