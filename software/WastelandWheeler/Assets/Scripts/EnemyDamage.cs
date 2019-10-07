@@ -26,7 +26,7 @@ public class EnemyDamage : MonoBehaviour
     //    }
     //}
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
@@ -34,7 +34,7 @@ public class EnemyDamage : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
