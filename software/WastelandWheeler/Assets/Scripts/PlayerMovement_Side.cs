@@ -62,6 +62,7 @@ public class PlayerMovement_Side : MonoBehaviour
         rbody.velocity = new Vector2((h * velocity),rbody.velocity.y);
 
         animator.SetFloat("Speed", Mathf.Abs(h)); //Get direction for animation controller
+        animator.SetBool("In Air", !IsGrounded()); //Set animation jump boolean
 
         if(h<0)
         {
