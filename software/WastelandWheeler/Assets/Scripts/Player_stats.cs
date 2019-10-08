@@ -38,30 +38,40 @@ public class Player_stats : MonoBehaviour
     // increasing it if positive and decreasing if negative
     public void AddHealth(float num)
     {
-        if (num < 0)
+        if (num <= 0)
         {
-            Debug.LogError("AddHealth() given negative float " + num);
+            if (num < 0)
+            {
+                string error = gameObject.name + ".AddHealth() given negative float " + num;
+                Debug.LogError(error);
+            }
             return;
         }
-        healthCurrent = Mathf.Min(healthCurrent + num, healthMax);
-        game.SetHealth(healthCurrent / healthMax);
+        else if (num > 0)
+        {
+            healthCurrent = Mathf.Min(healthCurrent + num, healthMax);
+            game.SetHealth(healthCurrent / healthMax);
+        }
     }
 
     public void RemoveHealth(float num)
     {
-        if (num < 0)
+        if (num <= 0 || (isInvincible || iFrameCur > 0))
         {
-            Debug.LogError("RemoveHealth() given negative float " + num);
+            if (num < 0)
+            {
+                string error = gameObject.name + ".RemoveHealth() given negative float " + num;
+                Debug.LogError(error);
+            }
             return;
         }
-        if (isInvincible || iFrameCur > 0) return;
-        if (num > 0)
+        else
         {
             healthCurrent -= num;
             iFrameCur = iFrameMax;
+            game.SetHealth(healthCurrent / healthMax);
+            if (healthCurrent <= 0) GameOver();
         }
-        if (healthCurrent <= 0) GameOver();
-        game.SetHealth(healthCurrent / healthMax);
     }
 
     // Function to get the move speed of the player
