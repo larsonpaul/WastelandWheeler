@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit_speed: 0.1
-  force_speed: 20
+  force_speed: 12
   velocity: 5
   movement_type: 1
 --- !u!114 &1014893128181177945
