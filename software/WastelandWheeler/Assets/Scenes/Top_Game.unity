@@ -17364,9 +17364,9 @@ MonoBehaviour:
   img1: {fileID: 21300000, guid: 5287e6914fd1cdc4a80cbc5a24062fec, type: 3}
   img2: {fileID: 21300000, guid: 49db351d89c22e24b80d2c1884430940, type: 3}
   img3: {fileID: 21300000, guid: 38955599b113ccb469f7f594d94b9605, type: 3}
-  img4: {fileID: 0}
+  img4: {fileID: 21300000, guid: aa2de7935a2b1184696a8e736b3403c8, type: 3}
   img5: {fileID: 21300000, guid: 5659091095d3093489cf9a1d00faf8ca, type: 3}
-  img6: {fileID: 0}
+  img6: {fileID: 21300000, guid: 295ead25da6cfdb4ca261ce85f904159, type: 3}
   img7: {fileID: 21300000, guid: 463fd609f81964a4f8f32e8d75cf3273, type: 3}
   img8: {fileID: 21300000, guid: 8862c4013380dad42a31a5dccc7daecc, type: 3}
 --- !u!50 &904335849
@@ -17432,7 +17432,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.89, y: 2.46}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -17471,7 +17471,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 1.89, y: 2.46}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
