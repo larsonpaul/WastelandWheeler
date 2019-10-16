@@ -11,7 +11,7 @@ public class player_movement : MonoBehaviour
     private float move_speed;
     public Sprite img1, img2, img3, img4, img5, img6, img7, img8;
 
-    Vector2 movement;
+    public Vector2 movement;
     Vector2 mouse_position;
 
     // Start is called before the first frame update

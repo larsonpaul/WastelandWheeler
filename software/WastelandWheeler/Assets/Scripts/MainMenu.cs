@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         Time.timeScale = 1f;
+        PauseMenu.GameIsPaused = false;
     }
 
     // Loads scene two in the build
@@ -20,6 +21,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(2);
         Time.timeScale = 1f;
+        PauseMenu.GameIsPaused = false;
     }
 
     // Stop application 
