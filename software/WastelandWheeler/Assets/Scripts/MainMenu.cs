@@ -12,12 +12,14 @@ public class MainMenu : MonoBehaviour
     public void StartTopdown()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
     }
 
     // Loads scene two in the build
     public void StartPlatformer()
     {
         SceneManager.LoadScene(2);
+        Time.timeScale = 1f;
     }
 
     // Stop application 
