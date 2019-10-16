@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
     public float endDelay = 3f;
-
 
     [SerializeField] private HealthBar healthBar;
 
@@ -26,5 +24,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
 
 }
