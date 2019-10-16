@@ -14,6 +14,7 @@ public class PlayerMovement_Side : MonoBehaviour
     public float velocity; // speed of velocity-based movement
     public Animator animator; //the player animator component
     public SpriteRenderer spriteRenderer;
+    public Rigidbody2D arm;
 
     void Start()
     {
@@ -22,13 +23,10 @@ public class PlayerMovement_Side : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-
-
     bool IsGrounded()
     {
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
-
 
         RaycastHit2D hit = Physics2D.Raycast(position, direction, groundDetect, Ground);
         if (hit.collider != null)
@@ -60,6 +58,7 @@ public class PlayerMovement_Side : MonoBehaviour
         //get player input
         float h = Input.GetAxis("Horizontal");
         rbody.velocity = new Vector2((h * velocity),rbody.velocity.y);
+        arm.velocity = new Vector2((h * velocity), rbody.velocity.y);
 
         animator.SetFloat("Speed", Mathf.Abs(h)); //Get direction for animation controller
         animator.SetBool("In Air", !IsGrounded()); //Set animation jump boolean
@@ -86,5 +85,4 @@ public class PlayerMovement_Side : MonoBehaviour
             rbody.velocity += Vector2.up * Physics2D.gravity.y * (hopMultiplier - 1) * Time.deltaTime;
         }
     }
-
 }
