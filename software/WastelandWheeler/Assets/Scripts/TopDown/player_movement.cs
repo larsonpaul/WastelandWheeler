@@ -81,8 +81,6 @@ public class player_movement : MonoBehaviour
         if (r_body.rotation < -205 && r_body.rotation > -250)
         {
             this.GetComponent<SpriteRenderer>().sprite = img8;
-            //this.GetComponent<SpriteRenderer>().flipY = true;
-            //this.GetComponent<SpriteRenderer>().flipX = true;
         }
 
         if (r_body.rotation < -160 && r_body.rotation > -205)
@@ -94,7 +92,6 @@ public class player_movement : MonoBehaviour
         if (r_body.rotation < -110 && r_body.rotation > -160)
         {
             this.GetComponent<SpriteRenderer>().sprite = img2;
-            //this.GetComponent<SpriteRenderer>().flipY = true;
             this.GetComponent<SpriteRenderer>().flipX = true;
         }
 
