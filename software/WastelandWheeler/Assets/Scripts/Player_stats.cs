@@ -74,6 +74,16 @@ public class Player_stats : MonoBehaviour
         }
     }
 
+    public void AddAdrenaline(float num)
+    {
+        // Add Code Here
+    }
+
+    public void RemoveAdrenaline(float num)
+    {
+        // Add Code Here
+    }
+
     // Function to get the move speed of the player
     public float GetSpeed()
     {
