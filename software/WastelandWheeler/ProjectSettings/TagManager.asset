@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Platformer
   - Top_down
+  - bullet
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Ground
   - Enemy
   - Background
-  - 
-  - 
+  - bullets
+  - player
   - 
   - 
   - 

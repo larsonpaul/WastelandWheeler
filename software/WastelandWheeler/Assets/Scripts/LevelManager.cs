@@ -12,10 +12,20 @@ public class LevelManager : MonoBehaviour
 
     public GameObject currentCheckPoint;
     private PlayerMovement_Side player;
+    private player_movement player_move;
+    public bool isTopDownMove = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerMovement_Side>();
+        if (!isTopDownMove)
+        {
+            player = FindObjectOfType<PlayerMovement_Side>();
+        }
+        else
+        {
+            player_move = FindObjectOfType<player_movement>();
+        }
     }
 
     // Update is called once per frame

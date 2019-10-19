@@ -16,9 +16,15 @@ public class Player_stats : MonoBehaviour
 
     public float iFrameMax = 20f;
     public float iFrameCur = 0f;
+    public bool levelIsTopDown = true;
+    public LevelManager levelManager;
 
     [SerializeField] private GameManager game;
 
+    private void Start()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+    }
 
     void Update()
     {
@@ -70,7 +76,17 @@ public class Player_stats : MonoBehaviour
             healthCurrent -= num;
             iFrameCur = iFrameMax;
             game.SetHealth(healthCurrent / healthMax);
-            if (healthCurrent <= 0) GameOver();
+            if (healthCurrent <= 0 && levelIsTopDown)
+            {
+                GameOver();
+            }
+            else if (healthCurrent <= 0 && !levelIsTopDown)
+            {
+                Debug.Log("Respawn");
+                levelManager.respawnPlayer();
+                //game.SetHealth(healthMax);
+
+            }
         }
     }
 
