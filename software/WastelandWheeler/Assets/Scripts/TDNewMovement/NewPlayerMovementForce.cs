@@ -32,9 +32,6 @@ public class NewPlayerMovementForce : MonoBehaviour
 
         facing = Vector2.right;
         angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
-
-        // TODO: remove this
-        rbody.drag = 4;
     }
 
     // Update is called once per frame
@@ -107,12 +104,8 @@ public class NewPlayerMovementForce : MonoBehaviour
     void FixedUpdate()
     {
         // Perform movement
-        // TODO: tie in with player stats
-        //float movespeed = stats.move_speed;
-        float movespeed = 50f;
-
-        rbody.AddForce(new Vector2(facing.normalized.x * movespeed * movement.magnitude, 
-            facing.normalized.y * movespeed * movement.magnitude));
+        rbody.AddForce(new Vector2(facing.normalized.x * stats.move_speed * movement.magnitude, 
+            facing.normalized.y * stats.move_speed * movement.magnitude));
     }
 
 
