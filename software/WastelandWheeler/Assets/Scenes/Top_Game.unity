@@ -38880,6 +38880,8 @@ GameObject:
   - component: {fileID: 904335852}
   - component: {fileID: 904335853}
   - component: {fileID: 904335848}
+  - component: {fileID: 904335858}
+  - component: {fileID: 904335857}
   - component: {fileID: 904335854}
   - component: {fileID: 904335856}
   m_Layer: 0
@@ -38896,7 +38898,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904335847}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b030b18e24fba444b9abedc12adc7913, type: 3}
   m_Name: 
@@ -38923,7 +38925,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 4
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -39041,7 +39043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 100
   healthCurrent: 100
-  move_speed: 10
+  move_speed: 50
   rate_of_fire: 0.2
   bullet_size: 2
   isInvincible: 0
@@ -39092,6 +39094,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3d22ef445bda442b8533eab242af34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &904335857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904335847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a246db640687b8346918fe77d9e11398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spr1: {fileID: 21300000, guid: 5287e6914fd1cdc4a80cbc5a24062fec, type: 3}
+  spr2: {fileID: 21300000, guid: 49db351d89c22e24b80d2c1884430940, type: 3}
+  spr3: {fileID: 21300000, guid: 38955599b113ccb469f7f594d94b9605, type: 3}
+  spr4: {fileID: 21300000, guid: aa2de7935a2b1184696a8e736b3403c8, type: 3}
+  spr5: {fileID: 21300000, guid: 5659091095d3093489cf9a1d00faf8ca, type: 3}
+  spr6: {fileID: 21300000, guid: 295ead25da6cfdb4ca261ce85f904159, type: 3}
+  spr7: {fileID: 21300000, guid: 463fd609f81964a4f8f32e8d75cf3273, type: 3}
+  spr8: {fileID: 21300000, guid: 8862c4013380dad42a31a5dccc7daecc, type: 3}
+  movement: {x: 0, y: 0}
+  facing: {x: 0, y: 0}
+  angle: 0
+--- !u!114 &904335858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904335847}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ba21f92d05ccf43a8c2bc543c17584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spr1: {fileID: 21300000, guid: 5287e6914fd1cdc4a80cbc5a24062fec, type: 3}
+  spr2: {fileID: 21300000, guid: 49db351d89c22e24b80d2c1884430940, type: 3}
+  spr3: {fileID: 21300000, guid: 38955599b113ccb469f7f594d94b9605, type: 3}
+  spr4: {fileID: 21300000, guid: aa2de7935a2b1184696a8e736b3403c8, type: 3}
+  spr5: {fileID: 21300000, guid: 5659091095d3093489cf9a1d00faf8ca, type: 3}
+  spr6: {fileID: 21300000, guid: 295ead25da6cfdb4ca261ce85f904159, type: 3}
+  spr7: {fileID: 21300000, guid: 463fd609f81964a4f8f32e8d75cf3273, type: 3}
+  spr8: {fileID: 21300000, guid: 8862c4013380dad42a31a5dccc7daecc, type: 3}
+  movement: {x: 0, y: 0}
+  facing: {x: 0, y: 0}
+  angle: 0
 --- !u!1 &904471717
 GameObject:
   m_ObjectHideFlags: 0
