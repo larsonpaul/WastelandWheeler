@@ -22,7 +22,6 @@ public class NewPlayerMovementForce : MonoBehaviour
     private Vector2 facing;
     public float angle;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +32,6 @@ public class NewPlayerMovementForce : MonoBehaviour
 
         facing = Vector2.right;
         angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
-        Debug.Log(angle);
 
         // TODO: remove this
         rbody.drag = 4;
@@ -52,6 +50,7 @@ public class NewPlayerMovementForce : MonoBehaviour
         // Calculate facing
         if (Vector2.Dot(facing, movement) < -0.99999f)
         {
+            // TODO: find a function that turns in the right direction
             movement = Vector2.Perpendicular(movement);
         }
 
@@ -100,24 +99,20 @@ public class NewPlayerMovementForce : MonoBehaviour
             case 8:
                 renderer.sprite = spr3;
                 break;
-
             default:
                 break;
         }
-
-
     }
-
 
     void FixedUpdate()
     {
         // Perform movement
         // TODO: tie in with player stats
-        //float movespeed = stats.move_speed * movement.magnitude;
-        float movespeed = 50f * movement.magnitude;
+        //float movespeed = stats.move_speed;
+        float movespeed = 50f;
 
-        rbody.AddForce(new Vector2(facing.normalized.x * movespeed, 
-            facing.normalized.y * movespeed));
+        rbody.AddForce(new Vector2(facing.normalized.x * movespeed * movement.magnitude, 
+            facing.normalized.y * movespeed * movement.magnitude));
     }
 
 
