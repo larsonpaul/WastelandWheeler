@@ -132,5 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  just_along_x: 0
+  just_along_x: 1
+  just_along_y: 0
   damage: 25

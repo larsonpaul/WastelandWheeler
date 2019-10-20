@@ -84,7 +84,7 @@ public class Player_stats : MonoBehaviour
             {
                 Debug.Log("Respawn");
                 levelManager.respawnPlayer();
-                //game.SetHealth(healthMax);
+                refillHealth();
 
             }
         }
@@ -124,4 +124,10 @@ public class Player_stats : MonoBehaviour
         Destroy(gameObject);
         game.EndGame();
     }
+
+    public void refillHealth()
+    {
+        AddHealth(healthMax);
+    }
+
 }

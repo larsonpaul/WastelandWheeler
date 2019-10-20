@@ -5,7 +5,8 @@ using UnityEngine;
 public class enemyBullet : MonoBehaviour
 {
     public float speed;
-    public bool just_along_x = true;
+    public bool just_along_x;
+    public bool just_along_y;
     public float damage;
 
     private Transform player;
@@ -22,12 +23,14 @@ public class enemyBullet : MonoBehaviour
         {
             target = new Vector2(player.position.x, transform.position.y);
         } 
+        else if (just_along_y)
+        {
+            target = new Vector2(transform.position.x, player.position.y);
+        }
         else
         {
             target = new Vector2(player.position.x, player.position.y);
         }
-
-        
         
     }
 
