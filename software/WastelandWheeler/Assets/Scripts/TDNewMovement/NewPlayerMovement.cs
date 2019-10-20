@@ -20,9 +20,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Vector2 facing;
-    public float angle;
-
-    private float turnspeed = 0.1f;
+    public float angle; 
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +52,7 @@ public class NewPlayerMovement : MonoBehaviour
             movement = Vector2.Perpendicular(movement);
         }
 
+        float turnspeed = 0.1f;
         facing = (facing + movement * turnspeed);
 
         if (facing.magnitude > 1)
@@ -97,21 +96,15 @@ public class NewPlayerMovement : MonoBehaviour
             case 8:
                 renderer.sprite = spr3;
                 break;
-
             default:
                 break;
         }
-
-
     }
-
 
     void FixedUpdate()
     {
         // Perform movement
-        float movespeed = stats.move_speed * movement.magnitude;
-
-        rbody.MovePosition(rbody.position + facing.normalized * movespeed * Time.fixedDeltaTime);
+        rbody.MovePosition(rbody.position + facing.normalized * stats.move_speed * movement.magnitude * Time.fixedDeltaTime);
     }
 
 
