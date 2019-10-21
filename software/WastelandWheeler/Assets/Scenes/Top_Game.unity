@@ -38878,6 +38878,7 @@ GameObject:
   - component: {fileID: 904335849}
   - component: {fileID: 904335855}
   - component: {fileID: 904335852}
+  - component: {fileID: 904335859}
   - component: {fileID: 904335853}
   - component: {fileID: 904335848}
   - component: {fileID: 904335858}
@@ -39057,7 +39058,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904335847}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2fe2c8b07a7e534bb903fb495681bcf, type: 3}
   m_Name: 
@@ -39140,6 +39141,21 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   facing: {x: 0, y: 0}
   angle: 0
+--- !u!114 &904335859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904335847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7619df7c6063ca4386f541a27fba1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 755707363379987826, guid: 4e3a840ac26eaf84b8b243e1d8674f36,
+    type: 3}
+  bullet_force: 20
 --- !u!1 &904471717
 GameObject:
   m_ObjectHideFlags: 0
