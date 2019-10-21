@@ -12,10 +12,23 @@ public class LevelManager : MonoBehaviour
 
     public GameObject currentCheckPoint;
     private PlayerMovement_Side player;
+    private player_movement player_move;
+    public bool isTopDownMove = true;
+    private Player_stats player_Stats;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerMovement_Side>();
+        if (!isTopDownMove)
+        {
+            player = FindObjectOfType<PlayerMovement_Side>();
+        }
+        else
+        {
+            player_move = FindObjectOfType<player_movement>();
+        }
+
+        player_Stats = FindObjectOfType<Player_stats>();
     }
 
     // Update is called once per frame
@@ -29,5 +42,6 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Player respawned here");
         player.transform.position = currentCheckPoint.transform.position;
+        player_Stats.refillHealth();
     }
 }
