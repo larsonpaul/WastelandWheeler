@@ -19,7 +19,7 @@ public class fireAtPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rate_of_fire = shotStartTime;
 
@@ -30,8 +30,8 @@ public class fireAtPlayer : MonoBehaviour
     {
         //Show enemy Sight lines
         Debug.DrawLine
-            (new Vector3(transform.position.x + playerWithinRangeX,transform.position.y, transform.position.z),
-             new Vector3(transform.position.x - playerWithinRangeX,transform.position.y, transform.position.z));
+            (new Vector3(transform.position.x + playerWithinRangeX, transform.position.y, transform.position.z),
+             new Vector3(transform.position.x - playerWithinRangeX, transform.position.y, transform.position.z));
 
         Debug.DrawLine
             (new Vector3(transform.position.x, transform.position.y + playerWithinRangeY, transform.position.z),
@@ -39,7 +39,8 @@ public class fireAtPlayer : MonoBehaviour
 
 
         // If player within range and 
-        if (Vector2.Distance(transform.position, player.position) < playerWithinRangeX && rate_of_fire <= 0)
+        if (Vector2.Distance(transform.position, player.position) < playerWithinRangeX && rate_of_fire <= 0 ||
+            Vector2.Distance(transform.position, player.position) < playerWithinRangeX && rate_of_fire <= 0)
         {
             Instantiate(bullet, transform.position, Quaternion.identity);
             rate_of_fire = shotStartTime;
