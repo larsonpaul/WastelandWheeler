@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dead car front
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 1cd127fc2b759e740aa7fbab7407922a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9245283, g: 0.34451762, b: 0.34451762, a: 1}
   m_Transform:
     e00: 1
     e01: 0
