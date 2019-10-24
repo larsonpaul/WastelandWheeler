@@ -13,6 +13,8 @@ public class Player_stats : MonoBehaviour
     public float rate_of_fire = 0.2f;
     public float bullet_size = 2f;
     public bool isInvincible = false;
+    public float adrenalineMax = 100f;
+    public float adrenalineCurrent = 100f;
 
     public float iFrameMax = 20f;
     public float iFrameCur = 0f;
@@ -93,11 +95,39 @@ public class Player_stats : MonoBehaviour
     public void AddAdrenaline(float num)
     {
         // Add Code Here
+        if (num <= 0)
+        {
+            if (num < 0)
+            {
+                string error = gameObject.name + ".AddAdrenaline() given negative float " + num;
+                Debug.LogError(error);
+            }
+            return;
+        }
+        else if (num > 0)
+        {
+            adrenalineCurrent = Mathf.Min(adrenalineCurrent + num, adrenalineMax);
+            game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
+        }
     }
 
     public void RemoveAdrenaline(float num)
     {
         // Add Code Here
+        if (num <= 0)
+        {
+            if (num < 0)
+            {
+                string error = gameObject.name + ".RemoveAdrenaline() given negative float " + num;
+                Debug.LogError(error);
+            }
+            return;
+        }
+        else
+        {
+            adrenalineCurrent -= num;
+            game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
+        }
     }
 
     // Function to get the move speed of the player
