@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 164698073786857763}
   - component: {fileID: 164698073786857762}
   - component: {fileID: 164698073786857765}
+  - component: {fileID: 7640623153941220947}
   - component: {fileID: 164698073786857764}
   m_Layer: 0
   m_Name: Invincibility_up
@@ -88,10 +89,10 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164698073786857767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -122,6 +123,22 @@ PolygonCollider2D:
       - {x: -0.6666667, y: -0.9583334}
       - {x: -0.5, y: -0.9583334}
       - {x: -0.16666667, y: -0.7916667}
+--- !u!58 &7640623153941220947
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164698073786857767}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!114 &164698073786857764
 MonoBehaviour:
   m_ObjectHideFlags: 0
