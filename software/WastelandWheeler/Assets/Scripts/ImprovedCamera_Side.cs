@@ -22,15 +22,20 @@ public class ImprovedCamera_Side : MonoBehaviour
             if((player.position.x - transform.position.x) < 1)
             {
                 offset.x = (Camera.main.orthographicSize * 0.25f);
-                transform.position = new Vector3(player.position.x + offset.x, offset.y, offset.z);
+                transform.position = new Vector3(player.position.x + offset.x, player.position.y, offset.z);
             }
             else
             {
                 offset.x = -(Camera.main.orthographicSize * 0.25f);
-                transform.position = new Vector3(player.position.x + offset.x, offset.y, offset.z);
+                transform.position = new Vector3(player.position.x + offset.x, player.position.y , offset.z);
             }
-            
+
         }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, player.position.y, offset.z);
+        }
+
         
     }
 }
