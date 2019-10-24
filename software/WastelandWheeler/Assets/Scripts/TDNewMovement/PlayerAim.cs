@@ -42,12 +42,13 @@ public class PlayerAim : MonoBehaviour
 
     }
 
-    void Shoot(float angle)
+    private void Shoot(float angle)
     {
         GameObject fp = new GameObject();
         Vector2 origin = Vector2.up;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         origin = rotation * (origin * 0.5f);
+        origin = origin + rbody.position;
         fp.transform.Translate((Vector2)gameObject.transform.position + origin);
         fp.transform.Rotate(rotation.eulerAngles);
 
