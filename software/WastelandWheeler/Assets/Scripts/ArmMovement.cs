@@ -8,11 +8,11 @@ public class ArmMovement : MonoBehaviour
     private Rigidbody2D r_body;
     Vector2 mouse_position;
     private Camera cam;
-    Transform firePoint;
+    GameObject player;
 
     private void Awake()
     {
-        firePoint = transform.Find("firePoint");
+        player = GameObject.Find("Player");     //Get player object so we can access the transform component.
     }
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,8 @@ public class ArmMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
+        gameObject.transform.position = player.transform.position;  //Set the arm position to the player position
+
         Vector2 look_direction = mouse_position - r_body.position;
         float angle = Mathf.Atan2(look_direction.y, look_direction.x) * Mathf.Rad2Deg - 90f;
         r_body.rotation = angle;

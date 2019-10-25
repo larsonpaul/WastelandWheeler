@@ -12,9 +12,9 @@ public class PlayerMovement_Side : MonoBehaviour
     public float groundDetect = 0.9f;
     private Rigidbody2D rbody; 
     public float velocity; // speed of velocity-based movement
-    public Animator animator; //the player animator component
-    public SpriteRenderer spriteRenderer;
-    public Rigidbody2D arm;
+    //GameObjects for animation
+    private Animator animator; 
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -37,7 +37,7 @@ public class PlayerMovement_Side : MonoBehaviour
         return false;
     }
 
-
+    // Makes the player jump if they are not on the ground
     void Jumpcheck()
     {
         if (!IsGrounded())
@@ -48,28 +48,30 @@ public class PlayerMovement_Side : MonoBehaviour
         {
             rbody.velocity = new Vector2(rbody.velocity.x, jumpSpeed);
         }
-
-
-
     }
 
-    void Update()
+    private void Update()
     {
-        //get player input
         float h = Input.GetAxis("Horizontal");
-        rbody.velocity = new Vector2((h * velocity),rbody.velocity.y);
-        arm.velocity = new Vector2((h * velocity), rbody.velocity.y);
+        animator.SetFloat("Speed", Mathf.Abs(h)); //Set direction for animation controller
+        animator.SetBool("In Air", !IsGrounded()); //Set animation controller jump boolean
 
-        animator.SetFloat("Speed", Mathf.Abs(h)); //Get direction for animation controller
-        animator.SetBool("In Air", !IsGrounded()); //Set animation jump boolean
-
-        if(h<0)
+        //Flip sprite depending on current direction
+        if (h < 0)
         {
             spriteRenderer.flipX = true;
-        } else if (h > 0)
+        }
+        else if (h > 0)
         {
             spriteRenderer.flipX = false;
         }
+    }
+
+    void FixedUpdate()
+    {
+        float h = Input.GetAxis("Horizontal");  //get player input
+
+        rbody.velocity = new Vector2((h * velocity),rbody.velocity.y);
 
         if (Input.GetKeyDown("space"))
         {
