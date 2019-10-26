@@ -31,13 +31,6 @@ public class LevelManager : MonoBehaviour
         player_Stats = FindObjectOfType<Player_stats>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
-
     public void respawnPlayer()
     {
         Debug.Log("Player respawned here");

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAim : MonoBehaviour
 {
     private Camera cam;
-    private Rigidbody2D rbody;
+    private Rigidbody2D playerRB;
 
     public GameObject bulletPrefab;
     public float bullet_force = 20f;
@@ -17,7 +17,7 @@ public class PlayerAim : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        rbody = GetComponent<Rigidbody2D>();
+        playerRB = GetComponent<Rigidbody2D>();
         stats = GetComponent<Player_stats>();
     }
 
@@ -27,7 +27,7 @@ public class PlayerAim : MonoBehaviour
         // Calculate direction
         Vector2 mpos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector2 target = mpos - rbody.position;
+        Vector2 target = mpos - playerRB.position;
         float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg - 90f;
 
         if (timer > 0)
@@ -42,18 +42,20 @@ public class PlayerAim : MonoBehaviour
 
     }
 
-    void Shoot(float angle)
+    private void Shoot(float angle)
     {
         GameObject fp = new GameObject();
         Vector2 origin = Vector2.up;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         origin = rotation * (origin * 0.5f);
+        origin = origin + playerRB.position;
         fp.transform.Translate((Vector2)gameObject.transform.position + origin);
         fp.transform.Rotate(rotation.eulerAngles);
 
         GameObject bullet = Instantiate(bulletPrefab, origin, rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(fp.transform.up * bullet_force, ForceMode2D.Impulse);
+        Vector2 bulletForce = (Vector2)(fp.transform.up * bullet_force) + playerRB.velocity / 2;
+        Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+        bulletRB.AddForce(bulletForce, ForceMode2D.Impulse);
         Destroy(fp);
     }
 }
