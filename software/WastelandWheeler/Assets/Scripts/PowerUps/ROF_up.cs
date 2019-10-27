@@ -20,25 +20,15 @@ public class ROF_up : MonoBehaviour
     }
 
     // On collision, check the player tag and increase the ROF based on a multiplier
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.CompareTag("Player") && used == false)
+        if (col.CompareTag("Player") && used == false)
         {
             used = true;
-            gameObject.SetActive(false);
 
             stats.PowerROF(multiplier, duration);
+
             Destroy(gameObject);
-            //stats.rate_of_fire /= multiplier;
-
-            //Invoke("Disable", duration);
         }
-    }
-
-    // Remove players increased ROF after a duration
-    void Disable()
-    {
-        stats.rate_of_fire *= multiplier;
-        Destroy(gameObject);
     }
 }

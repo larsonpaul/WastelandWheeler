@@ -25,20 +25,10 @@ public class Speed_up : MonoBehaviour
         if (col.CompareTag("Player") && used == false)
         {
             used = true;
-            gameObject.SetActive(false);
 
             stats.PowerSpeed(multiplier, duration);
+
             Destroy(gameObject);
-            //stats.move_speed *= multiplier;
-
-            //Invoke("Disable", duration);
         }
-    }
-
-    // Remove players increased move speed after a duration
-    void Disable()
-    {
-        //stats.move_speed /= multiplier;
-        Destroy(gameObject);
     }
 }

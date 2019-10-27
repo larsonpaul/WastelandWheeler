@@ -19,25 +19,15 @@ public class Invincibility_up : MonoBehaviour
     }
 
     // Upon collision, check for player tag and set player invinciblity
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.CompareTag("Player") && used == false)
+        if (col.CompareTag("Player") && used == false)
         {
             used = true;
-            gameObject.SetActive(false);
 
             stats.PowerInvincible(duration);
+
             Destroy(gameObject);
-            //stats.isInvincible = true;
-
-            //Invoke("Disable", duration);
         }
-    }
-
-    // remove player invincibility after a given duration
-    void Disable()
-    {
-        stats.isInvincible = false;
-        Destroy(gameObject);
     }
 }
