@@ -26,7 +26,7 @@ public class Speed_up : MonoBehaviour
         {
             used = true;
 
-            stats.PowerSpeed(multiplier, duration);
+            StartCoroutine(stats.PowerSpeed(multiplier, duration));
 
             Destroy(gameObject);
         }

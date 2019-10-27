@@ -139,47 +139,38 @@ public class Player_stats : MonoBehaviour
         }
     }
 
-    public void PowerSpeed(float amount, float duration)
+    public IEnumerator PowerSpeed(float amount, float duration)
     {
         speedIcon.SetActive(true);
 
         move_speed *= amount;
 
-        Invoke("UndoSpeed", duration);
-    }
+        yield return new WaitForSeconds(duration);
 
-    void UndoSpeed()
-    {
         move_speed = baseSpeed;
         speedIcon.SetActive(false);
     }
 
-    public void PowerROF(float amount, float duration)
+    public IEnumerator PowerROF(float amount, float duration)
     {
         rofIcon.SetActive(true);
 
         rate_of_fire /= amount;
 
-        Invoke("UndoROF", duration);
-    }
+        yield return new WaitForSeconds(duration);
 
-    void UndoROF()
-    {
         rate_of_fire = baseROF;
         rofIcon.SetActive(false);
     }
 
-    public void PowerInvincible(float duration)
+    public IEnumerator PowerInvincible(float duration)
     {
         invincibleIcon.SetActive(true);
 
         isInvincible = true;
 
-        Invoke("UndoInvincible", duration);
-    }
+        yield return new WaitForSeconds(duration);
 
-    void UndoInvincible()
-    {
         isInvincible = false;
         invincibleIcon.SetActive(false);
     }

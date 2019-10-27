@@ -26,7 +26,7 @@ public class ROF_up : MonoBehaviour
         {
             used = true;
 
-            stats.PowerROF(multiplier, duration);
+            StartCoroutine(stats.PowerROF(multiplier, duration));
 
             Destroy(gameObject);
         }

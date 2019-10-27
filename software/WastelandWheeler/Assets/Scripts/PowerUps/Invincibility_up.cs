@@ -25,7 +25,7 @@ public class Invincibility_up : MonoBehaviour
         {
             used = true;
 
-            stats.PowerInvincible(duration);
+            StartCoroutine(stats.PowerInvincible(duration));
 
             Destroy(gameObject);
         }
