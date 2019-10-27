@@ -10,6 +10,8 @@ using UnityEngine.UI;
  *        5-4        2-3
  *         ----0-1-----
  *
+ *   
+ *   Add invisible barriers to either end of the screen
  *   Add an invisible object that locates BossFight Script and changes boll startRoutine to true then Destroys itself 
  */
 
@@ -20,6 +22,7 @@ public class BossScript : MonoBehaviour
     public Transform[] bossPoints;  //points where boss will move to
     public float speed; // boss's speed
     private int bossPoint; // current point form the array of bossPoints
+    public Transform firePoint; // firePoint for projectiles
 
     private Rigidbody2D rb;
     public GameObject target; // target/player for boss's aim
@@ -145,7 +148,7 @@ public class BossScript : MonoBehaviour
                     while (i > 0)
                     {
                         Vector2 trgt = target.transform.position - transform.position;
-                        GameObject projectile = (GameObject)Instantiate(projectile, point.position, Quaternion.identity);
+                        projectile = (GameObject)Instantiate(projectile, firePoint.position, Quaternion.identity);
                         projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(trgt.x, trgt.y),
                         ForceMode2D.Impulse);
 
@@ -233,7 +236,7 @@ public class BossScript : MonoBehaviour
 
     void fireProjectile()
     {
-        projectile = (GameObject)Instantiate(projectile, point.position, Quaternion.identity);
+        projectile = (GameObject)Instantiate(projectile, firePoint.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody2D>().velocity = Vector2.left * 10;
 
     }
