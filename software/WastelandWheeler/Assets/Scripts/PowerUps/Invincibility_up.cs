@@ -26,9 +26,11 @@ public class Invincibility_up : MonoBehaviour
             used = true;
             gameObject.SetActive(false);
 
-            stats.isInvincible = true;
+            stats.PowerInvincible(duration);
+            Destroy(gameObject);
+            //stats.isInvincible = true;
 
-            Invoke("Disable", duration);
+            //Invoke("Disable", duration);
         }
     }
 

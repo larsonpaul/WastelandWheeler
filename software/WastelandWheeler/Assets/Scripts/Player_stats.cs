@@ -9,8 +9,13 @@ public class Player_stats : MonoBehaviour
 {
     public float healthMax = 100f;
     public float healthCurrent = 100f;
-    public float move_speed = 10f;
+
+    public float baseSpeed = 50f;
+    public float move_speed = 50f;
+
+    public float baseROF = 0.2f;
     public float rate_of_fire = 0.2f;
+
     public float bullet_size = 2f;
     public bool isInvincible = false;
     public float adrenalineMax = 100f;
@@ -21,7 +26,11 @@ public class Player_stats : MonoBehaviour
     public bool levelIsTopDown = true;
     public LevelManager levelManager;
 
-    [SerializeField] private GameManager game;
+    [SerializeField]
+    private GameManager game;
+
+    [SerializeField]
+    private GameObject speedIcon, rofIcon, invincibleIcon;
 
     private void Start()
     {
@@ -129,6 +138,54 @@ public class Player_stats : MonoBehaviour
             game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
         }
     }
+
+    public void PowerSpeed(float amount, float duration)
+    {
+        speedIcon.SetActive(true);
+
+        move_speed *= amount;
+
+        Invoke("UndoSpeed", duration);
+    }
+
+    void UndoSpeed()
+    {
+        move_speed = baseSpeed;
+        speedIcon.SetActive(false);
+    }
+
+    public void PowerROF(float amount, float duration)
+    {
+        rofIcon.SetActive(true);
+
+        rate_of_fire /= amount;
+
+        Invoke("UndoROF", duration);
+    }
+
+    void UndoROF()
+    {
+        rate_of_fire = baseROF;
+        rofIcon.SetActive(false);
+    }
+
+    public void PowerInvincible(float duration)
+    {
+        invincibleIcon.SetActive(true);
+
+        isInvincible = true;
+
+        Invoke("UndoInvincible", duration);
+    }
+
+    void UndoInvincible()
+    {
+        isInvincible = false;
+        invincibleIcon.SetActive(false);
+    }
+
+
+
 
     // Function to get the move speed of the player
     public float GetSpeed()

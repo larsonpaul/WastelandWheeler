@@ -12,7 +12,7 @@ public class ROF_up : MonoBehaviour
     private static Player_stats stats;
 
     private bool used = false;
-    
+
     // Start is called before the first frame update, get the player's stats
     void Start()
     {
@@ -27,9 +27,11 @@ public class ROF_up : MonoBehaviour
             used = true;
             gameObject.SetActive(false);
 
-            stats.rate_of_fire /= multiplier;
+            stats.PowerROF(multiplier, duration);
+            Destroy(gameObject);
+            //stats.rate_of_fire /= multiplier;
 
-            Invoke("Disable", duration);
+            //Invoke("Disable", duration);
         }
     }
 
