@@ -11,6 +11,8 @@ public class ROF_up : MonoBehaviour
     public float duration = 10f;
     private static Player_stats stats;
 
+    private bool used = false;
+    
     // Start is called before the first frame update, get the player's stats
     void Start()
     {
@@ -20,10 +22,13 @@ public class ROF_up : MonoBehaviour
     // On collision, check the player tag and increase the ROF based on a multiplier
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && used == false)
         {
+            used = true;
             gameObject.SetActive(false);
+
             stats.rate_of_fire /= multiplier;
+
             Invoke("Disable", duration);
         }
     }

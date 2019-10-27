@@ -7,9 +7,10 @@ using UnityEngine;
  */
 public class Invincibility_up : MonoBehaviour
 {
-    public float invince_shield = 999f;
     public float duration = 10f;
     private static Player_stats stats;
+
+    private bool used = false;
 
     // Start is called before the first frame update, get the player's stats
     void Start()
@@ -20,8 +21,9 @@ public class Invincibility_up : MonoBehaviour
     // Upon collision, check for player tag and set player invinciblity
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && used == false)
         {
+            used = true;
             gameObject.SetActive(false);
 
             stats.isInvincible = true;
