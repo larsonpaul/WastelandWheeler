@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TimeSlow : MonoBehaviour
 {
+    [SerializeField]
     private Player_stats stats;
     public float tick_down = 20.0f;
     public float tick_up = 5.0f;
@@ -11,7 +12,7 @@ public class TimeSlow : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && stats.GetAdrenaline() >= tick_down )
         {
             gameObject.GetComponent<Player_stats>().RemoveAdrenaline(tick_down);
             Time.timeScale = .7f;
