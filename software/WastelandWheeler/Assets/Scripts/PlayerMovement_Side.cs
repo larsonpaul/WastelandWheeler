@@ -11,16 +11,17 @@ public class PlayerMovement_Side : MonoBehaviour
     public LayerMask Ground;
     public float groundDetect = 0.9f;
     private Rigidbody2D rbody; 
-    public float velocity; // speed of velocity-based movement
     //GameObjects for animation
     private Animator animator; 
     private SpriteRenderer spriteRenderer;
+    private Player_stats stats;
 
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        stats = gameObject.GetComponent<Player_stats>();
     }
 
     bool IsGrounded()
@@ -71,7 +72,7 @@ public class PlayerMovement_Side : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");  //get player input
 
-        rbody.velocity = new Vector2((h * velocity),rbody.velocity.y);
+        rbody.velocity = new Vector2((h * stats.move_speed),rbody.velocity.y);
 
         if (Input.GetKeyDown("space"))
         {
