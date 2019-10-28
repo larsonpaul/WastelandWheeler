@@ -31,9 +31,6 @@ public class Player_stats : MonoBehaviour
     [SerializeField]
     private GameManager game;
 
-    [SerializeField]
-    private GameObject speedIcon, rofIcon, invincibleIcon;
-
     private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
@@ -160,45 +157,6 @@ public class Player_stats : MonoBehaviour
             } 
         }
     }
-
-    public IEnumerator PowerSpeed(float amount, float duration)
-    {
-        speedIcon.SetActive(true);
-
-        move_speed *= amount;
-
-        yield return new WaitForSeconds(duration);
-
-        move_speed = baseSpeed;
-        speedIcon.SetActive(false);
-    }
-
-    public IEnumerator PowerROF(float amount, float duration)
-    {
-        rofIcon.SetActive(true);
-
-        rate_of_fire /= amount;
-
-        yield return new WaitForSeconds(duration);
-
-        rate_of_fire = baseROF;
-        rofIcon.SetActive(false);
-    }
-
-    public IEnumerator PowerInvincible(float duration)
-    {
-        invincibleIcon.SetActive(true);
-
-        isInvincible = true;
-
-        yield return new WaitForSeconds(duration);
-
-        isInvincible = false;
-        invincibleIcon.SetActive(false);
-    }
-
-
-
 
     // Function to get the move speed of the player
     public float GetSpeed()
