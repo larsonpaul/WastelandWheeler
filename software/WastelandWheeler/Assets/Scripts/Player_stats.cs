@@ -18,8 +18,10 @@ public class Player_stats : MonoBehaviour
 
     public float bullet_size = 2f;
     public bool isInvincible = false;
+
     public float adrenalineMax = 100f;
     public float adrenalineCurrent = 100f;
+    public bool noAdrenaline = false;
 
     public float iFrameMax = 20f;
     public float iFrameCur = 0f;
@@ -43,6 +45,11 @@ public class Player_stats : MonoBehaviour
         {
             iFrameCur -= 1;
         }
+    }
+
+    public bool GetAdrenalineBool()
+    {
+        return noAdrenaline;
     }
 
     // Function to grab the current health of the player
@@ -103,7 +110,6 @@ public class Player_stats : MonoBehaviour
 
     public void AddAdrenaline(float num)
     {
-        // Add Code Here
         if (num <= 0)
         {
             if (num < 0)
@@ -122,20 +128,36 @@ public class Player_stats : MonoBehaviour
 
     public void RemoveAdrenaline(float num)
     {
-        // Add Code Here
-        if (num <= 0)
+        if (noAdrenaline)
         {
-            if (num < 0)
-            {
-                string error = gameObject.name + ".RemoveAdrenaline() given negative float " + num;
-                Debug.LogError(error);
-            }
             return;
         }
+            
         else
         {
-            adrenalineCurrent -= num;
-            game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
+            if (num <= 0)
+            {
+                if (num < 0)
+                {
+                    string error = gameObject.name + ".RemoveAdrenaline() given negative float " + num;
+                    Debug.LogError(error);
+                }
+                return;
+            }
+            else
+            {
+                if (adrenalineCurrent < 0)
+                {
+                    noAdrenaline = true;
+                    print(noAdrenaline);
+                }
+                else
+                {
+                    adrenalineCurrent -= num;
+                    game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
+                    noAdrenaline = false;
+                }
+            } 
         }
     }
 
