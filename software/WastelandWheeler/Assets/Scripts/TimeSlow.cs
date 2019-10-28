@@ -12,8 +12,8 @@ public class TimeSlow : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Time.timeScale = .5f;
-            // Time.deltaTime = .5f;
+            Time.timeScale = .7f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
             gameObject.GetComponent<Player_stats>().RemoveAdrenaline(tick_down);
             Invoke("Disable", duration);
         }
@@ -22,6 +22,7 @@ public class TimeSlow : MonoBehaviour
     private void Disable()
     {
         Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
 
 }
