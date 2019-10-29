@@ -13,8 +13,12 @@ GameObject:
   - component: {fileID: 1014893128181177940}
   - component: {fileID: 7731500842685351944}
   - component: {fileID: 1272187647381016119}
-  - component: {fileID: 1014893128181177942}
   - component: {fileID: 1014893128181177945}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 1079938821640170095}
+  - component: {fileID: 2485134737732030519}
+>>>>>>> Platforming
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -154,22 +158,6 @@ PolygonCollider2D:
       - {x: 0.6666667, y: -0.375}
       - {x: 0.6666667, y: 0.2916667}
       - {x: 0.45833334, y: 0.6666667}
---- !u!114 &1014893128181177942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014893128181177944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a80f9929c21549f4b87aeebb571f5c91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unit_speed: 0.1
-  force_speed: 40
-  velocity: 5
-  movement_type: 1
 --- !u!114 &1014893128181177945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,3 +172,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbody: {fileID: 1014893128181177940}
   damage: 10
+--- !u!114 &1079938821640170095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014893128181177944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3565c04be8e444d4a9eb884c20b64c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  rbody: {fileID: 1014893128181177940}
+  damage: 10
+=======
+  enemyManager: {fileID: 1712270681770978995, guid: 6f854e8201a32c04db68215a697cb318,
+    type: 3}
+--- !u!114 &2485134737732030519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014893128181177944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2366ef4bd124af384b6ecd526509f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  just_along_x: 1
+  just_along_y: 0
+  heatSeeker: 0
+  damage: 0
+  bulletSeconds: 2
+  seconds: 6
+>>>>>>> Platforming

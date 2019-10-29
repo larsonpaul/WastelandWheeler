@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3419042357292929286}
   - component: {fileID: 1257867213909294737}
-  - component: {fileID: 3738456822026793079}
   - component: {fileID: 1330078223887097649}
-  - component: {fileID: 4958390758168356793}
+  - component: {fileID: 2868133018708313403}
   m_Layer: 11
   m_Name: enemyBullet_2D
   m_TagString: bullet
@@ -82,7 +81,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &3738456822026793079
+--- !u!70 &1330078223887097649
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815651842055491911}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.1219096e-13, y: 0.0000021749554}
+  m_Size: {x: 0.90565985, y: 1.2208924}
+  m_Direction: 1
+--- !u!50 &2868133018708313403
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -103,35 +118,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &1330078223887097649
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3815651842055491911}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.1219096e-13, y: 0.0000021749554}
-  m_Size: {x: 0.90565985, y: 1.2208924}
-  m_Direction: 1
---- !u!114 &4958390758168356793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3815651842055491911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa2366ef4bd124af384b6ecd526509f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  just_along_x: 1
-  just_along_y: 0
-  damage: 25

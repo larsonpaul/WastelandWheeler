@@ -16,12 +16,23 @@ public class fireAtPlayer : MonoBehaviour
     public GameObject bullet;
     private Transform player;
 
+    private Vector2 target;
+    public float speed;
+    public bool just_along_x;  // only shoot sideways
+    public bool just_along_y;  // only shoot up and down
+    public bool heatSeeker;    // bullet floows player
+    public bool burstShot;
+
     // Start is called before the first frame update
     void Start()
     {
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rate_of_fire = shotStartTime;
+        if (heatSeeker)
+        {
+            target = new Vector2(player.position.x, player.position.y);
+        }
 
     }
 
@@ -42,14 +53,64 @@ public class fireAtPlayer : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) < playerWithinRangeX && rate_of_fire <= 0 ||
             Vector2.Distance(transform.position, player.position) < playerWithinRangeX && rate_of_fire <= 0)
         {
-            Instantiate(bullet, transform.position, Quaternion.identity);
-            rate_of_fire = shotStartTime;
-
+            if (heatSeeker)
+            {
+                Debug.Log("heat Seek");
+                heatSeek();
+                rate_of_fire = shotStartTime;
+            }
+            else
+            {
+                fireProjectile();
+                rate_of_fire = shotStartTime;
+            }
         }
 
         else
         {
             rate_of_fire -= Time.deltaTime;
         }
+    }
+
+    // Create enemy bullet
+    void fireProjectile()
+    {
+        target = player.transform.position - transform.position;
+        GameObject projectile = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
+
+        if (just_along_x) // shoot sideways
+        {
+            Debug.Log("Shot fired just x");
+            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, transform.position.y));
+        }
+        else if (just_along_y) // shoot up and down
+        {
+            Debug.Log("Shot fired just y");
+            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.position.x, target.y * speed));
+            
+        }
+
+        else if (burstShot) // shot three spreading bullets
+        {
+            Debug.Log("Shot fired just x");
+            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, transform.position.y));
+            GameObject projectile2 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
+            projectile2.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, transform.position.y+2*speed));
+            GameObject projectile3 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
+            projectile3.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, transform.position.y-2 *speed));
+        }
+        else
+        {
+            Debug.Log("Shot fired diagonal"); // shoot diagnolly
+            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, target.y * speed));
+
+        }
+    }
+
+    void heatSeek() // bullet follws the enemy
+    {
+        GameObject projectile = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
+        projectile.transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
     }
 }

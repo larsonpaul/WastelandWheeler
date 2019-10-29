@@ -173,5 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotStartTime: 1
-  playerWithinRange: 2
+  playerWithinRangeX: 5
+  playerWithinRangeY: 5
   bullet: {fileID: 3815651842055491911, guid: b6be7c913b79747ed968f1be5dfedca3, type: 3}
+  point: {fileID: 0}

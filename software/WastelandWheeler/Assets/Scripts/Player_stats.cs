@@ -101,6 +101,23 @@ public class Player_stats : MonoBehaviour
         }
     }
 
+    public void killPlayer()
+    {
+        healthCurrent = 0;
+        game.SetHealth(0);
+        if (healthCurrent <= 0 && levelIsTopDown)
+        {
+            GameOver();
+        }
+        else if (healthCurrent <= 0 && !levelIsTopDown)
+        {
+            Debug.Log("Respawn");
+            levelManager.respawnPlayer();
+            refillHealth();
+
+        }
+    }
+
     public void AddAdrenaline(float num)
     {
         // Add Code Here

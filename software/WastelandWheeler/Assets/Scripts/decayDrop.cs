@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class decayDrop : MonoBehaviour
 {
-    private int lifetime = 100;
+    private int lifetime = 250;
     // Update is called once per frame
     void Update()
     {

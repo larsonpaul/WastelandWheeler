@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 /** To use: Create 7 bossPoint and drag them into the array.  Also needs projectiles, firepoint, UI slide and target.
  *  Create the play area using four platforms arrange in a clockwise formation. Move the bossPoints to the positions as shown
  *             -6-
@@ -15,8 +14,7 @@ using UnityEngine.UI;
  *   Add an invisible object that locates BossFight Script and changes boll startRoutine to true then Destroys itself 
  */
 
-
-public class BossScript : MonoBehaviour
+public class BossFightOne2D : MonoBehaviour
 {
 
     public Transform[] bossPoints;  //points where boss will move to
@@ -33,12 +31,12 @@ public class BossScript : MonoBehaviour
 
     public GameObject[] barriers; // Create objects with colliders and store in array. Prevents player from leaving area
     public GameObject projectile;  // Boss's projectiles
-    public bool startRoutine;       // starts the script once player reaches a certain spot 
+    public startBossFight startRoutine;       // starts the script once player reaches a certain spot 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        startRoutine = FindObjectOfType<startBossFight>();
         rb = GetComponent<Rigidbody2D>();
 
     }
@@ -46,15 +44,15 @@ public class BossScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startRoutine)
+        if (startRoutine.startFight)
         {
 
             StartCoroutine(bossOne());
-            startRoutine = false;
+            startRoutine.startFight = false;
         }
 
         // Update Boss's Health
-        bossHealthBar.value = bossHealth;
+        //bossHealthBar.value = bossHealth;
         if (bossHealth <= 0f)
         {
 
@@ -79,6 +77,7 @@ public class BossScript : MonoBehaviour
 
                 while (transform.position.x != bossPoints[bossPoint].position.x)
                 {
+                    Debug.Log("Moving to" + bossPoint);
                     transform.position = Vector2.MoveTowards(transform.position,
                     new Vector2(bossPoints[bossPoint].transform.position.x, transform.position.y), speed);
                     yield return null;
@@ -96,6 +95,7 @@ public class BossScript : MonoBehaviour
                     returnProjectile();
                     yield return new WaitForSeconds(1);
                     i--;
+                    
                 }
 
                 yield return new WaitForSeconds(1);
@@ -121,7 +121,7 @@ public class BossScript : MonoBehaviour
                 {
 
                     jump(8);
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(2);
 
                     //Shoot three projectiles
                     i = 3;
@@ -129,6 +129,7 @@ public class BossScript : MonoBehaviour
                     {
                         fireProjectile();
                         yield return new WaitForSeconds(1);
+                        Debug.Log("Before return");
                         returnProjectile();
                         i--;
 
@@ -149,8 +150,7 @@ public class BossScript : MonoBehaviour
                     {
                         Vector2 trgt = target.transform.position - transform.position;
                         projectile = (GameObject)Instantiate(projectile, firePoint.position, Quaternion.identity);
-                        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(trgt.x, trgt.y),
-                        ForceMode2D.Impulse);
+                        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(trgt.x * 2, trgt.y)* 20);
 
                         yield return new WaitForSeconds(1);
                         i--;
@@ -200,21 +200,21 @@ public class BossScript : MonoBehaviour
         if (jumpPoint == 8)
         {
             Debug.Log("Jumping up " + jumpPoint);
-            rb.AddForce(Vector2.up * 100);
+            rb.AddForce(Vector2.up * 200);
 
         }
         // jump left
-        else if (jumpPoint == 0 || jumpPoint == 2)
+        else if (jumpPoint == 0 || jumpPoint == 5)
         {
             Debug.Log("Jumping left " + jumpPoint);
-            rb.AddForce(Vector2.up * 430); // magic numbers for current scene
-            rb.AddForce(Vector2.left * 90);
+            rb.AddForce(Vector2.up * 470); // magic numbers for current scene
+            rb.AddForce(Vector2.left * 75);
         }
         else // jump right 
         {
             Debug.Log("Jumping right " + jumpPoint);
-            rb.AddForce(Vector2.up * 430); // magic numbers for current scene
-            rb.AddForce(Vector2.right * 90);
+            rb.AddForce(Vector2.up * 470); // magic numbers for current scene
+            rb.AddForce(Vector2.right * 75);
         }
         if (jumpPoint == 1)
         {
@@ -238,6 +238,7 @@ public class BossScript : MonoBehaviour
     {
         projectile = (GameObject)Instantiate(projectile, firePoint.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody2D>().velocity = Vector2.left * 10;
+        Debug.Log("Fired project");
 
     }
 
