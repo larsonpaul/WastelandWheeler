@@ -14,7 +14,11 @@ public class PlayerMovement_Side : MonoBehaviour
     //GameObjects for animation
     private Animator animator; 
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer armSpriteRenderer;
     private Player_stats stats;
+    private GameObject arm;
+    private Vector3 mousePosition;
+    private Camera cam;
 
     void Start()
     {
@@ -22,6 +26,9 @@ public class PlayerMovement_Side : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         stats = gameObject.GetComponent<Player_stats>();
+        arm = GameObject.Find("Arm");
+        armSpriteRenderer = arm.GetComponent <SpriteRenderer>();
+        cam = Camera.main;
     }
 
     bool IsGrounded()
@@ -57,22 +64,35 @@ public class PlayerMovement_Side : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(h)); //Set direction for animation controller
         animator.SetBool("In Air", !IsGrounded()); //Set animation controller jump boolean
 
-        //Flip sprite depending on current direction
-        if (h < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if (h > 0)
+        mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 look_direction = mousePosition - transform.position;
+        float angle = Mathf.Atan2(look_direction.y, look_direction.x) * Mathf.Rad2Deg;
+
+        Vector3 armPosition = gameObject.transform.position;
+        
+        armPosition.y += 0.1f;
+
+        //Flip sprite depending on mouse cursor position relative player.
+        if (angle < 90.0f && angle > -90.0f)
         {
             spriteRenderer.flipX = false;
+            armSpriteRenderer.flipX = false;
+            armPosition.x -= 0.05f;
         }
+        else if (angle > 90.0f || angle < -90.0f)
+        {
+            spriteRenderer.flipX = true;
+            armSpriteRenderer.flipX = true;
+            armPosition.x += 0.05f;
+        }
+
+        arm.transform.position = armPosition;  //Set the arm position to the player position
     }
 
     void FixedUpdate()
     {
         float h = Input.GetAxis("Horizontal");  //get player input
-
-        rbody.velocity = new Vector2((h * stats.move_speed),rbody.velocity.y);
+        rbody.velocity = new Vector2((h * stats.move_speed), rbody.velocity.y);
 
         if (Input.GetKeyDown("space"))
         {
@@ -87,5 +107,7 @@ public class PlayerMovement_Side : MonoBehaviour
         {
             rbody.velocity += Vector2.up * Physics2D.gravity.y * (hopMultiplier - 1) * Time.deltaTime;
         }
+
+        
     }
 }
