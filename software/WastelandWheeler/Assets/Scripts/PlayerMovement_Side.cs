@@ -66,6 +66,10 @@ public class PlayerMovement_Side : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
+        if (Input.GetKeyDown("space"))
+        {
+            Jumpcheck();
+        }
     }
 
     void FixedUpdate()
@@ -74,10 +78,7 @@ public class PlayerMovement_Side : MonoBehaviour
 
         rbody.velocity = new Vector2((h * stats.move_speed),rbody.velocity.y);
 
-        if (Input.GetKeyDown("space"))
-        {
-            Jumpcheck();
-        }
+        
 
         if(rbody.velocity.y < 0)
         {
