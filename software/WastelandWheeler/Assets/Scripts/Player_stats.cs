@@ -5,7 +5,7 @@ using UnityEngine;
 /**
  * Class that contains varaibles that control player attributes and has getters for those variables
  */
-public class Player_stats : MonoBehaviour
+public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 {
     public float healthMax = 100f;
     public float healthCurrent = 100f;
@@ -32,9 +32,12 @@ public class Player_stats : MonoBehaviour
     [SerializeField]
     private GameObject speedIcon, rofIcon, invincibleIcon;
 
+    private GameObject dda;
     private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
+        dda = GameObject.Find("DDA");
+        dda.GetComponent<DynamicDifficultyAdjuster>().Subscribe(this);
     }
 
     void Update()
@@ -216,6 +219,7 @@ public class Player_stats : MonoBehaviour
     // Game over state based on health (may have to make this its own script)
     void GameOver()
     {
+        dda.GetComponent<DynamicDifficultyAdjuster>().Unsubscribe(this);
         Destroy(gameObject);
         game.EndGame();
     }
@@ -225,4 +229,8 @@ public class Player_stats : MonoBehaviour
         AddHealth(healthMax);
     }
 
+    public void ChangeDifficulty(float amount)
+    {
+        throw new System.NotImplementedException();
+    }
 }
