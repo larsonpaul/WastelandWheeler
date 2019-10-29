@@ -2,50 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class enemyBullet : MonoBehaviour
 {
     public float speed;
-    public bool just_along_x;
-    public bool just_along_y;
+    public bool just_along_x;  // only shoot sideways
+    public bool just_along_y;  // only shoot up and down
+    public bool heatSeeker;    // bullet floows player
     public float damage;
+    public float bulletSeconds = 2.0f; // the time the bullet lasts before being destroyed 
 
     private Transform player;
     private Vector2 target;
-    Player_stats playerStats;
-     
+    Player_stats playerStats;   // used to deal damage
+    private Rigidbody2D rb;
+    public float seconds = 6.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        if (just_along_x)
-        {
-            target = new Vector2(player.position.x, transform.position.y);
-        } 
-        else if (just_along_y)
-        {
-            target = new Vector2(transform.position.x, player.position.y);
-        }
-        else
-        {
-            target = new Vector2(player.position.x, player.position.y);
-        }
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (transform.position.x == target.x && transform.position.y == target.y)
-        {
-            
-            destroyEnemyBullet();
-        }
-
-
+        destroyBulletAfter();
     }
 
     void destroyEnemyBullet()
@@ -55,23 +38,31 @@ public class enemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-      
-        
-        if (other.CompareTag("Enemy")){
+
+        if (other.CompareTag("Enemy"))
+        {
             Physics2D.IgnoreLayerCollision(9, 11);
         }
 
-        else if (other.tag == ("Player")){
+        //damage player on contact and destory object
+        else if (other.tag == ("Player"))
+        {
             other.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
             Debug.Log("Player hit" + damage + " damage");
+            destroyEnemyBullet();
         }
 
         else
         {
-            //Debug.Log("Collision")
             destroyEnemyBullet();
         }
-       
+
+    }
+
+    // Delayed bullet destroy
+    void destroyBulletAfter()
+    {
+        Destroy(gameObject, bulletSeconds);
     }
 
 }
