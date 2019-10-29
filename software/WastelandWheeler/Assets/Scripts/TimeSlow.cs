@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class TimeSlow : MonoBehaviour
 {
-    private static Player_stats stats;
+    [SerializeField]
+    private Player_stats stats;
     public float tick_down = 20.0f;
+    public float tick_up = 5.0f;
     public float duration = .5f;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && stats.GetAdrenaline() >= tick_down )
         {
-            Time.timeScale = .5f;
-            // Time.deltaTime = .5f;
             gameObject.GetComponent<Player_stats>().RemoveAdrenaline(tick_down);
+            Time.timeScale = .7f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
             Invoke("Disable", duration);
         }
     }
@@ -22,6 +24,12 @@ public class TimeSlow : MonoBehaviour
     private void Disable()
     {
         Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+    }
+
+    public void EnemyAdrenaline()
+    {
+        gameObject.GetComponent<Player_stats>().AddAdrenaline(tick_up);
     }
 
 }
