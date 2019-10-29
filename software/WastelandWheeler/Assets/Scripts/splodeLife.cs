@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class decayDrop : MonoBehaviour
+public class splodeLife : MonoBehaviour
 {
-    private int lifetime = 250;
+    private int lifetime = 5;
     // Update is called once per frame
     void Update()
     {

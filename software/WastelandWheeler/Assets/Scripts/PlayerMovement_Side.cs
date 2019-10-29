@@ -10,9 +10,9 @@ public class PlayerMovement_Side : MonoBehaviour
     public float jumpSpeed = 20f;
     public LayerMask Ground;
     public float groundDetect = 0.9f;
-    private Rigidbody2D rbody; 
+    private Rigidbody2D rbody;
     //GameObjects for animation
-    private Animator animator; 
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer armSpriteRenderer;
     private Player_stats stats;
@@ -69,7 +69,7 @@ public class PlayerMovement_Side : MonoBehaviour
         float angle = Mathf.Atan2(look_direction.y, look_direction.x) * Mathf.Rad2Deg;
 
         Vector3 armPosition = gameObject.transform.position;
-        
+
         armPosition.y += 0.1f;
 
         //Flip sprite depending on mouse cursor position relative player.
@@ -85,6 +85,11 @@ public class PlayerMovement_Side : MonoBehaviour
             armSpriteRenderer.flipX = true;
             armPosition.x += 0.05f;
         }
+        
+        if (Input.GetKeyDown("space"))
+        {
+            Jumpcheck();
+        }
 
         arm.transform.position = armPosition;  //Set the arm position to the player position
     }
@@ -94,10 +99,7 @@ public class PlayerMovement_Side : MonoBehaviour
         float h = Input.GetAxis("Horizontal");  //get player input
         rbody.velocity = new Vector2((h * stats.move_speed), rbody.velocity.y);
 
-        if (Input.GetKeyDown("space"))
-        {
-            Jumpcheck();
-        }
+
 
         if(rbody.velocity.y < 0)
         {
@@ -108,6 +110,6 @@ public class PlayerMovement_Side : MonoBehaviour
             rbody.velocity += Vector2.up * Physics2D.gravity.y * (hopMultiplier - 1) * Time.deltaTime;
         }
 
-        
+
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1808304633582009744}
   - component: {fileID: 5485654344766521286}
   - component: {fileID: 3367383596251042928}
-  - component: {fileID: 8161396706256243500}
+  - component: {fileID: 5102379285754823597}
   - component: {fileID: 5265328247635106175}
   m_Layer: 0
   m_Name: dropBall
@@ -120,7 +120,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 1
---- !u!114 &8161396706256243500
+--- !u!114 &5102379285754823597
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,10 +129,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3720279127406853903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e2c07eedb9724f6f9a2d5d0b58173f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9066177db665dfc49b02bab0c5c38938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
+  rbody: {fileID: 3367383596251042928}
+  damage: 40
 --- !u!114 &5265328247635106175
 MonoBehaviour:
   m_ObjectHideFlags: 0
