@@ -18,7 +18,6 @@ public class Player_stats : MonoBehaviour
 
     public float bullet_size = 2f;
     public bool isInvincible = false;
-
     public float adrenalineMax = 100f;
     public float adrenalineCurrent = 100f;
 
@@ -29,6 +28,9 @@ public class Player_stats : MonoBehaviour
 
     [SerializeField]
     private GameManager game;
+
+    [SerializeField]
+    private GameObject speedIcon, rofIcon, invincibleIcon;
 
     private void Start()
     {
@@ -41,11 +43,6 @@ public class Player_stats : MonoBehaviour
         {
             iFrameCur -= 1;
         }
-    }
-
-    public float GetAdrenaline()
-    {
-        return adrenalineCurrent;
     }
 
     // Function to grab the current health of the player
@@ -106,6 +103,7 @@ public class Player_stats : MonoBehaviour
 
     public void AddAdrenaline(float num)
     {
+        // Add Code Here
         if (num <= 0)
         {
             if (num < 0)
@@ -124,6 +122,7 @@ public class Player_stats : MonoBehaviour
 
     public void RemoveAdrenaline(float num)
     {
+        // Add Code Here
         if (num <= 0)
         {
             if (num < 0)
@@ -139,6 +138,45 @@ public class Player_stats : MonoBehaviour
             game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
         }
     }
+
+    public IEnumerator PowerSpeed(float amount, float duration)
+    {
+        speedIcon.SetActive(true);
+
+        move_speed *= amount;
+
+        yield return new WaitForSeconds(duration);
+
+        move_speed = baseSpeed;
+        speedIcon.SetActive(false);
+    }
+
+    public IEnumerator PowerROF(float amount, float duration)
+    {
+        rofIcon.SetActive(true);
+
+        rate_of_fire /= amount;
+
+        yield return new WaitForSeconds(duration);
+
+        rate_of_fire = baseROF;
+        rofIcon.SetActive(false);
+    }
+
+    public IEnumerator PowerInvincible(float duration)
+    {
+        invincibleIcon.SetActive(true);
+
+        isInvincible = true;
+
+        yield return new WaitForSeconds(duration);
+
+        isInvincible = false;
+        invincibleIcon.SetActive(false);
+    }
+
+
+
 
     // Function to get the move speed of the player
     public float GetSpeed()

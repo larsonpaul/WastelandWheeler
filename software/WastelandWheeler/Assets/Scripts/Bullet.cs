@@ -26,7 +26,8 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
         if (obj.CompareTag("Enemy"))
         {
-            obj.BroadcastMessage("Die");
+            Destroy(obj);
+            return;
         }
     }
 }

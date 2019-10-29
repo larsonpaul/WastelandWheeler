@@ -2,21 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemy : MonoBehaviour
+public class MeleeEnemy : MovementBase
 {
-    public EnemyManager enemyManager;
+    public override Vector2 getDirection()
+    {
+        Vector2 mypos = gameObject.transform.position;
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            Vector2 ppos = player.transform.position;
+            return (ppos - mypos).normalized;
+        }
+        return new Vector2(0, 0);
+    }
+
+    public Rigidbody2D rbody;
+    public float damage = 10f;
+
+    // Start is called before the first frame update, find the rbody of the object 
+    void Start()
+    {
+        rbody = GetComponent<Rigidbody2D>();
+    }
+
+    // When a collision occurs, check for a player tag and reduce the player health by damage.
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            rbody.velocity *= -2;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
+        }
+    }
 
     void Die()
     {
-        //Do things like, drop crafting parts, give adrenaline to player
-        //timeSlow.EnemyAdrenaline();
-
-        // Used to tell the spawner that an enemy died
-        enemyManager.EnemyDefeated();
-
-        // Takes the destroy call from the bullet into the enemy
-        Destroy(gameObject);
-
+        //Do things like set to respawn, drop crafting parts, give adrenaline to player
+        //Right now the ememy is destroyed when the bullet enters its collider (should we move it being destroyed into this script?)
     }
 
 }
