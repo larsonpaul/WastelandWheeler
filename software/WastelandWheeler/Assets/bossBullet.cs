@@ -11,6 +11,7 @@ public class bossBullet : MonoBehaviour
     private Vector2 target;
     Player_stats playerStats;   // used to deal damage
     private Rigidbody2D rb;
+    public float bulletLife;
 
     // Start is called before the first frame update
     void Start()
@@ -25,31 +26,32 @@ public class bossBullet : MonoBehaviour
         destroyBulletAfter();
     }
 
-    void destroyEnemyBullet()
-    {
-        Destroy(gameObject);
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.CompareTag("Enemy"))
+        //GameObject effect = Instantiate(hit_effect, transform.position, Quaternion.identity);
+        //Destroy(effect, 5f);
+        GameObject obj = other.gameObject;
+
+        // cases where bullet is not destroyed
+        string[] tags = { "Enemy", "Power_Up", "bullet"};
+        for (int i = 0; i < tags.Length; i++)
         {
-            Physics2D.IgnoreLayerCollision(9, 11);
-
+            if (obj.CompareTag(tags[i])) return;
         }
-
-        //damage player on contact and destory object
-        else if (other.tag == ("Player"))
+        // cases where bullet is destroyed
+        if (obj.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
             Debug.Log("Player hit" + damage + " damage");
-            destroyEnemyBullet();
+            //Destroy(gameObject);
+            return;
         }
 
         else
         {
-            destroyEnemyBullet();
+            //Destroy(gameObject);
+            return;
         }
 
     }
@@ -57,7 +59,7 @@ public class bossBullet : MonoBehaviour
     // Delayed bullet destroy
     void destroyBulletAfter()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject, bulletLife);
     }
 
 }

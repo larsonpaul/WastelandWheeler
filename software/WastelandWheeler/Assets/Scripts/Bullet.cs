@@ -5,6 +5,7 @@ using UnityEngine;
 /**
  * Bullet class that will destroy a bullet object when it collides with an enemy or a surface
  */
+
 public class Bullet : MonoBehaviour
 {
     //public GameObject hit_effect;
