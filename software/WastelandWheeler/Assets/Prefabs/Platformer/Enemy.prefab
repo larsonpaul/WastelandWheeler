@@ -181,8 +181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3565c04be8e444d4a9eb884c20b64c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyManager: {fileID: 1712270681770978995, guid: 6f854e8201a32c04db68215a697cb318,
-    type: 3}
+  unit_speed: 0
+  force_speed: 0
+  velocity: 0
+  movement_type: 0
+  rbody: {fileID: 0}
+  damage: 10
 --- !u!114 &2485134737732030519
 MonoBehaviour:
   m_ObjectHideFlags: 0

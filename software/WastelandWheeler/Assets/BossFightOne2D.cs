@@ -250,10 +250,17 @@ public class BossFightOne2D : MonoBehaviour
 
     public void stopBossFight()
     {
-        Debug.Log("STOP STOP STOP");
+        Debug.Log("Stop the battle");
         startRoutine.startFight = false;
-        startRoutine.removeBarriers();
         StopCoroutine(bossMethod);
+    }
+
+    public void startBossFight()
+    {
+        Debug.Log("Start the battle");
+        bossMethod = StartCoroutine(bossOne());
+        startRoutine.startFight = false;
+
     }
 
 }

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7222960539241550133}
+  - component: {fileID: 4891905512871949551}
   - component: {fileID: 7222960539241550132}
   - component: {fileID: 7222960539241550139}
   - component: {fileID: 7222960539241550138}
@@ -36,6 +37,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4891905512871949551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222960539241550136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c98f0ce661b4363b75e8726d58634b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 20
+  healthCurrent: 20
+  shields: 1
 --- !u!212 &7222960539241550132
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -176,4 +192,8 @@ MonoBehaviour:
   playerWithinRangeX: 5
   playerWithinRangeY: 5
   bullet: {fileID: 3815651842055491911, guid: b6be7c913b79747ed968f1be5dfedca3, type: 3}
-  point: {fileID: 0}
+  speed: 0
+  just_along_x: 0
+  just_along_y: 1
+  heatSeeker: 0
+  burstShot: 0

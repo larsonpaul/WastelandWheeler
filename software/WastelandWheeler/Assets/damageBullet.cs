@@ -30,7 +30,7 @@ public class damageBullet : MonoBehaviour
         Destroy(gameObject);
         if (obj.CompareTag("Enemy"))
         {
-            obj.GetComponent<EnemyStats>().RemoveHealth(damage);
+            obj.GetComponent<EnemyStatsJustHp>().RemoveHealth(damage);
             return;
         }
     }

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStats : MonoBehaviour
+public class EnemyStatsJustHp : MonoBehaviour
 {
 
-    public float healthMax = 20f;
-    public float healthCurrent = 20f;
-    public float shields = 1;
+    public float healthMax = 20.0f;
+    public float healthCurrent = 20.0f;
+    public float shields = 1.0f;
     private GameObject dda;
 
 
@@ -36,7 +36,7 @@ public class EnemyStats : MonoBehaviour
         }
         else
         {
-            healthCurrent -= num;
+            healthCurrent -= num/shields;
             if (healthCurrent <= 0)
             {
                 Destroy(gameObject);
@@ -50,5 +50,3 @@ public class EnemyStats : MonoBehaviour
         return healthCurrent;
     }
 }
-
-
