@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1014893128181177940}
   - component: {fileID: 7731500842685351944}
   - component: {fileID: 1272187647381016119}
+  - component: {fileID: 8552792340146239234}
   - component: {fileID: 1014893128181177942}
   - component: {fileID: 1014893128181177945}
   m_Layer: 0
@@ -154,6 +155,26 @@ PolygonCollider2D:
       - {x: 0.6666667, y: -0.375}
       - {x: 0.6666667, y: 0.2916667}
       - {x: 0.45833334, y: 0.6666667}
+--- !u!114 &8552792340146239234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014893128181177944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e585a18cc818104c90a1fea3c277420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  healthMax: 5
+  iframe: 0
+  iframeMax: 0
+  speed: 40
+  baseSpeed: 40
+  firerate: 0
+  baseFirerate: 0
 --- !u!114 &1014893128181177942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,10 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80f9929c21549f4b87aeebb571f5c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit_speed: 0.1
-  force_speed: 40
-  velocity: 5
-  movement_type: 1
+  speed: 40
 --- !u!114 &1014893128181177945
 MonoBehaviour:
   m_ObjectHideFlags: 0

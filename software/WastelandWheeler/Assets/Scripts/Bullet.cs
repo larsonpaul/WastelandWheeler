@@ -8,6 +8,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     //public GameObject hit_effect;
+    public float damage = 5;
 
     // on collision destroy the bullet object
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,7 +27,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
         if (obj.CompareTag("Enemy"))
         {
-            Destroy(obj);
+            obj.GetComponent<EnemyStats>().RemoveHealth(damage);
             return;
         }
     }

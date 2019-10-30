@@ -14,6 +14,7 @@ public class EnemyDamage : MonoBehaviour
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
+        //stats = GetComponent<EnemyStats>();
     }
 
     // When a collision occurs, check for a player tag and reduce the player health by damage.
