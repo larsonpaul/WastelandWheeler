@@ -97,14 +97,11 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         curPlayerHealth = player_stats.GetHealth();
         playerMaxHealth = player_stats.healthMax;
 
-        //Debug.Log("last Player health vs current " + lastPlayerHealth + " vs " + curPlayerHealth);
-
         //curBossHealth = boss.GetHealth();
         //sbossMaxHealth = boss.healthMax;
         
         if (lastPlayerHealth - curPlayerHealth > percentTotalHealth*playerMaxHealth)
         {
-            Debug.Log("Inside health check");
             // player losing health too quickly, make the game easier!
             if (difficulty_level > -5)
             {
