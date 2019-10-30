@@ -12,12 +12,16 @@ using UnityEngine;
 public class DamagePlayer : MonoBehaviour
 {
 
+    private GameObject player;
     public LevelManager levelManager;
+	private BossFightOne2D fight;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
-        levelManager = FindObjectOfType<LevelManager>();
+		fight = FindObjectOfType<BossFightOne2D>();
+		levelManager = FindObjectOfType<LevelManager>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -30,7 +34,11 @@ public class DamagePlayer : MonoBehaviour
     {
         if(other.name == "Player")
         {
+            player.GetComponent<Player_stats>().
+                RemoveHealth(player.GetComponent<Player_stats>().healthCurrent);
+            Debug.Log("Health is 0");
             levelManager.respawnPlayer();
+			fight.stopBossFight();
         }
     }
 }

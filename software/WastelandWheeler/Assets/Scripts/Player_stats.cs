@@ -43,7 +43,10 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         dda.GetComponent<DynamicDifficultyAdjuster>().Subscribe(this);
         difficulty = dda.GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
         adrenaline_scale = 1.0f + (-0.05f * difficulty);
-        rate_of_fire = rate_of_fire * (1.0f + (0.05f * difficulty));
+        if (difficulty <= 0)
+        {
+            rate_of_fire = rate_of_fire * (1.0f + (0.025f * difficulty));
+        }
         hurt_scale = 1.0f + (0.05f * difficulty);
     }
 
@@ -248,8 +251,10 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     {
         difficulty = amount;
         adrenaline_scale = 1.0f + (-0.05f * difficulty);
-        rate_of_fire = rate_of_fire * (1.0f + (0.05f * difficulty));
+        if (difficulty <= 0)
+        {
+            rate_of_fire = rate_of_fire * (1.0f + (0.025f * difficulty));
+        }
         hurt_scale = 1.0f + (0.05f * difficulty);
-        Debug.Log("Change difficult called!");
     }
 }
