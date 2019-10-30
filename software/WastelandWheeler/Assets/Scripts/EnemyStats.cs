@@ -17,11 +17,13 @@ public class EnemyStats : MonoBehaviour, ICreatureStats
     public float firerate;
     public float baseFirerate = 0;
 
-
+    public EnemyBar healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
+        healthBar = GetComponent<EnemyBar>();
+
         health = healthMax;
         speed = baseSpeed;
         firerate = baseFirerate;
@@ -57,6 +59,7 @@ public class EnemyStats : MonoBehaviour, ICreatureStats
         {
             health = Mathf.Min(health + num, healthMax);
         }
+        healthBar.SetScale(health / healthMax);
     }
 
     public void RemoveHealth(float num)
@@ -79,6 +82,7 @@ public class EnemyStats : MonoBehaviour, ICreatureStats
                 OnDeath();
                 return;
             }
+            healthBar.SetScale(health / healthMax);
         }
     }
 
