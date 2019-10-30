@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class startBossFight : MonoBehaviour
+public class stopBossFight : MonoBehaviour
 {
 
     private GameObject player;
     public GameObject boss;
     private BossFightOne2D start;
     public bool startFight;
-    public Transform leftBarrierSpot;
-    public Transform rightBarrierSpot;
-    public GameObject stopBossFight;
+    public GameObject startBossFight;
     public GameObject leftBarrier;
     public GameObject rightBarrier;
 
@@ -32,9 +28,9 @@ public class startBossFight : MonoBehaviour
             startFight = false;
             removeBarriers();
             Debug.Log("Stop Boss fight");
-            
+
         }
-      
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -44,14 +40,11 @@ public class startBossFight : MonoBehaviour
 
             //Instantiate(leftBarrier, leftBarrierSpot.position, Quaternion.identity);
             //Instantiate(rightBarrier, rightBarrierSpot.position, Quaternion.identity);
-            leftBarrier.SetActive(true);
-            rightBarrier.SetActive(true);
-            startFight = true;
+            leftBarrier.SetActive(false);
+            rightBarrier.SetActive(false);
             //Destroy(gameObject);
-            Debug.Log("Destroying" + gameObject);
-            stopBossFight.SetActive(true);
-            stopBossFight.GetComponent<BoxCollider2D>().isTrigger = true;
-            gameObject.SetActive(false);
+            Debug.Log("Stop the battle");
+            startBossFight.SetActive(true);
 
 
         }
