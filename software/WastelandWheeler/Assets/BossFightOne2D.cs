@@ -87,9 +87,9 @@ public class BossFightOne2D : MonoBehaviour
                 int i = 3;
                 while (i > 0)
                 {
-                    fireProjectile();
+                    Vector2 vect = fireProjectile();
                     yield return new WaitForSeconds(1);
-                    returnProjectile();
+                    returnProjectile(vect);
                     yield return new WaitForSeconds(1);
                     i--;
                 }
@@ -123,9 +123,9 @@ public class BossFightOne2D : MonoBehaviour
                     i = 3;
                     while (i > 0)
                     {
-                        fireProjectile();
+                        Vector2 vect = fireProjectile();
                         yield return new WaitForSeconds(1);
-                        returnProjectile();
+                        returnProjectile(vect);
                         i--;
 
                     }
@@ -140,7 +140,7 @@ public class BossFightOne2D : MonoBehaviour
                     jump(8);
                     yield return new WaitForSeconds(1);
 
-                    i = 3;
+                    i = 4;
                     while (i > 0)
                     {
                         Vector2 trgt = target.transform.position - transform.position;
@@ -222,16 +222,19 @@ public class BossFightOne2D : MonoBehaviour
         return randomMove;
     }
 
-    void fireProjectile()
+    Vector2 fireProjectile()
     {
+        Vector2 trgt = target.transform.position - transform.position;
         projectile = (GameObject)Instantiate(projectile, firePoint.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody2D>().velocity = Vector2.left * 10;
+        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(trgt.x, trgt.y);
+        return trgt;
 
     }
 
-    void returnProjectile()
+    void returnProjectile(Vector2 vect)
     {
-        projectile.GetComponent<Rigidbody2D>().velocity = Vector2.right * 10;
+        //Vector2 trgt = transform.position - target.transform.position;
+        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(-vect.x, -vect.y);
     }
 
 }
