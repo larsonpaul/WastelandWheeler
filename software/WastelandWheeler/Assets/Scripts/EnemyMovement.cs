@@ -2,10 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MovementBase
+public class EnemyMovement : MonoBehaviour
 {
+    private Rigidbody2D rbody;
+    private EnemyStats stats;
 
-    public override Vector2 getDirection()
+    private Vector2 dir;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rbody = GetComponent<Rigidbody2D>();
+        stats = GetComponent<EnemyStats>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    { 
+        dir = getDirection();
+
+        rbody.AddForce(new Vector2(stats.speed * dir.x, stats.speed * dir.y));
+    }
+
+    Vector2 getDirection()
     {
         Vector2 mypos = gameObject.transform.position;
         GameObject player = GameObject.FindWithTag("Player");
