@@ -21,14 +21,13 @@ public class startBossFight : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-      
 
+    //start battle and activate stop battle object
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == ("Player"))
         {
 
-            //start battle and activate stop battle ob
             leftBarrier.SetActive(true);
             rightBarrier.SetActive(true);
             startFight = true;
@@ -36,18 +35,11 @@ public class startBossFight : MonoBehaviour
             stopBossFight.SetActive(true);
             stopBossFight.GetComponent<BoxCollider2D>().isTrigger = true;
             gameObject.SetActive(false);
-
-
         }
     }
 
     public void removeBarriers()
     {
-
         Debug.Log("Bye Bye Barriers");
-
     }
-
-
-
 }

@@ -7,7 +7,7 @@ public class stopBossFight : MonoBehaviour
 
     private GameObject player;
     public GameObject boss;
-    private BossFightOne2D start;
+    private BossFightOne2D stop;
     public bool startFight;
     public GameObject startBossFight;
     public GameObject leftBarrier;
@@ -17,6 +17,7 @@ public class stopBossFight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stop = FindObjectOfType<BossFightOne2D>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -34,6 +35,7 @@ public class stopBossFight : MonoBehaviour
             // activate startbattle object
             startBossFight.SetActive(true);
             startBossFight.GetComponent<BoxCollider2D>().isTrigger = true;
+            stop.stopBossFight();
 
         }
     }
