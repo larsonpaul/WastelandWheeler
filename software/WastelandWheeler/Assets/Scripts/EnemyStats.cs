@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStats : MonoBehaviour, ICreatureStats
+public class EnemyStats : MonoBehaviour, ICreatureStats, IDiffcultyAdjuster
 {
 
     public float health;
@@ -17,15 +17,20 @@ public class EnemyStats : MonoBehaviour, ICreatureStats
     public float firerate;
     public float baseFirerate = 0;
 
-    public EnemyBar healthBar;
+    private EnemyBar healthBar;
+
+    private DynamicDifficultyAdjuster dda;
 
     // Start is called before the first frame update
     void Start()
     {
         healthBar = GetComponent<EnemyBar>();
 
+        dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
+        dda.Subscribe(this);
+
         health = healthMax;
-        speed = baseSpeed;
+        speed = baseSpeed * (1.0f + (0.05f * dda.GetDifficulty()));
         firerate = baseFirerate;
     }
 
@@ -108,8 +113,14 @@ public class EnemyStats : MonoBehaviour, ICreatureStats
 
     public void OnDeath()
     {
+        dda.Unsubscribe(this);
         Destroy(gameObject);
         // spawn powerup
+    }
+
+    public void ChangeDifficulty(int amount)
+    {
+        speed = baseSpeed * (1.0f + (0.05f * dda.GetDifficulty()));
     }
 
 
