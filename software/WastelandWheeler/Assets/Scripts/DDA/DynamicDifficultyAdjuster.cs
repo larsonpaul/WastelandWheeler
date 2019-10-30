@@ -105,7 +105,10 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         curPlayerHealth = player_stats.GetHealth();
         playerMaxHealth = player_stats.healthMax;
 
-        curBossHealth = boss_stats.bossHealth;
+        if (boss_stats != null)
+        {
+            curBossHealth = boss_stats.bossHealth;
+        }
         
         if (lastPlayerHealth - curPlayerHealth > percentTotalHealth*playerMaxHealth)
         {
