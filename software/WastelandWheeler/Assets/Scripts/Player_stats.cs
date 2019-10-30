@@ -33,11 +33,14 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     private GameObject speedIcon, rofIcon, invincibleIcon;
 
     private GameObject dda;
+    private int difficulty;
     private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
         dda = GameObject.Find("DDA");
         dda.GetComponent<DynamicDifficultyAdjuster>().Subscribe(this);
+        difficulty = dda.GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
+
     }
 
     void Update()

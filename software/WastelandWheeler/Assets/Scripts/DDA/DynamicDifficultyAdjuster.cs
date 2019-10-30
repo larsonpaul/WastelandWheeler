@@ -6,6 +6,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 {
     private static DynamicDifficultyAdjuster instance;
     private HashSet<MonoBehaviour> subscribers;
+    private int difficulty_level;
     private float value;
     private float startTime = 0.0f;
     private float currentTime;
@@ -43,8 +44,10 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 
     private void Start()
     {
+        difficulty_level = 0;
         subscribers = new HashSet<MonoBehaviour>();
         startTime = Time.time;
+
         player = GameObject.Find("Player");
         player_stats = player.GetComponent<Player_stats>();
         lastPlayerHealth = player_stats.healthMax;
@@ -69,17 +72,21 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         subscribers.Remove(sub);
     }
 
+    public int GetDifficulty()
+    {
+        return difficulty_level;
+    }
 
     
 
     private float curPlayerHealth;
-    private float curBossHealth;
+    //private float curBossHealth;
     //private float curSceneProgress;
 
     private float playerMaxHealth;
-    private float bossMaxHealth;
+    //private float bossMaxHealth;
     private float percentTotalHealth = 0.5f;
-    private float percentTotalBossHealth = 0.5f;
+    //private float percentTotalBossHealth = 0.5f;
     // Method that sends message to update difficulty
     private void UpdateDifficulty()
     {
