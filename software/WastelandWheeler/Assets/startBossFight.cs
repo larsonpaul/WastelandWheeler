@@ -7,7 +7,7 @@ using UnityEngine;
 public class startBossFight : MonoBehaviour
 {
 
-    private Transform player;
+    private GameObject player;
     public GameObject boss;
     private BossFightOne2D start;
     public bool startFight;
@@ -20,12 +20,19 @@ public class startBossFight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (player.GetComponent<Player_stats>().healthCurrent <= 0)
+        {
+            startFight = false;
+            removeBarriers();
+            Debug.Log("Stop Boss fight");
+            
+        }
       
     }
 
@@ -39,12 +46,15 @@ public class startBossFight : MonoBehaviour
             startFight = true;
             Destroy(gameObject);
             Debug.Log("Destroying" + gameObject);
+
             
         }
     }
 
     public void removeBarriers()
     {
+
+        Debug.Log("Bye Bye Barriers");
         Destroy(leftBarrier);
         Destroy(rightBarrier);
     }

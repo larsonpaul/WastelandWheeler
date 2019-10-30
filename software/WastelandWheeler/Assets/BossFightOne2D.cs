@@ -20,6 +20,7 @@ public class BossFightOne2D : MonoBehaviour
     public Transform[] bossPoints;  //points where boss will move to
     public float speed; // boss's speed
     private int bossPoint; // current point form the array of bossPoints
+    private GameObject player;
 
     private Rigidbody2D rb;
     public GameObject target; // target/player for boss's aim
@@ -32,11 +33,12 @@ public class BossFightOne2D : MonoBehaviour
     public GameObject[] barriers; // Create objects with colliders and store in array. Prevents player from leaving area
     public GameObject projectile;  // Boss's projectiles
     public startBossFight startRoutine;       // starts the script once player reaches a certain spot 
-
+    Coroutine bossMethod;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         startRoutine = FindObjectOfType<startBossFight>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -48,9 +50,16 @@ public class BossFightOne2D : MonoBehaviour
         if (startRoutine.startFight)
         {
 
-            StartCoroutine(bossOne());
+            bossMethod = StartCoroutine(bossOne());
             startRoutine.startFight = false;
         }
+
+        if (player.GetComponent<Player_stats>().healthCurrent <= 0)
+        {
+            Debug.Log("We have stats!!!!!");
+            stopBossFight();
+        }
+
 
         // Update Boss's Health
         //bossHealthBar.value = bossHealth;
@@ -58,6 +67,7 @@ public class BossFightOne2D : MonoBehaviour
         {
             Debug.Log("Barries Destroyed!!!");
             startRoutine.startFight = false;
+            StopCoroutine(bossOne());
             startRoutine.removeBarriers();
         }
     }
@@ -101,7 +111,7 @@ public class BossFightOne2D : MonoBehaviour
 
                 //go to the end of platform
                 yield return new WaitForSeconds(3);
-                Debug.Log("Choice: " + bossPoint);
+                //Debug.Log("Choice: " + bossPoint);
                 while (transform.position.x != bossPoints[bossPoint + 1].position.x)
                 {
                     transform.position = Vector2.MoveTowards(transform.position,
@@ -144,7 +154,7 @@ public class BossFightOne2D : MonoBehaviour
                     while (i > 0)
                     {
                         Vector2 trgt = target.transform.position - transform.position;
-                        projectile = (GameObject)Instantiate(projectile, firePoint.position, Quaternion.identity);
+                        projectile = Instantiate(projectile, firePoint.position, Quaternion.identity);
                         projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(trgt.x, trgt.y),
                         ForceMode2D.Impulse);
 
@@ -156,7 +166,7 @@ public class BossFightOne2D : MonoBehaviour
 
                 //go back to the other end of platform
                 yield return new WaitForSeconds(3);
-                Debug.Log("Going back" + bossPoint);
+                //Debug.Log("Going back" + bossPoint);
                 while (transform.position.x != bossPoints[bossPoint].position.x)
                 {
                     transform.position = Vector2.MoveTowards(transform.position,
@@ -170,7 +180,7 @@ public class BossFightOne2D : MonoBehaviour
             else
             {
 
-                Debug.Log("Instead " + bossPoint);
+                //Debug.Log("Instead " + bossPoint);
                 bossPoint = jump(bossPoint);
                 bossPoint = randomNumber(0, 2);
                 yield return new WaitForSeconds(3);
@@ -187,20 +197,20 @@ public class BossFightOne2D : MonoBehaviour
     {
         if (jumpPoint == 8)
         {
-            Debug.Log("Jumping up " + jumpPoint);
+            //Debug.Log("Jumping up " + jumpPoint);
             rb.AddForce(Vector2.up * 100);
 
         }
         // jump left
         else if (jumpPoint == 0 || jumpPoint == 2)
         {
-            Debug.Log("Jumping left " + jumpPoint);
+            //Debug.Log("Jumping left " + jumpPoint);
             rb.AddForce(Vector2.up * 430); // magic numbers for current scene
             rb.AddForce(Vector2.left * 90);
         }
         else // jump right 
         {
-            Debug.Log("Jumping right " + jumpPoint);
+            //Debug.Log("Jumping right " + jumpPoint);
             rb.AddForce(Vector2.up * 430); // magic numbers for current scene
             rb.AddForce(Vector2.right * 90);
         }
@@ -235,6 +245,14 @@ public class BossFightOne2D : MonoBehaviour
     {
         //Vector2 trgt = transform.position - target.transform.position;
         projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(-vect.x, -vect.y);
+    }
+
+    public void stopBossFight()
+    {
+        Debug.Log("STOP STOP STOP");
+        startRoutine.startFight = false;
+        startRoutine.removeBarriers();
+        StopCoroutine(bossMethod);
     }
 
 }
