@@ -43,6 +43,12 @@ public class startBossFight : MonoBehaviour
         }
     }
 
+    public void removeBarriers()
+    {
+        Destroy(leftBarrier);
+        Destroy(rightBarrier);
+    }
+
 
 
 }
