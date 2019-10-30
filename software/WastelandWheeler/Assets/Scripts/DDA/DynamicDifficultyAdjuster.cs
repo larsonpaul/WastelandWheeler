@@ -43,6 +43,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 
     private void Start()
     {
+        subscribers = new HashSet<MonoBehaviour>();
         startTime = Time.time;
         player = GameObject.Find("Player");
         player_stats = player.GetComponent<Player_stats>();

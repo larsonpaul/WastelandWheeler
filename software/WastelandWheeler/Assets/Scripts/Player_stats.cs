@@ -231,6 +231,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public void ChangeDifficulty(float amount)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Change difficult called!");
     }
 }
