@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +20,7 @@ public class Speed_up : MonoBehaviour
     void Start()
     {
         stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+        icon = GameObject.Find("GameUI").transform.Find("SpeedIcon").gameObject;
     }
 
     // On collision, check the player tag and increase the move speed based on a multiplier
