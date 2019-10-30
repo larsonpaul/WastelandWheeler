@@ -6,10 +6,10 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 {
     private static DynamicDifficultyAdjuster instance;
     private HashSet<MonoBehaviour> subscribers;
-    private int difficulty_level;
+    
     private float startTime = 0.0f;
     private float currentTime;
-    private float CHECK_INTERVAL = 1.0f; // number of seconds between poling the game for how well player is doing
+    private float CHECK_INTERVAL = 1.5f; // number of seconds between poling the game for how well player is doing
 
     private GameObject player;
     private Player_stats player_stats;
@@ -19,6 +19,10 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
     private float lastPlayerHealth;
     private float lastBossHealth;
     //private float lastSceneProgress;
+
+    [SerializeField]
+    private int difficulty_level;
+
     public static DynamicDifficultyAdjuster Instance
     {
         get
@@ -84,7 +88,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 
     private float playerMaxHealth;
     //private float bossMaxHealth;
-    private float percentTotalHealth = 0.10f;
+    private float percentTotalHealth = 0.01f;
     //private float percentTotalBossHealth = 0.5f;
     
     private void UpdateDifficulty()
@@ -93,13 +97,14 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         curPlayerHealth = player_stats.GetHealth();
         playerMaxHealth = player_stats.healthMax;
 
-        Debug.Log("last update Player health " + lastPlayerHealth);
-        Debug.Log("current Player health " + curPlayerHealth);
+        //Debug.Log("last Player health vs current " + lastPlayerHealth + " vs " + curPlayerHealth);
 
         //curBossHealth = boss.GetHealth();
         //sbossMaxHealth = boss.healthMax;
+        
         if (lastPlayerHealth - curPlayerHealth > percentTotalHealth*playerMaxHealth)
         {
+            Debug.Log("Inside health check");
             // player losing health too quickly, make the game easier!
             if (difficulty_level > -5)
             {
