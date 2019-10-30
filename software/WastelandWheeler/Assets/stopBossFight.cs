@@ -20,44 +20,22 @@ public class stopBossFight : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (player.GetComponent<Player_stats>().healthCurrent <= 0)
-        {
-            startFight = false;
-            removeBarriers();
-            Debug.Log("Stop Boss fight");
-
-        }
-
-    }
-
+    //stop the battle and remove barriers when player dies
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == ("Player"))
         {
 
-            //Instantiate(leftBarrier, leftBarrierSpot.position, Quaternion.identity);
-            //Instantiate(rightBarrier, rightBarrierSpot.position, Quaternion.identity);
             leftBarrier.SetActive(false);
             rightBarrier.SetActive(false);
             //Destroy(gameObject);
             Debug.Log("Stop the battle");
-            startBossFight.SetActive(true);
 
+            // activate startbattle object
+            startBossFight.SetActive(true);
+            startBossFight.GetComponent<BoxCollider2D>().isTrigger = true;
 
         }
     }
-
-    public void removeBarriers()
-    {
-
-        Debug.Log("Bye Bye Barriers");
-        Destroy(leftBarrier);
-        Destroy(rightBarrier);
-    }
-
-
 
 }
