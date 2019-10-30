@@ -104,6 +104,11 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
     }
 
+    public float GetAdrenaline()
+    {
+        return adrenalineCurrent;
+    }
+
     public void killPlayer()
     {
         healthCurrent = 0;
@@ -161,6 +166,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public IEnumerator PowerSpeed(float amount, float duration)
     {
+        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
         speedIcon.SetActive(true);
 
         move_speed *= amount;
@@ -173,6 +179,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public IEnumerator PowerROF(float amount, float duration)
     {
+        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
         rofIcon.SetActive(true);
 
         rate_of_fire /= amount;
@@ -185,6 +192,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public IEnumerator PowerInvincible(float duration)
     {
+        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
         invincibleIcon.SetActive(true);
 
         isInvincible = true;
