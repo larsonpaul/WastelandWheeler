@@ -33,11 +33,21 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     private GameObject speedIcon, rofIcon, invincibleIcon;
 
     private GameObject dda;
+    private int difficulty;
+    private float adrenaline_scale;
+    private float hurt_scale;
     private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
         dda = GameObject.Find("DDA");
         dda.GetComponent<DynamicDifficultyAdjuster>().Subscribe(this);
+        difficulty = dda.GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
+        adrenaline_scale = 1.0f + (-0.05f * difficulty);
+        if (difficulty <= 0)
+        {
+            rate_of_fire = rate_of_fire * (1.0f + (0.025f * difficulty));
+        }
+        hurt_scale = 1.0f + (0.05f * difficulty);
     }
 
     void Update()
@@ -87,7 +97,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
         else
         {
-            healthCurrent -= num;
+            healthCurrent -= num*hurt_scale;
             iFrameCur = iFrameMax;
             game.SetHealth(healthCurrent / healthMax);
             if (healthCurrent <= 0 && levelIsTopDown)
@@ -140,7 +150,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
         else if (num > 0)
         {
-            adrenalineCurrent = Mathf.Min(adrenalineCurrent + num, adrenalineMax);
+            adrenalineCurrent = Mathf.Min(adrenalineCurrent + (num*adrenaline_scale), adrenalineMax);
             game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
         }
     }
@@ -237,8 +247,14 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         AddHealth(healthMax);
     }
 
-    public void ChangeDifficulty(float amount)
+    public void ChangeDifficulty(int amount)
     {
-        throw new System.NotImplementedException();
+        difficulty = amount;
+        adrenaline_scale = 1.0f + (-0.05f * difficulty);
+        if (difficulty <= 0)
+        {
+            rate_of_fire = rate_of_fire * (1.0f + (0.025f * difficulty));
+        }
+        hurt_scale = 1.0f + (0.05f * difficulty);
     }
 }

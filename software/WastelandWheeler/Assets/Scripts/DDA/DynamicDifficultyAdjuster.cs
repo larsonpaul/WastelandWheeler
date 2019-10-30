@@ -6,19 +6,25 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 {
     private static DynamicDifficultyAdjuster instance;
     private HashSet<MonoBehaviour> subscribers;
-    private float value;
+    
     private float startTime = 0.0f;
     private float currentTime;
-    private float CHECK_INTERVAL = 5.0f; // number of seconds between running scripts
+    private float CHECK_INTERVAL = 1.5f; // number of seconds between poling the game for how well player is doing
 
     private GameObject player;
     private Player_stats player_stats;
+    private BossFightOne2D boss_stats;
     private GameObject boss;
 
     // used in adjusting difficulty
     private float lastPlayerHealth;
     private float lastBossHealth;
+    private float maxBossHealth;
     //private float lastSceneProgress;
+
+    [SerializeField]
+    private int difficulty_level;
+
     public static DynamicDifficultyAdjuster Instance
     {
         get
@@ -43,11 +49,21 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 
     private void Start()
     {
+        difficulty_level = 0;
+        subscribers = new HashSet<MonoBehaviour>();
         startTime = Time.time;
+
         player = GameObject.Find("Player");
         player_stats = player.GetComponent<Player_stats>();
         lastPlayerHealth = player_stats.healthMax;
-        //boss = GameObject.Find("Boss");
+
+        boss = GameObject.Find("Boss");
+        if (boss != null)
+        {
+            boss_stats= boss.GetComponent<BossFightOne2D>();
+            maxBossHealth = boss_stats.bossHealth;
+            lastBossHealth = maxBossHealth;
+        }
         //lastBossHealth = boss.healthMax;
         //lastSceneProgress = 0.0f;
 
@@ -68,6 +84,10 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         subscribers.Remove(sub);
     }
 
+    public int GetDifficulty()
+    {
+        return difficulty_level;
+    }
 
     
 
@@ -76,46 +96,51 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
     //private float curSceneProgress;
 
     private float playerMaxHealth;
-    private float bossMaxHealth;
-    private float percentTotalHealth = 0.5f;
-    private float percentTotalBossHealth = 0.5f;
-    // Method that sends message to update difficulty
+    private float percentTotalHealth = 0.01f;
+    private float percentTotalBossHealth = 0.20f;
+    
     private void UpdateDifficulty()
     {
         // run algorithm to determine if game needs to be harder or easier 
-        // assign a numeric amount to value 
         curPlayerHealth = player_stats.GetHealth();
-        //curBossHealth = boss.GetHealth();
         playerMaxHealth = player_stats.healthMax;
-        //sbossMaxHealth = boss.healthMax;
+
+        curBossHealth = boss_stats.bossHealth;
+        
         if (lastPlayerHealth - curPlayerHealth > percentTotalHealth*playerMaxHealth)
         {
             // player losing health too quickly, make the game easier!
-            value = -10.0f; // ten percent easier
-        }
-        //else if (lastBossHealth - curBossHealth > percentTotalBossHealth * bossMaxHealth)
-        //{
-            // boss dying to quick, make game harder 
-            //value = 10.0f; // ten percent harder
-        //}
-        else
-        {
-            value = 0.0f;
-        }
-
-        // publish that change to subscribers
-        if (value != 0)
-        {
-            foreach (MonoBehaviour g in subscribers)
+            if (difficulty_level > -5)
             {
-                g.SendMessage("ChangeDifficulty", value);
+                difficulty_level --; // make the game easier
+                UpdateSubscribers(difficulty_level);
             }
+            
+        }
+        else if (lastBossHealth - curBossHealth > percentTotalBossHealth * maxBossHealth)
+        {
+            // boss dying to quick, make game harder 
+            if (difficulty_level < 5)
+            {
+                difficulty_level++; // making the game harder
+                UpdateSubscribers(difficulty_level);
+            }
+            
         }
 
         lastPlayerHealth = curPlayerHealth;
-        //lastBossHealth = curBossHealth;
+        lastBossHealth = curBossHealth;
         //lastSceneProgress = curSceneProgress;
 
+    }
+
+    // Method that sends message to update difficulty
+    private void UpdateSubscribers(int value)
+    {
+        foreach (MonoBehaviour g in subscribers)
+        {
+            g.SendMessage("ChangeDifficulty", difficulty_level);
+        }
     }
 
     public void Update()
