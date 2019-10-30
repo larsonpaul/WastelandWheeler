@@ -7,10 +7,9 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
     private static DynamicDifficultyAdjuster instance;
     private HashSet<MonoBehaviour> subscribers;
     private int difficulty_level;
-    private float value;
     private float startTime = 0.0f;
     private float currentTime;
-    private float CHECK_INTERVAL = 5.0f; // number of seconds between running scripts
+    private float CHECK_INTERVAL = 1.0f; // number of seconds between poling the game for how well player is doing
 
     private GameObject player;
     private Player_stats player_stats;
@@ -85,45 +84,49 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 
     private float playerMaxHealth;
     //private float bossMaxHealth;
-    private float percentTotalHealth = 0.5f;
+    private float percentTotalHealth = 0.10f;
     //private float percentTotalBossHealth = 0.5f;
-    // Method that sends message to update difficulty
+    
     private void UpdateDifficulty()
     {
         // run algorithm to determine if game needs to be harder or easier 
-        // assign a numeric amount to value 
         curPlayerHealth = player_stats.GetHealth();
-        //curBossHealth = boss.GetHealth();
         playerMaxHealth = player_stats.healthMax;
+
+        Debug.Log("last update Player health " + lastPlayerHealth);
+        Debug.Log("current Player health " + curPlayerHealth);
+
+        //curBossHealth = boss.GetHealth();
         //sbossMaxHealth = boss.healthMax;
         if (lastPlayerHealth - curPlayerHealth > percentTotalHealth*playerMaxHealth)
         {
             // player losing health too quickly, make the game easier!
-            value = -10.0f; // ten percent easier
+            if (difficulty_level > -5)
+            {
+                difficulty_level --; // make the game easier
+                UpdateSubscribers(difficulty_level);
+            }
+            
         }
         //else if (lastBossHealth - curBossHealth > percentTotalBossHealth * bossMaxHealth)
         //{
-            // boss dying to quick, make game harder 
-            //value = 10.0f; // ten percent harder
+        // boss dying to quick, make game harder 
+        //value = 10.0f; // ten percent harder
         //}
-        else
-        {
-            value = 0.0f;
-        }
-
-        // publish that change to subscribers
-        if (value != 0)
-        {
-            foreach (MonoBehaviour g in subscribers)
-            {
-                g.SendMessage("ChangeDifficulty", value);
-            }
-        }
 
         lastPlayerHealth = curPlayerHealth;
         //lastBossHealth = curBossHealth;
         //lastSceneProgress = curSceneProgress;
 
+    }
+
+    // Method that sends message to update difficulty
+    private void UpdateSubscribers(int value)
+    {
+        foreach (MonoBehaviour g in subscribers)
+        {
+            g.SendMessage("ChangeDifficulty", difficulty_level);
+        }
     }
 
     public void Update()
