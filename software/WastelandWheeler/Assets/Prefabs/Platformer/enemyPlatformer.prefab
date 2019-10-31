@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 7222960539241550139}
   - component: {fileID: 7222960539241550138}
   - component: {fileID: 7222960539241550137}
-  - component: {fileID: 7222960539241550134}
   - component: {fileID: 7222960539241550135}
+  - component: {fileID: 3579696801057176609}
   m_Layer: 9
   m_Name: enemyPlatformer
   m_TagString: Enemy
@@ -163,19 +163,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1335
   mySpeed: 3
---- !u!114 &7222960539241550134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7222960539241550136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e2c07eedb9724f6f9a2d5d0b58173f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
 --- !u!114 &7222960539241550135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,8 +179,22 @@ MonoBehaviour:
   playerWithinRangeX: 5
   playerWithinRangeY: 5
   bullet: {fileID: 3815651842055491911, guid: b6be7c913b79747ed968f1be5dfedca3, type: 3}
-  speed: 0
-  just_along_x: 0
-  just_along_y: 1
+  speed: 75
+  just_along_x: 1
+  just_along_y: 0
   heatSeeker: 0
   burstShot: 0
+--- !u!114 &3579696801057176609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222960539241550136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9066177db665dfc49b02bab0c5c38938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rbody: {fileID: 7222960539241550138}
+  damage: 20

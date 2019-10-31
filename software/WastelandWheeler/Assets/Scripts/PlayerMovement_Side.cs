@@ -19,7 +19,7 @@ public class PlayerMovement_Side : MonoBehaviour
     private GameObject arm;
     private Vector3 mousePosition;
     private Camera cam;
-    private BoxCollider2D playerCollider;
+    
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class PlayerMovement_Side : MonoBehaviour
         stats = gameObject.GetComponent<Player_stats>();
         arm = GameObject.Find("Arm");
         armSpriteRenderer = arm.GetComponent <SpriteRenderer>();
-        playerCollider = gameObject.GetComponent<BoxCollider2D>();
+       
         cam = Camera.main;
     }
 
