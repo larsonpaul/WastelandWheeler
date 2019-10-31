@@ -335,7 +335,6 @@ MonoBehaviour:
   baseSpeed: 40
   firerate: 0
   baseFirerate: 0
-  healthBar: {fileID: 0}
 --- !u!114 &1014893128181177942
 MonoBehaviour:
   m_ObjectHideFlags: 0
