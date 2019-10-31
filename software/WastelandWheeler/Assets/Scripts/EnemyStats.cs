@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster //ICreatureStats
+public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 {
 
     public float health;
