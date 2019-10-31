@@ -69,7 +69,7 @@ public class Spawn_Manager : MonoBehaviour
         yield return null;
     }
 
-    // called by an enemy when they're defeated (MeleeEnemy)
+    // called by an enemy when they're defeated (EnemyStats)
     public void EnemyDefeated()
     {
         enemiesLeftInWave--;

@@ -21,6 +21,8 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster //ICreatureStats
 
     private DynamicDifficultyAdjuster dda;
 
+    public Spawn_Manager spawnManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -115,7 +117,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster //ICreatureStats
     {
         dda.Unsubscribe(this);
         Destroy(gameObject);
-
+        spawnManager.EnemyDefeated();
         // spawn powerup
     }
 

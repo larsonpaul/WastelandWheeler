@@ -335,6 +335,8 @@ MonoBehaviour:
   baseSpeed: 40
   firerate: 0
   baseFirerate: 0
+  spawnManager: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+    type: 3}
 --- !u!114 &1014893128181177942
 MonoBehaviour:
   m_ObjectHideFlags: 0
