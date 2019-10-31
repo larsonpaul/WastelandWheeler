@@ -53,6 +53,7 @@ public class PlayerAim : MonoBehaviour
         fp.transform.Rotate(rotation.eulerAngles);
 
         GameObject bullet = Instantiate(bulletPrefab, origin, rotation);
+        bullet.GetComponent<Bullet>().SetDamage(stats.GetDamage());
         Vector2 bulletForce = (Vector2)(fp.transform.up * bullet_force) + playerRB.velocity / 2;
         Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
         bulletRB.AddForce(bulletForce, ForceMode2D.Impulse);
