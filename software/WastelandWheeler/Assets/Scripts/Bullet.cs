@@ -5,13 +5,34 @@ using UnityEngine;
 /**
  * Bullet class that will destroy a bullet object when it collides with an enemy or a surface
  */
+
 public class Bullet : MonoBehaviour
 {
+
+    private int lifetime = 1;
+    // Update is called once per frame
+    void Update()
+    {
+        if (lifetime == 0)
+        {
+            Destroy(gameObject);
+        }
+        lifetime--;
+    }
     //public GameObject hit_effect;
+    public float damage = 5;
+
+    private bool used = false;
+
+    public void SetDamage(float x)
+    {
+        damage = x;
+    }
 
     // on collision destroy the bullet object
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (used) return;
         //GameObject effect = Instantiate(hit_effect, transform.position, Quaternion.identity);
         //Destroy(effect, 5f);
         GameObject obj = collision.gameObject;
@@ -23,10 +44,11 @@ public class Bullet : MonoBehaviour
             if (obj.CompareTag(tags[i])) return;
         }
         // cases where bullet is destroyed
+        used = true;
         Destroy(gameObject);
         if (obj.CompareTag("Enemy"))
         {
-            Destroy(obj);
+            obj.GetComponent<EnemyStats>().RemoveHealth(damage);
             return;
         }
     }

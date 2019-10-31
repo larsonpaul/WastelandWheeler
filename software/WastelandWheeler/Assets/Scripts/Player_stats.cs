@@ -5,20 +5,53 @@ using UnityEngine;
 /**
  * Class that contains varaibles that control player attributes and has getters for those variables
  */
-public class Player_stats : MonoBehaviour
+public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 {
     public float healthMax = 100f;
     public float healthCurrent = 100f;
-    public float move_speed = 10f;
+
+    public float baseSpeed = 50f;
+    public float move_speed = 50f;
+
+    public float baseROF = 0.2f;
     public float rate_of_fire = 0.2f;
+
     public float bullet_size = 2f;
     public bool isInvincible = false;
+    public float adrenalineMax = 100f;
+    public float adrenalineCurrent = 100f;
 
     public float iFrameMax = 20f;
     public float iFrameCur = 0f;
+    public bool levelIsTopDown = true;
+    public LevelManager levelManager;
 
-    [SerializeField] private GameManager game;
+    public float baseDamage = 5f;
+    public float damage = 5f;
 
+    [SerializeField]
+    private GameManager game;
+
+    [SerializeField]
+    private GameObject speedIcon, rofIcon, invincibleIcon;
+
+    private GameObject dda;
+    private int difficulty;
+    private float adrenaline_scale;
+    private float hurt_scale;
+    private void Start()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+        dda = GameObject.Find("DDA");
+        dda.GetComponent<DynamicDifficultyAdjuster>().Subscribe(this);
+        difficulty = dda.GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
+        adrenaline_scale = 1.0f + (-0.05f * difficulty);
+        if (difficulty <= 0)
+        {
+            rate_of_fire = rate_of_fire * (1.0f + (0.025f * difficulty));
+        }
+        hurt_scale = 1.0f + (0.05f * difficulty);
+    }
 
     void Update()
     {
@@ -32,6 +65,12 @@ public class Player_stats : MonoBehaviour
     public float GetHealth()
     {
         return healthCurrent;
+    }
+
+    // Function to grab the current adrenaline of the player
+    public float GetAdrenaline()
+    {
+        return adrenalineCurrent;
     }
 
     // Function that changes the player's health by a given amount, 
@@ -67,21 +106,113 @@ public class Player_stats : MonoBehaviour
         }
         else
         {
-            healthCurrent -= num;
+            healthCurrent -= num*hurt_scale;
             iFrameCur = iFrameMax;
             game.SetHealth(healthCurrent / healthMax);
-            if (healthCurrent <= 0) GameOver();
+            if (healthCurrent <= 0 && levelIsTopDown)
+            {
+                GameOver();
+            }
+            else if (healthCurrent <= 0 && !levelIsTopDown)
+            {
+                Debug.Log("Respawn");
+                levelManager.respawnPlayer();
+                refillHealth();
+
+            }
+        }
+    }
+
+    public void killPlayer()
+    {
+        healthCurrent = 0;
+        game.SetHealth(0);
+        if (healthCurrent <= 0 && levelIsTopDown)
+        {
+            GameOver();
+        }
+        else if (healthCurrent <= 0 && !levelIsTopDown)
+        {
+            Debug.Log("Respawn");
+            levelManager.respawnPlayer();
+            refillHealth();
+
         }
     }
 
     public void AddAdrenaline(float num)
     {
-        // Add Code Here
+        if (num <= 0)
+        {
+            if (num < 0)
+            {
+                string error = gameObject.name + ".AddAdrenaline() given negative float " + num;
+                Debug.LogError(error);
+            }
+            return;
+        }
+        else if (num > 0)
+        {
+            adrenalineCurrent = Mathf.Min(adrenalineCurrent + (num*adrenaline_scale), adrenalineMax);
+            game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
+        }
     }
 
     public void RemoveAdrenaline(float num)
     {
-        // Add Code Here
+        if (num <= 0)
+        {
+            if (num < 0)
+            {
+                string error = gameObject.name + ".RemoveAdrenaline() given negative float " + num;
+                Debug.LogError(error);
+            }
+            return;
+        }
+        else
+        {
+            adrenalineCurrent -= num;
+            game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
+        }
+    }
+
+    public IEnumerator PowerSpeed(float amount, float duration)
+    {
+        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
+        speedIcon.SetActive(true);
+
+        move_speed *= amount;
+
+        yield return new WaitForSeconds(duration);
+
+        move_speed = baseSpeed;
+        speedIcon.SetActive(false);
+    }
+
+    public IEnumerator PowerROF(float amount, float duration)
+    {
+        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
+        rofIcon.SetActive(true);
+
+        rate_of_fire /= amount;
+
+        yield return new WaitForSeconds(duration);
+
+        rate_of_fire = baseROF;
+        rofIcon.SetActive(false);
+    }
+
+    public IEnumerator PowerInvincible(float duration)
+    {
+        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
+        invincibleIcon.SetActive(true);
+
+        isInvincible = true;
+
+        yield return new WaitForSeconds(duration);
+
+        isInvincible = false;
+        invincibleIcon.SetActive(false);
     }
 
     // Function to get the move speed of the player
@@ -102,10 +233,32 @@ public class Player_stats : MonoBehaviour
         return bullet_size;
     }
 
+    public float GetDamage()
+    {
+        return damage;
+    }
+
     // Game over state based on health (may have to make this its own script)
     void GameOver()
     {
+        dda.GetComponent<DynamicDifficultyAdjuster>().Unsubscribe(this);
         Destroy(gameObject);
         game.EndGame();
+    }
+
+    public void refillHealth()
+    {
+        AddHealth(healthMax);
+    }
+
+    public void ChangeDifficulty(int amount)
+    {
+        difficulty = amount;
+        adrenaline_scale = 1.0f + (-0.05f * difficulty);
+        if (difficulty <= 0)
+        {
+            rate_of_fire = rate_of_fire * (1.0f + (0.025f * difficulty));
+        }
+        hurt_scale = 1.0f + (0.05f * difficulty);
     }
 }

@@ -7,33 +7,47 @@ using UnityEngine;
  */
 public class Invincibility_up : MonoBehaviour
 {
-    public float invince_shield = 999f;
     public float duration = 10f;
     private static Player_stats stats;
+
+    private bool used = false;
+    private static int active = 0;
+
+    private GameObject icon;
 
     // Start is called before the first frame update, get the player's stats
     void Start()
     {
         stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+        icon = GameObject.Find("GameUI").transform.Find("InvincibleIcon").gameObject;
     }
 
     // Upon collision, check for player tag and set player invinciblity
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.CompareTag("Player"))
+        if (col.CompareTag("Player") && used == false)
         {
-            gameObject.SetActive(false);
+            used = true;
 
-            stats.isInvincible = true;
-
-            Invoke("Disable", duration);
+            StartCoroutine(Power());
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
         }
     }
 
-    // remove player invincibility after a given duration
-    void Disable()
+    private IEnumerator Power()
     {
+        icon.SetActive(true);
+        active += 1;
+
+        stats.isInvincible = true;
+
+        yield return new WaitForSeconds(duration);
+
         stats.isInvincible = false;
+
+        active -= 1;
+        if (active == 0) icon.SetActive(false);
         Destroy(gameObject);
     }
 }

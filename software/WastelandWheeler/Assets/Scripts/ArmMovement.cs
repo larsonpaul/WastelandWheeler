@@ -6,33 +6,37 @@ public class ArmMovement : MonoBehaviour
 {
     // Added for shooting
     private Rigidbody2D r_body;
-    Vector2 mouse_position;
+    Vector3 mouse_position;
     private Camera cam;
-    Transform firePoint;
+    GameObject player;
 
     private void Awake()
     {
-        firePoint = transform.Find("firePoint");
+        
     }
     // Start is called before the first frame update
     void Start()
     {
-        r_body = GetComponent<Rigidbody2D>();
+        //r_body = GetComponent<Rigidbody2D>();
         cam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        mouse_position = cam.ScreenToWorldPoint(Input.mousePosition);
+       mouse_position = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void FixedUpdate()
     {
-        Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
-        Vector2 look_direction = mouse_position - r_body.position;
+        Vector3 look_direction = mouse_position - transform.position;
+        float angle = Mathf.Atan2(look_direction.y, look_direction.x) * Mathf.Rad2Deg -90.0f;
+        Vector3 rotation = new Vector3(0.0f, 0.0f, angle);
+        transform.eulerAngles = rotation;
+        /*Vector2 look_direction = mouse_position - r_body.position;
         float angle = Mathf.Atan2(look_direction.y, look_direction.x) * Mathf.Rad2Deg - 90f;
         r_body.rotation = angle;
+        */
     }
 
 }

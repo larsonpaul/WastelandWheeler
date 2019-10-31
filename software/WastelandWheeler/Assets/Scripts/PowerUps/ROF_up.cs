@@ -11,27 +11,44 @@ public class ROF_up : MonoBehaviour
     public float duration = 10f;
     private static Player_stats stats;
 
+    private bool used = false;
+    private static int active = 0;
+
+    private GameObject icon;
+
     // Start is called before the first frame update, get the player's stats
     void Start()
     {
         stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+        icon = GameObject.Find("GameUI").transform.Find("ROFIcon").gameObject;
     }
 
     // On collision, check the player tag and increase the ROF based on a multiplier
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.CompareTag("Player"))
+        if (col.CompareTag("Player") && used == false)
         {
-            gameObject.SetActive(false);
-            stats.rate_of_fire /= multiplier;
-            Invoke("Disable", duration);
+            used = true;
+
+            StartCoroutine(Power());
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
         }
     }
 
-    // Remove players increased ROF after a duration
-    void Disable()
+    private IEnumerator Power()
     {
+        icon.SetActive(true);
+        active += 1;
+
+        stats.rate_of_fire /= multiplier;
+
+        yield return new WaitForSeconds(duration);
+
         stats.rate_of_fire *= multiplier;
+
+        active -= 1;
+        if (active == 0) icon.SetActive(false);
         Destroy(gameObject);
     }
 }
