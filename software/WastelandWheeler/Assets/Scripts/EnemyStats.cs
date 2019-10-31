@@ -17,6 +17,9 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster //ICreatureStats
     public float firerate;
     public float baseFirerate = 0;
 
+    public float damage = 10;
+    public float baseDamage = 10;
+
     private EnemyBar healthBar;
 
     private DynamicDifficultyAdjuster dda;
@@ -111,6 +114,11 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster //ICreatureStats
     public void ModifyFirerate(float mod)
     {
         firerate *= mod;
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 
     public void OnDeath()

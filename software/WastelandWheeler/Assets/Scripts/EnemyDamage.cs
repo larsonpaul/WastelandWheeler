@@ -10,11 +10,15 @@ public class EnemyDamage : MonoBehaviour
     public Rigidbody2D rbody;
     public float damage = 10f;
 
+    public EnemyStats stats;
+
     // Start is called before the first frame update, find the rbody of the object 
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
-        //stats = GetComponent<EnemyStats>();
+        stats = GetComponent<EnemyStats>();
+
+        damage = stats.GetDamage();
     }
 
     // When a collision occurs, check for a player tag and reduce the player health by damage.
