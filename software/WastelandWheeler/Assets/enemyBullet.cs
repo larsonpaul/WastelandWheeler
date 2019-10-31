@@ -43,6 +43,10 @@ public class enemyBullet : MonoBehaviour
         {
             Physics2D.IgnoreLayerCollision(9, 11);
         }
+        if (other.CompareTag("Shot"))
+        {
+            Physics2D.IgnoreLayerCollision(0, 11);
+        }
 
         //damage player on contact and destory object
         else if (other.tag == ("Player"))

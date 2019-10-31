@@ -5,8 +5,20 @@ using UnityEngine;
 /**
  * Bullet class that will destroy a bullet object when it collides with an enemy or a surface
  */
+
 public class Bullet : MonoBehaviour
 {
+
+    private int lifetime = 1;
+    // Update is called once per frame
+    void Update()
+    {
+        if (lifetime == 0)
+        {
+            Destroy(gameObject);
+        }
+        lifetime--;
+    }
     //public GameObject hit_effect;
     public float damage = 5;
 

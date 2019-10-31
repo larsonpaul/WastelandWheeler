@@ -31,7 +31,8 @@ public class BossFightOne2D : MonoBehaviour
     public Transform firePoint; // firePoint for projectiles
 
     public GameObject[] barriers; // Create objects with colliders and store in array. Prevents player from leaving area
-    public GameObject projectile;  // Boss's projectiles
+    private GameObject projectile;  // Boss's projectiles
+    public GameObject projPrefab;
     public startBossFight startRoutine;       // starts the script once player reaches a certain spot 
     Coroutine bossMethod;
 
@@ -235,7 +236,7 @@ public class BossFightOne2D : MonoBehaviour
     Vector2 fireProjectile()
     {
         Vector2 trgt = target.transform.position - transform.position;
-        projectile = (GameObject)Instantiate(projectile, firePoint.position, Quaternion.identity);
+        projectile = Instantiate(projPrefab, firePoint.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(trgt.x, trgt.y);
         return trgt;
 
@@ -249,10 +250,17 @@ public class BossFightOne2D : MonoBehaviour
 
     public void stopBossFight()
     {
-        Debug.Log("STOP STOP STOP");
+        Debug.Log("Stop the battle");
         startRoutine.startFight = false;
-        startRoutine.removeBarriers();
         StopCoroutine(bossMethod);
+    }
+
+    public void startBossFight()
+    {
+        Debug.Log("Start the battle");
+        bossMethod = StartCoroutine(bossOne());
+        startRoutine.startFight = false;
+
     }
 
 }

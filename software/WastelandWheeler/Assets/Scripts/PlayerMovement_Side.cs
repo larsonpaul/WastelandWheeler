@@ -19,6 +19,7 @@ public class PlayerMovement_Side : MonoBehaviour
     private GameObject arm;
     private Vector3 mousePosition;
     private Camera cam;
+    
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class PlayerMovement_Side : MonoBehaviour
         stats = gameObject.GetComponent<Player_stats>();
         arm = GameObject.Find("Arm");
         armSpriteRenderer = arm.GetComponent <SpriteRenderer>();
+       
         cam = Camera.main;
     }
 
@@ -36,12 +38,21 @@ public class PlayerMovement_Side : MonoBehaviour
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
 
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, groundDetect, Ground);
+        Vector2 edge1  = new Vector2(position.x + 0.5f, position.y);
+        Vector2 edge2 = new Vector2(position.x - 0.5f, position.y);
+        
+        RaycastHit2D hit = Physics2D.Raycast(edge1, direction, groundDetect, Ground);
+        Debug.DrawRay(edge1, direction, Color.green , Ground);
         if (hit.collider != null)
         {
             return true;
         }
-
+        RaycastHit2D hit2 = Physics2D.Raycast(edge2, direction, groundDetect, Ground);
+        Debug.DrawRay(edge2, direction, Color.green, Ground);
+        if (hit2.collider != null)
+        {
+            return true;
+        }
         return false;
     }
 

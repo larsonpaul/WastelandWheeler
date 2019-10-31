@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 3367383596251042928}
-  damage: 40
+  damage: 20
 --- !u!114 &5265328247635106175
 MonoBehaviour:
   m_ObjectHideFlags: 0

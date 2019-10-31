@@ -11,8 +11,7 @@ public class startBossFight : MonoBehaviour
     public GameObject boss;
     private BossFightOne2D start;
     public bool startFight;
-    public Transform leftBarrierSpot;
-    public Transform rightBarrierSpot;
+    public GameObject stopBossFight;
     public GameObject leftBarrier;
     public GameObject rightBarrier;
 
@@ -23,42 +22,24 @@ public class startBossFight : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (player.GetComponent<Player_stats>().healthCurrent <= 0)
-        {
-            startFight = false;
-            removeBarriers();
-            Debug.Log("Stop Boss fight");
-            
-        }
-      
-    }
-
+    //start battle and activate stop battle object
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == ("Player"))
         {
 
-            Instantiate(leftBarrier, leftBarrierSpot.position, Quaternion.identity);
-            Instantiate(rightBarrier, rightBarrierSpot.position, Quaternion.identity);
+            leftBarrier.SetActive(true);
+            rightBarrier.SetActive(true);
             startFight = true;
-            Destroy(gameObject);
             Debug.Log("Destroying" + gameObject);
-
-            
+            stopBossFight.SetActive(true);
+            stopBossFight.GetComponent<BoxCollider2D>().isTrigger = true;
+            gameObject.SetActive(false);
         }
     }
 
     public void removeBarriers()
     {
-
         Debug.Log("Bye Bye Barriers");
-        Destroy(leftBarrier);
-        Destroy(rightBarrier);
     }
-
-
-
 }
