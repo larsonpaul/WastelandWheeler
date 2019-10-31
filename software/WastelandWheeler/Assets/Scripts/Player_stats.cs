@@ -259,6 +259,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         {
             rate_of_fire = rate_of_fire * (1.0f + (0.025f * difficulty));
         }
-        hurt_scale = 1.0f + (0.05f * difficulty);
+        hurt_scale = 1.0f + (0.1f * difficulty);
     }
 }

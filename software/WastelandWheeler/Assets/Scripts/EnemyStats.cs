@@ -26,10 +26,14 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
     public Spawn_Manager spawnManager;
 
+    private TimeSlow playerTS;
+
     // Start is called before the first frame update
     void Start()
     {
         healthBar = GetComponent<EnemyBar>();
+
+        playerTS = GameObject.Find("Player").GetComponent<TimeSlow>();
 
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
         dda.Subscribe(this);
@@ -125,6 +129,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     {
         dda.Unsubscribe(this);
         Destroy(gameObject);
+        playerTS.EnemyAdrenaline();
         spawnManager.EnemyDefeated();
         // spawn powerup
     }
