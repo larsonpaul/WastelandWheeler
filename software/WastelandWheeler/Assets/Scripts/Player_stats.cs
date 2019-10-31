@@ -26,6 +26,9 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public bool levelIsTopDown = true;
     public LevelManager levelManager;
 
+    public float baseDamage = 5f;
+    public float damage = 5f;
+
     [SerializeField]
     private GameManager game;
 
@@ -228,6 +231,11 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public float GetBulletSize()
     {
         return bullet_size;
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 
     // Game over state based on health (may have to make this its own script)
