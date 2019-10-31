@@ -9,7 +9,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    private int lifetime = 1;
+/**    
+ *  Causes an issue in topdown and may not be necessary for game (
+ * private int lifetime = 1;
     // Update is called once per frame
     void Update()
     {
@@ -19,6 +21,8 @@ public class Bullet : MonoBehaviour
         }
         lifetime--;
     }
+*/
+
     //public GameObject hit_effect;
     public float damage = 5;
 
