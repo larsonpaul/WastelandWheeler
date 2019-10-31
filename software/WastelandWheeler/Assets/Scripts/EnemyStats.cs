@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStats : MonoBehaviour, ICreatureStats, IDiffcultyAdjuster
+public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster //ICreatureStats
 {
 
     public float health;
@@ -115,6 +115,7 @@ public class EnemyStats : MonoBehaviour, ICreatureStats, IDiffcultyAdjuster
     {
         dda.Unsubscribe(this);
         Destroy(gameObject);
+
         // spawn powerup
     }
 
