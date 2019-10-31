@@ -11,7 +11,7 @@ public class TimeSlow : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && gameObject.GetComponent<Player_stats>().GetAdrenaline() >= tick_down)
         {
             Time.timeScale = .7f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;

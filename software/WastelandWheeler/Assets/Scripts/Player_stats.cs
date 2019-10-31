@@ -64,6 +64,12 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         return healthCurrent;
     }
 
+    // Function to grab the current adrenaline of the player
+    public float GetAdrenaline()
+    {
+        return adrenalineCurrent;
+    }
+
     // Function that changes the player's health by a given amount, 
     // increasing it if positive and decreasing if negative
     public void AddHealth(float num)
@@ -114,11 +120,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
     }
 
-    public float GetAdrenaline()
-    {
-        return adrenalineCurrent;
-    }
-
     public void killPlayer()
     {
         healthCurrent = 0;
@@ -138,7 +139,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public void AddAdrenaline(float num)
     {
-        // Add Code Here
         if (num <= 0)
         {
             if (num < 0)
@@ -157,7 +157,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public void RemoveAdrenaline(float num)
     {
-        // Add Code Here
         if (num <= 0)
         {
             if (num < 0)
@@ -212,9 +211,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         isInvincible = false;
         invincibleIcon.SetActive(false);
     }
-
-
-
 
     // Function to get the move speed of the player
     public float GetSpeed()
