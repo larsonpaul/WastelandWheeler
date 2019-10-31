@@ -7,10 +7,15 @@ public class damageBullet : MonoBehaviour
     //public GameObject hit_effect;
     public float damage;
 
-    // Start is called before the first frame update, get the player's stats
-    void Start()
+    private int lifetime = 50;
+    // Update is called once per frame
+    void Update()
     {
-       
+        if (lifetime == 0)
+        {
+            Destroy(gameObject);
+        }
+        lifetime--;
     }
 
     // on collision deal damage

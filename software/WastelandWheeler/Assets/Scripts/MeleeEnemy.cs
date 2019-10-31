@@ -16,13 +16,13 @@ public class MeleeEnemy : MovementBase
         return new Vector2(0, 0);
     }
 
-    public Rigidbody2D rbody;
+    public Rigidbody2D rgbody;
     public float damage = 10f;
 
     // Start is called before the first frame update, find the rbody of the object 
     void Start()
     {
-        rbody = GetComponent<Rigidbody2D>();
+        rgbody = GetComponent<Rigidbody2D>();
     }
 
     // When a collision occurs, check for a player tag and reduce the player health by damage.
@@ -30,7 +30,7 @@ public class MeleeEnemy : MovementBase
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            rbody.velocity *= -2;
+            rgbody.velocity *= -2;
         }
     }
 

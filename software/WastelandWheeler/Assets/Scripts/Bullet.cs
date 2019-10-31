@@ -8,6 +8,17 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
+    private int lifetime = 1;
+    // Update is called once per frame
+    void Update()
+    {
+        if (lifetime == 0)
+        {
+            Destroy(gameObject);
+        }
+        lifetime--;
+    }
     //public GameObject hit_effect;
 
     // on collision destroy the bullet object
