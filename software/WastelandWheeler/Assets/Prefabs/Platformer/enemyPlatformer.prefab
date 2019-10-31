@@ -198,3 +198,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbody: {fileID: 7222960539241550138}
   damage: 20
+  stats: {fileID: 0}

@@ -97,7 +97,8 @@ public class PlayerMovement_Side : MonoBehaviour
             armPosition.x += 0.05f;
         }
         
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
+            
         {
             Jumpcheck();
         }
@@ -116,7 +117,7 @@ public class PlayerMovement_Side : MonoBehaviour
         {
             rbody.velocity += Vector2.up * Physics2D.gravity.y * (fallspeed - 1) * Time.deltaTime;
         }
-        else if (rbody.velocity.y >0 && !Input.GetKey("space"))
+        else if (rbody.velocity.y >0 && !Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
         {
             rbody.velocity += Vector2.up * Physics2D.gravity.y * (hopMultiplier - 1) * Time.deltaTime;
         }
