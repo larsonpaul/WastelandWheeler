@@ -45,13 +45,28 @@ public class NewPlayerMovementForce : MonoBehaviour
             movement.Normalize();
 
         // Calculate facing
-        if (Vector2.Dot(facing, movement) < -0.99999f)
+        Vector2 sum = facing + movement;
+        if (Vector2.Dot(facing, movement) == -1)
         {
-            // TODO: find a function that turns in the right direction
+            // vectors are directly opposite
+            // pick an arbitrary direction to turn (right)
             movement = Vector2.Perpendicular(movement);
         }
+        else if (Vector2.Dot(facing, movement) < -0.5)
+        {
+            // vectors are separated by an obtuse angle
+            // find sign of angle, and turn the appropriate direction
+            if (Vector2.SignedAngle(facing, movement) < 0)
+            {
+                movement = Vector2.Perpendicular(movement);
+            }
+            else
+            {
+                movement = -Vector2.Perpendicular(movement);
+            }
+        }
 
-        float turnspeed = 0.1f + (0.7f / (rbody.velocity.magnitude + 1));
+        float turnspeed = 0.2f + (0.6f / (rbody.velocity.magnitude + 1));
 
         facing = (facing + movement * turnspeed);
 
@@ -67,7 +82,7 @@ public class NewPlayerMovementForce : MonoBehaviour
         // Sprite facing
         if (angle < -22.5) angle += 360;
 
-        switch ((int)((angle + 22.5) / 45))
+        switch ((int)((angle + 22.5) / 45) % 8)
         {
             case 0:
                 renderer.sprite = spr3;
@@ -93,9 +108,6 @@ public class NewPlayerMovementForce : MonoBehaviour
             case 7:
                 renderer.sprite = spr2;
                 break;
-            case 8:
-                renderer.sprite = spr3;
-                break;
             default:
                 break;
         }
@@ -104,8 +116,10 @@ public class NewPlayerMovementForce : MonoBehaviour
     void FixedUpdate()
     {
         // Perform movement
-        rbody.AddForce(new Vector2(facing.normalized.x * stats.move_speed * movement.magnitude, 
-            facing.normalized.y * stats.move_speed * movement.magnitude));
+        float x = facing.normalized.x * stats.move_speed * movement.magnitude;
+        float y = facing.normalized.y * stats.move_speed * movement.magnitude;
+
+        rbody.AddForce(new Vector2(x, y));
     }
 
 
