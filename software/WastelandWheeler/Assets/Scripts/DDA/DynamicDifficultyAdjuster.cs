@@ -36,6 +36,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 
     private void Awake()
     {
+        subscribers = new HashSet<MonoBehaviour>();
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
@@ -50,7 +51,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
     private void Start()
     {
         difficulty_level = 0;
-        subscribers = new HashSet<MonoBehaviour>();
+        //subscribers = new HashSet<MonoBehaviour>();
         startTime = Time.time;
 
         player = GameObject.Find("Player");
