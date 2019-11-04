@@ -12,7 +12,7 @@ public class LevelChanger : MonoBehaviour
     {
         if (Input.GetKey("l"))
         {
-            FadeToPlatformer("Level1_2D");
+            FadeToPlatformer("Upgrade");
         }
     }
 
