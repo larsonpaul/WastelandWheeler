@@ -25,6 +25,10 @@ public class Spawn_Manager : MonoBehaviour
     private int currWave;
     private int totalWaves;
 
+    private void Awake()
+    {
+        enemiesLeftInWave = 0;
+    }
     void Start()
     {
         currWave = -1;
@@ -45,9 +49,9 @@ public class Spawn_Manager : MonoBehaviour
         }
 
         totalEnemiesInWave = Waves[currWave].EnemiesPerWave;
-        enemiesLeftInWave = 0;
+        enemiesLeftInWave = totalEnemiesInWave;
         spawnedEnemies = 0;
-
+        print("totalEnemiesInWave" + totalEnemiesInWave);
         StartCoroutine(SpawnEnemies());
     }
 
@@ -58,7 +62,7 @@ public class Spawn_Manager : MonoBehaviour
         while (spawnedEnemies < totalEnemiesInWave)
         {
             spawnedEnemies++;
-            enemiesLeftInWave++;
+            print("spawnedEnemies" + spawnedEnemies);
 
             int spawnPointIndex = Random.Range(0, SpawnPoints.Length);
 
@@ -73,9 +77,12 @@ public class Spawn_Manager : MonoBehaviour
     public void EnemyDefeated()
     {
         enemiesLeftInWave--;
+        print("totalEnemiesInWave" + totalEnemiesInWave);
+        print("spawnedEnemies" + spawnedEnemies);
+        print("EnemiesLeft" + enemiesLeftInWave);
 
         // Start the next wave once we have spawned and defeated them all (BUGGY!!!)
-        if (enemiesLeftInWave == 0 && spawnedEnemies == totalEnemiesInWave)
+        if (enemiesLeftInWave <= 0 && spawnedEnemies == totalEnemiesInWave)
         {
             StartNextWave();
         }
