@@ -12,7 +12,7 @@ public class GoToUpgrade : MonoBehaviour
         {
             collision.GetComponent<Player_stats>().move_speed = 0f;
             yield return new WaitForSeconds(3);
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
         }
 
         // if not return 
