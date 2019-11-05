@@ -33,6 +33,9 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     [SerializeField]
     private GameObject speedIcon, rofIcon, invincibleIcon;
 
+    [SerializeField]
+    private int player_lives;
+
     private GameObject dda;
     private int difficulty;
     private float adrenaline_scale;
@@ -48,6 +51,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             rate_of_fire = rate_of_fire * (1.0f + (0.025f * difficulty));
         }
         hurt_scale = 1.0f + (0.05f * difficulty);
+        player_lives = 5;
     }
 
     void Update()
@@ -108,9 +112,23 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             game.SetHealth(healthCurrent / healthMax);
             if (healthCurrent <= 0)
             {
+                player_lives--;
+                print("player Lives Remaining: " + player_lives);
+                Respawn();
+            }
+            if (player_lives <= 0)
+            {
                 GameOver();
             }
         }
+    }
+
+    public void Respawn()
+    {
+        // reset player transform to starting position of level 
+        this.transform.position = new Vector3(0, 0, 0);
+        healthCurrent = healthMax;
+        game.SetHealth(healthCurrent / healthMax);
     }
 
     public void killPlayer()
