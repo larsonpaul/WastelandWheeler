@@ -29,6 +29,10 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public float totalCoins = 0f;
 
+    public float armourMax = 100f;
+    public float armourCurrent = 0f;
+
+
     [SerializeField]
     private GameManager game;
 
@@ -177,6 +181,42 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         {
             adrenalineCurrent -= num;
             game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
+        }
+    }
+
+    public void AddArmour(float num)
+    {
+        if (num <= 0)
+        {
+            if (num < 0)
+            {
+                string error = gameObject.name + ".AddArmour() given negative float " + num;
+                Debug.LogError(error);
+            }
+            return;
+        }
+        else if (num > 0)
+        {
+            armourCurrent = Mathf.Min(armourCurrent + num, armourMax);
+            //game.SetArmour(armourCurrent / armourMax);
+        }
+    }
+
+    public void RemoveArmour(float num)
+    {
+        if (num <= 0)
+        {
+            if (num < 0)
+            {
+                string error = gameObject.name + ".RemoveArmour() given negative float " + num;
+                Debug.LogError(error);
+            }
+            return;
+        }
+        else
+        {
+            armourCurrent -= num;
+            //game.SetArmour(armourCurrent / armourMax);
         }
     }
 
