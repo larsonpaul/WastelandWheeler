@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 8552792340146239234}
   - component: {fileID: 1014893128181177945}
   - component: {fileID: 6003332441846945867}
+  - component: {fileID: 7706363609948339267}
   m_Layer: 0
   m_Name: shooterEnemy
   m_TagString: Enemy
@@ -379,6 +380,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d745aa1aa1fd4144291fc86684834660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7706363609948339267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014893128181177944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a66f0b3ea1f240248c15960b63375ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotStartTime: 1
+  playerWithinRangeX: 5
+  playerWithinRangeY: 5
+  bullet: {fileID: 3815651842055491911, guid: 28364bba2ac5a48ccbd63ac2728ee4ad, type: 3}
+  speed: 75
+  just_along_x: 0
+  just_along_y: 0
+  heatSeeker: 0
+  burstShot: 0
 --- !u!1 &3814745149638517644
 GameObject:
   m_ObjectHideFlags: 0
