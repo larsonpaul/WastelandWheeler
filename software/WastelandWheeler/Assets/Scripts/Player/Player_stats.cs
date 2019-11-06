@@ -27,6 +27,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public float baseDamage = 5f;
     public float damage = 5f;
 
+    public float totalCoins = 0f;
+
     [SerializeField]
     private GameManager game;
 
