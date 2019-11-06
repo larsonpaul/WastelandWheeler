@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 {
-
     public float health;
     public float healthMax = 5;
 
@@ -27,6 +26,8 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     public Spawn_Manager spawnManager;
 
     private TimeSlow playerTS;
+
+    public DropSpawner dropSpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -131,7 +132,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         Destroy(gameObject);
         playerTS.EnemyAdrenaline();
         spawnManager.EnemyDefeated();
-        // spawn powerup
+        dropSpawner.DropItem();
     }
 
     public void ChangeDifficulty(int amount)
