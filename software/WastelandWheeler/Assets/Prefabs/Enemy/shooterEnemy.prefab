@@ -236,7 +236,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8ff10b0e8c238d84795554c12ee53cf5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.990566, g: 0.21026169, b: 0.21026169, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97aff95385c78a14b8fdfb7af9b7518e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
+  range: 8
 --- !u!114 &8552792340146239234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbody: {fileID: 1014893128181177940}
   damage: 10
-  stats: {fileID: 0}
+  stats: {fileID: 8552792340146239234}
 --- !u!114 &6003332441846945867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,9 +392,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a66f0b3ea1f240248c15960b63375ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotStartTime: 1
-  playerWithinRangeX: 5
-  playerWithinRangeY: 5
+  shotStartTime: 0.5
+  playerWithinRangeX: 8
+  playerWithinRangeY: 8
   bullet: {fileID: 3815651842055491911, guid: 28364bba2ac5a48ccbd63ac2728ee4ad, type: 3}
   speed: 75
   just_along_x: 0
