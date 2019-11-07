@@ -132,7 +132,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         Destroy(gameObject);
         playerTS.EnemyAdrenaline();
         spawnManager.EnemyDefeated();
-        dropSpawner.DropItem();
+        dropSpawner.DropItem(transform);
     }
 
     public void ChangeDifficulty(int amount)

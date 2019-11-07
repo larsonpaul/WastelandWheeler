@@ -9,8 +9,7 @@ public class Token : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             col.GetComponent<Player_stats>().totalCoins++;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            Destroy(gameObject);
         }
     }
 }
