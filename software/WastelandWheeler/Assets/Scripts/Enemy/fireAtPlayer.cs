@@ -92,12 +92,15 @@ public class fireAtPlayer : MonoBehaviour
 
         else if (burstShot) // shot three spreading bullets
         {
-            Debug.Log("Shot fired just x");
-            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, transform.position.y));
+            Debug.Log("Shot fired burst");
+            Vector2 perpendicular = Vector2.Perpendicular(target);
+            Vector2 angle1 = perpendicular + target;
+            Vector2 angle2 = -perpendicular + target;
+            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, target.y * speed));
             GameObject projectile2 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile2.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, transform.position.y+2*speed));
+            projectile2.GetComponent<Rigidbody2D>().AddForce(new Vector2(angle2.x * speed, angle2.y *speed));
             GameObject projectile3 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile3.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, transform.position.y-2 *speed));
+            projectile3.GetComponent<Rigidbody2D>().AddForce(new Vector2(angle1.x * speed, angle1.y *speed));
         }
         else
         {
