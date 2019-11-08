@@ -18,11 +18,15 @@ public class Spawn_Manager : MonoBehaviour
 
     public float TimeBetweenEnemies = 1f;
 
+    [SerializeField]
     private int totalEnemiesInWave;
+    [SerializeField]
     private int enemiesLeftInWave;
+    [SerializeField]
     private int spawnedEnemies;
 
     private int currWave;
+    [SerializeField]
     private int totalWaves;
 
     private void Awake()
@@ -76,10 +80,10 @@ public class Spawn_Manager : MonoBehaviour
     // called by an enemy when they're defeated (EnemyStats)
     public void EnemyDefeated()
     {
-        enemiesLeftInWave--;
-        //print("totalEnemiesInWave" + totalEnemiesInWave);
-        //print("spawnedEnemies" + spawnedEnemies);
-        //print("EnemiesLeft" + enemiesLeftInWave);
+        this.enemiesLeftInWave--;
+        print("totalEnemiesInWave: " + totalEnemiesInWave);
+        print("spawnedEnemies: " + spawnedEnemies);
+        print("EnemiesLeft: " + enemiesLeftInWave);
 
         // Start the next wave once we have spawned and defeated them all (BUGGY!!!)
         if (enemiesLeftInWave <= 0 && spawnedEnemies == totalEnemiesInWave)
