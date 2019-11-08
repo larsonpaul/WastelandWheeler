@@ -17,13 +17,8 @@ public class UpgradeMenu : MonoBehaviour
     public void StartNextLevel()
     {
         int chosen_scene = Random.Range(first_scene, last_scene + 1);
-        // If scene was topdown, load platformer
         SceneManager.LoadScene(chosen_scene);
         Time.timeScale = 1f;
         PauseMenu.GameIsPaused = false;
-
-        // Else load topdown
-        /* Don't currently know how to check previous scene */
     }
-
 }
