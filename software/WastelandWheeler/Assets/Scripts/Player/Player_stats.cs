@@ -1,12 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /**
  * Class that contains varaibles that control player attributes and has getters for those variables
  */
 public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 {
+    // next two functions are to keep player stats between scenes 
+    public static Player_stats Instance
+    {
+        get;
+        set;
+    }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     public float healthMax = 100f;
     public float healthCurrent = 100f;
 
@@ -48,6 +69,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     private float hurt_scale;
     private void Start()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
         dda = GameObject.Find("DDA");
         dda.GetComponent<DynamicDifficultyAdjuster>().Subscribe(this);
         difficulty = dda.GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
@@ -72,6 +94,12 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public float GetHealth()
     {
         return healthCurrent;
+    }
+
+    // Function to set the max health of the player
+    public void SetHealth(float value)
+    {
+        healthMax += value;
     }
 
     // Function to grab the current adrenaline of the player
@@ -145,7 +173,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         {
             GameOver();
         }
-
     }
 
     public void AddAdrenaline(float num)
@@ -259,10 +286,28 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         invincibleIcon.SetActive(false);
     }
 
+    // Function to get the total coins of the player
+    public float GetCoins()
+    {
+        return totalCoins;
+    }
+
+    // Function to set the total coins of the player
+    public void SetCoins(float value)
+    {
+        totalCoins = value;
+    }
+
     // Function to get the move speed of the player
     public float GetSpeed()
     {
         return move_speed;
+    }
+
+    // Function to set the move speed of the player
+    public void SetSpeed(float value)
+    {
+        move_speed += value;
     }
 
     // Function to get the ROF of the player
@@ -271,15 +316,34 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         return rate_of_fire;
     }
 
+    // Function to set the ROF of the player
+    public void SetROF(float value)
+    {
+        rate_of_fire += value;
+    }
+
     // Function to get the bullet size of the player
     public float GetBulletSize()
     {
         return bullet_size;
     }
 
+    // Function to set the bullet size of the player
+    public void SetBulletSize(float value)
+    {
+        bullet_size += value;
+    }
+
+    // Function to get the damage of the player
     public float GetDamage()
     {
         return damage;
+    }
+
+    // Function to set the damage of the player
+    public void SetDamage(float value)
+    {
+        damage += value;
     }
 
     // Game over state based on health (may have to make this its own script)
