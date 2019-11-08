@@ -47,7 +47,7 @@ public class Spawn_Manager : MonoBehaviour
         currWave++;
 
         // Win Scenario
-        if (currWave > totalWaves)
+        if (currWave >= totalWaves)
         {
             return;
         }
