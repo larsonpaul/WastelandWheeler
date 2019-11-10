@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 {
-
     public float health;
     public float healthMax = 5;
 
@@ -28,6 +27,8 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
     private TimeSlow playerTS;
 
+    public DropSpawner dropSpawner;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +42,8 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         health = healthMax;
         speed = baseSpeed * (1.0f + (0.05f * dda.GetDifficulty()));
         firerate = baseFirerate;
+
+        spawnManager = GameObject.Find("Spawn Manager").GetComponent<Spawn_Manager>();
     }
 
     // Update is called once per frame
@@ -128,10 +131,10 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     public void OnDeath()
     {
         dda.Unsubscribe(this);
-        Destroy(gameObject);
         playerTS.EnemyAdrenaline();
         spawnManager.EnemyDefeated();
-        // spawn powerup
+        dropSpawner.DropItem(transform);
+        Destroy(gameObject);
     }
 
     public void ChangeDifficulty(int amount)

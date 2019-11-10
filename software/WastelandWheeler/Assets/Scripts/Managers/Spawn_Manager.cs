@@ -13,16 +13,20 @@ public class Spawn_Manager : MonoBehaviour
 {
     public Wave[] Waves; // class to hold information per wave
 
-    // 8 Spawns added to prefab for EnemyManager as of 10/28
+    // 20 Spawns added to prefab for EnemyManager as of 11/2
     public Transform[] SpawnPoints;
 
     public float TimeBetweenEnemies = 1f;
 
+    [SerializeField]
     private int totalEnemiesInWave;
+    [SerializeField]
     private int enemiesLeftInWave;
+    [SerializeField]
     private int spawnedEnemies;
 
     private int currWave;
+    [SerializeField]
     private int totalWaves;
 
     private void Awake()
@@ -43,7 +47,7 @@ public class Spawn_Manager : MonoBehaviour
         currWave++;
 
         // Win Scenario
-        if (currWave > totalWaves)
+        if (currWave >= totalWaves)
         {
             return;
         }
@@ -51,7 +55,7 @@ public class Spawn_Manager : MonoBehaviour
         totalEnemiesInWave = Waves[currWave].EnemiesPerWave;
         enemiesLeftInWave = totalEnemiesInWave;
         spawnedEnemies = 0;
-        print("totalEnemiesInWave" + totalEnemiesInWave);
+        //print("totalEnemiesInWave" + totalEnemiesInWave);
         StartCoroutine(SpawnEnemies());
     }
 
@@ -62,7 +66,7 @@ public class Spawn_Manager : MonoBehaviour
         while (spawnedEnemies < totalEnemiesInWave)
         {
             spawnedEnemies++;
-            print("spawnedEnemies" + spawnedEnemies);
+            //print("spawnedEnemies" + spawnedEnemies);
 
             int spawnPointIndex = Random.Range(0, SpawnPoints.Length);
 
@@ -76,10 +80,7 @@ public class Spawn_Manager : MonoBehaviour
     // called by an enemy when they're defeated (EnemyStats)
     public void EnemyDefeated()
     {
-        enemiesLeftInWave--;
-        print("totalEnemiesInWave" + totalEnemiesInWave);
-        print("spawnedEnemies" + spawnedEnemies);
-        print("EnemiesLeft" + enemiesLeftInWave);
+        this.enemiesLeftInWave--;
 
         // Start the next wave once we have spawned and defeated them all (BUGGY!!!)
         if (enemiesLeftInWave <= 0 && spawnedEnemies == totalEnemiesInWave)
