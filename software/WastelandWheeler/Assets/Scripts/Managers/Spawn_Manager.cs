@@ -81,9 +81,6 @@ public class Spawn_Manager : MonoBehaviour
     public void EnemyDefeated()
     {
         this.enemiesLeftInWave--;
-        print("totalEnemiesInWave: " + totalEnemiesInWave);
-        print("spawnedEnemies: " + spawnedEnemies);
-        print("EnemiesLeft: " + enemiesLeftInWave);
 
         // Start the next wave once we have spawned and defeated them all (BUGGY!!!)
         if (enemiesLeftInWave <= 0 && spawnedEnemies == totalEnemiesInWave)
