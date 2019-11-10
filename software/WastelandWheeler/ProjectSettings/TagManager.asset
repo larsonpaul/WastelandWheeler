@@ -10,6 +10,7 @@ TagManager:
   - Platformer
   - Top_down
   - bullet
+  - ThrownCar
   layers:
   - Default
   - TransparentFX
