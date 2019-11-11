@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/TemplateLevel.unity
+    guid: 02ddf79c994cf5843b960584a195fa30
   m_configObjects: {}
