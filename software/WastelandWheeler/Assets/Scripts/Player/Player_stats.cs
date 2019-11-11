@@ -90,24 +90,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
     }
 
-    // Function to grab the current health of the player
-    public float GetHealth()
-    {
-        return healthCurrent;
-    }
-
-    // Function to set the max health of the player
-    public void SetHealth(float value)
-    {
-        healthMax += value;
-    }
-
-    // Function to grab the current adrenaline of the player
-    public float GetAdrenaline()
-    {
-        return adrenalineCurrent;
-    }
-
     // Function that changes the player's health by a given amount, 
     // increasing it if positive and decreasing if negative
     public void AddHealth(float num)
@@ -286,6 +268,29 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         invincibleIcon.SetActive(false);
     }
 
+    public float GetMaxHealth()
+    {
+        return healthMax;
+    }
+
+    // Function to grab the current health of the player
+    public float GetHealth()
+    {
+        return healthCurrent;
+    }
+
+    // Function to set the max health of the player
+    public void SetHealth(float value)
+    {
+        healthMax += value;
+    }
+
+    // Function to grab the current adrenaline of the player
+    public float GetAdrenaline()
+    {
+        return adrenalineCurrent;
+    }
+
     // Function to get the total coins of the player
     public float GetCoins()
     {
@@ -295,7 +300,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     // Function to set the total coins of the player
     public void SetCoins(float value)
     {
-        totalCoins = value;
+        totalCoins -= value;
     }
 
     // Function to get the move speed of the player
@@ -331,7 +336,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     // Function to set the bullet size of the player
     public void SetBulletSize(float value)
     {
-        bullet_size += value;
+        bullet_size *= value;
     }
 
     // Function to get the damage of the player
