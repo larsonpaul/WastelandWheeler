@@ -12,6 +12,25 @@ public class CameraMove : MonoBehaviour
 
     private Transform player;
 
+    public static CameraMove Instance
+    {
+        get;
+        set;
+    }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     // When game starts, find the player object
     void Start()
     {
