@@ -39,6 +39,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public float bullet_size = 2f;
     public bool isInvincible = false;
+    public bool isThorny = false;
+
     public float adrenalineMax = 100f;
     public float adrenalineCurrent = 100f;
 
@@ -58,7 +60,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     private GameManager game;
 
     [SerializeField]
-    private GameObject speedIcon, rofIcon, invincibleIcon;
+    private GameObject speedIcon, rofIcon, invincibleIcon, thornsIcon;
 
     [SerializeField]
     private int player_lives;
@@ -266,6 +268,19 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
         isInvincible = false;
         invincibleIcon.SetActive(false);
+    }
+
+    public IEnumerator PowerThorns(float duration)
+    {
+        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
+        thornsIcon.SetActive(true);
+
+        isThorny = true;
+
+        yield return new WaitForSeconds(duration);
+
+        isThorny = false;
+        thornsIcon.SetActive(false);
     }
 
     public float GetMaxHealth()
