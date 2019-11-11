@@ -5,38 +5,40 @@ using UnityEngine;
 public class ThrowCar : MonoBehaviour
 {
     public float carDamage = 40.0f;
-    public bool collision = true;
-    public bool thrown = false;
+    public bool collision;
+    public bool thrown;
+    public int playerContact = 0;
     int knockX = 10;
     int knockY = 10;
+    Vector2 bulletDirection;
+    Vector2 knockback;
+
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player") && thrown)
+        if (col.gameObject.CompareTag("Player") && thrown && this.playerContact <1)
         {
             col.gameObject.GetComponent<Player_stats>().RemoveHealth(carDamage);
-            thrown = false;
+            playerContact += 1;
+
         }
 
-        if (col.gameObject.CompareTag("ThrownCar") && thrown)
+        if (col.gameObject.CompareTag("ThrownCar"))
         {
 
-            //calculate knock back
-            if (col.transform.position.x < transform.position.x)
-            {
-                knockX = -knockX;
-            }
-            if (col.transform.position.y < transform.position.y)
-            {
-                knockY = -knockY;
-            }
-
             //knockback player
-            Rigidbody2D carRB = col.gameObject.GetComponent<Rigidbody2D>();
-            carRB.bodyType = RigidbodyType2D.Static;
-            carRB.velocity = new Vector2(knockX, knockY);
+
+            Rigidbody2D carRB = gameObject.GetComponent<Rigidbody2D>();
+            knockback = carRB.velocity;
+            carRB.AddForce(-knockback * 0);
+            playerContact += 1;
         }
 
+        else
+        {
+            Debug.Log("collsion OTHER");
+            playerContact += 1;
+        }
 
     }
 }

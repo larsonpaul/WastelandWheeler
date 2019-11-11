@@ -7,46 +7,59 @@ using UnityEngine;
  */
 public class BossDamage : MonoBehaviour
 {
-	public Rigidbody2D rbody;
 	public float damage = 10f;
     int knockX = 10;
     int knockY = 10;
     public GameObject player;
-	//public EnemyStats stats;
+    //public EnemyStats stats;
+    Vector2 bulletDirection;
 
-	// Start is called before the first frame update, find the rbody of the object 
-	void Start()
+    // Start is called before the first frame update, find the rbody of the object 
+    void Start()
 	{
-		rbody = GetComponent<Rigidbody2D>();
-		//stats = GetComponent<EnemyStats>();
-
+        //rbody = GetComponent<Rigidbody2D>();
+        //stats = GetComponent<EnemyStats>()
 		//damage = stats.GetDamage();
 	}
 
     private void Update()
     {
-        //calculate knock back
-        if (player.transform.position.x < transform.position.x)
-        {
-            knockX = -knockX;
-        }
-        if (player.transform.position.y < transform.position.y)
-        {
-            knockY = -knockY;
-        }
+
     }
 
 
     void OnTriggerStay2D(Collider2D col)
 	{
-		if (col.gameObject.CompareTag("Player"))
-		{
-            // remove player health
-			col.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
 
+        //calculate knock back
+
+
+        if (col.gameObject.CompareTag("Player"))
+		{
+            bulletDirection = this.gameObject.transform.forward;
+            // remove player health
+            col.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
             //knockback player
-            Rigidbody2D carRB = col.gameObject.GetComponent<Rigidbody2D>();
-            carRB.velocity = new Vector2(knockX,knockY);
+
+            Rigidbody2D playerRB = col.gameObject.GetComponent<Rigidbody2D>();
+            Vector2 knockback;
+
+            if (gameObject.tag == "boss")
+            {
+                Debug.Log("Bounce off boss");
+
+                knockback = playerRB.velocity;
+                playerRB.AddForce(knockback * 20);
+
+            }
+
+            else
+            {
+                Debug.Log("bullet push back");
+                knockback = gameObject.GetComponent<Rigidbody2D>().velocity;
+                playerRB.AddForce(knockback * 20);
+            }
+            
             PolygonCollider2D bc = gameObject.GetComponent<PolygonCollider2D>();
             //bc.isTrigger = true;
         }

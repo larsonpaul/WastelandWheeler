@@ -35,10 +35,8 @@ public class TDBossBattle : MonoBehaviour
     public float bossHealth = 100f;
     public Transform firePoint; // firePoint for projectiles
 
-    //public GameObject[] barriers; // Create objects with colliders and store in array. Prevents player from leaving area
     private GameObject projectile;  // Boss's projectiles
-    public GameObject projPrefab;
-    //public startBossFight startRoutine;       // starts the script once player reaches a certain spot 
+    public GameObject projPrefab; 
     Coroutine bossMethod;
 
     int sawAction = 0;
@@ -63,27 +61,8 @@ public class TDBossBattle : MonoBehaviour
     void Update()
     {
 
-        
-        //spawnMoreMinions();
-        /**bossActions();
-        if (!actionTaken)
-            actionTaken = true;
+        spawnMoreMinions();
 
-            if (bossAction == 0)
-            {
-                moveBoss();
-            }
-
-            if (bossAction == 1)
-            {
-
-                throwCarAtPlayer();//Random.Range(0,thrownCars.Length+1));
-            }
-
-            if (bossAction == 2)
-            {
-                boomarangShot();
-            }*/
     }
 
 
@@ -109,7 +88,7 @@ public class TDBossBattle : MonoBehaviour
             yield return new WaitForSeconds(2);
 
             
-            if (sawAction < 2)
+            if (sawAction < 1)
             {
                 int i = 3;
                 while (i > 0)
@@ -126,7 +105,8 @@ public class TDBossBattle : MonoBehaviour
 
             }// if sawAction >2
 
-            else if (sawAction >= 1 && bossPoint != 0)
+            else if (sawAction >= 1 && bossPoint != 0 &&
+                thrownCars[bossPoint -1].GetComponent<ThrowCar>().thrown == false)
             {
                 //walk behind car
                 while (transform.position.x != bossPoints[bossPoint + 4].position.x)
@@ -138,7 +118,8 @@ public class TDBossBattle : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(1);
-                //Throw the car
+                //Throw the car aftermaking it dynamic
+                thrownCars[bossPoint - 1].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 throwCarAtPlayer(bossPoint-1);
 
                 // walk back from behind car
@@ -149,7 +130,10 @@ public class TDBossBattle : MonoBehaviour
                     new Vector2(bossPoints[bossPoint].transform.position.x, bossPoints[bossPoint].transform.position.y), speed);
                     yield return null;
                 }
+
+                thrownCars[bossPoint - 1].GetComponent<ThrowCar>().collision = true;
                 sawAction = 0;
+
             }// else if - walk to car
 
             else
@@ -168,7 +152,7 @@ public class TDBossBattle : MonoBehaviour
     {
         Vector2 trgt = target.transform.position - transform.position;
         projectile = Instantiate(projPrefab, firePoint.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(trgt.x, trgt.y);
+        projectile.GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
         return trgt;
 
     }
@@ -198,11 +182,6 @@ public class TDBossBattle : MonoBehaviour
         return randomChoice;
     }
 
-
-
-
-
-
     //Spawn enemies at random location
     void spawnMoreMinions()
     {
@@ -229,29 +208,6 @@ public class TDBossBattle : MonoBehaviour
         }
     }
 
-    void bossActions()
-    {
-        
-        //int randomdirection = Random.Range(0, 2);
-        if (Time.time > actionTime)
-        {
-            bossAction = Random.Range(1, 3);
-            actionTime = Time.time + 6.0f;
-            
-        }
-        else
-        {
-            Debug.Log("bossActions waiting");
-        }
-    }
-
-    void moveBoss()
-    {
-        Debug.Log("moveBoss Activated");
-
-        transform.position = Vector2.MoveTowards(transform.position, carTarget.position, speed * Time.deltaTime);
-    }
-
     void throwCarAtPlayer(int carNumber)
     {
         Debug.Log("Throwing car" + carNumber);
@@ -263,52 +219,5 @@ public class TDBossBattle : MonoBehaviour
             carRB.velocity = new Vector2(throwAtTarget.x, throwAtTarget.y);
             thrownCars[carNumber].GetComponent<ThrowCar>().thrown = true;
 
-    }
-
-    void boomarangShot()
-    {
-        Debug.Log("Boomarang shot");
-
-        //calculate player postion
-        throwAtTarget = target.transform.position - transform.position;
-
-        //fire shot
-        if (Time.time > shotTimer)
-        {
-            //generate projectile
-            projectile = Instantiate(projPrefab, firePoint.position, Quaternion.identity);
-            projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(throwAtTarget.x, throwAtTarget.y);
-
-            //time between next shot
-            shotTimer += 3.0f;
-        }
-
-        //call back shot
-        if(Time.time > shotReturnTimer)
-        {
-            projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(-throwAtTarget.x, -throwAtTarget.y);
-            shotReturnTimer += 3.0f;
-        }
-
-        if(shotTimer == 12.0f)
-        {
-            actionTaken = false;
-        }
-    }
-
-    void wait()
-    {
-
-        if(actionTime == 2.0f)
-        {
-            Debug.Log("waiting over");
-            int randomAction = Random.Range(1, 3);
-            bossAction = randomAction;
-            actionTaken = true;
-        }
-        else
-        {
-            Debug.Log("Waiting " + actionTime);
-        }
     }
 }
