@@ -628,6 +628,18 @@ MonoBehaviour:
   ROF: 0.2
   damage: 2
   bulletSize: 1.1
+--- !u!114 &770677127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2038156142708067118, guid: bda9bd6cf8a710d4dac66f58934b5789,
+    type: 3}
+  m_PrefabInstance: {fileID: 770677124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &791092963
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,11 +742,11 @@ MonoBehaviour:
   oldROF: {fileID: 690277580}
   oldDamage: {fileID: 264602656}
   oldBullets: {fileID: 1929912526}
-  newHealth: {fileID: 0}
-  newSpeed: {fileID: 0}
-  newROF: {fileID: 0}
-  newDamage: {fileID: 0}
-  newBullets: {fileID: 0}
+  newHealth: {fileID: 4177829770129975470}
+  newSpeed: {fileID: 1146808569}
+  newROF: {fileID: 804642192}
+  newDamage: {fileID: 770677127}
+  newBullets: {fileID: 1173534831}
   tokensLeft: {fileID: 1172228993}
 --- !u!1001 &804642189
 PrefabInstance:
@@ -1146,6 +1158,18 @@ MonoBehaviour:
   ROF: 0.2
   damage: 2
   bulletSize: 1.1
+--- !u!114 &804642192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2038156142708067118, guid: bda9bd6cf8a710d4dac66f58934b5789,
+    type: 3}
+  m_PrefabInstance: {fileID: 804642189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &894659959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1793,6 +1817,18 @@ MonoBehaviour:
   ROF: 0.2
   damage: 2
   bulletSize: 1.1
+--- !u!114 &1146808569 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2038156142708067118, guid: bda9bd6cf8a710d4dac66f58934b5789,
+    type: 3}
+  m_PrefabInstance: {fileID: 1146808566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1172228991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,6 +2404,18 @@ MonoBehaviour:
   ROF: 0.2
   damage: 2
   bulletSize: 1.1
+--- !u!114 &1173534831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2038156142708067118, guid: bda9bd6cf8a710d4dac66f58934b5789,
+    type: 3}
+  m_PrefabInstance: {fileID: 1173534828}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1218798635 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6883779106364315094, guid: bda9bd6cf8a710d4dac66f58934b5789,
@@ -3332,3 +3380,15 @@ MonoBehaviour:
   ROF: 0.2
   damage: 2
   bulletSize: 1.1
+--- !u!114 &4177829770129975470 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2038156142708067118, guid: bda9bd6cf8a710d4dac66f58934b5789,
+    type: 3}
+  m_PrefabInstance: {fileID: 4177829770129975467}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
