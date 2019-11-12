@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
         GameObject obj = collision.gameObject;
 
         // cases where bullet is not destroyed
-        string[] tags = { "Player", "Shot", "Power_Up" };
+        string[] tags = { "Player", "Shot", "Power_Up", "Magnet"};
         for (int i = 0; i < tags.Length; i++)
         {
             if (obj.CompareTag(tags[i])) return;
