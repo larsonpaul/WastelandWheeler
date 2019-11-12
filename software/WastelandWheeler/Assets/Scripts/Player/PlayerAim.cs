@@ -51,12 +51,38 @@ public class PlayerAim : MonoBehaviour
         origin = origin + playerRB.position;
         fp.transform.Translate((Vector2)gameObject.transform.position + origin);
         fp.transform.Rotate(rotation.eulerAngles);
+        Vector2 leftOffset = transform.position;
+        leftOffset.x += -.7f;
+        Vector2 rightOffset = transform.position;
+        rightOffset.x += .7f;
 
         GameObject bullet = Instantiate(bulletPrefab, origin, rotation);
         bullet.GetComponent<Bullet>().SetDamage(stats.GetDamage());
-        Vector2 bulletForce = (Vector2)(fp.transform.up * bullet_force) + playerRB.velocity / 2;
-        Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-        bulletRB.AddForce(bulletForce, ForceMode2D.Impulse);
+        bullet.GetComponent<Bullet>().SetSize(stats.GetBulletSize());
+
+        // TripleShot powerup functionality
+        if (stats.tripleShot)
+        {
+            Vector2 bulletForce = (Vector2)(fp.transform.up * bullet_force) + playerRB.velocity / 2;
+
+            GameObject bulletLeft = Instantiate(bulletPrefab, leftOffset, rotation);
+            GameObject bulletRight = Instantiate(bulletPrefab, rightOffset, rotation);
+            
+            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+            Rigidbody2D bulletRBLeft = bulletLeft.GetComponent<Rigidbody2D>();
+            Rigidbody2D bulletRBRight = bulletRight.GetComponent<Rigidbody2D>();
+
+            bulletRB.AddForce(bulletForce, ForceMode2D.Impulse);
+            bulletRBLeft.AddForce(bulletForce, ForceMode2D.Impulse);
+            bulletRBRight.AddForce(bulletForce, ForceMode2D.Impulse);
+        }
+        else
+        {
+            Vector2 bulletForce = (Vector2)(fp.transform.up * bullet_force) + playerRB.velocity / 2;
+            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+            bulletRB.AddForce(bulletForce, ForceMode2D.Impulse);
+        }
+
         Destroy(fp);
     }
 }

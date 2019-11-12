@@ -44,6 +44,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public bool isInvincible = false;
     public bool isThorny = false;
+    public bool tripleShot = false;
 
     public float adrenalineMax = 100f;
     public float adrenalineCurrent = 100f;
