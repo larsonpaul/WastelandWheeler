@@ -94,8 +94,8 @@ public class fireAtPlayer : MonoBehaviour
         {
             Debug.Log("Shot fired burst");
             Vector2 perpendicular = Vector2.Perpendicular(target);
-            Vector2 angle1 = perpendicular + target;
-            Vector2 angle2 = -perpendicular + target;
+            Vector2 angle1 = (0.4f * perpendicular) + target;
+            Vector2 angle2 = -(0.4f * perpendicular) + target;
             projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, target.y * speed));
             GameObject projectile2 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
             projectile2.GetComponent<Rigidbody2D>().AddForce(new Vector2(angle2.x * speed, angle2.y *speed));

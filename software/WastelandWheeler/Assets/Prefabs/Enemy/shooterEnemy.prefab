@@ -396,7 +396,7 @@ MonoBehaviour:
   playerWithinRangeX: 8
   playerWithinRangeY: 8
   bullet: {fileID: 3815651842055491911, guid: 28364bba2ac5a48ccbd63ac2728ee4ad, type: 3}
-  speed: 75
+  speed: 150
   just_along_x: 0
   just_along_y: 0
   heatSeeker: 0

@@ -35,13 +35,13 @@ public class Seekerbehave : MonoBehaviour
         {
 
             GameObject projectile = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(1* speed, 1 * speed));
+            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.7f* speed, 0.7f * speed));
             GameObject projectile2 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile2.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1 * speed, 1 * speed));
+            projectile2.GetComponent<Rigidbody2D>().AddForce(new Vector2(-0.7f * speed, 0.7f * speed));
             GameObject projectile3 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile3.GetComponent<Rigidbody2D>().AddForce(new Vector2(1 * speed, -1 * speed));
+            projectile3.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.7f * speed, -0.7f * speed));
             GameObject projectile4 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile4.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1 * speed, -1 * speed));
+            projectile4.GetComponent<Rigidbody2D>().AddForce(new Vector2(-0.7f * speed, -0.7f * speed));
             GameObject projectile5 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
             projectile5.GetComponent<Rigidbody2D>().AddForce(new Vector2(0 * speed, 1 * speed));
             GameObject projectile6 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
