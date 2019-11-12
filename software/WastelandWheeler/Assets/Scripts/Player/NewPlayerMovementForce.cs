@@ -25,6 +25,9 @@ public class NewPlayerMovementForce : MonoBehaviour
     public Vector2 velocity;
     public float magnitude;
 
+    [SerializeField]
+    GameObject dropMagnet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +89,7 @@ public class NewPlayerMovementForce : MonoBehaviour
         else if (facing.magnitude < 0.5f)
             facing = facing.normalized * 0.5f;
 
+        dropMagnet.transform.position = new Vector2(transform.position.x, transform.position.y);
 
         // Calculate angle
         angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
