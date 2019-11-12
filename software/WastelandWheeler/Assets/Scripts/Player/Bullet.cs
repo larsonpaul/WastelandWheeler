@@ -28,9 +28,16 @@ public class Bullet : MonoBehaviour
 
     private bool used = false;
 
+    public float size;
+
     public void SetDamage(float x)
     {
         damage = x;
+    }
+
+    public void SetSize(float value)
+    {
+        size = value;
     }
 
     // on collision destroy the bullet object

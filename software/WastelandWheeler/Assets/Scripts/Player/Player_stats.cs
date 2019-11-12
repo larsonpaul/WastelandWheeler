@@ -38,7 +38,10 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public float baseROF = 0.2f;
     public float rate_of_fire = 0.2f;
 
-    public float bullet_size = 2f;
+    [SerializeField]
+    GameObject bullet;
+    public float bullet_size = 1f;
+
     public bool isInvincible = false;
     public bool isThorny = false;
 
