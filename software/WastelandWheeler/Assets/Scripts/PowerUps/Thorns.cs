@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * Class that will make the player invincible for a limited duration
+ * Class that will make the player thorny for a limited duration
  */
 public class Thorns : MonoBehaviour
 {
@@ -15,14 +15,17 @@ public class Thorns : MonoBehaviour
 
     private GameObject icon;
 
+    private GameObject thorns;
+
     // Start is called before the first frame update, get the player's stats
     void Start()
     {
         stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
         icon = GameObject.Find("GameUI").transform.Find("ThornsIcon").gameObject;
+        thorns = GameObject.Find("Player").transform.Find("Thorns").gameObject;
     }
 
-    // Upon collision, check for player tag and set player invinciblity
+    // Upon collision, check for player tag and set player as thorny
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player") && used == false)
@@ -38,7 +41,10 @@ public class Thorns : MonoBehaviour
     private IEnumerator Power()
     {
         icon.SetActive(true);
+
         active += 1;
+
+        thorns.SetActive(true);
 
         stats.isThorny = true;
 
@@ -47,7 +53,11 @@ public class Thorns : MonoBehaviour
         stats.isThorny = false;
 
         active -= 1;
-        if (active == 0) icon.SetActive(false);
+        if (active == 0)
+        {
+            thorns.SetActive(false);
+            icon.SetActive(false);
+        }
         Destroy(gameObject);
     }
 }
