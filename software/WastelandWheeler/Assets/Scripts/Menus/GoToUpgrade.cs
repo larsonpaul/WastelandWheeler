@@ -10,7 +10,6 @@ public class GoToUpgrade : MonoBehaviour
         // when there are no enemies do this
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Player_stats>().move_speed = 0f;
             yield return new WaitForSeconds(3);
             SceneManager.LoadScene(1);
         }

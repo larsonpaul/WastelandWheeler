@@ -12,7 +12,6 @@ public class DropSpawner : MonoBehaviour
     public void DropPowerup(Transform t)
     {
         Quaternion rotation = Quaternion.AngleAxis(0f, Vector3.forward);
-
         int powerupIndex = Random.Range(0, powerups.Length);
         GameObject powerup = Instantiate(powerups[powerupIndex], t.position, rotation);
     }

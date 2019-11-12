@@ -5,6 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    //public static GameManager Instance
+    //{
+    //    get;
+    //    set;
+    //}
+
+    //void Awake()
+    //{
+    //    if (Instance != null && Instance != this)
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //    else
+    //    {
+    //        Instance = this;
+    //    }
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
+
     public float endDelay = 3f;
 
     [SerializeField] private HealthBar healthBar;
