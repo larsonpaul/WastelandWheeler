@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Change to damage reduction for a limited time
 public class ArmourUp : MonoBehaviour
 {
-    public float armour = 10f;
+    public float armour = .25f;
     private static Player_stats stats;
 
     // Start is called before the first frame update, get the player's stats

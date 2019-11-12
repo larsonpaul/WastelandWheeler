@@ -7,8 +7,8 @@ public class UpgradeButtons : MonoBehaviour
     private Stat_Manager stats;
     public float health = 10f;
     public float speed = 2f;
-    public float ROF = .2f;
-    public float damage = 2f;
+    public float ROF = .99f;
+    public float damage = 1f;
     public float bulletSize = 1.1f;
     private float currCoins;
 
