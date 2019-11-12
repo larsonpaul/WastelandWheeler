@@ -65,6 +65,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     [SerializeField]
     private int player_lives;
 
+    private LifeUI lifeUI;
+
     private GameObject dda;
     private int difficulty;
     private float adrenaline_scale;
@@ -82,6 +84,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
         hurt_scale = 1.0f + (0.05f * difficulty);
         player_lives = 5;
+
+        lifeUI = GameObject.Find("LifeText").GetComponent<LifeUI>();
     }
 
     void Update()
@@ -147,6 +151,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         this.transform.position = new Vector3(0, 0, 0);
         healthCurrent = healthMax;
         game.SetHealth(healthCurrent / healthMax);
+        lifeUI.UpdateUI();
+
     }
 
     public void killPlayer()
@@ -364,6 +370,11 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public void SetDamage(float value)
     {
         damage += value;
+    }
+
+    public int GetLives()
+    {
+        return player_lives;
     }
 
     // Game over state based on health (may have to make this its own script)
