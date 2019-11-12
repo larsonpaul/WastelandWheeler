@@ -35,6 +35,11 @@ public class EnemyDamage : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
+            // Thorns Functionality
+            if (col.gameObject.GetComponent<Player_stats>().isThorny)
+            {
+                stats.RemoveHealth(1);
+            }
         }
     }
 }

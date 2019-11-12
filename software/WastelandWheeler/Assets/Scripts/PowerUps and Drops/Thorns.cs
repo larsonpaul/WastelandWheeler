@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * Class that will make the player thorny for a limited duration
+ * Class that will make the player thorny for a limited duration (damage in EnemyDamage.cs)
  */
 public class Thorns : MonoBehaviour
 {
