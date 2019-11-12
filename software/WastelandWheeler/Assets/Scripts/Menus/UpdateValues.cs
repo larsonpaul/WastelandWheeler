@@ -7,6 +7,7 @@ public class UpdateValues : MonoBehaviour
 {
     private Stat_Manager stats;
     private float currCoins;
+    private float betterROF;
 
     [SerializeField]
     TextMeshProUGUI oldHealth;
@@ -34,19 +35,22 @@ public class UpdateValues : MonoBehaviour
     private void Start()
     {
         stats = Stat_Manager.Instance;
+        betterROF = stats.GetROF() * 100;
+        
         oldHealth.text = stats.GetMaxHealth().ToString();
 
         oldSpeed.text = stats.GetSpeed().ToString();
 
-        oldROF.text = stats.GetROF().ToString();
+        oldROF.text = betterROF.ToString("F2");
 
         oldDamage.text = stats.GetDamage().ToString();
 
-        oldBullets.text = stats.GetBulletSize().ToString();
+        oldBullets.text = stats.GetBulletSize().ToString("F2");
     }
     void Update()
     {
         currCoins = stats.GetCoins();
+        betterROF = stats.GetROF() * 100;
 
         tokensLeft.text = "Tokens: " + currCoins.ToString();
 
@@ -54,10 +58,10 @@ public class UpdateValues : MonoBehaviour
 
         newSpeed.text = stats.GetSpeed().ToString();
 
-        newROF.text = stats.GetROF().ToString();
+        newROF.text = betterROF.ToString("F2");
 
         newDamage.text = stats.GetDamage().ToString();
 
-        newBullets.text = stats.GetBulletSize().ToString();
+        newBullets.text = stats.GetBulletSize().ToString("F2");
     }
 }

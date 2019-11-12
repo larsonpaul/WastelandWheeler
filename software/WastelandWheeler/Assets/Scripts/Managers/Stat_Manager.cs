@@ -28,7 +28,7 @@ public class Stat_Manager : MonoBehaviour
     private float max_health = 100f;
     private float cur_health = 100f;
     private float speed = 50f;
-    private float rate_of_fire = 0.2f;
+    private float rate_of_fire = .2f;
     private float damage = 5f;
     private float bullet_size = 2f;
     private float max_adrenaline = 100f;
@@ -128,7 +128,7 @@ public class Stat_Manager : MonoBehaviour
     // Function to set the ROF of the player
     public void SetROF(float value)
     {
-        rate_of_fire += value;
+        rate_of_fire *= value;
     }
 
     // Function to get the bullet size of the player
