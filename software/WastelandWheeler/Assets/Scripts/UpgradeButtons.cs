@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class UpgradeButtons : MonoBehaviour
 {
-    private Player_stats stats = Player_stats.Instance;
+    private Stat_Manager stats;
     public float health = 10f;
     public float speed = 2f;
     public float ROF = .2f;
     public float damage = 2f;
     public float bulletSize = 1.1f;
     private float currCoins;
+
+    void Start()
+    {
+        stats = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
+    }
 
     void Update()
     {
@@ -20,7 +25,7 @@ public class UpgradeButtons : MonoBehaviour
     {
         if (currCoins >= 1)
         {
-            stats.SetHealth(health);
+            stats.SetMaxHealth(health);
             MinusOneToken();
         }
     }

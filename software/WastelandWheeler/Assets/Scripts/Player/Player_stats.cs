@@ -9,24 +9,25 @@ using UnityEngine.SceneManagement;
 public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 {
     // next two functions are to keep player stats between scenes 
-    public static Player_stats Instance
-    {
-        get;
-        set;
-    }
+    //public static Player_stats Instance
+    //{
+    //    get;
+    //    set;
+    //}
 
-    void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //void Awake()
+    //{
+    //    if (Instance != null && Instance != this)
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //    else
+    //    {
+    //        Instance = this;
+    //    }
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
+    private Stat_Manager stats;
 
     public float healthMax = 100f;
     public float healthCurrent = 100f;
@@ -71,20 +72,32 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     private int difficulty;
     private float adrenaline_scale;
     private float hurt_scale;
+
     private void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
+
+        // setup dynamic diffculty adjustment
         dda = GameObject.Find("DDA");
         dda.GetComponent<DynamicDifficultyAdjuster>().Subscribe(this);
         difficulty = dda.GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
-        adrenaline_scale = 1.0f + (-0.05f * difficulty);
-        if (difficulty <= 0)
-        {
-            rate_of_fire = rate_of_fire * (1.0f + (0.025f * difficulty));
-        }
-        hurt_scale = 1.0f + (0.05f * difficulty);
-        player_lives = 5;
+        ChangeDifficulty(difficulty);
 
+        // initialize the players stats from the Stat_Manager
+        stats = Stat_Manager.Instance;
+        healthMax = stats.GetMaxHealth();
+        healthCurrent = stats.GetMaxHealth(); // change this if the player health is not reseting on level load
+        baseSpeed = stats.GetSpeed();
+        move_speed = baseSpeed;
+        baseROF = stats.GetROF();
+        rate_of_fire = baseROF;
+        bullet_size = stats.GetBulletSize();
+        adrenalineMax = stats.GetMaxAdrenaline();
+        adrenalineCurrent = stats.GetCurrentAdrenaline();
+        baseDamage = stats.GetDamage();
+        damage = baseDamage;
+        totalCoins = stats.GetCoins();
+        player_lives = stats.GetLives();
         lifeUI = GameObject.Find("LifeText").GetComponent<LifeUI>();
     }
 
@@ -372,6 +385,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         damage += value;
     }
 
+    // Function to get how many lives the player has remaining
     public int GetLives()
     {
         return player_lives;

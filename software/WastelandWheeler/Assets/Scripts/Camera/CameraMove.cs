@@ -24,24 +24,24 @@ public class CameraMove : MonoBehaviour
     public float baseSmooth = 0.01f;
     public float correction = 0.10f;
 
-    public static CameraMove Instance
-    {
-        get;
-        set;
-    }
+    //public static CameraMove Instance
+    //{
+    //    get;
+    //    set;
+    //}
 
-    void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //void Awake()
+    //{
+    //    if (Instance != null && Instance != this)
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //    else
+    //    {
+    //        Instance = this;
+    //    }
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
     // When game starts, find the player object
     void Start()

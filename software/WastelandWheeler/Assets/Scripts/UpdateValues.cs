@@ -5,7 +5,7 @@ using TMPro;
 
 public class UpdateValues : MonoBehaviour
 {
-    private Player_stats stats = Player_stats.Instance;
+    private Stat_Manager stats;
     private float currCoins;
 
     [SerializeField]
@@ -33,6 +33,7 @@ public class UpdateValues : MonoBehaviour
 
     private void Start()
     {
+        stats = Stat_Manager.Instance;
         oldHealth.text = stats.GetMaxHealth().ToString();
 
         oldSpeed.text = stats.GetSpeed().ToString();
