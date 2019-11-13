@@ -8,12 +8,26 @@ using UnityEngine.SceneManagement;
  */
 public class MainMenu : MonoBehaviour
 {
+    public GameObject MainCanvas;
+    public GameObject TutorialPanel;
+
     // Loads scene one in the build
-    public void StartTopdown()
+    public void StartTutorial()
+    {
+        MainCanvas.SetActive(false);
+        TutorialPanel.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartGame();
+        }
+    }
+
+    public void StartGame()
     {
         SceneManager.LoadScene(2);
         Time.timeScale = 1f;
         PauseMenu.GameIsPaused = false;
+        TutorialPanel.SetActive(false);
     }
 
     // Stop application 
@@ -22,5 +36,4 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quitting the game.");
         Application.Quit();
     }
-
 }
