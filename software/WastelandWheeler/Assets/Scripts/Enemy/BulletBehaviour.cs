@@ -36,6 +36,10 @@ public class BulletBehaviour : MonoBehaviour
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(),col);
         }
+        else if (col.CompareTag("Magnet"))
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), col);
+        }
         else if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
