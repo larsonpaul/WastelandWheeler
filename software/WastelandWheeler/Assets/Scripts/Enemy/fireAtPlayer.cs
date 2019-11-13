@@ -104,8 +104,11 @@ public class fireAtPlayer : MonoBehaviour
         }
         else
         {
+            target = player.transform.position - transform.position;
+            float distance = target.magnitude;
+            Vector2 direction = target / distance;
             Debug.Log("Shot fired diagonal"); // shoot diagnolly
-            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, target.y * speed));
+            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction.x * speed, direction.y * speed));
 
         }
     }

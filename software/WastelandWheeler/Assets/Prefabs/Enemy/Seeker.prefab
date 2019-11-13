@@ -331,8 +331,8 @@ MonoBehaviour:
   healthMax: 15
   iframe: 0
   iframeMax: 0
-  speed: 20
-  baseSpeed: 20
+  speed: 40
+  baseSpeed: 40
   firerate: 0
   baseFirerate: 0
   damage: 10
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 300
   bullet: {fileID: 3815651842055491911, guid: 28364bba2ac5a48ccbd63ac2728ee4ad, type: 3}
-  range: 5
+  range: 3
 --- !u!114 &1014893128181177945
 MonoBehaviour:
   m_ObjectHideFlags: 0

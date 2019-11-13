@@ -392,11 +392,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a66f0b3ea1f240248c15960b63375ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotStartTime: 0.5
+  shotStartTime: 0.8
   playerWithinRangeX: 8
   playerWithinRangeY: 8
   bullet: {fileID: 3815651842055491911, guid: 28364bba2ac5a48ccbd63ac2728ee4ad, type: 3}
-  speed: 150
+  speed: 500
   just_along_x: 0
   just_along_y: 0
   heatSeeker: 0
