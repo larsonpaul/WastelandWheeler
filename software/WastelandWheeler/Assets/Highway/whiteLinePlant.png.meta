@@ -1,8 +1,7 @@
 fileFormatVersion: 2
 guid: e8a35441ff6c6cc49b76e0642e70a0f9
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: whiteLinePlant_0
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -41,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -83,31 +82,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: whiteLinePlant_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 185accae8c92b8549b28c25118796c02
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 05d8cae7aea405a469d0daf7b7aba3bc
+    spriteID: 21af4dbbbf1d86f4f842121c4d0a80bc
     vertices: []
     indices: 
     edges: []

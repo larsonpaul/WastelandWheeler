@@ -22,6 +22,9 @@ public class NewPlayerMovementForce : MonoBehaviour
     private Vector2 facing;
     public float angle;
 
+    public Vector2 velocity;
+    public float magnitude;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,7 +69,15 @@ public class NewPlayerMovementForce : MonoBehaviour
             }
         }
 
-        float turnspeed = 0.2f + (0.6f / (rbody.velocity.magnitude + 1));
+        // Set turn speed
+        // turn speed at max speed
+        float minturnspeed = 0.075f;
+        // turn speed while idle
+        float maxturnspeed = 0.150f;
+
+        velocity = rbody.velocity;
+        magnitude = velocity.magnitude;
+        float turnspeed = minturnspeed + (maxturnspeed - minturnspeed / (Mathf.Sqrt(rbody.velocity.magnitude) + 1));
 
         facing = (facing + movement * turnspeed);
 
@@ -119,7 +130,13 @@ public class NewPlayerMovementForce : MonoBehaviour
         float x = facing.normalized.x * stats.move_speed * movement.magnitude;
         float y = facing.normalized.y * stats.move_speed * movement.magnitude;
 
-        rbody.AddForce(new Vector2(x, y));
+        Vector2 force = new Vector2(x, y);
+
+        rbody.AddForce(force);
+        if (movement.magnitude == 0 && rbody.velocity.magnitude < 0.5)
+        {
+            rbody.velocity = Vector2.zero;
+        }
     }
 
 

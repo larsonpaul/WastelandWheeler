@@ -10,7 +10,7 @@ public class EnemyDamage : MonoBehaviour
     public Rigidbody2D rbody;
     public float damage = 10f;
 
-    public EnemyStats stats;
+    private EnemyStats stats;
 
     // Start is called before the first frame update, find the rbody of the object 
     void Start()
