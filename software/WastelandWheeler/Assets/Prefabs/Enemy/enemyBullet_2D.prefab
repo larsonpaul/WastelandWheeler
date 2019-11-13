@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3419042357292929286}
   - component: {fileID: 1257867213909294737}
   - component: {fileID: 1330078223887097649}
+  - component: {fileID: 516057165166294373}
   - component: {fileID: 2868133018708313403}
   m_Layer: 11
   m_Name: enemyBullet_2D
@@ -27,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3815651842055491911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2303, y: -1.279, z: 0}
-  m_LocalScale: {x: 0.5202036, y: 0.4000093, z: 1.4087}
+  m_LocalPosition: {x: 1.3446, y: -1.4084, z: 0}
+  m_LocalScale: {x: 1.6629537, y: 1.6939902, z: 1.4087}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ff10b0e8c238d84795554c12ee53cf5, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.0039215684, g: 1, b: 0.08679551, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,9 +95,22 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.1219096e-13, y: 0.0000021749554}
-  m_Size: {x: 0.90565985, y: 1.2208924}
+  m_Offset: {x: 0.00230469, y: 0.0000014976731}
+  m_Size: {x: 0.19231983, y: 0.18022051}
   m_Direction: 1
+--- !u!114 &516057165166294373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815651842055491911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3269bdb3a559d054b9db18b3dbf042a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!50 &2868133018708313403
 Rigidbody2D:
   serializedVersion: 4
