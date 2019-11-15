@@ -38,8 +38,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public float baseROF = 0.2f;
     public float rate_of_fire = 0.2f;
 
-    [SerializeField]
-    GameObject bullet;
     public float bullet_size = 1f;
 
     public bool isInvincible = false;
@@ -63,9 +61,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     [SerializeField]
     private GameManager game;
-
-    [SerializeField]
-    private GameObject speedIcon, rofIcon, invincibleIcon, thornsIcon;
 
     [SerializeField]
     private int player_lives;
@@ -252,58 +247,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             armourCurrent -= num;
             //game.SetArmour(armourCurrent / armourMax);
         }
-    }
-
-    public IEnumerator PowerSpeed(float amount, float duration)
-    {
-        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
-        speedIcon.SetActive(true);
-
-        move_speed *= amount;
-
-        yield return new WaitForSeconds(duration);
-
-        move_speed = baseSpeed;
-        speedIcon.SetActive(false);
-    }
-
-    public IEnumerator PowerROF(float amount, float duration)
-    {
-        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
-        rofIcon.SetActive(true);
-
-        rate_of_fire /= amount;
-
-        yield return new WaitForSeconds(duration);
-
-        rate_of_fire = baseROF;
-        rofIcon.SetActive(false);
-    }
-
-    public IEnumerator PowerInvincible(float duration)
-    {
-        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
-        invincibleIcon.SetActive(true);
-
-        isInvincible = true;
-
-        yield return new WaitForSeconds(duration);
-
-        isInvincible = false;
-        invincibleIcon.SetActive(false);
-    }
-
-    public IEnumerator PowerThorns(float duration)
-    {
-        Debug.Log("TODO: Remove the Power_ functions in Player_stats");
-        thornsIcon.SetActive(true);
-
-        isThorny = true;
-
-        yield return new WaitForSeconds(duration);
-
-        isThorny = false;
-        thornsIcon.SetActive(false);
     }
 
     public float GetMaxHealth()
