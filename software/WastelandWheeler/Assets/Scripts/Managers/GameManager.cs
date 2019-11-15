@@ -26,9 +26,9 @@ public class GameManager : MonoBehaviour
 
     public float endDelay = 3f;
 
-    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private NewHealthBar healthBar;
 
-    [SerializeField] private AdrenalineBar adrenalineBar;
+    [SerializeField] private NewAdrenalineBar adrenalineBar;
 
     public void SetHealth(float scale)
     {

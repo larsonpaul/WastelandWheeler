@@ -26,9 +26,4 @@ public class TimeSlow : MonoBehaviour
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
 
-    public void EnemyAdrenaline()
-    {
-        gameObject.GetComponent<Player_stats>().AddAdrenaline(tick_up);
-    }
-
 }

@@ -19,13 +19,15 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     public float damage = 10f;
     public float baseDamage = 10;
 
+    public float adrenalineYield = 5.0f;
+
     private EnemyBar healthBar;
 
     private DynamicDifficultyAdjuster dda;
 
     public Spawn_Manager spawnManager;
 
-    private TimeSlow playerTS;
+    private Player_stats playerStats;
 
     public DropSpawner dropSpawner;
 
@@ -34,7 +36,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     {
         healthBar = GetComponent<EnemyBar>();
 
-        playerTS = GameObject.Find("Player").GetComponent<TimeSlow>();
+        playerStats = GameObject.Find("Player").GetComponent<Player_stats>();
 
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
         dda.Subscribe(this);
@@ -131,7 +133,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     public void OnDeath()
     {
         dda.Unsubscribe(this);
-        playerTS.EnemyAdrenaline();
+        playerStats.AddAdrenaline(adrenalineYield);
         spawnManager.EnemyDefeated();
         dropSpawner.DropItem(transform);
         Destroy(gameObject);
