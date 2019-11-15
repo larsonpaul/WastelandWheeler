@@ -21,7 +21,7 @@ public class EnemyMoveStop : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         dir = getDirection();
         dist = getDistance();

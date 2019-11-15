@@ -22,7 +22,7 @@ public class Seekerbehave : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         dir = getDirection();
         dist = getDistance();
