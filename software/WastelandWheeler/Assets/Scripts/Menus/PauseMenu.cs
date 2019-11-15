@@ -11,12 +11,14 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         Application.Quit();
         SceneManager.LoadScene(0);
     }
 
     private void Update()
     {
+        Debug.Log(Time.fixedDeltaTime);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
@@ -34,6 +36,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         GameIsPaused = false;
     }
 
@@ -41,6 +44,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         GameIsPaused = true;
     }
 }
