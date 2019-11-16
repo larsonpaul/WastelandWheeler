@@ -23,29 +23,19 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
     private EnemyBar healthBar;
 
-    private DynamicDifficultyAdjuster dda;
-
-    public Spawn_Manager spawnManager;
-
-    private Player_stats playerStats;
-
-    public DropSpawner dropSpawner;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        healthBar = GetComponent<EnemyBar>();
-
-        playerStats = GameObject.Find("Player").GetComponent<Player_stats>();
-
-        dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
-        dda.Subscribe(this);
-
         health = healthMax;
-        speed = baseSpeed * (1.0f + (0.05f * dda.GetDifficulty()));
+        speed = baseSpeed;
         firerate = baseFirerate;
 
-        spawnManager = GameObject.Find("Spawn Manager").GetComponent<Spawn_Manager>();
+        healthBar = GetComponent<EnemyBar>();
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.CreateEnemy(this);
     }
 
     // Update is called once per frame
@@ -132,16 +122,13 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
     public void OnDeath()
     {
-        dda.Unsubscribe(this);
-        playerStats.AddAdrenaline(adrenalineYield);
-        spawnManager.EnemyDefeated();
-        dropSpawner.DropItem(transform);
+        gameManager.KillEnemy(this);
         Destroy(gameObject);
     }
 
-    public void ChangeDifficulty(int amount)
+    public void ChangeDifficulty(int difficulty)
     {
-        speed = baseSpeed * (1.0f + (0.05f * dda.GetDifficulty()));
+        speed = baseSpeed * (1.0f + (0.05f * difficulty));
     }
 
 

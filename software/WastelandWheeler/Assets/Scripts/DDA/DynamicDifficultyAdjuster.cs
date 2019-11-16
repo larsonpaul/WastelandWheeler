@@ -9,7 +9,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
     
     private float startTime = 0.0f;
     private float currentTime;
-    private float CHECK_INTERVAL = 1.5f; // number of seconds between poling the game for how well player is doing
+    private const float CHECK_INTERVAL = 1.5f; // number of seconds between poling the game for how well player is doing
 
     private GameObject player;
     private Player_stats player_stats;
@@ -117,7 +117,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
             if (difficulty_level > -5)
             {
                 difficulty_level --; // make the game easier
-                UpdateSubscribers(difficulty_level);
+                UpdateSubscribers();
             }
             
         }
@@ -127,7 +127,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
             if (difficulty_level < 5)
             {
                 difficulty_level++; // making the game harder
-                UpdateSubscribers(difficulty_level);
+                UpdateSubscribers();
             }
             
         }
@@ -139,7 +139,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
     }
 
     // Method that sends message to update difficulty
-    private void UpdateSubscribers(int value)
+    private void UpdateSubscribers()
     {
         foreach (MonoBehaviour g in subscribers)
         {
