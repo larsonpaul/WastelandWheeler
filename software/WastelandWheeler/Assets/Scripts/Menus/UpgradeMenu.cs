@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class UpgradeMenu : MonoBehaviour
 {
     private int first_scene = 2;
-    private int last_scene = 3; // this will need to be changed as more levels are added
+    private int last_scene = 2; // this will need to be changed as more levels are added
 
     public void StartNextLevel()
     {
