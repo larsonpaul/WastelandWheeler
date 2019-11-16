@@ -33,7 +33,7 @@ public class Spawn_Manager : MonoBehaviour
     [SerializeField]
     private int spawnedEnemies;
     [SerializeField]
-    public float TimeBetweenEnemies = 1f;
+    public float TimeBetweenEnemies = 1.0f;
 
     private void Awake()
     {
@@ -52,18 +52,19 @@ public class Spawn_Manager : MonoBehaviour
     void DifficultySetup()
     {
         difficulty = GameObject.Find("StatManager").GetComponent<Stat_Manager>().GetDifficulty();
-        if (difficulty < 5)
+        if (difficulty < 3)
         {
             num_waves = Random.Range(1,3);
             enemy_types_per_wave = 2;
-            totalEnemiesInWave = 20;
+            TimeBetweenEnemies = 1.0f;
+            totalEnemiesInWave = 15;
         }   
         else
         {
             num_waves = Random.Range(2, 5);
             enemy_types_per_wave = Random.Range(2, 5);
             TimeBetweenEnemies = ((float)Random.Range(5, 9)) / 10;
-            totalEnemiesInWave = Random.Range(20, 31);
+            totalEnemiesInWave = Random.Range(15, 26);
         }
     }
 
@@ -80,9 +81,16 @@ public class Spawn_Manager : MonoBehaviour
 
         // setup which enemies can spawn this round
         typeEnemies = new GameObject[enemy_types_per_wave];
+        int last = -1;
+        int choice = -1;
         for (int i = 0; i < enemy_types_per_wave; i++)
         {
-            typeEnemies[i] = EnemyTypes[Random.Range(0, EnemyTypes.Length)];
+            while (choice == last)
+            {
+                choice = Random.Range(0, EnemyTypes.Length);
+            }
+            typeEnemies[i] = EnemyTypes[choice];
+            last = choice;
         }
         
         enemiesLeftInWave = totalEnemiesInWave;
