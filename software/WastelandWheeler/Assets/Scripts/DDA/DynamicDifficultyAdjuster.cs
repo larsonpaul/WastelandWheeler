@@ -135,7 +135,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
             }
 
             // Has the player killed many enemies?
-            if (enemiesKilled > 10 + difficulty_level)
+            if (enemiesKilled > 7 + difficulty_level)
             {
                 enemiesKilled = 0;
                 difficulty_level++;
