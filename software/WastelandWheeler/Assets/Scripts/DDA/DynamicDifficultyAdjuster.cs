@@ -97,8 +97,8 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
     //private float curSceneProgress;
 
     private float playerMaxHealth;
-    private float percentTotalHealth = 0.01f;
-    private float percentTotalBossHealth = 0.20f;
+    private float percentTotalHealth = 0.20f;
+    private float percentTotalBossHealth = 0.10f;
     
     private void UpdateDifficulty()
     {
