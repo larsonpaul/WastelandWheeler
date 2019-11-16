@@ -44,45 +44,33 @@ public class PlayerAim : MonoBehaviour
 
     private void Shoot(float angle)
     {
-        GameObject fp = new GameObject();
-        Vector2 origin = Vector2.up;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        origin = rotation * (origin * 0.5f);
-        origin = origin + playerRB.position;
-        fp.transform.Translate((Vector2)gameObject.transform.position + origin);
-        fp.transform.Rotate(rotation.eulerAngles);
-        Vector2 leftOffset = transform.position;
-        leftOffset.x += -.7f;
-        Vector2 rightOffset = transform.position;
-        rightOffset.x += .7f;
+        GameObject bullet = Instantiate(bulletPrefab, playerRB.position, Quaternion.AngleAxis(angle, Vector3.forward));
+        bullet.transform.Translate(Vector3.up * 0.5f);
 
-        GameObject bullet = Instantiate(bulletPrefab, origin, rotation);
         bullet.GetComponent<Bullet>().SetDamage(stats.GetDamage());
         bullet.GetComponent<Bullet>().SetSize(stats.GetBulletSize());
+
+        Vector2 bulletForce = (Vector2)(bullet.transform.up * bullet_force) + playerRB.velocity / 2;
+
+        Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+        bulletRB.AddForce(bulletForce, ForceMode2D.Impulse);
 
         // TripleShot powerup functionality
         if (stats.tripleShot)
         {
-            Vector2 bulletForce = (Vector2)(fp.transform.up * bullet_force) + playerRB.velocity / 2;
+            GameObject bulletLeft = Instantiate(bullet);
+            GameObject bulletRight = Instantiate(bullet);
 
-            GameObject bulletLeft = Instantiate(bulletPrefab, leftOffset, rotation);
-            GameObject bulletRight = Instantiate(bulletPrefab, rightOffset, rotation);
-            
-            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+            bulletLeft.transform.Translate(Vector3.left * 0.7f);
+            bulletRight.transform.Translate(Vector3.right * 0.7f);
+
             Rigidbody2D bulletRBLeft = bulletLeft.GetComponent<Rigidbody2D>();
             Rigidbody2D bulletRBRight = bulletRight.GetComponent<Rigidbody2D>();
 
-            bulletRB.AddForce(bulletForce, ForceMode2D.Impulse);
             bulletRBLeft.AddForce(bulletForce, ForceMode2D.Impulse);
             bulletRBRight.AddForce(bulletForce, ForceMode2D.Impulse);
         }
-        else
-        {
-            Vector2 bulletForce = (Vector2)(fp.transform.up * bullet_force) + playerRB.velocity / 2;
-            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-            bulletRB.AddForce(bulletForce, ForceMode2D.Impulse);
-        }
 
-        Destroy(fp);
+        //Destroy(fp);
     }
 }
