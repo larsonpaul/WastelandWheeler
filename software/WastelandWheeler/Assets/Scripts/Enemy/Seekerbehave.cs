@@ -50,8 +50,8 @@ public class Seekerbehave : MonoBehaviour
             projectile7.GetComponent<Rigidbody2D>().AddForce(new Vector2(0 * speed, -1 * speed));
             GameObject projectile8 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
             projectile8.GetComponent<Rigidbody2D>().AddForce(new Vector2(1 * speed, 0 * speed));
-            Destroy(gameObject);
 
+            stats.OnDeath();
         }
 
 
