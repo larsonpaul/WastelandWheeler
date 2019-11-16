@@ -27,7 +27,7 @@ public class Stat_Manager : MonoBehaviour
     // base stats for the game that need to persist between levels
     private float max_health = 100f;
     private float cur_health = 100f;
-    private float speed = 50f;
+    private float speed = 60f;
     private float rate_of_fire = .2f;
     private float damage = 5f;
     private float bullet_size = 2f;
@@ -36,7 +36,7 @@ public class Stat_Manager : MonoBehaviour
     private float coins = 0;
     private int lives = 5;
 
-    private int difficulty = 0;
+    private int persistant_difficulty = 0;
 
     private Player_stats player;
     
@@ -171,13 +171,13 @@ public class Stat_Manager : MonoBehaviour
     // this is an increasing value that as the palyer progresses should make the game harder
     public int GetDifficulty()
     {
-        return difficulty;
+        return persistant_difficulty;
     }
 
     // Function to set the current difficult of the game 
     public void SetDifficulty(int value)
     {
-        difficulty = value;
+        persistant_difficulty = value;
     }
 
     // method called when the level so that the Stat_Manager can read and save values from the current level
@@ -187,5 +187,6 @@ public class Stat_Manager : MonoBehaviour
         lives = player.GetLives();
         coins = player.GetCoins();
         cur_adrenaline = player.GetHealth();
+        persistant_difficulty++;
     }
 }

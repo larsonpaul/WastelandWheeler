@@ -8,25 +8,6 @@ using UnityEngine.SceneManagement;
  */
 public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 {
-    // next two functions are to keep player stats between scenes 
-    //public static Player_stats Instance
-    //{
-    //    get;
-    //    set;
-    //}
-
-    //void Awake()
-    //{
-    //    if (Instance != null && Instance != this)
-    //    {
-    //        Destroy(this.gameObject);
-    //    }
-    //    else
-    //    {
-    //        Instance = this;
-    //    }
-    //    DontDestroyOnLoad(this.gameObject);
-    //}
     private Stat_Manager stats;
 
     public float healthMax = 100f;
@@ -67,20 +48,15 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     private LifeUI lifeUI;
 
-    private GameObject dda;
+    private DynamicDifficultyAdjuster dda;
     private int difficulty;
+    private int total_difficulty;
     private float adrenaline_scale;
     private float hurt_scale;
 
     private void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
-
-        // setup dynamic diffculty adjustment
-        dda = GameObject.Find("DDA");
-        dda.GetComponent<DynamicDifficultyAdjuster>().Subscribe(this);
-        difficulty = dda.GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
-        ChangeDifficulty(difficulty);
 
         // initialize the players stats from the Stat_Manager
         stats = Stat_Manager.Instance;
@@ -98,6 +74,13 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         totalCoins = stats.GetCoins();
         player_lives = stats.GetLives();
         lifeUI = GameObject.Find("LifeText").GetComponent<LifeUI>();
+
+        // setup dynamic diffculty adjustment
+        dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
+        dda.Subscribe(this);
+        difficulty = dda.GetDifficulty();
+        total_difficulty = stats.GetDifficulty() + difficulty;
+        ChangeDifficulty(total_difficulty);
     }
 
     void Update()
@@ -357,7 +340,11 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         adrenaline_scale = 1.0f + (-0.05f * difficulty);
         if (difficulty <= 0)
         {
-            rate_of_fire = rate_of_fire * (1.0f + (0.025f * difficulty));
+            rate_of_fire = baseROF * (1.0f + (0.025f * difficulty));
+        }
+        else
+        {
+            rate_of_fire = baseROF;
         }
         hurt_scale = 1.0f + (0.1f * difficulty);
     }

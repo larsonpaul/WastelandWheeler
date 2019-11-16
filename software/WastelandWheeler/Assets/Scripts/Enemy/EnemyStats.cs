@@ -25,6 +25,9 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
     private GameManager gameManager;
 
+    private Stat_Manager stat_manager;
+    private int difficulty;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,10 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.CreateEnemy(this);
+
+        stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
+        difficulty = stat_manager.GetDifficulty();
+        StartDifficulty(difficulty);
     }
 
     // Update is called once per frame
@@ -124,6 +131,11 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     {
         gameManager.KillEnemy(this);
         Destroy(gameObject);
+    }
+
+    public void StartDifficulty (int difficulty) {
+
+
     }
 
     public void ChangeDifficulty(int difficulty)

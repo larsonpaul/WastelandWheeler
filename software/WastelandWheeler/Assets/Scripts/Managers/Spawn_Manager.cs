@@ -12,22 +12,28 @@ public class Wave
 public class Spawn_Manager : MonoBehaviour
 {
     public Wave[] Waves; // class to hold information per wave
+    public GameObject[] EnemyTypes; // holds the prefabs for the types of enemies that can be spawned
 
     // 20 Spawns added to prefab for EnemyManager as of 11/2
     public Transform[] SpawnPoints;
 
-    public float TimeBetweenEnemies = 1f;
+    private int currWave;
+    private GameObject[] typeEnemies;
 
+    // parameters used by difficulty adjustment system to make the game harder as player progresses through levels
+    private int difficulty;
+    [SerializeField]
+    int num_waves;
+    [SerializeField]
+    int enemy_types_per_wave;
     [SerializeField]
     private int totalEnemiesInWave;
     [SerializeField]
     private int enemiesLeftInWave;
     [SerializeField]
     private int spawnedEnemies;
-
-    private int currWave;
     [SerializeField]
-    private int totalWaves;
+    public float TimeBetweenEnemies = 1.0f;
 
     private void Awake()
     {
@@ -36,23 +42,57 @@ public class Spawn_Manager : MonoBehaviour
     void Start()
     {
         currWave = -1;
-        totalWaves = Waves.Length - 1;
+
+        DifficultySetup();
 
         StartNextWave();
+    }
+
+    // Method to set parameters based on difficulty measure
+    void DifficultySetup()
+    {
+        difficulty = GameObject.Find("StatManager").GetComponent<Stat_Manager>().GetDifficulty();
+        if (difficulty < 3)
+        {
+            num_waves = Random.Range(1,3);
+            enemy_types_per_wave = 2;
+            TimeBetweenEnemies = 1.0f;
+            totalEnemiesInWave = 15;
+        }   
+        else
+        {
+            num_waves = Random.Range(2, 5);
+            enemy_types_per_wave = Random.Range(2, 5);
+            TimeBetweenEnemies = ((float)Random.Range(5, 9)) / 10;
+            totalEnemiesInWave = Random.Range(15, 26);
+        }
     }
 
     // Begins a wave of enemies
     void StartNextWave()
     {
         currWave++;
-
         // Win Scenario
-        if (currWave >= totalWaves)
+        if (currWave >= num_waves)
         {
             return;
         }
 
-        totalEnemiesInWave = Waves[currWave].EnemiesPerWave;
+
+        // setup which enemies can spawn this round
+        typeEnemies = new GameObject[enemy_types_per_wave];
+        int last = -1;
+        int choice = -1;
+        for (int i = 0; i < enemy_types_per_wave; i++)
+        {
+            while (choice == last)
+            {
+                choice = Random.Range(0, EnemyTypes.Length);
+            }
+            typeEnemies[i] = EnemyTypes[choice];
+            last = choice;
+        }
+        
         enemiesLeftInWave = totalEnemiesInWave;
         spawnedEnemies = 0;
         //print("totalEnemiesInWave" + totalEnemiesInWave);
@@ -62,9 +102,12 @@ public class Spawn_Manager : MonoBehaviour
     // Coroutine to spawn all of our enemies
     IEnumerator SpawnEnemies()
     {
-        GameObject enemy = Waves[currWave].Enemy;
+        // for now we are going to try spawning jsut random enemies
+
+        GameObject enemy = typeEnemies[0];
         while (spawnedEnemies < totalEnemiesInWave)
         {
+            enemy = typeEnemies[Random.Range(0, enemy_types_per_wave)]; // randomly spawn from the sublist of available enemies
             spawnedEnemies++;
             //print("spawnedEnemies" + spawnedEnemies);
 
