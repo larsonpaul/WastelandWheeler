@@ -22,6 +22,8 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
     private float maxBossHealth;
     //private float lastSceneProgress;
 
+    private int enemiesKilled = 0;
+
     [SerializeField]
     private int difficulty_level;
 
@@ -51,7 +53,6 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
     private void Start()
     {
         difficulty_level = 0;
-        //subscribers = new HashSet<MonoBehaviour>();
         startTime = Time.time;
 
         player = GameObject.Find("Player");
@@ -109,33 +110,43 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         if (boss_stats != null)
         {
             curBossHealth = boss_stats.bossHealth;
-        }
-        
-        if (lastPlayerHealth - curPlayerHealth > percentTotalHealth*playerMaxHealth)
-        {
-            // player losing health too quickly, make the game easier!
-            if (difficulty_level > -5)
-            {
-                difficulty_level --; // make the game easier
-                UpdateSubscribers();
-            }
-            
-        }
-        else if (lastBossHealth - curBossHealth > percentTotalBossHealth * maxBossHealth)
-        {
-            // boss dying to quick, make game harder 
-            if (difficulty_level < 5)
-            {
-                difficulty_level++; // making the game harder
-                UpdateSubscribers();
-            }
-            
+            lastBossHealth = curBossHealth;
         }
 
+        // Decreases: Events that will decrease the difficulty
+        if (difficulty_level > -5)
+        {
+            // Is the player taking too much damage?
+            if (lastPlayerHealth - curPlayerHealth > percentTotalHealth * playerMaxHealth)
+            {
+                difficulty_level--;
+                UpdateSubscribers();
+            }
+        }
+
+        // Increases: Events that will increase the difficulty
+        if (difficulty_level < 5)
+        {
+            // Is the boss taking too much damage?
+            if (lastBossHealth - curBossHealth > percentTotalBossHealth * maxBossHealth)
+            {
+                difficulty_level++;
+                UpdateSubscribers();
+            }
+
+            // Has the player killed many enemies?
+            if (enemiesKilled > 10 + difficulty_level)
+            {
+                enemiesKilled = 0;
+                difficulty_level++;
+                UpdateSubscribers();
+            }
+        }
+
+        // set values for next loop
         lastPlayerHealth = curPlayerHealth;
         lastBossHealth = curBossHealth;
         //lastSceneProgress = curSceneProgress;
-
     }
 
     // Method that sends message to update difficulty
@@ -159,5 +170,10 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         }
     }
     // need some way of tracking game difficulty and some way 
+
+    public void IncrementKills(int kills = 1)
+    {
+        enemiesKilled += kills;
+    }
 }
 

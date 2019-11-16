@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void KillEnemy(EnemyStats enemy)
     {
+        dda.IncrementKills();
         dda.Unsubscribe(enemy);
         playerStats.AddAdrenaline(enemy.adrenalineYield);
         spawnManager.EnemyDefeated();
