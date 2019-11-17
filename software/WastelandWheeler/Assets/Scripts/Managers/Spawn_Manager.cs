@@ -75,6 +75,7 @@ public class Spawn_Manager : MonoBehaviour
         // Win Scenario
         if (currWave >= num_waves)
         {
+            GameObject.Find("NextLevelBuilding").GetComponent<GoToUpgrade>().LevelComplete();
             return;
         }
 
