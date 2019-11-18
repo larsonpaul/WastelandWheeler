@@ -30,7 +30,7 @@ public class Stat_Manager : MonoBehaviour
     private float speed = 60f;
     private float rate_of_fire = .2f;
     private float damage = 5f;
-    private float bullet_size = 2f;
+    private float bullet_size = 1f;
     private float max_adrenaline = 100f;
     private float cur_adrenaline = 100f;
     private float coins = 0;

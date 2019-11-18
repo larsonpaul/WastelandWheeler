@@ -8,10 +8,10 @@ public class PlayerAim : MonoBehaviour
     private Rigidbody2D playerRB;
 
     public GameObject bulletPrefab;
+    public float bullet_size;
     public float bullet_force = 20f;
     private float timer = 0f;
     private Player_stats stats;
-
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,7 @@ public class PlayerAim : MonoBehaviour
         cam = Camera.main;
         playerRB = GetComponent<Rigidbody2D>();
         stats = GetComponent<Player_stats>();
+        bullet_size = stats.bullet_size;
     }
 
     // Update is called once per frame
@@ -36,6 +37,7 @@ public class PlayerAim : MonoBehaviour
         }
         else if (Input.GetButton("Fire1"))
         {
+            bulletPrefab.GetComponent<Transform>().localScale = Vector2.one * bullet_size;
             Shoot(angle);
             timer = stats.rate_of_fire;
         }
