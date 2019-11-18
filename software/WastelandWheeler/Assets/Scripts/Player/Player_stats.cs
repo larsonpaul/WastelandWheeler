@@ -24,6 +24,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public bool isInvincible = false;
     public bool isThorny = false;
     public bool tripleShot = false;
+    public bool isArmoured = false;
+    public float dmgReduction = 0.25f;
 
     public float adrenalineMax = 100f;
     public float adrenalineCurrent = 100f;
@@ -35,10 +37,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public float damage = 5f;
 
     public float totalCoins = 0f;
-
-    public float armourMax = 100f;
-    public float armourCurrent = 0f;
-
 
     [SerializeField]
     private GameManager game;
@@ -124,6 +122,10 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
         else
         {
+            if (isArmoured)
+            {
+                num *= dmgReduction;
+            }
             healthCurrent -= num*hurt_scale;
             iFrameCur = iFrameMax;
             game.SetHealth(healthCurrent / healthMax);
@@ -193,42 +195,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         {
             adrenalineCurrent -= num;
             game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
-        }
-    }
-
-    public void AddArmour(float num)
-    {
-        if (num <= 0)
-        {
-            if (num < 0)
-            {
-                string error = gameObject.name + ".AddArmour() given negative float " + num;
-                Debug.LogError(error);
-            }
-            return;
-        }
-        else if (num > 0)
-        {
-            armourCurrent = Mathf.Min(armourCurrent + num, armourMax);
-            //game.SetArmour(armourCurrent / armourMax);
-        }
-    }
-
-    public void RemoveArmour(float num)
-    {
-        if (num <= 0)
-        {
-            if (num < 0)
-            {
-                string error = gameObject.name + ".RemoveArmour() given negative float " + num;
-                Debug.LogError(error);
-            }
-            return;
-        }
-        else
-        {
-            armourCurrent -= num;
-            //game.SetArmour(armourCurrent / armourMax);
         }
     }
 
