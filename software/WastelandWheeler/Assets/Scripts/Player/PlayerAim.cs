@@ -23,8 +23,7 @@ public class PlayerAim : MonoBehaviour
         bulletPrefab.GetComponent<Transform>().localScale = Vector3.one * 1f;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // Calculate direction
         Vector2 mpos = cam.ScreenToWorldPoint(Input.mousePosition);
