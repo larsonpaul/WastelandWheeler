@@ -40,23 +40,20 @@ public class Thorns : MonoBehaviour
 
     private IEnumerator Power()
     {
-        icon.SetActive(true);
-
         active += 1;
 
+        stats.isThorny = true;
+        icon.SetActive(true);
         thorns.SetActive(true);
 
-        stats.isThorny = true;
-
         yield return new WaitForSeconds(duration);
-
-        stats.isThorny = false;
 
         active -= 1;
         if (active == 0)
         {
-            thorns.SetActive(false);
+            stats.isThorny = false;
             icon.SetActive(false);
+            thorns.SetActive(false);
         }
         Destroy(gameObject);
     }

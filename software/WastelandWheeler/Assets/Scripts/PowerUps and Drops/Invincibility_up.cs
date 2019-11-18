@@ -37,17 +37,20 @@ public class Invincibility_up : MonoBehaviour
 
     private IEnumerator Power()
     {
-        icon.SetActive(true);
         active += 1;
 
         stats.isInvincible = true;
+        icon.SetActive(true);
 
         yield return new WaitForSeconds(duration);
 
-        stats.isInvincible = false;
-
         active -= 1;
-        if (active == 0) icon.SetActive(false);
+        if (active == 0)
+        {
+            stats.isInvincible = false;
+            icon.SetActive(false);
+        }
+
         Destroy(gameObject);
     }
 }

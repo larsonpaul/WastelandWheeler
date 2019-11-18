@@ -38,17 +38,22 @@ public class ROF_up : MonoBehaviour
 
     private IEnumerator Power()
     {
-        icon.SetActive(true);
         active += 1;
 
-        stats.rate_of_fire /= multiplier;
+        if (active == 1)
+        {
+            stats.rate_of_fire /= multiplier;
+            icon.SetActive(true);
+        }
 
         yield return new WaitForSeconds(duration);
 
-        stats.rate_of_fire *= multiplier;
-
         active -= 1;
-        if (active == 0) icon.SetActive(false);
+        if (active == 0)
+        {
+            stats.rate_of_fire *= multiplier;
+            icon.SetActive(false);
+        }
         Destroy(gameObject);
     }
 }

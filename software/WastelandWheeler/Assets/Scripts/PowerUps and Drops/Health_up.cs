@@ -10,6 +10,8 @@ public class Health_up : MonoBehaviour
     public float heal = 20f;
     private static Player_stats stats;
 
+    private bool used = false;
+
     // Start is called before the first frame update, get the player's stats
     void Start()
     {
@@ -17,10 +19,11 @@ public class Health_up : MonoBehaviour
     }
 
     // On collision, check for player tag and add health
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.CompareTag("Player"))
+        if (col.CompareTag("Player") && used == false)
         {
+            used = true;
             Destroy(gameObject);
 
             stats.AddHealth(heal);

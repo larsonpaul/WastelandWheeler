@@ -38,17 +38,22 @@ public class Speed_up : MonoBehaviour
 
     private IEnumerator Power()
     {
-        icon.SetActive(true);
         active += 1;
-
-        stats.move_speed *= multiplier;
+        
+        if (active == 1)
+        {
+            stats.move_speed *= multiplier;
+            icon.SetActive(true);
+        }
 
         yield return new WaitForSeconds(duration);
 
-        stats.move_speed /= multiplier;
-
         active -= 1;
-        if (active == 0) icon.SetActive(false);
+        if (active == 0)
+        {
+            stats.move_speed /= multiplier;
+            icon.SetActive(false);
+        }
         Destroy(gameObject);
     }
 }

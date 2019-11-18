@@ -10,6 +10,10 @@ public class Token : MonoBehaviour
     float timeStamp;
     bool flyToPlayer;
 
+    int value = 1;
+
+    private bool used = false;
+
     private void Start()
     {
         rBody = GetComponent<Rigidbody2D>();
@@ -31,9 +35,10 @@ public class Token : MonoBehaviour
             player = GameObject.Find("Player");
             flyToPlayer = true;
         }
-        if (col.CompareTag("Player"))
+        if (col.CompareTag("Player") && used == false)
         {
-            col.GetComponent<Player_stats>().totalCoins++;
+            used = true;
+            col.GetComponent<Player_stats>().totalCoins += value;
             Destroy(gameObject);
         }
     }

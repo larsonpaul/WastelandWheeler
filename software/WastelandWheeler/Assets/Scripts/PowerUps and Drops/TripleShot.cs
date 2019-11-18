@@ -35,19 +35,17 @@ public class TripleShot : MonoBehaviour
 
     private IEnumerator Tripler()
     {
-        icon.SetActive(true);
-
         active += 1;
 
         stats.tripleShot = true;
+        icon.SetActive(true);
 
         yield return new WaitForSeconds(duration);
-
-        stats.tripleShot = false;
 
         active -= 1;
         if (active == 0)
         {
+            stats.tripleShot = false;
             icon.SetActive(false);
         }
         Destroy(gameObject);
