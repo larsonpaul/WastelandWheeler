@@ -50,6 +50,5 @@ MonoBehaviour:
   - {fileID: 3443657641915549030, guid: 05e92225d2d891e4e8b6f46fb36c9239, type: 3}
   - {fileID: 6298780845537001080, guid: 2d11391cbfd4c2b4384fee194107afc7, type: 3}
   - {fileID: 164698073786857767, guid: e547f7f0fbae4244da748ee345241b96, type: 3}
-  - {fileID: 4998382629269462163, guid: bea6ad53cfded6047a9ebf1ac85acc6c, type: 3}
   tokenPrefab: {fileID: 8791796814612733071, guid: b534cda65083d1a419a6185931809d76,
     type: 3}
