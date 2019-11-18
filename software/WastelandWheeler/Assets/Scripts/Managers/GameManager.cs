@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     public void SetHealth(float scale)
     {
         healthBar.SetScale(scale);
-        Debug.Log("Here is Scale: " + scale);
+        //Debug.Log("Here is Scale: " + scale);
     }
 
     public void SetAdrenaline(float scale)
