@@ -49,7 +49,31 @@ public class NewPlayerMovementForce : MonoBehaviour
 
         if (movement.magnitude > 1)
             movement.Normalize();
+    }
 
+    void FixedUpdate()
+    {
+        CalculateFacing();
+        Move();
+    }
+
+    private void Move()
+    {
+        // Perform movement
+        float x = facing.normalized.x * stats.move_speed * movement.magnitude;
+        float y = facing.normalized.y * stats.move_speed * movement.magnitude;
+
+        Vector2 force = new Vector2(x, y);
+
+        rbody.AddForce(force);
+        if (movement.magnitude == 0 && rbody.velocity.magnitude < 0.5)
+        {
+            rbody.velocity = Vector2.zero;
+        }
+    }
+
+    private void CalculateFacing()
+    {
         // Calculate facing
         Vector2 sum = facing + movement;
         if (Vector2.Dot(facing, movement) == -1)
@@ -127,22 +151,6 @@ public class NewPlayerMovementForce : MonoBehaviour
                 break;
         }
     }
-
-    void FixedUpdate()
-    {
-        // Perform movement
-        float x = facing.normalized.x * stats.move_speed * movement.magnitude;
-        float y = facing.normalized.y * stats.move_speed * movement.magnitude;
-
-        Vector2 force = new Vector2(x, y);
-
-        rbody.AddForce(force);
-        if (movement.magnitude == 0 && rbody.velocity.magnitude < 0.5)
-        {
-            rbody.velocity = Vector2.zero;
-        }
-    }
-
 
 
 }
