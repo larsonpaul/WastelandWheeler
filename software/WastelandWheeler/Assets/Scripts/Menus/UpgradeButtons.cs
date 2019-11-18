@@ -9,7 +9,7 @@ public class UpgradeButtons : MonoBehaviour
     public float speed = 2f;
     public float ROF = .98f;
     public float damage = 1f;
-    public float bulletSize = 1.1f;
+    public float bulletSize = 1.05f;
     private float currCoins;
 
     void Start()

@@ -20,6 +20,7 @@ public class PlayerAim : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         stats = GetComponent<Player_stats>();
         bullet_size = stats.bullet_size;
+        bulletPrefab.GetComponent<Transform>().localScale = Vector3.one * 1f;
     }
 
     // Update is called once per frame
@@ -37,7 +38,6 @@ public class PlayerAim : MonoBehaviour
         }
         else if (Input.GetButton("Fire1"))
         {
-            bulletPrefab.GetComponent<Transform>().localScale = Vector2.one * bullet_size;
             Shoot(angle);
             timer = stats.rate_of_fire;
         }
