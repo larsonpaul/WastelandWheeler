@@ -15,7 +15,7 @@ public class NewHealthBar : MonoBehaviour
 
     public void SetScale(float x)
     {
-        float scale = Mathf.Min(Mathf.Max(x, 0), 1);
+        float scale = Mathf.Clamp(x, 0, 1);
 
         health.fillAmount = scale;
     }
