@@ -27,7 +27,7 @@ public class DropSpawner : MonoBehaviour
     {
         // When DDA implemented it should reduce the ranges below
         int randInt = Random.Range(0, 101);
-        print(randInt);
+        //print(randInt);
 
         if (randInt <= 10)
             DropPowerup(t);

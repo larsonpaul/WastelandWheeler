@@ -66,7 +66,7 @@ public class WildSpray : MonoBehaviour
         float randomang = Random.Range(-0.7f, 0.7f);
         Vector2 perpendicular = Vector2.Perpendicular(direction);
         Vector2 thisangle = (randomang * perpendicular) + direction;
-        Debug.Log("Shot fired diagonal"); // shoot diagnolly
+        //Debug.Log("Shot fired diagonal"); // shoot diagonally
         projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(thisangle.x * speed, thisangle.y * speed));
 
     }

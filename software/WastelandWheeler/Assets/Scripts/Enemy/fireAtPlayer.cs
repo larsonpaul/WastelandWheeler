@@ -80,19 +80,19 @@ public class fireAtPlayer : MonoBehaviour
 
         if (just_along_x) // shoot sideways
         {
-            Debug.Log("Shot fired just x");
+            //Debug.Log("Shot fired just x");
             projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, transform.position.y));
         }
         else if (just_along_y) // shoot up and down
         {
-            Debug.Log("Shot fired just y");
+            //Debug.Log("Shot fired just y");
             projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.position.x, target.y * speed));
             
         }
 
         else if (burstShot) // shot three spreading bullets
         {
-            Debug.Log("Shot fired burst");
+            //Debug.Log("Shot fired burst");
             Vector2 perpendicular = Vector2.Perpendicular(target);
             Vector2 angle1 = (0.4f * perpendicular) + target;
             Vector2 angle2 = -(0.4f * perpendicular) + target;
@@ -107,13 +107,13 @@ public class fireAtPlayer : MonoBehaviour
             target = player.transform.position - transform.position;
             float distance = target.magnitude;
             Vector2 direction = target / distance;
-            Debug.Log("Shot fired diagonal"); // shoot diagnolly
+            //Debug.Log("Shot fired diagonal"); // shoot diagonally
             projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction.x * speed, direction.y * speed));
 
         }
     }
 
-    void heatSeek() // bullet follws the enemy
+    void heatSeek() // bullet follows the enemy
     {
         GameObject projectile = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
         projectile.transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
