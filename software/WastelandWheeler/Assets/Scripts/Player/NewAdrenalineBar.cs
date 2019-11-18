@@ -15,10 +15,8 @@ public class NewAdrenalineBar : MonoBehaviour
 
     public void SetScale(float x)
     {
-        //Vector3 scale = new Vector3(Mathf.Min(Mathf.Max(x, 0), 1), 1, 1);
-        float scale = Mathf.Min(Mathf.Max(x, 0), 1);
+        float scale = Mathf.Clamp(x, 0, 1);
 
-        //adrenaline.localScale = scale;
         adrenaline.fillAmount = scale;
     }
 }
