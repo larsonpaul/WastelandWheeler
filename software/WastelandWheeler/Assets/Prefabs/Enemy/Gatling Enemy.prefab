@@ -341,12 +341,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e585a18cc818104c90a1fea3c277420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 15
-  healthMax: 15
+  health: 50
+  healthMax: 50
   iframe: 0
   iframeMax: 0
-  speed: 20
-  baseSpeed: 20
+  speed: 30
+  baseSpeed: 30
   firerate: 0
   baseFirerate: 0
   damage: 10
@@ -381,7 +381,7 @@ MonoBehaviour:
   playerWithinRangeX: 15
   playerWithinRangeY: 15
   bullet: {fileID: 3815651842055491911, guid: 28364bba2ac5a48ccbd63ac2728ee4ad, type: 3}
-  speed: 275
+  speed: 325
 --- !u!114 &6003332441846945867
 MonoBehaviour:
   m_ObjectHideFlags: 0

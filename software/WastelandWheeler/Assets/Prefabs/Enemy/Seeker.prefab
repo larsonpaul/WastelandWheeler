@@ -337,10 +337,7 @@ MonoBehaviour:
   baseFirerate: 0
   damage: 10
   baseDamage: 10
-  spawnManager: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
-    type: 3}
-  dropSpawner: {fileID: 7433152850082089011, guid: 0f1b4df8e668e594bad305cd6aa8ea00,
-    type: 3}
+  adrenalineYield: 5
 --- !u!114 &2802279144520772551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f36fa611282bfa4aa70d7bb6976d9d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
+  speed: 350
   bullet: {fileID: 3815651842055491911, guid: 28364bba2ac5a48ccbd63ac2728ee4ad, type: 3}
   range: 3
 --- !u!114 &1014893128181177945
