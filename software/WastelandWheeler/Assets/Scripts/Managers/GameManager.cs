@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         spawnManager = transform.Find("Spawn Manager").gameObject.GetComponent<Spawn_Manager>();
-        dda = transform.Find("DDA").gameObject.GetComponent<DynamicDifficultyAdjuster>();
+        dda = GameObject.Find("DDA").gameObject.GetComponent<DynamicDifficultyAdjuster>();
         dropSpawner = transform.Find("DropManager").gameObject.GetComponent<DropSpawner>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
         death = GetComponent<AudioSource>();
