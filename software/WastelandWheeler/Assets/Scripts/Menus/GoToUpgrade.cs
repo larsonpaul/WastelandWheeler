@@ -10,7 +10,7 @@ public class GoToUpgrade : MonoBehaviour
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
         // when there are no enemies do this
-        if (collision.CompareTag("Player") && waves_defeated)
+        if (collision.CompareTag("Player"))
         {
             yield return new WaitForSeconds(2);
             GameObject.Find("StatManager").GetComponent<Stat_Manager>().EndOfLevel(); 

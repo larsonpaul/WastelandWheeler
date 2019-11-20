@@ -32,11 +32,12 @@ public class Stat_Manager : MonoBehaviour
     private float damage = 5f;
     private float bullet_size = 1f;
     private float max_adrenaline = 100f;
+    [SerializeField]
     private float cur_adrenaline = 100f;
     private float coins = 0;
     private int lives = 5;
 
-    private int persistant_difficulty = 0;
+    private int persistent_difficulty = 0;
 
     private Player_stats player;
     
@@ -171,13 +172,13 @@ public class Stat_Manager : MonoBehaviour
     // this is an increasing value that as the palyer progresses should make the game harder
     public int GetDifficulty()
     {
-        return persistant_difficulty;
+        return persistent_difficulty;
     }
 
     // Function to set the current difficult of the game 
     public void SetDifficulty(int value)
     {
-        persistant_difficulty = value;
+        persistent_difficulty = value;
     }
 
     // method called when the level so that the Stat_Manager can read and save values from the current level
@@ -186,7 +187,7 @@ public class Stat_Manager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player_stats>();
         lives = player.GetLives();
         coins = player.GetCoins();
-        cur_adrenaline = player.GetHealth();
-        persistant_difficulty++;
+        cur_adrenaline = player.GetAdrenaline();
+        persistent_difficulty++;
     }
 }

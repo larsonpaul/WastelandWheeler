@@ -82,6 +82,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         totalCoins = stats.GetCoins();
         player_lives = stats.GetLives();
         lifeUI = GameObject.Find("LifeText").GetComponent<LifeUI>();
+        game.SetAdrenaline(stats.GetCurrentAdrenaline() / stats.GetMaxAdrenaline());
+        game.SetHealth(stats.GetCurrentHealth() / stats.GetMaxHealth());
 
         audio = GetComponent<AudioSource>();
 
