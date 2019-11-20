@@ -37,12 +37,15 @@ public class GameManager : MonoBehaviour
     private DropSpawner dropSpawner;
     private Player_stats playerStats;
 
+    public AudioSource death;
+
     void Start()
     {
         spawnManager = transform.Find("Spawn Manager").gameObject.GetComponent<Spawn_Manager>();
         dda = transform.Find("DDA").gameObject.GetComponent<DynamicDifficultyAdjuster>();
         dropSpawner = transform.Find("DropManager").gameObject.GetComponent<DropSpawner>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+        death = GetComponent<AudioSource>();
     }
 
     public void SetHealth(float scale)
@@ -64,12 +67,12 @@ public class GameManager : MonoBehaviour
 
     public void KillEnemy(EnemyStats enemy)
     {
+        death.Play();
         dda.IncrementKills();
         dda.Unsubscribe(enemy);
         playerStats.AddAdrenaline(enemy.adrenalineYield);
         spawnManager.EnemyDefeated();
         dropSpawner.DropItem(enemy.transform);
-
     }
 
     public void EndGame()
