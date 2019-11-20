@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GoToUpgrade : MonoBehaviour
 {
     [SerializeField]
-    private bool waves_defeated = false;
+    private bool waves_defeated = true;
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
         // when there are no enemies do this
