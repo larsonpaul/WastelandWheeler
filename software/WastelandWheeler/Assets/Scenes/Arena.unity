@@ -17544,6 +17544,11 @@ PrefabInstance:
       propertyPath: adrenalineBar
       value: 
       objectReference: {fileID: 1475422384}
+    - target: {fileID: 7091703950487922660, guid: 7c55e5d522799d24c93189495b870c99,
+        type: 3}
+      propertyPath: isArena
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7091703950487922667, guid: 7c55e5d522799d24c93189495b870c99,
         type: 3}
       propertyPath: m_LocalPosition.x
