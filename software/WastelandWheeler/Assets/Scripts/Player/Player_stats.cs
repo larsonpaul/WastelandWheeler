@@ -44,6 +44,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public AudioClip powerup;
     public AudioClip coin;
+    public AudioClip hit;
+    public AudioClip playerDie;
     private AudioSource audio;
 
     [SerializeField]
@@ -107,8 +109,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             audio.PlayOneShot(coin, 1.5f);
             playCoin = false;
         }
-
-
     }
 
     // Function that changes the player's health by a given amount, 
@@ -147,10 +147,12 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             healthCurrent -= num*hurt_scale;
             iFrameCur = iFrameMax;
             game.SetHealth(healthCurrent / healthMax);
+            audio.PlayOneShot(hit, 0.8f);
             if (healthCurrent <= 0)
             {
                 player_lives--;
                 print("player Lives Remaining: " + player_lives);
+                audio.PlayOneShot(playerDie, 1.0f);
                 Respawn();
             }
             if (player_lives <= 0)
@@ -167,7 +169,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         healthCurrent = healthMax;
         game.SetHealth(healthCurrent / healthMax);
         lifeUI.UpdateUI();
-
     }
 
     public void killPlayer()

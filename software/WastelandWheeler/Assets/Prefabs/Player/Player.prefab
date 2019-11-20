@@ -193,6 +193,8 @@ MonoBehaviour:
   armourCurrent: 0
   powerup: {fileID: 8300000, guid: 9e78ed8d468f8cb4391a1ebcc6bf120d, type: 3}
   coin: {fileID: 8300000, guid: 6eea1680be6c1144c97ec5a24f46d8a5, type: 3}
+  hit: {fileID: 8300000, guid: c459e4783e72c0c4bb4adce66939121d, type: 3}
+  playerDie: {fileID: 8300000, guid: fa838986fe0fec846949ca95d1e8b4af, type: 3}
   game: {fileID: 0}
   player_lives: 0
 --- !u!114 &8827529717738458480
@@ -248,7 +250,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5645b62fc1941a34eb1a9db1d53e5afa, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.25
   m_Pitch: 0.85
   Loop: 0
   Mute: 0
