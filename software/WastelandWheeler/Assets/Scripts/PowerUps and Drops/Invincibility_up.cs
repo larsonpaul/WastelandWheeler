@@ -28,7 +28,7 @@ public class Invincibility_up : MonoBehaviour
         if (col.CompareTag("Player") && used == false)
         {
             used = true;
-
+            stats.playPowerup = true;
             StartCoroutine(Power());
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<CircleCollider2D>().enabled = false;

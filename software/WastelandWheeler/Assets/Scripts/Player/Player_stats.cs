@@ -21,6 +21,9 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public float bullet_size = 1f;
 
+    public bool playCoin = false;
+    public bool playPowerup = false;
+
     public bool isInvincible = false;
     public bool isThorny = false;
     public bool tripleShot = false;
@@ -39,6 +42,9 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public float armourMax = 100f;
     public float armourCurrent = 0f;
 
+    public AudioClip powerup;
+    public AudioClip coin;
+    private AudioSource audio;
 
     [SerializeField]
     private GameManager game;
@@ -75,6 +81,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         player_lives = stats.GetLives();
         lifeUI = GameObject.Find("LifeText").GetComponent<LifeUI>();
 
+        audio = GetComponent<AudioSource>();
+
         // setup dynamic diffculty adjustment
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
         dda.Subscribe(this);
@@ -89,6 +97,18 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         {
             iFrameCur -= 1;
         }
+        if (playPowerup)
+        {
+            audio.PlayOneShot(powerup, 0.7f);
+            playPowerup = false;
+        }
+        if (playCoin)
+        {
+            audio.PlayOneShot(coin, 1.5f);
+            playCoin = false;
+        }
+
+
     }
 
     // Function that changes the player's health by a given amount, 

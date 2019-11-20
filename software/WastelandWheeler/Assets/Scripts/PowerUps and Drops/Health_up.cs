@@ -24,6 +24,7 @@ public class Health_up : MonoBehaviour
         if (col.CompareTag("Player") && used == false)
         {
             used = true;
+            stats.playPowerup = true;
             Destroy(gameObject);
 
             stats.AddHealth(heal);
