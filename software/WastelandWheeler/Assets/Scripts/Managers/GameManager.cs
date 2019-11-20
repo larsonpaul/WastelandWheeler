@@ -39,11 +39,14 @@ public class GameManager : MonoBehaviour
 
     public AudioSource death;
 
+    [SerializeField]
+    private bool isArena = false;
+
     void Start()
     {
-        spawnManager = transform.Find("Spawn Manager").gameObject.GetComponent<Spawn_Manager>();
-        dda = GameObject.Find("DDA").gameObject.GetComponent<DynamicDifficultyAdjuster>();
-        dropSpawner = transform.Find("DropManager").gameObject.GetComponent<DropSpawner>();
+        spawnManager = GameObject.Find("Spawn Manager").GetComponent<Spawn_Manager>();
+        dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
+        dropSpawner = GameObject.Find("DropManager").GetComponent<DropSpawner>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
         death = GetComponent<AudioSource>();
     }
@@ -73,6 +76,20 @@ public class GameManager : MonoBehaviour
         playerStats.AddAdrenaline(enemy.adrenalineYield);
         spawnManager.EnemyDefeated();
         dropSpawner.DropItem(enemy.transform);
+    }
+
+    public IEnumerator EnemiesCleared()
+    {
+        // Arena level complete
+        if (!isArena) yield break;
+        yield return new WaitForSeconds(2);
+        GoToUpgrade();
+    }
+
+    public void GoToUpgrade()
+    {
+        GameObject.Find("StatManager").GetComponent<Stat_Manager>().EndOfLevel();
+        SceneManager.LoadScene(1);
     }
 
     public void EndGame()

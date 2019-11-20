@@ -35,12 +35,16 @@ public class Spawn_Manager : MonoBehaviour
     [SerializeField]
     public float TimeBetweenEnemies = 1.0f;
 
+    private GameManager gameManager;
+
     private void Awake()
     {
         enemiesLeftInWave = 0;
     }
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         currWave = -1;
 
         DifficultySetup();
@@ -75,7 +79,7 @@ public class Spawn_Manager : MonoBehaviour
         // Win Scenario
         if (currWave >= num_waves)
         {
-            GameObject.Find("NextLevelBuilding").GetComponent<GoToUpgrade>().LevelComplete();
+            gameManager.EnemiesCleared();
             return;
         }
 
