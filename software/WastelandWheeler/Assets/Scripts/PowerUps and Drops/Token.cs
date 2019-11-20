@@ -38,6 +38,7 @@ public class Token : MonoBehaviour
         if (col.CompareTag("Player") && used == false)
         {
             used = true;
+            col.GetComponent<Player_stats>().playCoin = true;
             col.GetComponent<Player_stats>().totalCoins += value;
             Destroy(gameObject);
         }

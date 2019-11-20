@@ -21,6 +21,9 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public float bullet_size = 1f;
 
+    public bool playCoin = false;
+    public bool playPowerup = false;
+
     public bool isInvincible = false;
     public bool isThorny = false;
     public bool tripleShot = false;
@@ -39,6 +42,11 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public float armourMax = 100f;
     public float armourCurrent = 0f;
 
+    public AudioClip powerup;
+    public AudioClip coin;
+    public AudioClip hit;
+    public AudioClip playerDie;
+    private AudioSource audio;
 
     [SerializeField]
     private GameManager game;
@@ -75,6 +83,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         player_lives = stats.GetLives();
         lifeUI = GameObject.Find("LifeText").GetComponent<LifeUI>();
 
+        audio = GetComponent<AudioSource>();
+
         // setup dynamic diffculty adjustment
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
         dda.Subscribe(this);
@@ -88,6 +98,16 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         if (iFrameCur > 0)
         {
             iFrameCur -= 1;
+        }
+        if (playPowerup)
+        {
+            audio.PlayOneShot(powerup, 0.7f);
+            playPowerup = false;
+        }
+        if (playCoin)
+        {
+            audio.PlayOneShot(coin, 1.5f);
+            playCoin = false;
         }
     }
 
@@ -127,10 +147,12 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             healthCurrent -= num*hurt_scale;
             iFrameCur = iFrameMax;
             game.SetHealth(healthCurrent / healthMax);
+            audio.PlayOneShot(hit, 0.8f);
             if (healthCurrent <= 0)
             {
                 player_lives--;
                 print("player Lives Remaining: " + player_lives);
+                audio.PlayOneShot(playerDie, 1.0f);
                 Respawn();
             }
             if (player_lives <= 0)
@@ -147,7 +169,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         healthCurrent = healthMax;
         game.SetHealth(healthCurrent / healthMax);
         lifeUI.UpdateUI();
-
     }
 
     public void killPlayer()
