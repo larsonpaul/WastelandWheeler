@@ -23,7 +23,7 @@ public class Spawn_Manager : MonoBehaviour
     // parameters used by difficulty adjustment system to make the game harder as player progresses through levels
     private int difficulty;
     [SerializeField]
-    int num_waves = 1;
+    int num_waves;
     [SerializeField]
     int enemy_types_per_wave;
     [SerializeField]
@@ -40,6 +40,7 @@ public class Spawn_Manager : MonoBehaviour
     private void Awake()
     {
         enemiesLeftInWave = 0;
+        num_waves = 1;
     }
     void Start()
     {
