@@ -23,7 +23,7 @@ public class Spawn_Manager : MonoBehaviour
     // parameters used by difficulty adjustment system to make the game harder as player progresses through levels
     private int difficulty;
     [SerializeField]
-    int num_waves;
+    int num_waves = 1;
     [SerializeField]
     int enemy_types_per_wave;
     [SerializeField]
@@ -54,14 +54,12 @@ public class Spawn_Manager : MonoBehaviour
         difficulty = GameObject.Find("StatManager").GetComponent<Stat_Manager>().GetDifficulty();
         if (difficulty < 3)
         {
-            num_waves = Random.Range(1,3);
             enemy_types_per_wave = 2;
             TimeBetweenEnemies = 1.0f;
             totalEnemiesInWave = 15;
         }   
         else
         {
-            num_waves = Random.Range(2, 5);
             enemy_types_per_wave = Random.Range(2, 5);
             TimeBetweenEnemies = ((float)Random.Range(5, 9)) / 10;
             totalEnemiesInWave = Random.Range(15, 26);
@@ -105,7 +103,7 @@ public class Spawn_Manager : MonoBehaviour
     {
         // for now we are going to try spawning jsut random enemies
 
-        GameObject enemy = typeEnemies[0];
+        GameObject enemy;
         while (spawnedEnemies < totalEnemiesInWave)
         {
             enemy = typeEnemies[Random.Range(0, enemy_types_per_wave)]; // randomly spawn from the sublist of available enemies
