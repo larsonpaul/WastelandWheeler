@@ -45,7 +45,7 @@ public class Spawn_Manager : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        currWave = -1;
+        currWave = 0;
 
         DifficultySetup();
 
@@ -77,8 +77,9 @@ public class Spawn_Manager : MonoBehaviour
     {
         currWave++;
         // Win Scenario
-        if (currWave >= num_waves)
+        if (currWave > num_waves)
         {
+            Debug.Log("SpawnManager: All enemies cleared");
             gameManager.EnemiesCleared();
             return;
         }

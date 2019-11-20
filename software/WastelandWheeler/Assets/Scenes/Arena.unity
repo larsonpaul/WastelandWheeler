@@ -460,7 +460,7 @@ MonoBehaviour:
   - {fileID: 1728218971}
   - {fileID: 1125581717}
   - {fileID: 1669597309}
-  num_waves: 0
+  num_waves: 3
   enemy_types_per_wave: 0
   totalEnemiesInWave: 0
   enemiesLeftInWave: 0

@@ -78,16 +78,18 @@ public class GameManager : MonoBehaviour
         dropSpawner.DropItem(enemy.transform);
     }
 
-    public IEnumerator EnemiesCleared()
+    public void EnemiesCleared()
     {
         // Arena level complete
-        if (!isArena) yield break;
-        yield return new WaitForSeconds(2);
+        Debug.Log("All enemies defeated!");
+        if (!isArena) return;
+        //yield return new WaitForSeconds(2);
         GoToUpgrade();
     }
 
     public void GoToUpgrade()
     {
+        Debug.Log("Going to upgrade screen.");
         GameObject.Find("StatManager").GetComponent<Stat_Manager>().EndOfLevel();
         SceneManager.LoadScene(1);
     }
