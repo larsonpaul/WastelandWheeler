@@ -40,11 +40,11 @@ public class Spawn_Manager : MonoBehaviour
     private void Awake()
     {
         enemiesLeftInWave = 0;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        if (!gameManager.isArena)
+        if (!gameManager.isArena && !gameManager.isBoss)
             num_waves = 1;
 
         currWave = 0;

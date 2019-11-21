@@ -40,11 +40,14 @@ public class GameManager : MonoBehaviour
     public AudioSource death;
 
     public bool isArena = false;
+    public bool isBoss = false;
 
-    void Start()
+    void Awake()
     {
         spawnManager = GameObject.Find("Spawn Manager").GetComponent<Spawn_Manager>();
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
+        if (dda == null)
+            dda = transform.Find("DDA").gameObject.GetComponent<DynamicDifficultyAdjuster>();
         dropSpawner = GameObject.Find("DropManager").GetComponent<DropSpawner>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
         death = GetComponent<AudioSource>();
