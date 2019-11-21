@@ -39,6 +39,8 @@ public class fireAtPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null) return;
+
         //Show enemy Sight lines
         Debug.DrawLine
             (new Vector3(transform.position.x + playerWithinRangeX, transform.position.y, transform.position.z),
