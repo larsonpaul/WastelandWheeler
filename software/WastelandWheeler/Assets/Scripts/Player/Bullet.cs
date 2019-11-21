@@ -57,7 +57,7 @@ public class Bullet : MonoBehaviour
         // cases where bullet is destroyed
         used = true;
         Destroy(gameObject);
-        if (obj.CompareTag("Enemy"))
+        if (obj.CompareTag("Enemy") || obj.CompareTag("boss"))
         {
             obj.GetComponent<EnemyStats>().RemoveHealth(damage);
             return;
