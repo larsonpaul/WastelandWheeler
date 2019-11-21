@@ -21,7 +21,7 @@ public class PlayerAim : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         stats = GetComponent<Player_stats>();
         bullet_size = stats.bullet_size;
-        bulletPrefab.GetComponent<Transform>().localScale = Vector3.one * 1f;
+        bulletPrefab.GetComponent<Transform>().localScale = Vector3.one * bullet_size;
         blaster = GetComponent<AudioSource>();
     }
 
