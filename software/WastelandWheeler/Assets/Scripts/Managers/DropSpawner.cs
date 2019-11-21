@@ -62,8 +62,9 @@ public class DropSpawner : MonoBehaviour
         {
             DropHealth(t);
         }
-        else if (randInt <= 52)
+        else if (randInt <= 60 && tokenCount < maxTokens)
         {
+            tokenCount++;
             DropToken(t);
         }
     }
