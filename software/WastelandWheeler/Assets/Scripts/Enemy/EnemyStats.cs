@@ -28,6 +28,9 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     private Stat_Manager stat_manager;
     private int difficulty;
 
+    public bool bossDeath;
+    private float deathDelay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +58,12 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         {
             iframe -= 1;
         }
+
+        if (bossDeath)
+        {
+            OnDeath();
+        }
+
     }
 
 
