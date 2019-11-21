@@ -24,6 +24,15 @@ public class Stat_Manager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    float basehealth = 100f;
+    float basespeed = 60f;
+    float baserof = .2f;
+    float basedamage = 7f;
+    float baseshotsize = 1f;
+    float baseadrenaline = 100f;
+    int baselives = 5;
+    int basedifficulty = 0;
+
     // base stats for the game that need to persist between levels
     private float max_health = 100f;
     private float cur_health = 100f;
@@ -33,7 +42,7 @@ public class Stat_Manager : MonoBehaviour
     private float bullet_size = 1f;
     private float max_adrenaline = 100f;
     private float cur_adrenaline = 100f;
-    private float coins = 0;
+    private int coins = 0;
     private int lives = 5;
 
     private int persistent_difficulty = 0;
@@ -42,6 +51,18 @@ public class Stat_Manager : MonoBehaviour
 
     private int end_level_difficulty;
     
+    public void Reset()
+    {
+        max_health = basehealth;
+        speed = basespeed;
+        rate_of_fire = baserof;
+        damage = basedamage;
+        bullet_size = baseshotsize;
+        max_adrenaline = baseadrenaline;
+        lives = baselives;
+        coins = 0;
+        persistent_difficulty = 0;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -106,7 +127,7 @@ public class Stat_Manager : MonoBehaviour
     // Function to set the total coins of the player
     public void SetCoins(float value)
     {
-        coins -= value;
+        coins -= (int)value;
     }
 
     // Function to get the move speed of the player
@@ -192,7 +213,7 @@ public class Stat_Manager : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<Player_stats>();
         lives = player.GetLives();
-        coins = player.GetCoins();
+        coins = (int)player.GetCoins();
         cur_adrenaline = player.GetAdrenaline();
         // modify how hard the next wave will be 
         end_level_difficulty = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
