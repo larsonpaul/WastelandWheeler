@@ -2506,7 +2506,7 @@ MonoBehaviour:
   speed: 2
   ROF: 0.2
   damage: 2
-  bulletSize: 1.1
+  bulletSize: 1.05
 --- !u!114 &1173534831 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2038156142708067118, guid: bda9bd6cf8a710d4dac66f58934b5789,
