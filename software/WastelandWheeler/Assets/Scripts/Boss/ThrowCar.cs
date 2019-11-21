@@ -41,7 +41,7 @@ public class ThrowCar : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Enemy") && thrown || col.gameObject.CompareTag("Shot")
-            || col.gameObject.CompareTag("bullet"))
+            || col.gameObject.CompareTag("bullet") || col.gameObject.CompareTag("Magnet"))
         {
             Debug.Log("Collision with " + col + " nothing should happpen");
         }
