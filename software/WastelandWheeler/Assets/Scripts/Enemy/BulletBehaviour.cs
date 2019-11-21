@@ -6,14 +6,10 @@ public class BulletBehaviour : MonoBehaviour
 {
     public float damage = 10f;
     private int lifetime = 200;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     
     void Update()
     {
+        //eventually, bullet dies
         if (lifetime == 0)
         {
             Destroy(gameObject);
@@ -21,9 +17,10 @@ public class BulletBehaviour : MonoBehaviour
         lifetime--;
     }
 
+    //collided with something
     void OnTriggerStay2D(Collider2D col)
     {
-
+        // check if it should pass through collider
         if (col.CompareTag("Enemy"))
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(),col);

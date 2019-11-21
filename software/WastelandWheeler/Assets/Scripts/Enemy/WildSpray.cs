@@ -59,6 +59,7 @@ public class WildSpray : MonoBehaviour
     // Create enemy bullet
     void fireProjectile()
     {
+        //fire at a random trajectory in a cone
         target = player.transform.position - transform.position;
         float distance = target.magnitude;
         Vector2 direction = target / distance;
