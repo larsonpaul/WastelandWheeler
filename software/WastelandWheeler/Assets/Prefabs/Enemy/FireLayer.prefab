@@ -235,8 +235,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ff10b0e8c238d84795554c12ee53cf5, type: 3}
-  m_Color: {r: 0.9811321, g: 0.47176877, b: 0.032395888, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 582ac9fe1d5169f4d97b00c6818e898b, type: 3}
+  m_Color: {r: 0.9622642, g: 0.94864726, b: 0.94864726, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -332,16 +332,13 @@ MonoBehaviour:
   healthMax: 30
   iframe: 0
   iframeMax: 0
-  speed: 20
-  baseSpeed: 20
+  speed: 30
+  baseSpeed: 30
   firerate: 0
   baseFirerate: 0
   damage: 10
   baseDamage: 10
-  spawnManager: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
-    type: 3}
-  dropSpawner: {fileID: 7433152850082089011, guid: 0f1b4df8e668e594bad305cd6aa8ea00,
-    type: 3}
+  adrenalineYield: 5
 --- !u!114 &1014893128181177942
 MonoBehaviour:
   m_ObjectHideFlags: 0

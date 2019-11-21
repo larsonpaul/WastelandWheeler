@@ -39,6 +39,8 @@ public class fireAtPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null) return;
+
         //Show enemy Sight lines
         Debug.DrawLine
             (new Vector3(transform.position.x + playerWithinRangeX, transform.position.y, transform.position.z),
@@ -93,14 +95,17 @@ public class fireAtPlayer : MonoBehaviour
         else if (burstShot) // shot three spreading bullets
         {
             //Debug.Log("Shot fired burst");
-            Vector2 perpendicular = Vector2.Perpendicular(target);
-            Vector2 angle1 = (0.4f * perpendicular) + target;
-            Vector2 angle2 = -(0.4f * perpendicular) + target;
-            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(target.x * speed, target.y * speed));
+            target = player.transform.position - transform.position;
+            float distance = target.magnitude;
+            Vector2 direction = target / distance;
+            Vector2 perpendicular = Vector2.Perpendicular(direction);
+            Vector2 angle1 = (0.4f * perpendicular) + direction;
+            Vector2 angle2 = -(0.4f * perpendicular) + direction;
+            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction.x * speed, direction.y * speed));
             GameObject projectile2 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile2.GetComponent<Rigidbody2D>().AddForce(new Vector2(angle2.x * speed, angle2.y *speed));
+            projectile2.GetComponent<Rigidbody2D>().AddForce(new Vector2(angle2.x * speed, angle2.y * speed));
             GameObject projectile3 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile3.GetComponent<Rigidbody2D>().AddForce(new Vector2(angle1.x * speed, angle1.y *speed));
+            projectile3.GetComponent<Rigidbody2D>().AddForce(new Vector2(angle1.x * speed, angle1.y * speed));
         }
         else
         {

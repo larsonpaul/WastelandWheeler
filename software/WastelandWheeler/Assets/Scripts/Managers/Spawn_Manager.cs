@@ -35,13 +35,19 @@ public class Spawn_Manager : MonoBehaviour
     [SerializeField]
     public float TimeBetweenEnemies = 1.0f;
 
+    private GameManager gameManager;
+
     private void Awake()
     {
         enemiesLeftInWave = 0;
     }
     void Start()
     {
-        currWave = -1;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (!gameManager.isArena)
+            num_waves = 1;
+
+        currWave = 0;
 
         DifficultySetup();
 
@@ -54,17 +60,21 @@ public class Spawn_Manager : MonoBehaviour
         difficulty = GameObject.Find("StatManager").GetComponent<Stat_Manager>().GetDifficulty();
         if (difficulty < 3)
         {
-            num_waves = Random.Range(1,3);
             enemy_types_per_wave = 2;
             TimeBetweenEnemies = 1.0f;
-            totalEnemiesInWave = 15;
+            totalEnemiesInWave = 20;
         }   
-        else
+        else if (difficulty < 6)
         {
-            num_waves = Random.Range(2, 5);
             enemy_types_per_wave = Random.Range(2, 5);
             TimeBetweenEnemies = ((float)Random.Range(5, 9)) / 10;
-            totalEnemiesInWave = Random.Range(15, 26);
+            totalEnemiesInWave = Random.Range(20, 31);
+        }
+        else
+        {
+            enemy_types_per_wave = 5;
+            TimeBetweenEnemies = ((float)Random.Range(5, 9)) / 10;
+            totalEnemiesInWave = 40;
         }
     }
 
@@ -73,9 +83,10 @@ public class Spawn_Manager : MonoBehaviour
     {
         currWave++;
         // Win Scenario
-        if (currWave >= num_waves)
+        if (currWave > num_waves)
         {
-            GameObject.Find("NextLevelBuilding").GetComponent<GoToUpgrade>().LevelComplete();
+            Debug.Log("SpawnManager: All enemies cleared");
+            gameManager.EnemiesCleared();
             return;
         }
 
@@ -105,7 +116,7 @@ public class Spawn_Manager : MonoBehaviour
     {
         // for now we are going to try spawning jsut random enemies
 
-        GameObject enemy = typeEnemies[0];
+        GameObject enemy;
         while (spawnedEnemies < totalEnemiesInWave)
         {
             enemy = typeEnemies[Random.Range(0, enemy_types_per_wave)]; // randomly spawn from the sublist of available enemies

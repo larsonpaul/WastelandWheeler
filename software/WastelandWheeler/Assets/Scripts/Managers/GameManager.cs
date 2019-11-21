@@ -37,12 +37,17 @@ public class GameManager : MonoBehaviour
     private DropSpawner dropSpawner;
     private Player_stats playerStats;
 
+    public AudioSource death;
+
+    public bool isArena = false;
+
     void Start()
     {
-        spawnManager = transform.Find("Spawn Manager").gameObject.GetComponent<Spawn_Manager>();
-        dda = transform.Find("DDA").gameObject.GetComponent<DynamicDifficultyAdjuster>();
-        dropSpawner = transform.Find("DropManager").gameObject.GetComponent<DropSpawner>();
+        spawnManager = GameObject.Find("Spawn Manager").GetComponent<Spawn_Manager>();
+        dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
+        dropSpawner = GameObject.Find("DropManager").GetComponent<DropSpawner>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+        death = GetComponent<AudioSource>();
     }
 
     public void SetHealth(float scale)
@@ -64,12 +69,32 @@ public class GameManager : MonoBehaviour
 
     public void KillEnemy(EnemyStats enemy)
     {
+        death.Play();
         dda.IncrementKills();
         dda.Unsubscribe(enemy);
         playerStats.AddAdrenaline(enemy.adrenalineYield);
         spawnManager.EnemyDefeated();
         dropSpawner.DropItem(enemy.transform);
+    }
 
+    public void EnemiesCleared()
+    {
+        // Arena level complete
+        Debug.Log("All enemies defeated!");
+        if (!isArena)
+        {
+            return;
+        }
+        GameObject.Find("ArenaCanvas").transform.Find("Victory").gameObject.SetActive(true);
+        //yield return new WaitForSeconds(2);
+        //GoToUpgrade();
+    }
+
+    public void GoToUpgrade()
+    {
+        Debug.Log("Going to upgrade screen.");
+        GameObject.Find("StatManager").GetComponent<Stat_Manager>().EndOfLevel();
+        SceneManager.LoadScene(1);
     }
 
     public void EndGame()

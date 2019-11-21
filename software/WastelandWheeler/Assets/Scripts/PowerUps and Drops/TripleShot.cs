@@ -26,7 +26,7 @@ public class TripleShot : MonoBehaviour
         if (col.CompareTag("Player") && used == false)
         {
             used = true;
-
+            stats.playPowerup = true;
             StartCoroutine(Tripler());
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<CircleCollider2D>().enabled = false;

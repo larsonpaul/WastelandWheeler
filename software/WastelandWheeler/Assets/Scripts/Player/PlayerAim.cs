@@ -12,6 +12,7 @@ public class PlayerAim : MonoBehaviour
     public float bullet_force = 20f;
     private float timer = 0f;
     private Player_stats stats;
+    private AudioSource blaster;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PlayerAim : MonoBehaviour
         stats = GetComponent<Player_stats>();
         bullet_size = stats.bullet_size;
         bulletPrefab.GetComponent<Transform>().localScale = Vector3.one * 1f;
+        blaster = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -37,6 +39,7 @@ public class PlayerAim : MonoBehaviour
         }
         else if (Input.GetButton("Fire1"))
         {
+            blaster.Play();
             Shoot(angle);
             timer = stats.rate_of_fire;
         }

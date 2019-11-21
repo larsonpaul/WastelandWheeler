@@ -31,18 +31,21 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     // Start is called before the first frame update
     void Start()
     {
+        stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
+        difficulty = stat_manager.GetDifficulty();
+        StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
+
         health = healthMax;
         speed = baseSpeed;
         firerate = baseFirerate;
+        damage = baseDamage;
 
         healthBar = GetComponent<EnemyBar>();
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.CreateEnemy(this);
 
-        stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
-        difficulty = stat_manager.GetDifficulty();
-        StartDifficulty(difficulty);
+        
     }
 
     // Update is called once per frame
@@ -133,9 +136,11 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         Destroy(gameObject);
     }
 
+    // method that will make the enemies harder based on the persistent difficulty increase through each level
     public void StartDifficulty (int difficulty) {
-
-
+        float difficulty_mod = (1 + 0.1f * difficulty);
+        healthMax = healthMax * difficulty_mod;
+        baseDamage = baseDamage * difficulty_mod;
     }
 
     public void ChangeDifficulty(int difficulty)

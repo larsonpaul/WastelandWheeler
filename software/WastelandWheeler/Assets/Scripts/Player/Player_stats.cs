@@ -21,6 +21,9 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
 
     public float bullet_size = 1f;
 
+    public bool playCoin = false;
+    public bool playPowerup = false;
+
     public bool isInvincible = false;
     public bool isThorny = false;
     public bool tripleShot = false;
@@ -39,6 +42,11 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public float armourMax = 100f;
     public float armourCurrent = 0f;
 
+    public AudioClip powerup;
+    public AudioClip coin;
+    public AudioClip hit;
+    public AudioClip playerDie;
+    private AudioSource audio;
 
     [SerializeField]
     private GameManager game;
@@ -74,6 +82,10 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         totalCoins = stats.GetCoins();
         player_lives = stats.GetLives();
         lifeUI = GameObject.Find("LifeText").GetComponent<LifeUI>();
+        game.SetAdrenaline(stats.GetCurrentAdrenaline() / stats.GetMaxAdrenaline());
+        game.SetHealth(stats.GetCurrentHealth() / stats.GetMaxHealth());
+
+        audio = gameObject.GetComponent<AudioSource>();
 
         // setup dynamic diffculty adjustment
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
@@ -88,6 +100,16 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         if (iFrameCur > 0)
         {
             iFrameCur -= 1;
+        }
+        if (playPowerup)
+        {
+            audio.PlayOneShot(powerup, 0.7f);
+            playPowerup = false;
+        }
+        if (playCoin)
+        {
+            audio.PlayOneShot(coin, 1.5f);
+            playCoin = false;
         }
     }
 
@@ -127,15 +149,22 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             healthCurrent -= num*hurt_scale;
             iFrameCur = iFrameMax;
             game.SetHealth(healthCurrent / healthMax);
+            audio.PlayOneShot(hit, 0.8f);
             if (healthCurrent <= 0)
             {
                 player_lives--;
-                print("player Lives Remaining: " + player_lives);
-                Respawn();
-            }
-            if (player_lives <= 0)
-            {
-                GameOver();
+                Stat_Manager.Instance.RemoveLife();
+                lifeUI.UpdateUI();
+                print("Player Lives Remaining: " + player_lives);
+                audio.PlayOneShot(playerDie, 1.0f);
+                if (player_lives <= 0)
+                {
+                    GameOver();
+                }
+                else
+                {
+                    Respawn();
+                }
             }
         }
     }
@@ -146,8 +175,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         this.transform.position = new Vector3(0, 0, 0);
         healthCurrent = healthMax;
         game.SetHealth(healthCurrent / healthMax);
-        lifeUI.UpdateUI();
-
     }
 
     public void killPlayer()
@@ -319,6 +346,13 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public int GetLives()
     {
         return player_lives;
+    }
+
+    public void AddLife()
+    {
+        player_lives += 1;
+        Stat_Manager.Instance.AddLife();
+        lifeUI.UpdateUI();
     }
 
     // Game over state based on health (may have to make this its own script)

@@ -235,8 +235,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ff10b0e8c238d84795554c12ee53cf5, type: 3}
-  m_Color: {r: 0.015129937, g: 0.100676954, b: 0.6415094, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2895cbf1cc156a94aa40a833f3287c72, type: 3}
+  m_Color: {r: 0.9764151, g: 0.979658, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -341,12 +341,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e585a18cc818104c90a1fea3c277420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 15
-  healthMax: 15
+  health: 30
+  healthMax: 30
   iframe: 0
   iframeMax: 0
-  speed: 20
-  baseSpeed: 20
+  speed: 30
+  baseSpeed: 30
   firerate: 0
   baseFirerate: 0
   damage: 10
@@ -381,7 +381,7 @@ MonoBehaviour:
   playerWithinRangeX: 15
   playerWithinRangeY: 15
   bullet: {fileID: 3815651842055491911, guid: 28364bba2ac5a48ccbd63ac2728ee4ad, type: 3}
-  speed: 275
+  speed: 375
 --- !u!114 &6003332441846945867
 MonoBehaviour:
   m_ObjectHideFlags: 0

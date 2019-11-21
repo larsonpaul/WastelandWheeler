@@ -8,7 +8,7 @@ public class NewHealthBar : MonoBehaviour
     private Image health;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         health = transform.Find("Health").gameObject.GetComponent<Image>();
     }

@@ -36,9 +36,11 @@ public class Stat_Manager : MonoBehaviour
     private float coins = 0;
     private int lives = 5;
 
-    private int persistant_difficulty = 0;
+    private int persistent_difficulty = 0;
 
     private Player_stats player;
+
+    private int end_level_difficulty;
     
 
     // Start is called before the first frame update
@@ -161,8 +163,13 @@ public class Stat_Manager : MonoBehaviour
         return lives;
     }
 
+    public void AddLife()
+    {
+        lives++;
+    }
+
     // Function to set the damage of the player
-    public void DecrementLives()
+    public void RemoveLife()
     {
         lives--;
     }
@@ -171,13 +178,13 @@ public class Stat_Manager : MonoBehaviour
     // this is an increasing value that as the palyer progresses should make the game harder
     public int GetDifficulty()
     {
-        return persistant_difficulty;
+        return persistent_difficulty;
     }
 
     // Function to set the current difficult of the game 
     public void SetDifficulty(int value)
     {
-        persistant_difficulty = value;
+        persistent_difficulty = value;
     }
 
     // method called when the level so that the Stat_Manager can read and save values from the current level
@@ -186,7 +193,15 @@ public class Stat_Manager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player_stats>();
         lives = player.GetLives();
         coins = player.GetCoins();
-        cur_adrenaline = player.GetHealth();
-        persistant_difficulty++;
+        cur_adrenaline = player.GetAdrenaline();
+        // modify how hard the next wave will be 
+        end_level_difficulty = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
+        if (end_level_difficulty >= 5) { // player did very well
+            persistent_difficulty +=2;
+        }
+        else if (end_level_difficulty > -5) // player did OK
+        {
+            persistent_difficulty++;
+        } // persistent difficulty doesn't change if the DDA reached the easiest scale
     }
 }
