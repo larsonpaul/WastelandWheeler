@@ -144,8 +144,43 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
     public void OnDeath()
     {
-        gameManager.KillEnemy(this);
-        Destroy(gameObject);
+        if (gameObject.tag == "boss")
+        {
+
+            if (Time.deltaTime > deathDelay && !bossDeath)
+            {
+                Debug.Log("Boss on death");
+                //dda.Unsubscribe(this);
+                healthBar.SetScale(0);
+                Transform bar = transform.Find("HealthBar");
+                bar.gameObject.SetActive(false);
+                deathDelay = Time.time + 1.0f;
+                bossDeath = true;
+            }
+            else if (Time.time > deathDelay)
+            {
+                Debug.Log("death drop");
+                gameObject.GetComponent<Renderer>().enabled = false;
+
+                ParticleSystem deathDrop = FindObjectOfType<ParticleSystem>();
+                Instantiate(deathDrop, gameObject.transform.position, gameObject.transform.rotation);
+                bossDeath = false;
+                //spawnManager.EnemyDefeated();
+                //gameManager.KillEnemy(this);
+            }
+
+        }
+        else if (gameObject.tag == "Enemy")
+        {
+            Debug.Log("Normal Emeny killed");
+            gameManager.KillEnemy(this);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log(gameObject.tag + " was killed");
+        }
+
     }
 
     // method that will make the enemies harder based on the persistent difficulty increase through each level
