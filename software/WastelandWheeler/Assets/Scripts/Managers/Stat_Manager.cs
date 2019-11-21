@@ -32,7 +32,6 @@ public class Stat_Manager : MonoBehaviour
     private float damage = 5f;
     private float bullet_size = 1f;
     private float max_adrenaline = 100f;
-    [SerializeField]
     private float cur_adrenaline = 100f;
     private float coins = 0;
     private int lives = 5;
@@ -40,6 +39,8 @@ public class Stat_Manager : MonoBehaviour
     private int persistent_difficulty = 0;
 
     private Player_stats player;
+
+    private int end_level_difficulty;
     
 
     // Start is called before the first frame update
@@ -188,6 +189,14 @@ public class Stat_Manager : MonoBehaviour
         lives = player.GetLives();
         coins = player.GetCoins();
         cur_adrenaline = player.GetAdrenaline();
-        persistent_difficulty++;
+        // modify how hard the next wave will be 
+        end_level_difficulty = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
+        if (end_level_difficulty >= 5) { // player did very well
+            persistent_difficulty +=2;
+        }
+        else if (end_level_difficulty > -5) // player did OK
+        {
+            persistent_difficulty++;
+        } // persistent difficulty doesn't change if the DDA reached the easiest scale
     }
 }
