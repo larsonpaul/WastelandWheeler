@@ -153,13 +153,17 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             if (healthCurrent <= 0)
             {
                 player_lives--;
-                print("player Lives Remaining: " + player_lives);
+                lifeUI.UpdateUI();
+                print("Player Lives Remaining: " + player_lives);
                 audio.PlayOneShot(playerDie, 1.0f);
-                Respawn();
-            }
-            if (player_lives <= 0)
-            {
-                GameOver();
+                if (player_lives <= 0)
+                {
+                    GameOver();
+                }
+                else
+                {
+                    Respawn();
+                }
             }
         }
     }
@@ -170,7 +174,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         this.transform.position = new Vector3(0, 0, 0);
         healthCurrent = healthMax;
         game.SetHealth(healthCurrent / healthMax);
-        lifeUI.UpdateUI();
     }
 
     public void killPlayer()
