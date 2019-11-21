@@ -85,7 +85,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         game.SetAdrenaline(stats.GetCurrentAdrenaline() / stats.GetMaxAdrenaline());
         game.SetHealth(stats.GetCurrentHealth() / stats.GetMaxHealth());
 
-        audio = GetComponent<AudioSource>();
+        audio = gameObject.GetComponent<AudioSource>();
 
         // setup dynamic diffculty adjustment
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();

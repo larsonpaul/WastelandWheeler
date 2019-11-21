@@ -8,7 +8,7 @@ public class NewAdrenalineBar : MonoBehaviour
     private Image adrenaline;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         adrenaline = transform.Find("Adrenaline").gameObject.GetComponent<Image>();
     }
