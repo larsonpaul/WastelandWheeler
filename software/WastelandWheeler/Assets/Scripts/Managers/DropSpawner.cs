@@ -87,11 +87,14 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
         {
             tokenCount++;
             DropToken(t);
+            tokenChance = 40.0f;
         }
+        tokenChance += 10.0f;
     }
 
     public void ChangeDifficulty(int amount)
     {
+
 
     }
 }
