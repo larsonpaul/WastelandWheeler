@@ -17,6 +17,7 @@ public class FireLayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //check if you should lay fire 
         if(rate_of_fire <= 0)
         {
             GameObject projectile = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);

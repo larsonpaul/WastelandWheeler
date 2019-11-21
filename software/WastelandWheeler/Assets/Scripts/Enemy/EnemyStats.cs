@@ -63,6 +63,8 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         return health;
     }
 
+
+    //manipulating enemy health
     public void AddHealth(float num)
     {
         if (num <= 0)
@@ -105,6 +107,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         }
     }
 
+    // getters and setters
     public float GetSpeed()
     {
         return speed;

@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  size: 0
+  size: 1
 --- !u!50 &3274087934097923190
 Rigidbody2D:
   serializedVersion: 4

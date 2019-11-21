@@ -2352,7 +2352,7 @@ PrefabInstance:
     - target: {fileID: 4177829769906406123, guid: bda9bd6cf8a710d4dac66f58934b5789,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4177829769906406123, guid: bda9bd6cf8a710d4dac66f58934b5789,
         type: 3}
@@ -2362,7 +2362,7 @@ PrefabInstance:
     - target: {fileID: 4177829769906406123, guid: bda9bd6cf8a710d4dac66f58934b5789,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4177829769906406123, guid: bda9bd6cf8a710d4dac66f58934b5789,
         type: 3}
@@ -2377,7 +2377,7 @@ PrefabInstance:
     - target: {fileID: 4177829769906406123, guid: bda9bd6cf8a710d4dac66f58934b5789,
         type: 3}
       propertyPath: m_text
-      value: '+10%
+      value: '+5%
 
 '
       objectReference: {fileID: 0}
@@ -2506,7 +2506,7 @@ MonoBehaviour:
   speed: 2
   ROF: 0.2
   damage: 2
-  bulletSize: 1.1
+  bulletSize: 1.05
 --- !u!114 &1173534831 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2038156142708067118, guid: bda9bd6cf8a710d4dac66f58934b5789,

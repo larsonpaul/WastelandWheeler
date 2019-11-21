@@ -11,6 +11,13 @@ public class MainMenu : MonoBehaviour
     public GameObject MainCanvas;
     public GameObject TutorialPanel;
 
+    private Stat_Manager stats;
+
+    void Start()
+    {
+        stats = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
+    }
+
     // Loads scene one in the build
     public void StartTutorial()
     {
@@ -24,6 +31,8 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        stats.Reset();
+
         SceneManager.LoadScene(2);
         Time.timeScale = 1f;
         PauseMenu.GameIsPaused = false;

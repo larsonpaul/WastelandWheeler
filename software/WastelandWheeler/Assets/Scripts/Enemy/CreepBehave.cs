@@ -7,14 +7,10 @@ public class CreepBehave : MonoBehaviour
 {
     public float damage = 20f;
     private int lifetime = 100;
-    // Start is called before the first frame update
-    void Start()
+  
+    void Update() // called each frame
     {
-
-    }
-
-    void Update()
-    {
+        // check if it has burned out
         if (lifetime == 0)
         {
             Destroy(gameObject);
@@ -22,9 +18,11 @@ public class CreepBehave : MonoBehaviour
         lifetime--;
     }
 
+    //collided with something 
     void OnTriggerStay2D(Collider2D col)
     {
 
+        //check if what is has collided wwith should destroy it or not
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);

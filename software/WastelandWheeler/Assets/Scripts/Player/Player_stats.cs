@@ -372,14 +372,14 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     {
         difficulty = amount;
         adrenaline_scale = 1.0f + (-0.05f * difficulty);
-        if (difficulty <= 0)
-        {
-            rate_of_fire = baseROF * (1.0f + (0.025f * difficulty));
-        }
-        else
-        {
-            rate_of_fire = baseROF;
-        }
+        //if (difficulty <= 0)
+        //{
+        //    rate_of_fire = baseROF * (1.0f + (0.01f * difficulty));
+        //}
+        //else
+        //{
+        //    rate_of_fire = baseROF;
+        //}
         hurt_scale = 1.0f + (0.1f * difficulty);
     }
 }

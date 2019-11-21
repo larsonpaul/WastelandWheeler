@@ -34,6 +34,7 @@ public class EnemyMoveStop : MonoBehaviour
           
     }
 
+    //utility for vector math
     Vector2 getDirection()
     {
         Vector2 mypos = gameObject.transform.position;

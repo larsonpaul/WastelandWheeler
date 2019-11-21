@@ -62,13 +62,13 @@ public class Spawn_Manager : MonoBehaviour
         {
             enemy_types_per_wave = 2;
             TimeBetweenEnemies = 1.0f;
-            totalEnemiesInWave = 20;
+            totalEnemiesInWave = 30;
         }   
         else if (difficulty < 6)
         {
             enemy_types_per_wave = Random.Range(2, 5);
             TimeBetweenEnemies = ((float)Random.Range(5, 9)) / 10;
-            totalEnemiesInWave = Random.Range(20, 31);
+            totalEnemiesInWave = Random.Range(30, 41);
         }
         else
         {

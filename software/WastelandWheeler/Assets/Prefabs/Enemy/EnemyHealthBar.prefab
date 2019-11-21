@@ -327,20 +327,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e585a18cc818104c90a1fea3c277420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 15
-  healthMax: 15
+  health: 20
+  healthMax: 20
   iframe: 0
   iframeMax: 0
-  speed: 20
-  baseSpeed: 20
+  speed: 25
+  baseSpeed: 25
   firerate: 0
   baseFirerate: 0
   damage: 10
   baseDamage: 10
-  spawnManager: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
-    type: 3}
-  dropSpawner: {fileID: 7433152850082089011, guid: 0f1b4df8e668e594bad305cd6aa8ea00,
-    type: 3}
+  adrenalineYield: 5
 --- !u!114 &1014893128181177942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +364,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbody: {fileID: 1014893128181177940}
   damage: 10
-  stats: {fileID: 0}
 --- !u!114 &6003332441846945867
 MonoBehaviour:
   m_ObjectHideFlags: 0
