@@ -18,7 +18,7 @@ public class DropSpawner : MonoBehaviour
 
     private void DropLife(Transform t)
     {
-        Quaternion rotation = Quaternion.AngleAxis(90f, Vector3.forward);
+        Quaternion rotation = Quaternion.AngleAxis(0f, Vector3.forward);
 
         GameObject token = Instantiate(lifeUp, t.position, rotation);
     }
@@ -32,7 +32,7 @@ public class DropSpawner : MonoBehaviour
 
     private void DropHealth(Transform t)
     {
-        Quaternion rotation = Quaternion.AngleAxis(90f, Vector3.forward);
+        Quaternion rotation = Quaternion.AngleAxis(0f, Vector3.forward);
 
         GameObject token = Instantiate(healthUp, t.position, rotation);
     }
