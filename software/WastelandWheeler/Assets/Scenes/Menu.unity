@@ -245,7 +245,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1280, y: 720}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -484,7 +484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403873067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -68.69193, y: -63.533478, z: 15481.02}
+  m_LocalPosition: {x: -68.69193, y: -46, z: 15481.02}
   m_LocalScale: {x: 91, y: 91, z: 91}
   m_Children:
   - {fileID: 693971248}
@@ -931,7 +931,7 @@ RectTransform:
   m_GameObject: {fileID: 736028429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -170.12108}
-  m_LocalScale: {x: 0.01098901, y: 0.01098901, z: 0.01098901}
+  m_LocalScale: {x: 0.019899998, y: 0.019899998, z: 0.019899998}
   m_Children:
   - {fileID: 717118336}
   m_Father: {fileID: 403873068}
@@ -939,7 +939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.6889219, y: -1.4217753}
+  m_AnchoredPosition: {x: 0.6889219, y: -3.1717749}
   m_SizeDelta: {x: 140.535, y: 68.675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &736028431
@@ -1716,7 +1716,7 @@ RectTransform:
   m_GameObject: {fileID: 1757485225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -170.12108}
-  m_LocalScale: {x: 0.01098901, y: 0.01098901, z: 0.01098901}
+  m_LocalScale: {x: 0.019899998, y: 0.019899998, z: 0.019899998}
   m_Children:
   - {fileID: 409515103}
   m_Father: {fileID: 403873068}
@@ -1724,7 +1724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.6999111, y: -0.18}
+  m_AnchoredPosition: {x: 0.6999111, y: -1.27}
   m_SizeDelta: {x: 238.4, y: 87.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1757485227
@@ -2361,7 +2361,7 @@ PrefabInstance:
     - target: {fileID: 8646731064925841060, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -357
+      value: -287
       objectReference: {fileID: 0}
     - target: {fileID: 8646731064925841060, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
         type: 3}
@@ -2446,7 +2446,7 @@ PrefabInstance:
     - target: {fileID: 3959784284407807129, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
         type: 3}
       propertyPath: m_ReferenceResolution.x
-      value: 1280
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 3959784284407807129, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
         type: 3}
@@ -2626,7 +2626,7 @@ PrefabInstance:
     - target: {fileID: 6650429699886370792, guid: d2439c34a9050604e9f61ba618a6de5b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.87
+      value: 2.37
       objectReference: {fileID: 0}
     - target: {fileID: 6650429699886370792, guid: d2439c34a9050604e9f61ba618a6de5b,
         type: 3}
@@ -2668,16 +2668,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 309942550093977861, guid: d2439c34a9050604e9f61ba618a6de5b,
+    - target: {fileID: 6650429699886370792, guid: d2439c34a9050604e9f61ba618a6de5b,
         type: 3}
-      propertyPath: TutorialPanel
-      value: 
-      objectReference: {fileID: 230101576}
-    - target: {fileID: 309942550093977861, guid: d2439c34a9050604e9f61ba618a6de5b,
+      propertyPath: m_LocalScale.x
+      value: 0.022938475
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650429699886370792, guid: d2439c34a9050604e9f61ba618a6de5b,
         type: 3}
-      propertyPath: MainCanvas
-      value: 
-      objectReference: {fileID: 123974472}
+      propertyPath: m_LocalScale.y
+      value: 0.022938475
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650429699886370792, guid: d2439c34a9050604e9f61ba618a6de5b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.022938475
+      objectReference: {fileID: 0}
     - target: {fileID: 6650429699886370793, guid: d2439c34a9050604e9f61ba618a6de5b,
         type: 3}
       propertyPath: m_Colors.m_HighlightedColor.a
@@ -2735,5 +2740,15 @@ PrefabInstance:
       propertyPath: m_textInfo.wordCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 309942550093977861, guid: d2439c34a9050604e9f61ba618a6de5b,
+        type: 3}
+      propertyPath: TutorialPanel
+      value: 
+      objectReference: {fileID: 230101576}
+    - target: {fileID: 309942550093977861, guid: d2439c34a9050604e9f61ba618a6de5b,
+        type: 3}
+      propertyPath: MainCanvas
+      value: 
+      objectReference: {fileID: 123974472}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2439c34a9050604e9f61ba618a6de5b, type: 3}
