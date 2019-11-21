@@ -2361,17 +2361,22 @@ PrefabInstance:
     - target: {fileID: 8646731064925841060, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -300
+      value: -357
       objectReference: {fileID: 0}
     - target: {fileID: 8646731064925841060, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 171
+      value: 155
       objectReference: {fileID: 0}
     - target: {fileID: 8646731064925841060, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 866.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8646731064925841060, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 94.1
       objectReference: {fileID: 0}
     - target: {fileID: 3453733576436171958, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
         type: 3}
@@ -2452,6 +2457,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ScreenMatchMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5265170737986223491, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -0.000061035
+      objectReference: {fileID: 0}
+    - target: {fileID: 5265170737986223491, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3959784284774330350, guid: 08ea4196749c5ab40b7a1e5cb039caf1,
         type: 3}
@@ -2653,6 +2668,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 309942550093977861, guid: d2439c34a9050604e9f61ba618a6de5b,
+        type: 3}
+      propertyPath: TutorialPanel
+      value: 
+      objectReference: {fileID: 230101576}
+    - target: {fileID: 309942550093977861, guid: d2439c34a9050604e9f61ba618a6de5b,
+        type: 3}
+      propertyPath: MainCanvas
+      value: 
+      objectReference: {fileID: 123974472}
     - target: {fileID: 6650429699886370793, guid: d2439c34a9050604e9f61ba618a6de5b,
         type: 3}
       propertyPath: m_Colors.m_HighlightedColor.a
@@ -2710,15 +2735,5 @@ PrefabInstance:
       propertyPath: m_textInfo.wordCount
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 309942550093977861, guid: d2439c34a9050604e9f61ba618a6de5b,
-        type: 3}
-      propertyPath: TutorialPanel
-      value: 
-      objectReference: {fileID: 230101576}
-    - target: {fileID: 309942550093977861, guid: d2439c34a9050604e9f61ba618a6de5b,
-        type: 3}
-      propertyPath: MainCanvas
-      value: 
-      objectReference: {fileID: 123974472}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2439c34a9050604e9f61ba618a6de5b, type: 3}
