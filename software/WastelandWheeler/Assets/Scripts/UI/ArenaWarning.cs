@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ArenaWarning : MonoBehaviour
 {
+    [SerializeField]
     private float duration = 3f;
     // Start is called before the first frame update
     void Start()
