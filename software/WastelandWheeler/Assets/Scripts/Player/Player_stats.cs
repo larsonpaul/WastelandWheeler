@@ -153,6 +153,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             if (healthCurrent <= 0)
             {
                 player_lives--;
+                Stat_Manager.Instance.RemoveLife();
                 lifeUI.UpdateUI();
                 print("Player Lives Remaining: " + player_lives);
                 audio.PlayOneShot(playerDie, 1.0f);
@@ -345,6 +346,13 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public int GetLives()
     {
         return player_lives;
+    }
+
+    public void AddLife()
+    {
+        player_lives += 1;
+        Stat_Manager.Instance.AddLife();
+        lifeUI.UpdateUI();
     }
 
     // Game over state based on health (may have to make this its own script)

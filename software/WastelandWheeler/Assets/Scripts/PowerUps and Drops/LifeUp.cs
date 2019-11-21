@@ -22,6 +22,8 @@ public class LifeUp : MonoBehaviour
             used = true;
             stats.playPowerup = true;
 
+            stats.AddLife();
+
             Destroy(gameObject);
         }
     }

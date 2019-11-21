@@ -162,8 +162,13 @@ public class Stat_Manager : MonoBehaviour
         return lives;
     }
 
+    public void AddLife()
+    {
+        lives++;
+    }
+
     // Function to set the damage of the player
-    public void DecrementLives()
+    public void RemoveLife()
     {
         lives--;
     }
