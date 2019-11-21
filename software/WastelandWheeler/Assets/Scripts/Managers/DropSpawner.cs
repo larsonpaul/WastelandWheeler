@@ -20,9 +20,13 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
     private int difficulty;
 
     // values used to tune drop rates 
+    [SerializeField]
     private float lifeChance = 1.0f;
-    private float healChance = 5.0f;
-    private float powerupChance = 20.0f;
+    [SerializeField]
+    private float healChance = 7.0f;
+    [SerializeField]
+    private float powerupChance = 15.0f;
+    [SerializeField]
     private float tokenChance = 50.0f;
 
     void Start()
@@ -30,6 +34,7 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
         dda = DynamicDifficultyAdjuster.Instance;
         dda.Subscribe(this);
         difficulty = dda.GetDifficulty();
+        maxTokens = Random.Range(10, 16);
     }
 
     private void DropLife(Transform t)
@@ -92,9 +97,19 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
         tokenChance += 10.0f;
     }
 
-    public void ChangeDifficulty(int amount)
+    public void ChangeDifficulty(int diff)
     {
+        if (diff <= -4)
+        {
+            healChance = 10.0f;
+        }
+        else
+        {
+            healChance = 5.0f;
+        }
 
+        powerupChance = 15.0f - (diff * 2.0f);
+      
 
     }
 }
