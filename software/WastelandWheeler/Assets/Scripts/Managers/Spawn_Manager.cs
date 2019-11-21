@@ -40,11 +40,12 @@ public class Spawn_Manager : MonoBehaviour
     private void Awake()
     {
         enemiesLeftInWave = 0;
-        num_waves = 1;
     }
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (!gameManager.isArena)
+            num_waves = 1;
 
         currWave = 0;
 

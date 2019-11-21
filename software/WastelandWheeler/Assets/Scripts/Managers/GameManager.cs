@@ -39,8 +39,7 @@ public class GameManager : MonoBehaviour
 
     public AudioSource death;
 
-    [SerializeField]
-    private bool isArena = false;
+    public bool isArena = false;
 
     void Start()
     {
@@ -82,9 +81,13 @@ public class GameManager : MonoBehaviour
     {
         // Arena level complete
         Debug.Log("All enemies defeated!");
-        if (!isArena) return;
+        if (!isArena)
+        {
+            return;
+        }
+        GameObject.Find("ArenaCanvas").transform.Find("Victory").gameObject.SetActive(true);
         //yield return new WaitForSeconds(2);
-        GoToUpgrade();
+        //GoToUpgrade();
     }
 
     public void GoToUpgrade()
