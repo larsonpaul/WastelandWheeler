@@ -11,7 +11,7 @@ public class UpgradeMenu : MonoBehaviour
     private const int ROAD = 2;
 
     private const int ARENA = 3;
-    private int arenaWeight = 20;
+    private int arenaWeight = 30;
 
 
     public void StartNextLevel()
@@ -20,11 +20,16 @@ public class UpgradeMenu : MonoBehaviour
         Debug.Log(roll);
         if (roll <= arenaWeight)
         {
+            arenaWeight = 30;
             SceneManager.LoadScene(ARENA);
             PrepareScene();
             return;
         }
-        roll -= arenaWeight;
+        else
+        {
+            arenaWeight += 10;
+        }
+        
 
         // default to road level
         SceneManager.LoadScene(ROAD);

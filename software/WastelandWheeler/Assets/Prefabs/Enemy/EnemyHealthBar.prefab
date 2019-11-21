@@ -331,8 +331,8 @@ MonoBehaviour:
   healthMax: 20
   iframe: 0
   iframeMax: 0
-  speed: 20
-  baseSpeed: 20
+  speed: 25
+  baseSpeed: 25
   firerate: 0
   baseFirerate: 0
   damage: 10
