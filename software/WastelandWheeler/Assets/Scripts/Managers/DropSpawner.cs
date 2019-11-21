@@ -5,18 +5,39 @@ using UnityEngine;
 public class DropSpawner : MonoBehaviour
 {
     [SerializeField]
-    public GameObject[] powerups;
+    private GameObject[] powerups;
     [SerializeField]
-    public GameObject tokenPrefab;
+    private GameObject tokenPrefab;
+    [SerializeField]
+    private GameObject healthUp;
+    [SerializeField]
+    private GameObject lifeUp;
 
-    public void DropPowerup(Transform t)
+    private int tokenCount;
+    public int maxTokens = 10;
+
+    private void DropLife(Transform t)
+    {
+        Quaternion rotation = Quaternion.AngleAxis(90f, Vector3.forward);
+
+        GameObject token = Instantiate(lifeUp, t.position, rotation);
+    }
+
+    private void DropPowerup(Transform t)
     {
         Quaternion rotation = Quaternion.AngleAxis(0f, Vector3.forward);
         int powerupIndex = Random.Range(0, powerups.Length);
         GameObject powerup = Instantiate(powerups[powerupIndex], t.position, rotation);
     }
 
-    public void DropToken(Transform t)
+    private void DropHealth(Transform t)
+    {
+        Quaternion rotation = Quaternion.AngleAxis(90f, Vector3.forward);
+
+        GameObject token = Instantiate(healthUp, t.position, rotation);
+    }
+
+    private void DropToken(Transform t)
     {
         Quaternion rotation = Quaternion.AngleAxis(90f, Vector3.forward);
 
@@ -26,14 +47,24 @@ public class DropSpawner : MonoBehaviour
     public void DropItem(Transform t)
     {
         // When DDA implemented it should reduce the ranges below
-        int randInt = Random.Range(0, 101);
-        //print(randInt);
+        int randInt = Random.Range(1, 100);
+        print(randInt);
 
-        if (randInt <= 10)
+        if (randInt <= 2)
+        {
+            DropLife(t);
+        }
+        else if (randInt <= 12)
+        {
             DropPowerup(t);
-        else if (randInt > 10 && randInt <= 60)
+        }
+        else if (randInt <= 20)
+        {
+            DropHealth(t);
+        }
+        else if (randInt <= 52)
+        {
             DropToken(t);
-        else
-            return;
+        }
     }
 }
