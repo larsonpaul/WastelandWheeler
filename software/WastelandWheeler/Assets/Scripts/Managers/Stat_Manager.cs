@@ -54,11 +54,13 @@ public class Stat_Manager : MonoBehaviour
     public void Reset()
     {
         max_health = basehealth;
+        cur_health = max_health;
         speed = basespeed;
         rate_of_fire = baserof;
         damage = basedamage;
         bullet_size = baseshotsize;
         max_adrenaline = baseadrenaline;
+        cur_adrenaline = max_adrenaline;
         lives = baselives;
         coins = 0;
         persistent_difficulty = 0;
