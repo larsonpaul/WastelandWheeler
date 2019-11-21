@@ -13,7 +13,8 @@ public class EnemyBar : MonoBehaviour
         healthBar = transform.Find("HealthBar");
         scaleBar = healthBar.Find("Bar");
     }
-
+    
+    // scale to the enemy
     public void SetScale(float x)
     {
         if (x < 1) healthBar.gameObject.SetActive(true);

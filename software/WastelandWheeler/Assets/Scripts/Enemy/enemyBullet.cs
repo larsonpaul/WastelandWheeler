@@ -36,9 +36,10 @@ public class enemyBullet : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // collided with something
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+        //check if you should pas through or damage
         if (other.CompareTag("Enemy"))
         {
             Physics2D.IgnoreLayerCollision(9, 11);
