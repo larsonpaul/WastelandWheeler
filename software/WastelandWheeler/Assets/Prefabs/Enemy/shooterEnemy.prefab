@@ -235,8 +235,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2895cbf1cc156a94aa40a833f3287c72, type: 3}
-  m_Color: {r: 0.9339623, g: 0.022027409, b: 0.022027409, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4a7bbb27996c2184f88418684dd7c5c8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -352,6 +352,7 @@ MonoBehaviour:
   damage: 10
   baseDamage: 10
   adrenalineYield: 5
+  bossDeath: 0
 --- !u!114 &1014893128181177945
 MonoBehaviour:
   m_ObjectHideFlags: 0
