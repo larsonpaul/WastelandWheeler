@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class UpgradeMenu : MonoBehaviour
 {
+    private static int levelsCompleted = 0;
+
     private int first_scene = 2;
     private int last_scene = 2; // this will need to be changed as more levels are added
 
@@ -13,9 +15,20 @@ public class UpgradeMenu : MonoBehaviour
     private const int ARENA = 3;
     private int arenaWeight = 30;
 
+    private const int BOSS = 4;
 
     public void StartNextLevel()
     {
+        levelsCompleted++;
+        Debug.Log("Levels completed" + levelsCompleted);
+
+        if (levelsCompleted % 4 == 0)
+        {
+            SceneManager.LoadScene(BOSS);
+            PrepareScene();
+            return;
+        }
+
         int roll = Random.Range(1, 100);
         Debug.Log(roll);
         if (roll <= arenaWeight)
