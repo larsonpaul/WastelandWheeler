@@ -80,6 +80,28 @@ public class GameManager : MonoBehaviour
         dropSpawner.DropItem(enemy.transform);
     }
 
+    public void KillBoss(EnemyStats enemy)
+    {
+        Debug.Log("Kill Boss");
+        Transform randomDropSpawn = enemy.transform;
+        randomDropSpawn.position = new Vector3
+            (randomDropSpawn.transform.position.x +1.0f, randomDropSpawn.transform.position.y + 1.0f, randomDropSpawn.transform.position.z);
+
+        death.Play();
+        dda.IncrementKills();
+        dda.Unsubscribe(enemy);
+        playerStats.AddAdrenaline(enemy.adrenalineYield);
+        spawnManager.EnemyDefeated();
+        //dropSpawner.DropItem(randomDropSpawn);
+        for (int i = 0; i < 10; i++)
+        {
+            randomDropSpawn.position = new Vector3(randomDropSpawn.transform.position.x + Random.Range(-3.0f, 3.0f),
+                randomDropSpawn.transform.position.y + Random.Range(-3.0f, 3.0f), randomDropSpawn.transform.position.z);
+            dropSpawner.DropToken(randomDropSpawn);
+        }
+        
+    }
+
     public void EnemiesCleared()
     {
         // Arena level complete

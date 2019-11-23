@@ -58,7 +58,7 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
         GameObject token = Instantiate(healthUp, t.position, rotation);
     }
 
-    private void DropToken(Transform t)
+    public void DropToken(Transform t)
     {
         Quaternion rotation = Quaternion.AngleAxis(90f, Vector3.forward);
 

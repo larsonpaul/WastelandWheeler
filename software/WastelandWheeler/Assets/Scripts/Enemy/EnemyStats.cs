@@ -150,7 +150,6 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
             if (Time.deltaTime > deathDelay && !bossDeath)
             {
                 Debug.Log("Boss on death");
-                //dda.Unsubscribe(this);
                 healthBar.SetScale(0);
                 Transform bar = transform.Find("HealthBar");
                 bar.gameObject.SetActive(false);
@@ -164,9 +163,8 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
                 ParticleSystem deathDrop = FindObjectOfType<ParticleSystem>();
                 Instantiate(deathDrop, gameObject.transform.position, gameObject.transform.rotation);
+                gameManager.KillBoss(this);
                 bossDeath = false;
-                //spawnManager.EnemyDefeated();
-                //gameManager.KillEnemy(this);
             }
 
         }
