@@ -10,7 +10,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public Transform[] bossPoints;
 
     public float speed; // boss's speed
-    public float baseSpeed;
     public float waitTime = .5f;
 
     private int bossPoint; // current point form the array of bossPoints
@@ -58,6 +57,12 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     int sawAction = 0;
     public ParticleSystem deathDrop;
 
+    //difficulty caps
+    public float maxWaitTime = 1.0f;
+    public float minSpeed = .4f;
+    public float maxSpawnRate = 15.0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,9 +75,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         bossHealth = GetComponent<EnemyStats>().health;
         maxHealth = bossHealth;
         mainCam = FindObjectOfType<Camera>();
-
-        speed = baseSpeed;
-
 
         //calculate player postion
         throwAtTarget = target.transform.position - transform.position;
@@ -255,6 +257,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         else if (Time.time > deathCount)
         {
             Debug.Log("Loading next scene");
+            GameObject.Find("StatManager").GetComponent<Stat_Manager>().EndOfLevel();
             SceneManager.LoadScene(1);
         }
 
@@ -343,14 +346,23 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     public void ChangeDifficulty(int difficulty)
     {
-        speed += (0.1f * difficulty);
-        Debug.Log("speed: " + speed);
+        if (speed > minSpeed)
+        {
+            speed += (0.1f * difficulty);
+            Debug.Log("speed: " + speed);
+        }
 
-        spawnRate -= difficulty;
-        Debug.Log("Spawn rate now: " + spawnRate);
+        if (spawnRate < maxSpawnRate)
+        {
+            spawnRate -= difficulty;
+            Debug.Log("Spawn rate now: " + spawnRate);
+        }
 
-        waitTime -= (difficulty / 10.0f);
-        Debug.Log("Wait time: " + waitTime);
+        if (waitTime < maxWaitTime)
+        {
+            waitTime -= (difficulty / 10.0f);
+            Debug.Log("Wait time: " + waitTime);
+        }
 
     }
 }

@@ -22,8 +22,10 @@ public class UpgradeMenu : MonoBehaviour
         levelsCompleted++;
         Debug.Log("Levels completed" + levelsCompleted);
 
-        if (levelsCompleted % 4 == 0)
+        // Time to battle the boss
+        if (levelsCompleted % 3 == 0)
         {
+            arenaWeight += 10;
             SceneManager.LoadScene(BOSS);
             PrepareScene();
             return;
