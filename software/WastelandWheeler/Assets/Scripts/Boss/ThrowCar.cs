@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowCar : MonoBehaviour
+public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
 {
     public float carDamage = 40.0f;
     public bool collision;
@@ -76,6 +76,19 @@ public class ThrowCar : MonoBehaviour
         {
             collision = true;
         }
+    }
+
+    public void StartDifficulty(int difficulty)
+    {
+        float difficulty_mod = (1 + 0.1f * difficulty);
+
+    }
+
+    public void ChangeDifficulty(int difficulty)
+    {
+        carDamage += (difficulty * 2.0f);
+        Debug.Log("car damge: " + carDamage);
+
     }
 
 }

@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TDBossBattle : MonoBehaviour
+public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 {
 
     public Transform[] spawnPoints;  //points where boss will move to
     public Transform[] bossPoints;
+
     public float speed; // boss's speed
+    public float baseSpeed;
+    public float waitTime = .5f;
+
     private int bossPoint; // current point form the array of bossPoints
 
     private GameObject player;
@@ -67,6 +71,8 @@ public class TDBossBattle : MonoBehaviour
         maxHealth = bossHealth;
         mainCam = FindObjectOfType<Camera>();
 
+        speed = baseSpeed;
+
 
         //calculate player postion
         throwAtTarget = target.transform.position - transform.position;
@@ -93,7 +99,7 @@ public class TDBossBattle : MonoBehaviour
 
         if (bossHealth < maxHealth * .5)
         {
-            spawnRate = 5.0f;
+            spawnRate = spawnRate/2;
             maximumSpawn = 4;
         }
 
@@ -128,7 +134,7 @@ public class TDBossBattle : MonoBehaviour
 
         Debug.Log("Exit blocked");
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(waitTime);
 
         //start the battle
         thrownCars[4].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
@@ -142,7 +148,7 @@ public class TDBossBattle : MonoBehaviour
             // pause and then move to location
             //yield return new WaitForSeconds(5);
             bossPoint = actionChoice();
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(waitTime);
 
             while (transform.position.x != bossPoints[bossPoint].position.x)
             {
@@ -326,6 +332,25 @@ public class TDBossBattle : MonoBehaviour
         Rigidbody2D carRB = thrownCars[carNumber].GetComponent<Rigidbody2D>();
         carRB.velocity = new Vector2(throwAtTarget.x, throwAtTarget.y) * 30.0f;
         thrownCars[carNumber].GetComponent<ThrowCar>().thrown = true;
+
+    }
+
+    public void StartDifficulty(int difficulty)
+    {
+        float difficulty_mod = (1 + 0.1f * difficulty);
+
+    }
+
+    public void ChangeDifficulty(int difficulty)
+    {
+        speed += (0.1f * difficulty);
+        Debug.Log("speed: " + speed);
+
+        spawnRate -= difficulty;
+        Debug.Log("Spawn rate now: " + spawnRate);
+
+        waitTime -= (difficulty / 10.0f);
+        Debug.Log("Wait time: " + waitTime);
 
     }
 }

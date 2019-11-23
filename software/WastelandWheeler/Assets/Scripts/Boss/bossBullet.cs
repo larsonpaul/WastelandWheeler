@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bossBullet : MonoBehaviour
+public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
 {
     public float damage;
 
@@ -60,6 +60,18 @@ public class bossBullet : MonoBehaviour
     void destroyBulletAfter()
     {
         //Destroy(gameObject, bulletLife);
+    }
+
+    public void StartDifficulty(int difficulty)
+    {
+        float difficulty_mod = (1 + 0.1f * difficulty);
+
+    }
+
+    public void ChangeDifficulty(int difficulty)
+    {
+        damage += difficulty;
+        Debug.Log("Bullet Damage: " + damage);
     }
 
 }
