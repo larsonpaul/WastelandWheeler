@@ -58,9 +58,12 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public ParticleSystem deathDrop;
 
     //difficulty caps
-    public float maxWaitTime = 1.0f;
-    public float minSpeed = .4f;
-    public float maxSpawnRate = 15.0f;
+    public float baseWaitTime;
+    public float baseSpeed;
+    public float baseSpawnRate;
+
+    private Stat_Manager stat_manager;
+    private int difficulty;
 
 
     // Start is called before the first frame update
@@ -79,6 +82,14 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         //calculate player postion
         throwAtTarget = target.transform.position - transform.position;
         bossMethod = StartCoroutine(bossOne());
+
+        baseWaitTime = waitTime;
+        baseSpeed = speed;
+        baseSpawnRate = spawnRate;
+
+        stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
+        difficulty = stat_manager.GetDifficulty();
+        StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
 
     }
 
@@ -346,23 +357,27 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     public void ChangeDifficulty(int difficulty)
     {
-        if (speed > minSpeed)
+        if (speed > 0)
         {
-            speed += (0.1f * difficulty);
+            speed = baseSpeed + (0.05f * difficulty);
             Debug.Log("speed: " + speed);
         }
-
-        if (spawnRate < maxSpawnRate)
+        else
         {
-            spawnRate -= difficulty;
-            Debug.Log("Spawn rate now: " + spawnRate);
+            Debug.Log("Speed cant't be less than 0");
         }
 
-        if (waitTime < maxWaitTime)
+            spawnRate = baseSpawnRate - (.5f * difficulty);
+            Debug.Log("Spawn rate now: " + spawnRate);
+
+        if (waitTime > 0)
         {
-            waitTime -= (difficulty / 10.0f);
+            waitTime = baseWaitTime - (difficulty / 10.0f);
             Debug.Log("Wait time: " + waitTime);
         }
-
+        else
+        {
+            Debug.Log("Wait time cant't be less than 0");
+        }
     }
 }
