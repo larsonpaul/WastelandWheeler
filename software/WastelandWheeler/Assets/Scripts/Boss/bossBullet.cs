@@ -23,7 +23,7 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
     // Update is called once per frame
     void Update()
     {
-        destroyBulletAfter();
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -44,7 +44,12 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
         {
             other.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
             Debug.Log("Player hit" + damage + " damage");
-            //Destroy(gameObject);
+
+            Rigidbody2D playerRB = obj.gameObject.GetComponent<Rigidbody2D>();
+
+            Debug.Log("bullet push back");
+            Vector2 knockback = gameObject.GetComponent<Rigidbody2D>().velocity;
+            playerRB.AddForce(knockback * 40);
             return;
         }
 
@@ -56,11 +61,6 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
 
     }
 
-    // Delayed bullet destroy
-    void destroyBulletAfter()
-    {
-        //Destroy(gameObject, bulletLife);
-    }
 
     public void StartDifficulty(int difficulty)
     {

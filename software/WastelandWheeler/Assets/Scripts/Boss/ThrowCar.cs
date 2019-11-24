@@ -72,9 +72,18 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (thrown)
+        string[] tags = { "Player", "Shot", "Power_Up", "Magnet", "bullet" };
+        for (int i = 0; i < tags.Length; i++)
         {
-            collision = true;
+            if (col.gameObject.CompareTag(tags[i]))
+            {
+                Debug.Log("Thrown car collided with " + tag);
+            }
+
+            else if (thrown)
+            {
+                collision = true;
+            }
         }
     }
 

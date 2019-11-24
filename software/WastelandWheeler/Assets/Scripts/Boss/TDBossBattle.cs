@@ -20,7 +20,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     private float spawnRate;
     private float spawnMinion;
-    private int maximumSpawn = 3;
+    private int maximumSpawn = 4;
     public GameObject minions;
     private int minionCount = 0;
     private float deathCount;
@@ -110,10 +110,11 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
             bossDeath();
         }
 
-        if (bossHealth < maxHealth * .5)
+        if (bossHealth < maxHealth * .40f)
         {
-            spawnRate = spawnRate/2;
-            maximumSpawn = 4;
+            spawnRate = spawnRate * .50f;
+            maximumSpawn = 5;
+            Debug.Log("Boss is in danger. Spawn rate " + spawnRate);
         }
 
     }
@@ -137,10 +138,10 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
         yield return new WaitForSeconds(1);
 
-        while (thrownCars[4].transform.position.y != carPoint.transform.position.y)
+        while (thrownCars[8].transform.position.y != carPoint.transform.position.y)
         {
             Debug.Log("Blocking Exit");
-            thrownCars[4].transform.position = Vector2.MoveTowards(thrownCars[4].transform.position,
+            thrownCars[8].transform.position = Vector2.MoveTowards(thrownCars[8].transform.position,
                 new Vector2(carPoint.transform.position.x, carPoint.transform.position.y), 1.0f);
             yield return null;
         }
@@ -150,7 +151,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         yield return new WaitForSeconds(waitTime);
 
         //start the battle
-        thrownCars[4].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        thrownCars[8].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         player.GetComponent<NewPlayerMovementForce>().enabled = true;
         player.GetComponent<PlayerAim>().enabled = true;
         openingScene = false;
@@ -159,7 +160,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         {
 
             // pause and then move to location
-            //yield return new WaitForSeconds(5);
             bossPoint = actionChoice();
             yield return new WaitForSeconds(waitTime);
 
@@ -196,11 +196,11 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 thrownCars[bossPoint - 1].GetComponent<ThrowCar>().thrown == false)
             {
                 //walk behind car
-                while (transform.position.x != bossPoints[bossPoint + 4].position.x)
+                while (transform.position.x != bossPoints[bossPoint + 8].position.x)
                 {
                     Debug.Log("Walking to carPoint: " + bossPoint);
                     transform.position = Vector2.MoveTowards(transform.position,
-                    new Vector2(bossPoints[bossPoint + 4].transform.position.x, bossPoints[bossPoint + 4].transform.position.y), speed);
+                    new Vector2(bossPoints[bossPoint + 8].transform.position.x, bossPoints[bossPoint + 8].transform.position.y), speed);
                     yield return null;
                 }
 
@@ -211,7 +211,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 throwCarAtPlayer(bossPoint - 1);
 
                 // walk back from behind car
-                while (transform.position.x != bossPoints[bossPoint + 4].position.x)
+                while (transform.position.x != bossPoints[bossPoint + 8].position.x)
                 {
                     Debug.Log("Walking back from carpoint to point: " + bossPoint);
                     transform.position = Vector2.MoveTowards(transform.position,
@@ -276,7 +276,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     // fire boss saw blade
     Vector2 fireProjectile()
     {
-        Vector2 trgt = (target.transform.position - transform.position).normalized * 12;
+        Vector2 trgt = (target.transform.position - transform.position).normalized * 18;
         projectile = Instantiate(projPrefab, firePoint.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
         return trgt;
@@ -294,9 +294,9 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     // Random action for boss
     public int actionChoice()
     {
-        int randomChoice = Random.Range(0, 4);
+        int randomChoice = Random.Range(0, 8);
 
-        if (randomChoice >= 0 && randomChoice < 4)
+        if (randomChoice >= 0 && randomChoice < 8)
         {
             Debug.Log("Boss Action: " + randomChoice);
         }
@@ -319,7 +319,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
         Debug.Log("Generating Spawn at spawnPoint: " + randomSpawnPoint);
 
-        if (Time.time > spawnMinion && minionCount < maximumSpawn)
+        if (Time.time > spawnRate && minionCount < maximumSpawn)
         {
             Instantiate(minions, spawnPoints[randomSpawnPoint].transform.position, Quaternion.identity);
             spawnMinion = Time.time + spawnRate;
