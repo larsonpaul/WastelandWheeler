@@ -31,6 +31,8 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     public bool bossDeath;
     private float deathDelay;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,8 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.CreateEnemy(this);
+
+
 
         
     }
@@ -194,6 +198,8 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     public void ChangeDifficulty(int difficulty)
     {
         speed = baseSpeed * (1.0f + (0.05f * difficulty));
+        health = healthMax * (1.0f + (0.05f * difficulty));
+        firerate = baseFirerate * (1.0f + (0.05f * difficulty));
     }
 
 
