@@ -24,6 +24,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public bool playCoin = false;
     public bool playPowerup = false;
 
+    public bool onFire = false;
     public bool isInvincible = false;
     public bool isThorny = false;
     public bool tripleShot = false;
@@ -47,6 +48,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public AudioClip hit;
     public AudioClip playerDie;
     private AudioSource audio;
+
+    public SpawnFire fireTrail;
 
     [SerializeField]
     private GameManager game;
@@ -110,6 +113,10 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         {
             audio.PlayOneShot(coin, 1.5f);
             playCoin = false;
+        }
+        if(onFire)
+        {
+            return;
         }
     }
 
@@ -382,4 +389,5 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         //}
         hurt_scale = 1.0f + (0.1f * difficulty);
     }
+
 }
