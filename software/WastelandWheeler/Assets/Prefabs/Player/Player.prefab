@@ -284,11 +284,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 100
   healthCurrent: 100
-  baseSpeed: 80
-  move_speed: 80
+  baseSpeed: 75
+  move_speed: 75
   baseROF: 0.2
   rate_of_fire: 0.2
-  bullet_size: 2
+  bullet_size: 1
   playCoin: 0
   playPowerup: 0
   isInvincible: 0
@@ -298,8 +298,8 @@ MonoBehaviour:
   adrenalineCurrent: 100
   iFrameMax: 20
   iFrameCur: 0
-  baseDamage: 5
-  damage: 5
+  baseDamage: 7
+  damage: 7
   totalCoins: 0
   armourMax: 100
   armourCurrent: 0
