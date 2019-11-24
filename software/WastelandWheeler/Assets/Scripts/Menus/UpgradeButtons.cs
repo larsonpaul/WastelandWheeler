@@ -40,8 +40,12 @@ public class UpgradeButtons : MonoBehaviour
         }
         else if (currCoins >= 1)
         {
-            stats.SetMaxHealth(health);
-            MinusOneToken(1);
+            if (stats.GetMaxHealth() >= 200f) return;
+            else
+            {
+                stats.SetMaxHealth(health);
+                MinusOneToken(1);
+            }
         }
     }
 
@@ -54,23 +58,30 @@ public class UpgradeButtons : MonoBehaviour
         }
         else if (currCoins >= 1)
         {
-            stats.SetROF(ROF);
-            MinusOneToken(1);
+            if (stats.GetROF() <= .1f) return;
+            else
+            {
+                stats.SetROF(ROF);
+                MinusOneToken(1);
+            }
         }
     }
 
     public void AddDamageVal()
     {
-        if (currCoins >= 1 && stats.GetDamage() >= 15f)
+        if (currCoins >= 2 && stats.GetDamage() >= 15f)
         {
             stats.SetDamage(damage);
             MinusOneToken(2);
-            return;
         }
         else if (currCoins >= 1 )
         {
-            stats.SetDamage(damage);
-            MinusOneToken(1);
+            if (stats.GetDamage() >= 15f) return;
+            else
+            {
+                stats.SetDamage(damage);
+                MinusOneToken(1);
+            }
         }
     }
 
@@ -83,8 +94,12 @@ public class UpgradeButtons : MonoBehaviour
         }
         else if (currCoins >= 1)
         {
-            stats.SetBulletSize(bulletSize);
-            MinusOneToken(1);
+            if (stats.GetBulletSize() >= 1.5f) return;
+            else
+            {
+                stats.SetBulletSize(bulletSize);
+                MinusOneToken(1);
+            }
         }
     }
 
