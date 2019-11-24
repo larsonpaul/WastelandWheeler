@@ -25,7 +25,7 @@ public class Stat_Manager : MonoBehaviour
     }
 
     float basehealth = 100f;
-    float basespeed = 60f;
+    float basespeed = 75f;
     float baserof = .2f;
     float basedamage = 7f;
     float baseshotsize = 1f;
@@ -36,7 +36,7 @@ public class Stat_Manager : MonoBehaviour
     // base stats for the game that need to persist between levels
     private float max_health = 100f;
     private float cur_health = 100f;
-    private float speed = 60f;
+    private float speed = 75f;
     private float rate_of_fire = .2f;
     private float damage = 7f;
     private float bullet_size = 1f;

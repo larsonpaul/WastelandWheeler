@@ -13,8 +13,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public float healthMax = 100f;
     public float healthCurrent = 100f;
 
-    public float baseSpeed = 50f;
-    public float move_speed = 50f;
+    public float baseSpeed = 75f;
+    public float move_speed = 75f;
 
     public float baseROF = 0.2f;
     public float rate_of_fire = 0.2f;
