@@ -55,7 +55,6 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
 
         else
         {
-            //Destroy(gameObject);
             return;
         }
 

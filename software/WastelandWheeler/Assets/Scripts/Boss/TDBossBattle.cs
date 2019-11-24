@@ -246,9 +246,9 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
             //bossStat.RemoveHealth(bossStat.health);
             Object[] leftOverBullets = FindObjectsOfType(typeof(bossBullet));
             GameObject[] leftOverSpawn = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (Object s in leftOverSpawn)
+            foreach (GameObject s in leftOverSpawn)
             {
-                Destroy(s);
+                s.GetComponent<EnemyStats>().OnDeath();
             }
 
             foreach (Object b in leftOverBullets)
