@@ -30,7 +30,7 @@ public class Stat_Manager : MonoBehaviour
     float basedamage = 7f;
     float baseshotsize = 1f;
     float baseadrenaline = 100f;
-    int baselives = 5;
+    int baselives = 3;
     int basedifficulty = 0;
 
     // base stats for the game that need to persist between levels
@@ -43,7 +43,7 @@ public class Stat_Manager : MonoBehaviour
     private float max_adrenaline = 100f;
     private float cur_adrenaline = 100f;
     private int coins = 0;
-    private int lives = 5;
+    private int lives = 3;
 
     private int persistent_difficulty = 0;
 
