@@ -49,9 +49,14 @@ MonoBehaviour:
   - {fileID: 3443657641915549030, guid: 05e92225d2d891e4e8b6f46fb36c9239, type: 3}
   - {fileID: 6298780845537001080, guid: 2d11391cbfd4c2b4384fee194107afc7, type: 3}
   - {fileID: 164698073786857767, guid: e547f7f0fbae4244da748ee345241b96, type: 3}
+  - {fileID: 870944191981093382, guid: 35ffcd6840dc4894aaa87b4fb6040799, type: 3}
   tokenPrefab: {fileID: 8791796814612733071, guid: b534cda65083d1a419a6185931809d76,
     type: 3}
   healthUp: {fileID: 6073860795534498260, guid: 9702025f69b80914aabebe9fa18dc5d6,
     type: 3}
   lifeUp: {fileID: 161477246053396025, guid: de95915f50c761a43b6c8ae8965a9094, type: 3}
   maxTokens: 10
+  lifeChance: 1
+  healChance: 7
+  powerupChance: 15
+  tokenChance: 50
