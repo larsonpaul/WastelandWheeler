@@ -21,19 +21,6 @@ public class UpgradeButtons : MonoBehaviour
     {
         currCoins = stats.GetCoins();
     }
-    public void AddHealthVal()
-    {
-        if (currCoins >= 1)
-        {
-            if (stats.GetMaxHealth() > 200f)
-            {
-                stats.SetMaxHealth(health);
-                MinusOneToken(2);
-            }
-            stats.SetMaxHealth(health);
-            MinusOneToken(1);
-        }
-    }
 
     //public void AddSpeedVal()
     //{
@@ -44,15 +31,29 @@ public class UpgradeButtons : MonoBehaviour
     //    }
     //}
 
+    public void AddHealthVal()
+    {
+        if (currCoins >= 2 && stats.GetMaxHealth() >= 200f)
+        {
+            stats.SetMaxHealth(health);
+            MinusOneToken(2);
+        }
+        else if (currCoins >= 1)
+        {
+            stats.SetMaxHealth(health);
+            MinusOneToken(1);
+        }
+    }
+
     public void AddROFVal()
     {
-        if (currCoins >= 1)
+        if (currCoins >= 2 && stats.GetROF() <= .1f)
         {
-            if (stats.GetROF() < .1f)
-            {
-                stats.SetROF(ROF);
-                MinusOneToken(2);
-            }
+            stats.SetROF(ROF);
+            MinusOneToken(2);
+        }
+        else if (currCoins >= 1)
+        {
             stats.SetROF(ROF);
             MinusOneToken(1);
         }
@@ -60,13 +61,14 @@ public class UpgradeButtons : MonoBehaviour
 
     public void AddDamageVal()
     {
-        if (currCoins >= 1)
+        if (currCoins >= 1 && stats.GetDamage() >= 15f)
         {
-            if (stats.GetDamage() > 15f)
-            {
-                stats.SetDamage(damage);
-                MinusOneToken(2);
-            }
+            stats.SetDamage(damage);
+            MinusOneToken(2);
+            return;
+        }
+        else if (currCoins >= 1 )
+        {
             stats.SetDamage(damage);
             MinusOneToken(1);
         }
@@ -74,13 +76,13 @@ public class UpgradeButtons : MonoBehaviour
 
     public void AddBulletSizeVal()
     {
-        if (currCoins >= 1)
+        if (currCoins >= 2 && stats.GetBulletSize() >= 1.5f)
         {
-            if (stats.GetBulletSize() > 1.5f)
-            {
-                stats.SetBulletSize(bulletSize);
-                MinusOneToken(2);
-            }
+            stats.SetBulletSize(bulletSize);
+            MinusOneToken(2);
+        }
+        else if (currCoins >= 1)
+        {
             stats.SetBulletSize(bulletSize);
             MinusOneToken(1);
         }
