@@ -11,8 +11,8 @@ public class UpdateValues : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI oldHealth;
-    [SerializeField]
-    TextMeshProUGUI oldSpeed;
+    //[SerializeField]
+    //TextMeshProUGUI oldSpeed;
     [SerializeField]
     TextMeshProUGUI oldROF;
     [SerializeField]
@@ -21,8 +21,8 @@ public class UpdateValues : MonoBehaviour
     TextMeshProUGUI oldBullets;
     [SerializeField]
     TextMeshProUGUI newHealth;
-    [SerializeField]
-    TextMeshProUGUI newSpeed;
+    //[SerializeField]
+    //TextMeshProUGUI newSpeed;
     [SerializeField]
     TextMeshProUGUI newROF;
     [SerializeField]
@@ -39,7 +39,7 @@ public class UpdateValues : MonoBehaviour
         
         oldHealth.text = stats.GetMaxHealth().ToString();
 
-        oldSpeed.text = stats.GetSpeed().ToString();
+        //oldSpeed.text = stats.GetSpeed().ToString();
 
         oldROF.text = betterROF.ToString("F2");
 
@@ -56,7 +56,7 @@ public class UpdateValues : MonoBehaviour
 
         newHealth.text = stats.GetMaxHealth().ToString();
 
-        newSpeed.text = stats.GetSpeed().ToString();
+        //newSpeed.text = stats.GetSpeed().ToString();
 
         newROF.text = betterROF.ToString("F2");
 

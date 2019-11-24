@@ -667,7 +667,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  speed: 2
   ROF: 0.2
   damage: 1
   bulletSize: 1.1
@@ -780,12 +779,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oldHealth: {fileID: 731801638}
-  oldSpeed: {fileID: 0}
   oldROF: {fileID: 690277580}
   oldDamage: {fileID: 264602656}
   oldBullets: {fileID: 1929912526}
   newHealth: {fileID: 4177829770129975470}
-  newSpeed: {fileID: 0}
   newROF: {fileID: 804642192}
   newDamage: {fileID: 770677127}
   newBullets: {fileID: 1173534831}
@@ -1216,7 +1213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  speed: 2
   ROF: 0.98
   damage: 1
   bulletSize: 1.1
@@ -1976,7 +1972,7 @@ PrefabInstance:
     - target: {fileID: 4177829769906406123, guid: bda9bd6cf8a710d4dac66f58934b5789,
         type: 3}
       propertyPath: m_text
-      value: '+5%
+      value: '+2%
 
 '
       objectReference: {fileID: 0}
@@ -2102,10 +2098,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  speed: 2
   ROF: 0.2
   damage: 2
-  bulletSize: 1.05
+  bulletSize: 1.02
 --- !u!114 &1173534831 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2038156142708067118, guid: bda9bd6cf8a710d4dac66f58934b5789,
@@ -3066,7 +3061,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  speed: 2
   ROF: 0.2
   damage: 2
   bulletSize: 1.1

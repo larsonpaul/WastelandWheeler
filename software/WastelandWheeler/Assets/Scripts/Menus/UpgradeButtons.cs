@@ -6,10 +6,10 @@ public class UpgradeButtons : MonoBehaviour
 {
     private Stat_Manager stats;
     public float health = 10f;
-    public float speed = 2f;
+    //public float speed = 2f;
     public float ROF = .98f;
     public float damage = 1f;
-    public float bulletSize = 1.05f;
+    public float bulletSize = 1.02f;
     private float currCoins;
 
     void Start()
@@ -30,14 +30,14 @@ public class UpgradeButtons : MonoBehaviour
         }
     }
 
-    public void AddSpeedVal()
-    {
-        if (currCoins >= 1)
-        {
-            stats.SetSpeed(speed);
-            MinusOneToken();
-        }
-    }
+    //public void AddSpeedVal()
+    //{
+    //    if (currCoins >= 1)
+    //    {
+    //        stats.SetSpeed(speed);
+    //        MinusOneToken();
+    //    }
+    //}
 
     public void AddROFVal()
     {
