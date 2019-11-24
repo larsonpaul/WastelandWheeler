@@ -12,12 +12,26 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
     Vector2 knockback;
     float rotationTime;
     int rotationMultiplier = 1;
+    bool dazed;
+    private float dazedTime = 4.0f;
+    Player_stats ps;
+
+    private void Start()
+    {
+
+        ps = FindObjectOfType<Player_stats>();
+    }
 
     private void Update()
     {
         if (thrown && Time.time > rotationTime && !collision)
         {
             rotateCar();
+        }
+
+        if (dazed)
+        {
+            slowDown();
         }
     }
 
@@ -57,9 +71,11 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
 
         else if (col.gameObject.CompareTag("Player") && !collision && thrown)
         {
-
-            col.gameObject.GetComponent<Player_stats>().RemoveHealth(carDamage);
+            ps.RemoveHealth(carDamage);
+            dazed = true;
+            dazedTime += Time.time;
             collision = true;
+
             Debug.Log("Thrown car hit player");
         }
         else
@@ -72,7 +88,7 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        string[] tags = { "Player", "Shot", "Power_Up", "Magnet", "bullet" };
+        string[] tags = { "Shot", "Power_Up", "Magnet", "bullet" };
         for (int i = 0; i < tags.Length; i++)
         {
             if (col.gameObject.CompareTag(tags[i]))
@@ -98,6 +114,22 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
         carDamage += (difficulty * 2.0f);
         Debug.Log("car damge: " + carDamage);
 
+    }
+
+    public void slowDown()
+    {
+        if(Time.time < dazedTime)
+        {
+            Debug.Log("Dazed");
+            ps.move_speed = 40;
+        }
+        else
+        {
+            Debug.Log(" Not Dazed anymore");
+            ps.move_speed = 80;
+            dazed = false;
+        }
+        
     }
 
 }

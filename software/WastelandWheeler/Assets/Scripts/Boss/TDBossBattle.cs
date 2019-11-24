@@ -319,7 +319,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
         Debug.Log("Generating Spawn at spawnPoint: " + randomSpawnPoint);
 
-        if (Time.time > spawnRate && minionCount < maximumSpawn)
+        if (Time.time > spawnMinion && minionCount < maximumSpawn)
         {
             Instantiate(minions, spawnPoints[randomSpawnPoint].transform.position, Quaternion.identity);
             spawnMinion = Time.time + spawnRate;

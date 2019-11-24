@@ -52,8 +52,7 @@ public class BossDamage : MonoBehaviour
             if (gameObject.tag == "boss")
             {
                 Debug.Log("Bounce off boss");
-
-                knockback = playerRB.velocity;
+                knockback = gameObject.GetComponent<Rigidbody2D>().velocity;
                 playerRB.AddForce(knockback * 20);
 
             }
