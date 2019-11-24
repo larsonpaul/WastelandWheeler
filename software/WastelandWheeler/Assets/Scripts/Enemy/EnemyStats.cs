@@ -149,6 +149,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
             if (Time.deltaTime > deathDelay && !bossDeath)
             {
+                // don't kill the boss immediatly
                 Debug.Log("Boss on death");
                 healthBar.SetScale(0);
                 Transform bar = transform.Find("HealthBar");
@@ -158,9 +159,11 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
             }
             else if (Time.time > deathDelay)
             {
-                Debug.Log("death drop");
-                gameObject.GetComponent<Renderer>().enabled = false;
 
+                Debug.Log("death drop");
+
+                // kill the boss after delay
+                gameObject.GetComponent<Renderer>().enabled = false;
                 ParticleSystem deathDrop = FindObjectOfType<ParticleSystem>();
                 Instantiate(deathDrop, gameObject.transform.position, gameObject.transform.rotation);
                 gameManager.KillBoss(this);

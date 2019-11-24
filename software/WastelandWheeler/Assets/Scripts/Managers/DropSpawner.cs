@@ -58,7 +58,7 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
         GameObject token = Instantiate(healthUp, t.position, rotation);
     }
 
-    public void DropToken(Transform t)
+    private void DropToken(Transform t)
     {
         Quaternion rotation = Quaternion.AngleAxis(90f, Vector3.forward);
 
@@ -97,7 +97,23 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
         tokenChance += 10.0f;
     }
 
-    public void ChangeDifficulty(int diff)
+    public void BossDropItem(Transform t)
+    {
+        int mostlyTokens = 90;
+
+        float chanceValue = (float)Random.Range(1, 100);
+        if (chanceValue > mostlyTokens)
+        {
+            DropLife(t);
+        }
+        else
+        {
+            DropToken(t);
+        }
+    }
+
+
+        public void ChangeDifficulty(int diff)
     {
         if (diff <= -4)
         {

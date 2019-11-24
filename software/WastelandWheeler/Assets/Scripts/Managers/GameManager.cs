@@ -92,12 +92,13 @@ public class GameManager : MonoBehaviour
         dda.Unsubscribe(enemy);
         playerStats.AddAdrenaline(enemy.adrenalineYield);
         spawnManager.EnemyDefeated();
-        //dropSpawner.DropItem(randomDropSpawn);
-        for (int i = 0; i < 10; i++)
+
+        // a burst of goodies after the boss death
+        for (int i = 0; i < 20; i++)
         {
             randomDropSpawn.position = new Vector3(randomDropSpawn.transform.position.x + Random.Range(-3.0f, 3.0f),
                 randomDropSpawn.transform.position.y + Random.Range(-3.0f, 3.0f), randomDropSpawn.transform.position.z);
-            dropSpawner.DropToken(randomDropSpawn);
+            dropSpawner.BossDropItem(randomDropSpawn);
         }
         
     }
