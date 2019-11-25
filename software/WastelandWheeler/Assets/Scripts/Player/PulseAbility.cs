@@ -8,8 +8,8 @@ public class PulseAbility : MonoBehaviour
 
     private float cost = 50.0f;
 
-    private bool onCooldown = false;
-    private float cooldownLength = 2.0f;
+    private float curCooldown = 0.0f;
+    private float maxCooldown = 2.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,24 +18,32 @@ public class PulseAbility : MonoBehaviour
         collider = transform.Find("Pulse").gameObject.GetComponent<PulseCollider>();
     }
 
+    void FixedUpdate()
+    {
+        if (curCooldown > 0)
+        {
+            curCooldown = Mathf.Max(0, curCooldown - Time.deltaTime);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && stats.GetAdrenaline() >= cost && !onCooldown)
+        if (curCooldown <= 0 && Input.GetKeyDown(KeyCode.Space) && stats.GetAdrenaline() >= cost)
         {
-            onCooldown = true;
+            curCooldown = maxCooldown;
 
             // functionality
             collider.Activate();
 
             // cost and cooldown
             stats.RemoveAdrenaline(cost);
-            Invoke("Cooldown", cooldownLength);
         }
     }
 
-    private void Cooldown()
+    public void Respawn()
     {
-        onCooldown = false;
+        curCooldown = maxCooldown;
+        collider.Activate();
     }
 }

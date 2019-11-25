@@ -176,11 +176,14 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
     }
 
-    public void Respawn()
+    private void Respawn()
     {
         // reset player transform to starting position of level 
         this.transform.position = new Vector3(0, 0, 0);
         healthCurrent = healthMax;
+        iFrameCur = 2f; // 2 seconds of invuln
+        gameObject.GetComponent<PulseAbility>().Respawn();
+
         game.SetHealth(healthCurrent / healthMax);
     }
 
