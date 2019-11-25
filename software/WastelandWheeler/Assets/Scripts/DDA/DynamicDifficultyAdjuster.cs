@@ -13,7 +13,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 
     private GameObject player;
     private Player_stats player_stats;
-    private BossFightOne2D boss_stats;
+    private TDBossBattle boss_stats;
     private GameObject boss;
 
     // used in adjusting difficulty
@@ -62,7 +62,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         boss = GameObject.Find("Boss");
         if (boss != null)
         {
-            boss_stats= boss.GetComponent<BossFightOne2D>();
+            boss_stats= boss.GetComponent<TDBossBattle>();
             maxBossHealth = boss_stats.bossHealth;
             lastBossHealth = maxBossHealth;
         }
