@@ -4,30 +4,39 @@ using UnityEngine;
 
 public class Magnetize : MonoBehaviour
 {
-    Rigidbody2D rBody;
+    Rigidbody2D rbody;
     GameObject player;
     Vector2 playerDirection;
-    float timeStamp;
     bool flyToPlayer;
+
+    [SerializeField]
+    private float velocity = 15f;
+
+    [SerializeField]
+    private int maxFrames = 60;
+    private int curFrames = 30;
 
     private void Start()
     {
-        rBody = GetComponent<Rigidbody2D>();
+        rbody = GetComponent<Rigidbody2D>();
+        curFrames = maxFrames;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (flyToPlayer)
+        if (flyToPlayer && curFrames > 0)
         {
-            playerDirection = -(transform.position - player.transform.position).normalized;
-            rBody.velocity = new Vector2(playerDirection.x, playerDirection.y) * 10f * (Time.time / timeStamp);
+            Vector2 deltaMovement = (player.transform.position - transform.position) / (curFrames--);
+            transform.Translate(deltaMovement);
+
+            //playerDirection = -(transform.position - player.transform.position).normalized;
+            //rbody.velocity = new Vector2(playerDirection.x, playerDirection.y) * 15f * (Time.time / timeStamp);
         }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name.Equals("DropMagnet"))
         {
-            timeStamp = Time.time;
             player = GameObject.Find("Player");
             flyToPlayer = true;
         }
