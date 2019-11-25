@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCreep : MonoBehaviour
 {
-    public float damage = 20f;
+    public float damage = 10f;
     private int lifetime = 100;
 
     void Update() // called each frame

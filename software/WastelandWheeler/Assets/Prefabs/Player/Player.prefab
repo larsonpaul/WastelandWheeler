@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3d2ad79793b1344b29491b411ca87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotStartTime: 0.05
+  shotStartTime: 0.07
   fire: {fileID: 5072501274168233345, guid: 29b39069b26bcf0409057b0b731f9304, type: 3}
   stats: {fileID: 0}
 --- !u!1 &8827529718477635191
