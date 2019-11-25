@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 8827529717738458481}
   - component: {fileID: 440526420664433469}
   - component: {fileID: 143601895118164723}
+  - component: {fileID: 8173653109021697601}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -291,6 +292,7 @@ MonoBehaviour:
   bullet_size: 1
   playCoin: 0
   playPowerup: 0
+  onFire: 0
   isInvincible: 0
   isThorny: 0
   tripleShot: 0
@@ -307,6 +309,7 @@ MonoBehaviour:
   coin: {fileID: 8300000, guid: 6eea1680be6c1144c97ec5a24f46d8a5, type: 3}
   hit: {fileID: 8300000, guid: c459e4783e72c0c4bb4adce66939121d, type: 3}
   playerDie: {fileID: 8300000, guid: fa838986fe0fec846949ca95d1e8b4af, type: 3}
+  fireTrail: {fileID: 0}
   game: {fileID: 0}
   player_lives: 0
 --- !u!114 &8827529717738458480
@@ -455,6 +458,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8173653109021697601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8827529717738458470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3d2ad79793b1344b29491b411ca87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotStartTime: 0.05
+  fire: {fileID: 5072501274168233345, guid: 29b39069b26bcf0409057b0b731f9304, type: 3}
+  stats: {fileID: 0}
 --- !u!1 &8827529718477635191
 GameObject:
   m_ObjectHideFlags: 0

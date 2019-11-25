@@ -41,7 +41,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     private bool actionTaken;
     private float actionTime = 10.0f;
 
-    [SerializeField] private float bossHealth;
+    [SerializeField] public float bossHealth;
     [SerializeField] private float maxHealth;
     public Transform firePoint; // firePoint for projectiles
 
