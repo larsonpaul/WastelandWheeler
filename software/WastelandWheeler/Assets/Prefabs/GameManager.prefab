@@ -49,6 +49,8 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   adrenalineBar: {fileID: 0}
   death: {fileID: 0}
+  isArena: 0
+  isBoss: 0
 --- !u!114 &7091703950487922661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,12 +58,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7091703950487922666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 281a5d947ad18524389c387e30573baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1014893128181177944, guid: 2aca6360d824dcc4ab77f6e6d7b7d791, type: 3}
+  prefab: {fileID: 1014893128181177944, guid: 7da05357e48fa5d4fb86d1ff10a339d5, type: 3}
 --- !u!82 &5473119710134060419
 AudioSource:
   m_ObjectHideFlags: 0
