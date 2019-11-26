@@ -1,0 +1,50 @@
+Brennan Crooks - Play Test Report
+
+1.
+  Not played games in several years, likes Nintendo games.
+  Plays lots of mobile games e.g. Township
+  also enjoys Mario games
+2.
+  Likes visually appealing and easy to play games.
+  Likes unlockables and progression.
+3.
+  Halo 4 (2012)
+
+After test questions
+  1. The enemies spawning behind, feels rushed and cornered.
+  2. Beating the boss.
+  3. Get rid of bugs, add some way to now how well they are doing like score or
+      levels passed, remove lag between hitting exit and going to upgrade
+      screen.
+  4. No, boss health should not regenerate, enemies shouldn't spawn behind.
+  5. Yes, did not now goal at first, whether it was to get to end or kill bad
+    guys slow time did not seem like it was even working, did not understand
+    tokens at first. Did not understand how the levels were chosen. Did not
+    know what most power ups did.
+  6. Basic straight-forward, dodge enemies and shoot, get upgrades and get
+      better at dodging and shooting.
+  7. More weapons like a sword, more exciting level ending.
+  8. Yes, very accurate.
+  9. Too fast for personal preferences. otherwise pretty good.
+  10. Good. Kind of wanted a way to aim and shoot using only keyboard.
+  11. Yes.
+  12. Played for about half an hour and did not get boring, likely would have
+      become boring had they kept playing. Would probably keep interest if had
+      some measure of accomplishment to provide motivation.
+
+Rating questions
+  1. 3
+  2. 4
+  3. 5
+  4. 3
+  5. 5
+
+
+Examiner Observations:
+ The play tester is likely outside of our target demographic, they are
+ interested in more casual genres games than ours. They do not play games
+ very often so their gaming literacy is likely on the lower end. During
+ play testing they initially did not realize they could hold down the mouse
+ button to shoot. They did not realize enemies were dropping tokens when killed.
+ They often ended the level without killing many enemies or back tracking to
+ grab drops. They often lost track of where the boss was in the arena.
