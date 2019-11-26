@@ -12,6 +12,7 @@ TagManager:
   - bullet
   - button
   - Magnet
+  - boss
   layers:
   - Default
   - TransparentFX
