@@ -75,3 +75,8 @@ The play tester is likely within our demographic. He plays a lot of games with a
 wide variety and has a high game literacy. He did not understand the purpose of 
 tokens initially and wasn't trying to pick them up until he discovered that he 
 could use them to level up. 
+
+Play tester comments while playing were that he would like the game to be 
+harder or have an option making it harder. The boss fight was too quick. He 
+wanted some context provided by the game to tell you why you are doing what 
+you are doing. 
