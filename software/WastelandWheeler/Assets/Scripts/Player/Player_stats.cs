@@ -84,9 +84,12 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         damage = baseDamage;
         totalCoins = stats.GetCoins();
         player_lives = stats.GetLives();
+
+        // update canvas objects 
         lifeUI = GameObject.Find("LifeText").GetComponent<LifeUI>();
+        lifeUI.UpdateUI();
         game.SetAdrenaline(stats.GetCurrentAdrenaline() / stats.GetMaxAdrenaline());
-        game.SetHealth(stats.GetCurrentHealth() / stats.GetMaxHealth());
+        game.SetHealth(healthCurrent / healthMax);
 
         audio = gameObject.GetComponent<AudioSource>();
 

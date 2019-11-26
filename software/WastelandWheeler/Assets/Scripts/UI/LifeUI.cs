@@ -13,10 +13,9 @@ public class LifeUI : MonoBehaviour
 
     private Player_stats player;
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player_stats>();
-        lives = player.GetLives();
     }
 
     public void UpdateUI()
