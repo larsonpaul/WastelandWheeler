@@ -10,10 +10,7 @@ public class Magnetize : MonoBehaviour
     bool flyToPlayer;
 
     [SerializeField]
-    private float velocity = 15f;
-
-    [SerializeField]
-    private int maxFrames = 60;
+    private int maxFrames = 30;
     private int curFrames = 30;
 
     private void Start()
