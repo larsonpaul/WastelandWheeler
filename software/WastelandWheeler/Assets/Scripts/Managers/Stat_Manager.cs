@@ -44,6 +44,9 @@ public class Stat_Manager : MonoBehaviour
     private float cur_adrenaline = 100f;
     private int coins = 0;
     private int lives = 3;
+    private float score = 1000;
+
+    private Score scoreRecord;
 
     private int persistent_difficulty = 0;
 
@@ -64,6 +67,7 @@ public class Stat_Manager : MonoBehaviour
         lives = baselives;
         coins = 0;
         persistent_difficulty = 0;
+        score = 1000;
     }
 
     // Start is called before the first frame update
@@ -210,6 +214,11 @@ public class Stat_Manager : MonoBehaviour
         persistent_difficulty = value;
     }
 
+    public float GetScore()
+    {
+        return score;
+    }
+
     // method called when the level so that the Stat_Manager can read and save values from the current level
     public void EndOfLevel()
     {
@@ -226,5 +235,8 @@ public class Stat_Manager : MonoBehaviour
         {
             persistent_difficulty++;
         } // persistent difficulty doesn't change if the DDA reached the easiest scale
+
+        scoreRecord = GameObject.Find("Score").GetComponent<Score>();
+        score = scoreRecord.GetScore();
     }
 }
