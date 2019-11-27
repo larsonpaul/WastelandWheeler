@@ -17,7 +17,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     public float baseFirerate = 0;
 
     public float damage = 10f;
-    public float baseDamage = 10;
+    public float baseDamage = 10f;
 
     public float adrenalineYield = 5.0f;
 
@@ -27,6 +27,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
     private Stat_Manager stat_manager;
     private int difficulty;
+    private int dynamicDifficulty;
 
     public bool bossDeath;
     private float deathDelay;
@@ -38,7 +39,8 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     {
         stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
         difficulty = stat_manager.GetDifficulty();
-        StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
+        dynamicDifficulty = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
+        StartDifficulty(difficulty, dynamicDifficulty); // will make enemies harder as player progresses through the game
 
         health = healthMax;
         speed = baseSpeed;
@@ -49,10 +51,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.CreateEnemy(this);
-
-
-
-        
+   
     }
 
     // Update is called once per frame
@@ -189,16 +188,19 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
     }
 
     // method that will make the enemies harder based on the persistent difficulty increase through each level
-    public void StartDifficulty (int difficulty) {
+    public void StartDifficulty (int difficulty, int dynamicDifficulty) {
         float difficulty_mod = (1 + 0.1f * difficulty);
         healthMax = healthMax * difficulty_mod;
         baseDamage = baseDamage * difficulty_mod;
+        
+        health = healthMax * (1.0f + (0.05f * dynamicDifficulty));
+        
     }
 
     public void ChangeDifficulty(int difficulty)
     {
+        // moved changes to health to StartDifficulty 
         speed = baseSpeed * (1.0f + (0.05f * difficulty));
-        health = healthMax * (1.0f + (0.05f * difficulty));
         firerate = baseFirerate * (1.0f + (0.05f * difficulty));
     }
 
