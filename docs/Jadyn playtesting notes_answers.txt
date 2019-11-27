@@ -1,0 +1,102 @@
+﻿Appendix I: Test Script
+Thank you for taking the time to playtest Wasteland Wheeler. Please keep in mind that we are testing the game and not you. Be honest as that will be the most helpful.
+
+
+As you play through the game, please be as open as you can about your thought process. If you can speak out loud about what you're thinking, it will really help us to understand how people are experiencing the game.
+
+
+Also, please feel free to ask any questions at any time. If you've got a question, there's a good chance that a lot of other players will as well.
+
+
+Could you tell us about your gaming habits 
+*  Tell me about some of the games you play 
+   * Fire emblem
+   * Pokemon
+   * Mostly strategy, not so much action
+
+
+*  What do you like most about these games? 
+   * Likes solo play, likes the slower pace of strategy games
+
+
+*  What was the last game you purchased?
+   * Pokemon shield
+
+
+Discussion for after the testing
+
+
+* What was the thing that you enjoyed the least?
+   * Couldn't tell when she was taking damage from bullets, always surprised when she died
+   * Liked the art, thought some of the music tracks weren't as good (too western feeling?)
+   * Kept losing track of reticle
+* What was your favorite moment or aspect?
+   * The fire powerup, how powerful some of the other powerups were, kinda underwhelmed by fire rate powerup
+   * The arena
+* If you could add or take away any part of the game what would it be?
+   * A second boss or a tougher normal boss
+   * Would like a way to avoid guys popping out from the top of the screen on normal levels
+   * Maybe a visual queue for the push back things recharge?
+   * Level counter
+* How would you feel about having a dash in the game?
+   * not really, she thinks it's too small of a space for a dash to be helpful
+   * It would help a little in the arena
+* Did you feel like the game was fair?
+   * For the most part, yeah, some of the random bits felt a bit unfair but not that much
+* Did you find any part of the game confusing or didn't understand?
+   * push back and time slow, big cracks in the road, she wants to know the story
+* How would you describe this game to your friends and family
+   * Gotta step on the gas
+   * Like running in the nineties but on a motorcycle 
+* Was there anything you want to do but couldn't?
+   * Thought it would be fun to have a circular track arena as a level
+* Do you think that the theme of the game is accurately portrayed?
+   * She was expecting cowboys from the music
+* How did you feel about the pace of the game?
+   * Arena was good, boss went by too quick
+* How do you feel about the controls of the game?
+   * liked that they were a bit loose, only trouble went enemies zoomed outta nowhere
+* Would you like controller support?
+   * No
+* Did the game become boring or repetitive? If so how long did that take?
+   * Did Not become bored for the 45 mins she played for
+
+
+Please rate the following on a scale from 1 (worst) to 5 (best): 
+1. The fairness of the game.
+   1. 4, 
+2. The amount of fun you had playing the game.
+   1. 4
+3. The user interface of the game.
+   1. 3
+4. The pace of the game.
+   1. 4
+5. The movement and control system
+   1. 3
+
+
+
+
+* Unfamiliar with shooter mechanics, maybe specify you have to click to shoot?
+* Specify goals on the runner levels
+* Cramped levels increase difficulty a lot
+* Upgrade menu slightly unclear for inexperienced players
+* Make little guys faster but weaker
+* Takes a second to finish level seems a bit unfair
+* Boss is super chunky
+* Radar for where boss is
+* Loves gas powerup
+* Ambush feels harder than boss right now
+* Thought you couldn't drive on big cracks in road
+* Upgrades outpace boss difficulty really quickly
+* Maybe make him move more?
+* Maybe make you invisible at the end
+* Speed powerup made her almost die
+* Taking damage after beating boss? Bug????
+* She says there should be two bosses later on
+* Does Not immediately understand powerups, maybe pop up words on screen?
+* Sometimes can't tell if she gets hit, screen flashes red
+* Kept forgetting about time slow "too much to think about", didn't help that much
+* Too many lives
+* Confused about pricing of upgrades
+* Found levels a bit short once in a while
