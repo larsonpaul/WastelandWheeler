@@ -33,6 +33,7 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
     private bool guaranteeHeal = false; // turns true if the guaranteed heal has dropped this level
     private Player_stats player;
     float healthPercent;
+    private bool lifeDropped = false;
 
     void Start()
     {
@@ -93,9 +94,10 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
         float chanceValue = (float)Random.Range(1, 100);
         //print(chanceValue);
 
-        if (chanceValue <= lifeChance)
+        if (chanceValue <= lifeChance && !lifeDropped)
         {
             DropLife(t);
+            lifeDropped = true;
         }
         else if (chanceValue <= healChance)
         {
