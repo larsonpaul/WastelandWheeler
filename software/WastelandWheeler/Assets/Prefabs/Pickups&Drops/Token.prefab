@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8791796814612733059}
   - component: {fileID: 8791796814612733056}
-  - component: {fileID: 8791796814612733057}
   - component: {fileID: 8306269419039702636}
+  - component: {fileID: 8791796814612733057}
   - component: {fileID: 8791796814612733070}
   - component: {fileID: 5074005833598745712}
   m_Layer: 0
@@ -83,22 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8791796814612733057
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8791796814612733071}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.1439777, y: 0}
-  serializedVersion: 2
-  m_Radius: 3.5
 --- !u!50 &8306269419039702636
 Rigidbody2D:
   serializedVersion: 4
@@ -120,6 +104,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &8791796814612733057
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791796814612733071}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.5
 --- !u!114 &8791796814612733070
 MonoBehaviour:
   m_ObjectHideFlags: 0

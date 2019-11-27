@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 164698073786857763}
   - component: {fileID: 164698073786857762}
-  - component: {fileID: 164698073786857765}
-  - component: {fileID: 7640623153941220947}
-  - component: {fileID: 5808056416817711048}
   - component: {fileID: 67770145884558466}
+  - component: {fileID: 7640623153941220947}
   - component: {fileID: 2909567662344310673}
+  - component: {fileID: 5808056416817711048}
   m_Layer: 0
   m_Name: TripleShot
   m_TagString: Power_Up
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 164698073786857767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,75 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &164698073786857765
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164698073786857767}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.666667, y: 10.666667}
-    newSize: {x: 0.48, y: 0.48}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.20833334, y: -0.875}
-      - {x: 0.5, y: -0.9583334}
-      - {x: 0.7083334, y: -0.9583334}
-      - {x: 0.8333334, y: -0.7916667}
-      - {x: 0.9583334, y: 0.083333336}
-      - {x: 0.9583334, y: 0.33333334}
-      - {x: 0.4850533, y: 0.4831767}
-      - {x: 0.04091835, y: 0.93868184}
-      - {x: -0.11243701, y: 0.76181483}
-      - {x: -0.464674, y: 0.44067025}
-      - {x: -0.86007404, y: 0.33768535}
-      - {x: -0.9583334, y: -0.5833334}
-      - {x: -0.9166667, y: -0.7916667}
-      - {x: -0.6666667, y: -0.9583334}
-      - {x: -0.5, y: -0.9583334}
-      - {x: -0.16666667, y: -0.7916667}
---- !u!58 &7640623153941220947
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164698073786857767}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.5
---- !u!114 &5808056416817711048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164698073786857767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1460a825b6b14874788dab28e82d1fa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &67770145884558466
 Rigidbody2D:
   serializedVersion: 4
@@ -174,6 +104,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &7640623153941220947
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164698073786857767}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.75
 --- !u!114 &2909567662344310673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,3 +133,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 10
+--- !u!114 &5808056416817711048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164698073786857767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1460a825b6b14874788dab28e82d1fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 15
+  maxFrames: 60
