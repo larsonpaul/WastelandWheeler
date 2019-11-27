@@ -60,7 +60,7 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
 
     private void DropToken(Transform t)
     {
-        Quaternion rotation = Quaternion.AngleAxis(90f, Vector3.forward);
+        Quaternion rotation = Quaternion.AngleAxis(0f, Vector3.forward);
 
         GameObject token = Instantiate(tokenPrefab, t.position, rotation);
     }
