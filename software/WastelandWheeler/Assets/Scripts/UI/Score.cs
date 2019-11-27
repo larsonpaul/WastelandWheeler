@@ -11,7 +11,8 @@ public class Score : MonoBehaviour
 
     void Start()
     {
-        score = GameObject.Find("StatManager").GetComponent<Stat_Manager>().GetScore();   
+        score = GameObject.Find("StatManager").GetComponent<Stat_Manager>().GetScore();
+        textBox.text = "Score: " + score;
     }
 
     public void UpdateScore(float scoreChange)

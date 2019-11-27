@@ -170,4 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfd121c339c92e4e8bc340503bc4c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 2856134155537133717}
+  textBox: {fileID: 2856134155537133717}
