@@ -25,7 +25,7 @@ public class SlowPlayer : MonoBehaviour
         }
         else
         {
-            collision.GetComponent<Player_stats>().move_speed = collision.GetComponent<Player_stats>().baseSpeed;
+            collision.GetComponent<Player_stats>().move_speed *= 2f;
         }
     }
 }

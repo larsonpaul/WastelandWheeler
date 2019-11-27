@@ -7,7 +7,7 @@ using UnityEngine;
  */
 public class Speed_up : MonoBehaviour
 {
-    public float multiplier = 1.5f;
+    public float speed = 100f;
     public float duration = 10f;
     private static Player_stats stats;
 
@@ -42,7 +42,7 @@ public class Speed_up : MonoBehaviour
         
         if (active == 1)
         {
-            stats.move_speed *= multiplier;
+            stats.move_speed = speed;
             icon.SetActive(true);
         }
 
@@ -51,7 +51,7 @@ public class Speed_up : MonoBehaviour
         active -= 1;
         if (active == 0)
         {
-            stats.move_speed /= multiplier;
+            stats.move_speed = stats.baseSpeed;
             icon.SetActive(false);
         }
         Destroy(gameObject);
