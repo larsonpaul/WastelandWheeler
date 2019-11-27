@@ -16,9 +16,6 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
     private int tokenCount;
     public int maxTokens = 10;
 
-    private DynamicDifficultyAdjuster dda;
-    private int difficulty;
-
     // values used to tune drop rates 
     [SerializeField]
     private float lifeChance = 1.0f;
@@ -29,12 +26,22 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
     [SerializeField]
     private float tokenChance = 50.0f;
 
+
+    private DynamicDifficultyAdjuster dda;
+    private int difficulty;
+    // used to control a situation where the player is guaranteed to receive a healing pack when doing very poorly
+    private bool guaranteeHeal = false; // turns true if the guaranteed heal has dropped this level
+    private Player_stats player;
+    float healthPercent;
+
     void Start()
     {
         dda = DynamicDifficultyAdjuster.Instance;
         dda.Subscribe(this);
         difficulty = dda.GetDifficulty();
         maxTokens = Random.Range(10, 16);
+
+        player = GameObject.Find("Player").GetComponent<Player_stats>();
     }
 
     private void DropLife(Transform t)
@@ -67,10 +74,20 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
 
     public void DropItem(Transform t)
     {
-        //lifeChance = 1.0f;
-        //healChance = 5.0f;
-        //powerupChance = 20.0f;
-        //tokenChance = 50.0f;
+        //lifeChance = 1%;
+        //healChance = 7%f;
+        //powerupChance = 15%;
+        //tokenChance = 50%f;
+
+        // if the player is low health, DDa has made the game easier and this hasn't triggered before
+        // drop the healing pack
+        healthPercent = player.GetHealth() / player.GetMaxHealth();
+        if (difficulty <= -4 && healthPercent < 0.2f && !guaranteeHeal)
+        {
+            DropHealth(t);
+            guaranteeHeal = true;
+            return;
+        }
         
         // When DDA implemented it should reduce the ranges below
         float chanceValue = (float)Random.Range(1, 100);
@@ -115,6 +132,7 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
 
         public void ChangeDifficulty(int diff)
     {
+        difficulty = diff;
         if (diff <= -4)
         {
             healChance = 10.0f;
