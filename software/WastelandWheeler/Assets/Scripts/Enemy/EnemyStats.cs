@@ -189,7 +189,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
     // method that will make the enemies harder based on the persistent difficulty increase through each level
     public void StartDifficulty (int difficulty, int dynamicDifficulty) {
-        float difficulty_mod = (1 + 0.1f * difficulty);
+        float difficulty_mod = (1 + 0.15f * difficulty);
         healthMax = healthMax * difficulty_mod;
         baseDamage = baseDamage * difficulty_mod;
         
