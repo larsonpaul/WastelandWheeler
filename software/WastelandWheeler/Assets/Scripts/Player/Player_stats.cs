@@ -48,6 +48,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     public AudioClip hit;
     public AudioClip playerDie;
     private AudioSource audio;
+    public GameObject damageCanvas;
 
     public SpawnFire fireTrail;
 
@@ -159,7 +160,9 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             healthCurrent -= num*hurt_scale;
             iFrameCur = iFrameMax;
             game.SetHealth(healthCurrent / healthMax);
+            damageCanvas.SetActive(true); 
             audio.PlayOneShot(hit, 0.8f);
+            damageCanvas.SetActive(false);
             if (healthCurrent <= 0)
             {
                 player_lives--;
