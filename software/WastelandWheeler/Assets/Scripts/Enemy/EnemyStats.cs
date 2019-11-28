@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Script that determines cahracteristics of enemies
 public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 {
     public float health;
@@ -171,6 +173,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
                 Instantiate(deathDrop, gameObject.transform.position, gameObject.transform.rotation);
                 gameManager.KillBoss(this);
                 bossDeath = false;
+                GameObject.Find("Score").GetComponent<Score>().UpdateScore(500f);
             }
 
         }
@@ -178,6 +181,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         {
             Debug.Log("Normal Emeny killed");
             gameManager.KillEnemy(this);
+            GameObject.Find("Score").GetComponent<Score>().UpdateScore(50f);
             Destroy(gameObject);
         }
         else

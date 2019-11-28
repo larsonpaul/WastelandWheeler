@@ -35,6 +35,8 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
     float healthPercent;
     private bool lifeDropped = false;
 
+    private Score scoreKeeper;
+
     void Start()
     {
         dda = DynamicDifficultyAdjuster.Instance;
@@ -43,6 +45,8 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
         maxTokens = Random.Range(10, 16);
 
         player = GameObject.Find("Player").GetComponent<Player_stats>();
+
+        scoreKeeper = GameObject.Find("Score").GetComponent<Score>();
     }
 
     private void DropLife(Transform t)
@@ -71,6 +75,8 @@ public class DropSpawner : MonoBehaviour, IDiffcultyAdjuster
         Quaternion rotation = Quaternion.AngleAxis(0f, Vector3.forward);
 
         GameObject token = Instantiate(tokenPrefab, t.position, rotation);
+
+        scoreKeeper.UpdateScore(10f);
     }
 
     public void DropItem(Transform t)
