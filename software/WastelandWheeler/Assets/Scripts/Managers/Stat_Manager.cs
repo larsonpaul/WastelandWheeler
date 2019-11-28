@@ -44,7 +44,7 @@ public class Stat_Manager : MonoBehaviour
     private float cur_adrenaline = 100f;
     private int coins = 0;
     private int lives = 3;
-    private float score = 1000;
+    private float score = 0;
 
     private Score scoreRecord;
 
