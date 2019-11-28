@@ -1,18 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-[System.Serializable]
-public class Wave 
-{
-    // Can add any enemy game object
-    public int EnemiesPerWave;
-    public GameObject Enemy;
-}
-
 public class Spawn_Manager : MonoBehaviour
 {
-    public Wave[] Waves; // class to hold information per wave
+
     public GameObject[] EnemyTypes; // holds the prefabs for the types of enemies that can be spawned
+    public GameObject[] MeleeEnemies;
+    public GameObject[] RangedEnemies;
 
     // 20 Spawns added to prefab for EnemyManager as of 11/2
     public Transform[] SpawnPoints;
