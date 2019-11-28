@@ -12,6 +12,7 @@ public class Spawn_Manager : MonoBehaviour
     public Transform[] SpawnPoints;
 
     private int currWave;
+    [SerializeField]
     private GameObject[] typeEnemies;
 
     // parameters used by difficulty adjustment system to make the game harder as player progresses through levels
@@ -87,9 +88,12 @@ public class Spawn_Manager : MonoBehaviour
 
         // setup which enemies can spawn this round
         typeEnemies = new GameObject[enemy_types_per_wave];
+        typeEnemies[0] = MeleeEnemies[Random.Range(0, MeleeEnemies.Length)];
+        typeEnemies[1] = RangedEnemies[Random.Range(0, RangedEnemies.Length)];
+
         int last = -1;
         int choice = -1;
-        for (int i = 0; i < enemy_types_per_wave; i++)
+        for (int i = 2; i < enemy_types_per_wave; i++)
         {
             while (choice == last)
             {
