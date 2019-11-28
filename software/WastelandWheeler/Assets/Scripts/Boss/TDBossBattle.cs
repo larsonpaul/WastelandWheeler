@@ -181,9 +181,9 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 while (i > 0)
                 {
                     Vector2 vect = fireProjectile();
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(.5f);
                     returnProjectile(vect);
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(.5f);
                     Destroy(projectile);
                     i--;
                 }
@@ -276,7 +276,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     // fire boss saw blade
     Vector2 fireProjectile()
     {
-        Vector2 trgt = (target.transform.position - transform.position).normalized * 18;
+        Vector2 trgt = (target.transform.position - transform.position).normalized * 30;
         projectile = Instantiate(projPrefab, firePoint.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
         return trgt;

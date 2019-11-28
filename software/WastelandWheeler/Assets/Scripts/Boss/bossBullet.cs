@@ -49,7 +49,7 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
 
             Debug.Log("bullet push back");
             Vector2 knockback = gameObject.GetComponent<Rigidbody2D>().velocity;
-            playerRB.AddForce(knockback * 40);
+            playerRB.AddForce(knockback * 60);
             return;
         }
 
