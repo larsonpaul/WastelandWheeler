@@ -32,6 +32,15 @@ public class UpdateValues : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI tokensLeft;
 
+    [SerializeField]
+    TextMeshProUGUI healthCost;
+    [SerializeField]
+    TextMeshProUGUI rofCost;
+    [SerializeField]
+    TextMeshProUGUI damageCost;
+    [SerializeField]
+    TextMeshProUGUI bulletCost;
+
     private void Start()
     {
         stats = Stat_Manager.Instance;
@@ -63,5 +72,22 @@ public class UpdateValues : MonoBehaviour
         newDamage.text = stats.GetDamage().ToString();
 
         newBullets.text = stats.GetBulletSize().ToString("F2");
+
+        if(stats.GetMaxHealth() >= 200)
+        {
+            healthCost.text = "Cost: 2";
+        }
+        if (stats.GetROF() <= 10.00f)
+        {
+            rofCost.text = "Cost: 2";
+        }
+        if (stats.GetDamage() >= 15)
+        {
+            damageCost.text = "Cost: 2";
+        }
+        if (stats.GetBulletSize() >= 1.5f)
+        {
+            bulletCost.text = "Cost: 2";
+        }
     }
 }
