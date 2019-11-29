@@ -77,7 +77,7 @@ public class UpdateValues : MonoBehaviour
         {
             healthCost.text = "Cost: 2";
         }
-        if (stats.GetROF() <= 10.00f)
+        if (stats.GetROF() <= .1f)
         {
             rofCost.text = "Cost: 2";
         }
