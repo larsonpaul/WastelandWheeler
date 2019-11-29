@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         spawnManager.EnemyDefeated();
 
         // a burst of goodies after the boss death
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 10; i++)
         {
             randomDropSpawn.position = new Vector3(randomDropSpawn.transform.position.x + Random.Range(-3.0f, 3.0f),
                 randomDropSpawn.transform.position.y + Random.Range(-3.0f, 3.0f), randomDropSpawn.transform.position.z);

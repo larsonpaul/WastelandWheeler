@@ -475,6 +475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 282608677}
+  - component: {fileID: 282608678}
   m_Layer: 0
   m_Name: TDBattle
   m_TagString: Untagged
@@ -502,6 +503,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &282608678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282608676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6db91678143c4fca9e4bd7828790e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 2047600772}
+  - {fileID: 1645233185}
+  - {fileID: 214481991}
+  - {fileID: 370448499}
+  bossPoints:
+  - {fileID: 1064847974}
+  - {fileID: 1631978255}
+  - {fileID: 2062727278}
+  - {fileID: 47029468}
+  - {fileID: 1099728588}
+  - {fileID: 1739254807}
+  - {fileID: 166173289}
+  - {fileID: 660414706}
+  - {fileID: 1257704331}
+  - {fileID: 1196860219}
+  - {fileID: 470593214}
+  - {fileID: 1629707761}
+  - {fileID: 948491068}
+  - {fileID: 1643875728}
+  - {fileID: 90751684}
+  - {fileID: 1351924319}
+  - {fileID: 1373477967}
+  speed: 0.8
+  waitTime: 0.5
+  boss: {fileID: 886015182}
+  playerPoint: {fileID: 2138118247}
+  carPoint: {fileID: 628199519}
+  minions: {fileID: 1014893128181177944, guid: 7da05357e48fa5d4fb86d1ff10a339d5, type: 3}
+  thrownCars:
+  - {fileID: 772376898}
+  - {fileID: 547795447}
+  - {fileID: 1925647763}
+  - {fileID: 849833239}
+  - {fileID: 1339235900}
+  - {fileID: 1299756014}
+  - {fileID: 253746141}
+  - {fileID: 1056195325}
+  - {fileID: 1213182206}
+  bossAction: 4
+  target: {fileID: 708899350}
+  bossHealth: 200
+  maxHealth: 200
+  firePoint: {fileID: 716552593}
+  projPrefab: {fileID: 3815651842055491911, guid: b9ba1685710d54780b6268dd6579575b,
+    type: 3}
+  shots: 5
+  bossIsDead: 0
+  deathDrop: {fileID: 0}
+  baseWaitTime: 0
+  baseSpeed: 0
+  baseSpawnRate: 0
 --- !u!1 &370448498
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,6 +959,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8827529718508444801}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &716552593 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4421757083408302650, guid: a91dae11a5be67341b3a263618544b5c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4421757082434173833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &772376898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1253,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &886015182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3695383057424400924, guid: a91dae11a5be67341b3a263618544b5c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4421757082434173833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &919621767 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9098048286616914870, guid: 989b12522570e4145b27e398c7c50310,
@@ -53577,7 +53654,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3815651842055491911, guid: b9ba1685710d54780b6268dd6579575b,
         type: 3}
-    m_RemovedComponents: []
+    - target: {fileID: 5470927907409308486, guid: a91dae11a5be67341b3a263618544b5c,
+        type: 3}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470927907409308486, guid: a91dae11a5be67341b3a263618544b5c,
+        type: 3}
+      propertyPath: healthMax
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4421757082965638018, guid: a91dae11a5be67341b3a263618544b5c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a91dae11a5be67341b3a263618544b5c, type: 3}
 --- !u!1001 &5888371971659874261
 PrefabInstance:

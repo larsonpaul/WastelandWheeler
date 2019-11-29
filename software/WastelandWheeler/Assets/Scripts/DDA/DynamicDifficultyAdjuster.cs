@@ -63,7 +63,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         if (boss != null)
         {
             boss_stats= boss.GetComponent<TDBossBattle>();
-            maxBossHealth = boss_stats.bossHealth;
+            maxBossHealth = boss.GetComponent<EnemyStats>().healthMax;
             lastBossHealth = maxBossHealth;
         }
         //lastBossHealth = boss.healthMax;

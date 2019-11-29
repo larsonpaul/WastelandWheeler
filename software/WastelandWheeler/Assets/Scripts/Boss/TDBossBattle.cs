@@ -11,6 +11,8 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     public float speed; // boss's speed
     public float waitTime = .5f;
+    public GameObject boss;
+    private Transform bossTrans;
 
     private int bossPoint; // current point form the array of bossPoints
 
@@ -32,6 +34,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public int bossAction = 4;
     float shotTimer;
     float shotReturnTimer = 1.0f;
+    Vector3 endShot;
 
     private Rigidbody2D rb;
     public GameObject target; // target/player for boss's aim
@@ -49,12 +52,13 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public GameObject projPrefab;
     public int shots = 5;// number of projecties the boss will fire
     private GameObject[] projArray = new GameObject[5];
-    private Vector2 [] shotReturns = new Vector2 [5];
+    private Vector2[] shotReturns = new Vector2[5];
 
     Coroutine bossMethod;
 
     private bool openingScene = true;
     private bool once;
+    public bool bossIsDead;
 
     private Camera mainCam;
 
@@ -78,9 +82,12 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         spawnRate = 8.0f;
         spawnMinion = Time.time;
         carTarget = thrownCars[0].GetComponent<Transform>();
-        bossHealth = GetComponent<EnemyStats>().health;
+        bossHealth = boss.GetComponent<EnemyStats>().health;
         maxHealth = bossHealth;
+
         mainCam = FindObjectOfType<Camera>();
+
+        bossTrans = boss.GetComponent<Transform>();
 
         //calculate player postion
         throwAtTarget = target.transform.position - transform.position;
@@ -103,21 +110,31 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
             spawnMoreMinions();
         }
 
-        //stop coroutine if boss is defeated
-        bossHealth = GetComponent<EnemyStats>().health;
-
-        if (bossHealth <= 0)
+        //stop coroutine if boss is defeate
+        if (!bossIsDead)
         {
-            StopCoroutine(bossMethod);
-            bossDeath();
+            bossHealth = boss.GetComponent<EnemyStats>().health;
+            endShot = new Vector3(bossTrans.position.x, bossTrans.transform.position.y, mainCam.transform.position.z);
+            if (bossHealth <=0)
+            {
+                bossIsDead = true;
+                StopCoroutine(bossMethod);
+                bossDeath();
+            }
         }
 
-        if (bossHealth < maxHealth * .40f)
+        if (Time.time > deathCount && bossIsDead)
+        {
+            endLevel();
+        }
+
+
+        /*if (bossHealth < maxHealth * .40f)
         {
             spawnRate = spawnRate * .50f;
             maximumSpawn = 8;
             Debug.Log("Boss is in danger. Spawn rate " + spawnRate);
-        }
+        }*/
 
     }
 
@@ -165,10 +182,10 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
             bossPoint = actionChoice();
             yield return new WaitForSeconds(waitTime);
 
-            while (transform.position.x != bossPoints[bossPoint].position.x)
+            while (bossTrans.position.x != bossPoints[bossPoint].position.x)
             {
                 Debug.Log("Walking to point: " + bossPoint);
-                transform.position = Vector2.MoveTowards(transform.position,
+                bossTrans.position = Vector2.MoveTowards(bossTrans.position,
                 new Vector2(bossPoints[bossPoint].transform.position.x, bossPoints[bossPoint].transform.position.y), speed);
                 yield return null;
             }
@@ -209,7 +226,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                         yield return new WaitForSeconds(.1f);
                         j++;
                     }
-                
+
                     i--;
                 }
 
@@ -221,10 +238,10 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 thrownCars[bossPoint - 1].GetComponent<ThrowCar>().thrown == false)
             {
                 //walk behind car
-                while (transform.position.x != bossPoints[bossPoint + 8].position.x)
+                while (bossTrans.position.x != bossPoints[bossPoint + 8].position.x)
                 {
                     Debug.Log("Walking to carPoint: " + bossPoint);
-                    transform.position = Vector2.MoveTowards(transform.position,
+                    bossTrans.position = Vector2.MoveTowards(bossTrans.position,
                     new Vector2(bossPoints[bossPoint + 8].transform.position.x, bossPoints[bossPoint + 8].transform.position.y), speed);
                     yield return null;
                 }
@@ -236,10 +253,10 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 throwCarAtPlayer(bossPoint - 1);
 
                 // walk back from behind car
-                while (transform.position.x != bossPoints[bossPoint + 8].position.x)
+                while (bossTrans.position.x != bossPoints[bossPoint + 8].position.x)
                 {
                     Debug.Log("Walking back from carpoint to point: " + bossPoint);
-                    transform.position = Vector2.MoveTowards(transform.position,
+                    bossTrans.position = Vector2.MoveTowards(bossTrans.position,
                     new Vector2(bossPoints[bossPoint].transform.position.x, bossPoints[bossPoint].transform.position.y), speed);
                     yield return null;
                 }
@@ -266,9 +283,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         if (Time.time > deathCount && !once)
         {
             mainCam.GetComponent<CameraMove>().enabled = false;
-            EnemyStats bossStat = GetComponent<EnemyStats>();
-            //bossStat.enabled = false;
-            //bossStat.RemoveHealth(bossStat.health);
+            //EnemyStats bossStat = GetComponent<EnemyStats>();
             Object[] leftOverBullets = FindObjectsOfType(typeof(bossBullet));
             GameObject[] leftOverSpawn = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject s in leftOverSpawn)
@@ -284,28 +299,28 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
             //center camera on boss
             Debug.Log("Moving camera");
             //Vector3 moveCam = transform.position - mainCam.transform.position;
-            mainCam.transform.position = new Vector3(transform.position.x, transform.position.y, mainCam.transform.position.z);
+            mainCam.transform.position = endShot;
             deathCount = Time.time + 7.0f;
             once = true;
         }
-
-        //upgrade scene
-        else if (Time.time > deathCount)
-        {
-            Debug.Log("Loading next scene");
-            GameObject.Find("StatManager").GetComponent<Stat_Manager>().EndOfLevel();
-            SceneManager.LoadScene(1);
-        }
-
     }
+
+
+    //upgrade scene
+    void endLevel()
+    {
+        Debug.Log("Loading next scene");
+        GameObject.Find("StatManager").GetComponent<Stat_Manager>().EndOfLevel();
+        SceneManager.LoadScene(1);
+    }
+
     // fire boss saw blade
     Vector2 fireProjectile(int index)
     {
-        Vector2 trgt = (target.transform.position - transform.position).normalized * 30;
+        Vector2 trgt = (target.transform.position - bossTrans.position).normalized * 30;
         projArray[index] = Instantiate(projPrefab, firePoint.position, Quaternion.identity) as GameObject;
         projArray[index].GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
         return trgt;
-
     }
 
     //return saw blade
@@ -365,7 +380,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     {
         Debug.Log("Throwing car" + carNumber);
         //calculate player postion
-        throwAtTarget = (target.transform.position - transform.position).normalized;
+        throwAtTarget = (target.transform.position - bossTrans.position).normalized;
 
         //apply force to car Object 
         Rigidbody2D carRB = thrownCars[carNumber].GetComponent<Rigidbody2D>();
@@ -392,8 +407,8 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
             Debug.Log("Speed cant't be less than 0");
         }
 
-            spawnRate = baseSpawnRate - (.5f * difficulty);
-            Debug.Log("Spawn rate now: " + spawnRate);
+        spawnRate = baseSpawnRate - (.5f * difficulty);
+        Debug.Log("Spawn rate now: " + spawnRate);
 
         if (waitTime > 0)
         {

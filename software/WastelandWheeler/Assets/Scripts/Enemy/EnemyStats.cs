@@ -168,11 +168,11 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
                 Debug.Log("death drop");
 
                 // kill the boss after delay
-                gameObject.GetComponent<Renderer>().enabled = false;
                 ParticleSystem deathDrop = FindObjectOfType<ParticleSystem>();
                 Instantiate(deathDrop, gameObject.transform.position, gameObject.transform.rotation);
                 gameManager.KillBoss(this);
                 bossDeath = false;
+                Destroy(gameObject);
                 GameObject.Find("Score").GetComponent<Score>().UpdateScore(500f);
             }
 
