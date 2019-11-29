@@ -20,7 +20,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     private float spawnRate;
     private float spawnMinion;
-    private int maximumSpawn = 4;
+    private int maximumSpawn = 6;
     public GameObject minions;
     private int minionCount = 0;
     private float deathCount;
@@ -47,6 +47,10 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     private GameObject projectile;  // Boss's projectiles
     public GameObject projPrefab;
+    public int shots = 5;// number of projecties the boss will fire
+    private GameObject[] projArray = new GameObject[5];
+    private Vector2 [] shotReturns = new Vector2 [5];
+
     Coroutine bossMethod;
 
     private bool openingScene = true;
@@ -65,14 +69,13 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     private Stat_Manager stat_manager;
     private int difficulty;
 
-
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         //startRoutine = FindObjectOfType<startBossFight>();
         rb = GetComponent<Rigidbody2D>();
-        spawnRate = 10.0f;
+        spawnRate = 8.0f;
         spawnMinion = Time.time;
         carTarget = thrownCars[0].GetComponent<Transform>();
         bossHealth = GetComponent<EnemyStats>().health;
@@ -90,7 +93,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
         difficulty = stat_manager.GetDifficulty();
         StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
-
     }
 
     // Update is called once per frame
@@ -113,7 +115,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         if (bossHealth < maxHealth * .40f)
         {
             spawnRate = spawnRate * .50f;
-            maximumSpawn = 5;
+            maximumSpawn = 8;
             Debug.Log("Boss is in danger. Spawn rate " + spawnRate);
         }
 
@@ -180,11 +182,34 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 int i = 3;
                 while (i > 0)
                 {
-                    Vector2 vect = fireProjectile();
-                    yield return new WaitForSeconds(.5f);
-                    returnProjectile(vect);
-                    yield return new WaitForSeconds(.5f);
-                    Destroy(projectile);
+                    int j = 0;
+                    while (j < 5)
+                    {
+                        shotReturns[j] = fireProjectile(j);
+                        yield return new WaitForSeconds(.1f);
+                        j++;
+                    }
+
+                    yield return new WaitForSeconds(.3f);
+
+                    j = 0;
+                    while (j < 5)
+                    {
+                        returnProjectile(shotReturns[j], j);
+                        yield return new WaitForSeconds(.1f);
+                        j++;
+                    }
+
+                    yield return new WaitForSeconds(.3f);
+
+                    j = 0;
+                    while (j < 5)
+                    {
+                        Destroy(projArray[j]);
+                        yield return new WaitForSeconds(.1f);
+                        j++;
+                    }
+                
                     i--;
                 }
 
@@ -274,20 +299,20 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     }
     // fire boss saw blade
-    Vector2 fireProjectile()
+    Vector2 fireProjectile(int index)
     {
         Vector2 trgt = (target.transform.position - transform.position).normalized * 30;
-        projectile = Instantiate(projPrefab, firePoint.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
+        projArray[index] = Instantiate(projPrefab, firePoint.position, Quaternion.identity) as GameObject;
+        projArray[index].GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
         return trgt;
 
     }
 
     //return saw blade
-    void returnProjectile(Vector2 vect)
+    void returnProjectile(Vector2 vect, int index)
     {
         //Vector2 trgt = transform.position - target.transform.position;
-        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(-vect.x, -vect.y);
+        projArray[index].GetComponent<Rigidbody2D>().velocity = new Vector2(-vect.x, -vect.y);
     }
 
 
@@ -315,7 +340,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         GameObject[] spawnedMinions = GameObject.FindGameObjectsWithTag("Enemy");
         minionCount = spawnedMinions.Length;
         Debug.Log("minionCount = " + spawnedMinions);
-        int randomSpawnPoint = Random.Range(0, 2);
+        int randomSpawnPoint = Random.Range(0, 4);
 
         Debug.Log("Generating Spawn at spawnPoint: " + randomSpawnPoint);
 
