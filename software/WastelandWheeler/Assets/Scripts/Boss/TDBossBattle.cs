@@ -34,8 +34,11 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     Vector2 playerTarget;
 
     public int bossAction = 4;
-    float shotTimer;
-    float shotReturnTimer = 1.0f;
+    public float burstTimer = .1f;  //rate of fire for smaller bullets
+    private float baseBurstTimer;
+    
+    public float pauseTime = .7f;  // the pause time between shots
+    private float basePause;
     Vector3 endShot;
 
     private Rigidbody2D rb;
@@ -53,6 +56,8 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     private GameObject projectile;  // Boss's projectiles
     public GameObject bulletPrefab;
     public int burst = 5;
+    public int baseBurst;
+
     public GameObject projPrefab;
     public int shots = 5;// number of projecties the boss will fire
     private GameObject[] projArray = new GameObject[5];
@@ -106,6 +111,9 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         baseSpeed = speed;
         baseSpawnRate = spawnRate;
         baseThrowSpeed = throwSpeed;
+        baseBurstTimer = burstTimer;
+        baseBurst = burst;
+        basePause = pauseTime;
 
         stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
         gameManager = FindObjectOfType<GameManager>();
@@ -125,12 +133,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         {
             Debug.Log("No more lives ");
             StopCoroutine(bossMethod);
-        }
-
-        GameObject[] leftOverSpawn = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject s in leftOverSpawn)
-        {
-            s.GetComponent<EnemyStats>().speed = 50;
         }
 
         if (!once && !openingScene)
@@ -155,14 +157,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         {
             endLevel();
         }
-
-
-        /*if (bossHealth < maxHealth * .40f)
-        {
-            spawnRate = spawnRate * .50f;
-            maximumSpawn = 8;
-            Debug.Log("Boss is in danger. Spawn rate " + spawnRate);
-        }*/
 
     }
 
@@ -231,7 +225,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                     while(j < burst)
                     {
                         fireBullet();
-                        yield return new WaitForSeconds(.1f);
+                        yield return new WaitForSeconds(burstTimer);
                         j++;
 
                     }
@@ -319,14 +313,13 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
             }
 
             //center camera on boss
-            Debug.Log("Moving camera");
+            //Debug.Log("Moving camera");
             //Vector3 moveCam = transform.position - mainCam.transform.position;
             mainCam.transform.position = endShot;
             deathCount = Time.time + 7.0f;
             once = true;
         }
     }
-
 
     //upgrade scene
     void endLevel()
@@ -415,10 +408,9 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         Rigidbody2D carRB = thrownCars[carNumber].GetComponent<Rigidbody2D>();
         carRB.velocity = new Vector2(throwAtTarget.x, throwAtTarget.y) * throwSpeed;
         thrownCars[carNumber].GetComponent<ThrowCar>().thrown = true;
-
     }
 
-    public void StartDifficulty(int difficulty)
+public void StartDifficulty(int difficulty)
     {
         float difficulty_mod = (1 + 0.1f * difficulty);
 
@@ -437,22 +429,49 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         }
 
         spawnRate = baseSpawnRate - (.5f * difficulty);
-        Debug.Log("Spawn rate now: " + spawnRate);
+        //Debug.Log("Spawn rate now: " + spawnRate);
 
         if (waitTime > 0)
         {
             waitTime = baseWaitTime - (difficulty / 10.0f);
-            Debug.Log("Wait time: " + waitTime);
+            //Debug.Log("Wait time: " + waitTime);
         }
         else
         {
-            Debug.Log("Wait time cant't be less than 0");
+            //Debug.Log("Wait time cant't be less than 0");
         }
 
         if (throwSpeed > 10.0f)
         {
             throwSpeed = baseThrowSpeed + (difficulty * 2);
-            Debug.Log("Throw Speed: " + throwSpeed);
+            //Debug.Log("Throw Speed: " + throwSpeed);
         }
+
+        if(burst > 3)
+        {
+            burst = baseBurst + (int)difficulty;
+            //Debug.Log("Burst " + burst);
+        }
+
+        if(burstTimer > .1f)
+        {
+            burstTimer = baseBurstTimer + (difficulty * .1f);
+            //Debug.Log("Burst timer: " + burstTimer);
+        }
+
+        if(pauseTime > .2f)
+        {
+            pauseTime = basePause - (difficulty * .1f);
+            //Debug.Log("pause time " + pauseTime);
+        }
+
+        GameObject[] leftOverSpawn = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject s in leftOverSpawn)
+            {
+            s.GetComponent<EnemyStats>().speed = 50 + (difficulty * 5);
+            //Debug.Log("Minion speed" + s.GetComponent<EnemyStats>().speed);
+        }
+        
     }
 }

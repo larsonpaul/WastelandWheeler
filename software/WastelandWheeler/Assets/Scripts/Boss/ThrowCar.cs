@@ -14,7 +14,7 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
     int rotationMultiplier = 1; // used to determine which way to rotate the car
 
     private bool dazed;
-    public  float dazedTime = 4.0f;
+    public  float dazedTime = 6.0f;
     private float baseDaze;
     private Player_stats ps;
 
