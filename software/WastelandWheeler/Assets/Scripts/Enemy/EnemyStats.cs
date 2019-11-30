@@ -188,7 +188,6 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         {
             Debug.Log(gameObject.tag + " was killed");
         }
-
     }
 
     // method that will make the enemies harder based on the persistent difficulty increase through each level

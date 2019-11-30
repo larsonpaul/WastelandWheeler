@@ -53,7 +53,9 @@ public class Stat_Manager : MonoBehaviour
     private Player_stats player;
 
     private int end_level_difficulty;
-    
+
+    public static int levelsCompleted = 0;
+
     public void Reset()
     {
         max_health = basehealth;
@@ -218,6 +220,23 @@ public class Stat_Manager : MonoBehaviour
     {
         return score;
     }
+
+    public void levelComplete()
+    {
+        levelsCompleted ++;
+    }
+
+    public int levelsComplete()
+    {
+        return levelsCompleted;
+    }
+
+    public void resetLevels()
+    {
+        levelsCompleted = 0;
+        Debug.Log("Level now: " + levelsComplete());
+    }
+
 
     // method called when the level so that the Stat_Manager can read and save values from the current level
     public void EndOfLevel()

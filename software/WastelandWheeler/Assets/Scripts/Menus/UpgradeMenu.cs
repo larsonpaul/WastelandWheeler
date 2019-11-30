@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class UpgradeMenu : MonoBehaviour
 {
-    private static int levelsCompleted = 0;
-
     private int first_scene = 2;
     private int last_scene = 2; // this will need to be changed as more levels are added
 
@@ -17,13 +15,20 @@ public class UpgradeMenu : MonoBehaviour
 
     private const int BOSS = 4;
 
+    public Stat_Manager statManager;
+
+    private void Start()
+    {
+        statManager = FindObjectOfType<Stat_Manager>();
+    }
+
     public void StartNextLevel()
     {
-        levelsCompleted++;
-        Debug.Log("Levels completed" + levelsCompleted);
+        statManager.levelComplete();
+        Debug.Log("Levels completed" + statManager.levelsComplete());
 
         // Time to battle the boss
-        if (levelsCompleted % 3 == 0)
+        if (statManager.levelsComplete() % 3 == 0)
         {
             arenaWeight += 10;
             SceneManager.LoadScene(BOSS);
@@ -58,8 +63,4 @@ public class UpgradeMenu : MonoBehaviour
         PauseMenu.GameIsPaused = false;
     }
 
-    public void resetLevels()
-    {
-        levelsCompleted = 0;
-    }
 }

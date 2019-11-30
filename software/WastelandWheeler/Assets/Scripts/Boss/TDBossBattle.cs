@@ -75,6 +75,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public float baseSpawnRate;
 
     private Stat_Manager stat_manager;
+    private GameManager gameManager;
     private int difficulty;
     private DynamicDifficultyAdjuster dda;
 
@@ -107,6 +108,8 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         baseThrowSpeed = throwSpeed;
 
         stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
+        gameManager = FindObjectOfType<GameManager>();
+
         difficulty = stat_manager.GetDifficulty();
         StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
@@ -117,6 +120,13 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     // Update is called once per frame
     void Update()
     {
+
+        if (gameManager.gameIsOver())
+        {
+            Debug.Log("No more lives ");
+            StopCoroutine(bossMethod);
+        }
+
         GameObject[] leftOverSpawn = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject s in leftOverSpawn)
         {
@@ -393,7 +403,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         {
             Debug.Log("Error in spawnMoreMinions. Max Spawn:" + maximumSpawn);
         }
-
     }
 
     void throwCarAtPlayer(int carNumber)
