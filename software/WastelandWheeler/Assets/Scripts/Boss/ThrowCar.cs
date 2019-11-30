@@ -30,6 +30,7 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
         baseDaze = dazedTime;
 
         ps = FindObjectOfType<Player_stats>();
+
         stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
         difficulty = stat_manager.GetDifficulty();
         StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
@@ -39,11 +40,13 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
 
     private void Update()
     {
+        //rotate thrown car
         if (thrown && Time.time > rotationTime && !collision)
         {
             rotateCar();
         }
 
+        // slow down player if hit by car
         if (dazed)
         {
             slowDown();
@@ -87,8 +90,11 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
         else if (col.gameObject.CompareTag("Player") && !collision && thrown)
         {
             ps.RemoveHealth(carDamage);
+            if (ps.healthCurrent <= 0)
+        { 
             dazed = true;
             dazedTime += Time.time;
+        }
             collision = true;
 
             Debug.Log("Thrown car hit player");
