@@ -54186,12 +54186,12 @@ PrefabInstance:
     - target: {fileID: 5470927907409308486, guid: a91dae11a5be67341b3a263618544b5c,
         type: 3}
       propertyPath: health
-      value: 250
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 5470927907409308486, guid: a91dae11a5be67341b3a263618544b5c,
         type: 3}
       propertyPath: healthMax
-      value: 250
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4421757082965638018, guid: a91dae11a5be67341b3a263618544b5c, type: 3}

@@ -11,7 +11,7 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
     private Vector2 target;
     Player_stats playerStats;   // used to deal damage
     private Rigidbody2D rb;
-    public float bulletLife;
+    private int lifetime = 200;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +20,14 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
 
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //eventually, bullet dies
+        if (lifetime == 0)
+        {
+            Destroy(gameObject);
+        }
+        lifetime--;
 
     }
 
@@ -34,7 +39,7 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
         GameObject obj = other.gameObject;
 
         // cases where bullet is not destroyed
-        string[] tags = { "Enemy", "Power_Up", "bullet"};
+        string[] tags = { "Enemy", "Power_Up", "bullet", "boss"};
         for (int i = 0; i < tags.Length; i++)
         {
             if (obj.CompareTag(tags[i])) return;
@@ -50,6 +55,8 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
             Debug.Log("bullet push back");
             Vector2 knockback = gameObject.GetComponent<Rigidbody2D>().velocity;
             playerRB.AddForce(knockback * 30);
+
+            Destroy(gameObject);
             return;
         }
 
@@ -59,7 +66,6 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
         }
 
     }
-
 
     public void StartDifficulty(int difficulty)
     {
