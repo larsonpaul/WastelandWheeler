@@ -179,7 +179,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         }
         else if (gameObject.tag == "Enemy")
         {
-            Debug.Log("Normal Emeny killed");
+            //Debug.Log("Normal Emeny killed");
             gameManager.KillEnemy(this);
             GameObject.Find("Score").GetComponent<Score>().UpdateScore(50f);
             Destroy(gameObject);

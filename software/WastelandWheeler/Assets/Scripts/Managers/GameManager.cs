@@ -53,8 +53,6 @@ public class GameManager : MonoBehaviour
         dropSpawner = GameObject.Find("DropManager").GetComponent<DropSpawner>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
         death = GetComponent<AudioSource>();
-
-        Debug.Log("Player is dead = " + playerIsDead);
     }
 
     public void SetHealth(float scale)
