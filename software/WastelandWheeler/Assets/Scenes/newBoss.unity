@@ -371,6 +371,7 @@ MonoBehaviour:
   carDamage: 40
   collision: 0
   thrown: 0
+  dazedTime: 4
 --- !u!61 &253746144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -798,6 +799,7 @@ MonoBehaviour:
   carDamage: 40
   collision: 0
   thrown: 0
+  dazedTime: 4
 --- !u!61 &547795450
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1014,6 +1016,7 @@ MonoBehaviour:
   carDamage: 40
   collision: 0
   thrown: 0
+  dazedTime: 4
 --- !u!61 &772376901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1158,6 +1161,7 @@ MonoBehaviour:
   carDamage: 40
   collision: 0
   thrown: 0
+  dazedTime: 4
 --- !u!61 &849833242
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1410,6 +1414,7 @@ MonoBehaviour:
   carDamage: 40
   collision: 0
   thrown: 0
+  dazedTime: 4
 --- !u!61 &1056195328
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1630,6 +1635,7 @@ MonoBehaviour:
   carDamage: 40
   collision: 0
   thrown: 0
+  dazedTime: 4
 --- !u!61 &1213182208
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2048,6 +2054,7 @@ MonoBehaviour:
   carDamage: 40
   collision: 0
   thrown: 0
+  dazedTime: 4
 --- !u!61 &1299756017
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2192,6 +2199,7 @@ MonoBehaviour:
   carDamage: 40
   collision: 0
   thrown: 0
+  dazedTime: 4
 --- !u!61 &1339235903
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53172,6 +53180,7 @@ MonoBehaviour:
   carDamage: 40
   collision: 0
   thrown: 0
+  dazedTime: 4
 --- !u!61 &1925647766
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53657,12 +53666,12 @@ PrefabInstance:
     - target: {fileID: 5470927907409308486, guid: a91dae11a5be67341b3a263618544b5c,
         type: 3}
       propertyPath: health
-      value: 10
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5470927907409308486, guid: a91dae11a5be67341b3a263618544b5c,
         type: 3}
       propertyPath: healthMax
-      value: 10
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4421757082965638018, guid: a91dae11a5be67341b3a263618544b5c, type: 3}

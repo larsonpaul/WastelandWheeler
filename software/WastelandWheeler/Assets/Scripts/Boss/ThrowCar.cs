@@ -5,21 +5,36 @@ using UnityEngine;
 public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
 {
     public float carDamage = 40.0f;
-    public bool collision;
-    public bool thrown;
-    int knockX = 10;
-    int knockY = 10;
+    private float baseCarDamage;
+
+    public bool collision;  // see whether the car has hit the boundry
+    public bool thrown; // used to initiate damage and rotation
     Vector2 knockback;
-    float rotationTime;
-    int rotationMultiplier = 1;
-    bool dazed;
-    private float dazedTime = 4.0f;
-    Player_stats ps;
+    float rotationTime; 
+    int rotationMultiplier = 1; // used to determine which way to rotate the car
+
+    private bool dazed;
+    public  float dazedTime = 4.0f;
+    private float baseDaze;
+    private Player_stats ps;
+
+    private DynamicDifficultyAdjuster dda;
+
+    private Stat_Manager stat_manager;
+    private int difficulty;
 
     private void Start()
     {
 
+        baseCarDamage = carDamage;
+        baseDaze = dazedTime;
+
         ps = FindObjectOfType<Player_stats>();
+        stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
+        difficulty = stat_manager.GetDifficulty();
+        StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
+        dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
+        dda.Subscribe(this);
     }
 
     private void Update()
@@ -111,8 +126,14 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
 
     public void ChangeDifficulty(int difficulty)
     {
-        carDamage += (difficulty * 2.0f);
+        carDamage =  (baseCarDamage + (difficulty * 5.0f));
         Debug.Log("car damge: " + carDamage);
+
+        if(dazedTime > 1.0f)
+        {
+            dazedTime = baseDaze + difficulty;
+            Debug.Log("DazeTime: " + dazedTime);
+        }
 
     }
 

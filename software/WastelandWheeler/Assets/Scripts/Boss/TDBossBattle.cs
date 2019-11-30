@@ -28,6 +28,8 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     private float deathCount;
 
     public GameObject[] thrownCars;
+    private float throwSpeed = 30.0f;
+    private float baseThrowSpeed;
     Transform carTarget;
     Vector2 playerTarget;
 
@@ -72,6 +74,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     private Stat_Manager stat_manager;
     private int difficulty;
+    private DynamicDifficultyAdjuster dda;
 
     // Start is called before the first frame update
     void Start()
@@ -79,9 +82,12 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         player = GameObject.FindGameObjectWithTag("Player");
         //startRoutine = FindObjectOfType<startBossFight>();
         rb = GetComponent<Rigidbody2D>();
+
         spawnRate = 8.0f;
         spawnMinion = Time.time;
+
         carTarget = thrownCars[0].GetComponent<Transform>();
+
         bossHealth = boss.GetComponent<EnemyStats>().health;
         maxHealth = bossHealth;
 
@@ -96,10 +102,14 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         baseWaitTime = waitTime;
         baseSpeed = speed;
         baseSpawnRate = spawnRate;
+        baseThrowSpeed = throwSpeed;
 
         stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
         difficulty = stat_manager.GetDifficulty();
         StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
+        dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
+        dda.Subscribe(this);
+
     }
 
     // Update is called once per frame
@@ -148,12 +158,12 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
             player.GetComponent<NewPlayerMovementForce>().enabled = false;
             player.GetComponent<PlayerAim>().enabled = false;
             //mainCam.GetComponent<CameraMove>().enabled = false;
-            Debug.Log("Moving player");
+            //Debug.Log("Moving player");
             player.transform.position = Vector2.MoveTowards(player.transform.position,
                 new Vector2(playerPoint.transform.position.x, playerPoint.transform.position.y), .07f);
             yield return null;
         }
-        Debug.Log("Stopped moving player");
+        //Debug.Log("Stopped moving player");
 
         yield return new WaitForSeconds(1);
 
@@ -165,7 +175,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
             yield return null;
         }
 
-        Debug.Log("Exit blocked");
+        //Debug.Log("Exit blocked");
 
         yield return new WaitForSeconds(waitTime);
 
@@ -184,7 +194,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
             while (bossTrans.position.x != bossPoints[bossPoint].position.x)
             {
-                Debug.Log("Walking to point: " + bossPoint);
+                //Debug.Log("Walking to point: " + bossPoint);
                 bossTrans.position = Vector2.MoveTowards(bossTrans.position,
                 new Vector2(bossPoints[bossPoint].transform.position.x, bossPoints[bossPoint].transform.position.y), speed);
                 yield return null;
@@ -240,7 +250,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 //walk behind car
                 while (bossTrans.position.x != bossPoints[bossPoint + 8].position.x)
                 {
-                    Debug.Log("Walking to carPoint: " + bossPoint);
+                    //Debug.Log("Walking to carPoint: " + bossPoint);
                     bossTrans.position = Vector2.MoveTowards(bossTrans.position,
                     new Vector2(bossPoints[bossPoint + 8].transform.position.x, bossPoints[bossPoint + 8].transform.position.y), speed);
                     yield return null;
@@ -255,7 +265,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 // walk back from behind car
                 while (bossTrans.position.x != bossPoints[bossPoint + 8].position.x)
                 {
-                    Debug.Log("Walking back from carpoint to point: " + bossPoint);
+                    //Debug.Log("Walking back from carpoint to point: " + bossPoint);
                     bossTrans.position = Vector2.MoveTowards(bossTrans.position,
                     new Vector2(bossPoints[bossPoint].transform.position.x, bossPoints[bossPoint].transform.position.y), speed);
                     yield return null;
@@ -338,7 +348,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
         if (randomChoice >= 0 && randomChoice < 8)
         {
-            Debug.Log("Boss Action: " + randomChoice);
+            //Debug.Log("Boss Action: " + randomChoice);
         }
         else
         {
@@ -354,10 +364,10 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         //Limit the number of minions
         GameObject[] spawnedMinions = GameObject.FindGameObjectsWithTag("Enemy");
         minionCount = spawnedMinions.Length;
-        Debug.Log("minionCount = " + spawnedMinions);
+        //Debug.Log("minionCount = " + spawnedMinions);
         int randomSpawnPoint = Random.Range(0, 4);
 
-        Debug.Log("Generating Spawn at spawnPoint: " + randomSpawnPoint);
+        //Debug.Log("Generating Spawn at spawnPoint: " + randomSpawnPoint);
 
         if (Time.time > spawnMinion && minionCount < maximumSpawn)
         {
@@ -367,7 +377,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         }
         else if (Time.time > spawnMinion && minionCount >= maximumSpawn)
         {
-            Debug.Log("Maximum spawn = " + minionCount);
+            //Debug.Log("Maximum spawn = " + minionCount);
         }
         else if (Time.time > spawnMinion)
         {
@@ -378,13 +388,13 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     void throwCarAtPlayer(int carNumber)
     {
-        Debug.Log("Throwing car" + carNumber);
+        //Debug.Log("Throwing car" + carNumber);
         //calculate player postion
         throwAtTarget = (target.transform.position - bossTrans.position).normalized;
 
         //apply force to car Object 
         Rigidbody2D carRB = thrownCars[carNumber].GetComponent<Rigidbody2D>();
-        carRB.velocity = new Vector2(throwAtTarget.x, throwAtTarget.y) * 30.0f;
+        carRB.velocity = new Vector2(throwAtTarget.x, throwAtTarget.y) * throwSpeed;
         thrownCars[carNumber].GetComponent<ThrowCar>().thrown = true;
 
     }
@@ -418,6 +428,12 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         else
         {
             Debug.Log("Wait time cant't be less than 0");
+        }
+
+        if (throwSpeed > 10.0f)
+        {
+            throwSpeed = baseThrowSpeed + (difficulty * 2);
+            Debug.Log("Throw Speed: " + throwSpeed);
         }
     }
 }
