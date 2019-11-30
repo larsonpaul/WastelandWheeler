@@ -561,6 +561,9 @@ MonoBehaviour:
   bossHealth: 200
   maxHealth: 200
   firePoint: {fileID: 716552593}
+  bulletPrefab: {fileID: 6440363606155407293, guid: 26e6a7df489074340b81332227892d4c,
+    type: 3}
+  burst: 5
   projPrefab: {fileID: 3815651842055491911, guid: b9ba1685710d54780b6268dd6579575b,
     type: 3}
   shots: 5

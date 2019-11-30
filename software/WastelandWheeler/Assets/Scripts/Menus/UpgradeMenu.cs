@@ -57,4 +57,9 @@ public class UpgradeMenu : MonoBehaviour
         Time.timeScale = 1f;
         PauseMenu.GameIsPaused = false;
     }
+
+    public void resetLevels()
+    {
+        levelsCompleted = 0;
+    }
 }

@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public bool isArena = false;
     public bool isBoss = false;
+    private UpgradeMenu upgradeMenu;
 
     void Awake()
     {
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
         dropSpawner = GameObject.Find("DropManager").GetComponent<DropSpawner>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
         death = GetComponent<AudioSource>();
+        upgradeMenu = FindObjectOfType<UpgradeMenu>();
     }
 
     public void SetHealth(float scale)
@@ -126,6 +128,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         Debug.Log("GAME OVER!");
+        upgradeMenu.resetLevels(); // reset levels completed to 0
         Invoke("Menu", endDelay);
     }
 
