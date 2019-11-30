@@ -51,6 +51,8 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public Transform firePoint; // firePoint for projectiles
 
     private GameObject projectile;  // Boss's projectiles
+    public GameObject bulletPrefab;
+    public int burst = 5;
     public GameObject projPrefab;
     public int shots = 5;// number of projecties the boss will fire
     private GameObject[] projArray = new GameObject[5];
@@ -216,35 +218,26 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 while (i > 0)
                 {
                     int j = 0;
-                    while (j < 5)
+                    while(j < burst)
                     {
-                        shotReturns[j] = fireProjectile(j);
+                        fireBullet();
                         yield return new WaitForSeconds(.1f);
                         j++;
+
                     }
 
-                    yield return new WaitForSeconds(.3f);
+                    yield return new WaitForSeconds(.7f);
+                    shotReturns[0] = fireProjectile(0);
 
-                    j = 0;
-                    while (j < 5)
-                    {
-                        if (shotReturns[j] != null)
+                    yield return new WaitForSeconds(.7f);
+                        if (shotReturns[0] != null)
                         {
-                            returnProjectile(shotReturns[j], j);
-                            yield return new WaitForSeconds(.1f);
+                            returnProjectile(shotReturns[0], 0);
+
                         }
-                        j++;
-                    }
 
-                    yield return new WaitForSeconds(.3f);
-
-                    j = 0;
-                    while (j < 5)
-                    {
-                        Destroy(projArray[j]);
-                        yield return new WaitForSeconds(.1f);
-                        j++;
-                    }
+                    yield return new WaitForSeconds(.7f);
+                    Destroy(projArray[0]);
 
                     i--;
                 }
@@ -331,6 +324,14 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         Debug.Log("Loading next scene");
         GameObject.Find("StatManager").GetComponent<Stat_Manager>().EndOfLevel();
         SceneManager.LoadScene(1);
+    }
+
+    void fireBullet()
+    {
+        GameObject bullet;
+        Vector2 trgt = (target.transform.position - bossTrans.position).normalized * 30;
+        bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity) as GameObject;
+        bullet.GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
     }
 
     // fire boss saw blade
