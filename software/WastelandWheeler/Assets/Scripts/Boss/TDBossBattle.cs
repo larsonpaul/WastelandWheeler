@@ -115,6 +115,12 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     // Update is called once per frame
     void Update()
     {
+        GameObject[] leftOverSpawn = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject s in leftOverSpawn)
+        {
+            s.GetComponent<EnemyStats>().speed = 50;
+        }
+
         if (!once && !openingScene)
         {
             spawnMoreMinions();
@@ -222,8 +228,11 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                     j = 0;
                     while (j < 5)
                     {
-                        returnProjectile(shotReturns[j], j);
-                        yield return new WaitForSeconds(.1f);
+                        if (shotReturns[j] != null)
+                        {
+                            returnProjectile(shotReturns[j], j);
+                            yield return new WaitForSeconds(.1f);
+                        }
                         j++;
                     }
 
@@ -368,10 +377,10 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         int randomSpawnPoint = Random.Range(0, 4);
 
         //Debug.Log("Generating Spawn at spawnPoint: " + randomSpawnPoint);
-
+        GameObject min;
         if (Time.time > spawnMinion && minionCount < maximumSpawn)
         {
-            Instantiate(minions, spawnPoints[randomSpawnPoint].transform.position, Quaternion.identity);
+            min = Instantiate(minions, spawnPoints[randomSpawnPoint].transform.position, Quaternion.identity);
             spawnMinion = Time.time + spawnRate;
             minionCount += 1;
         }
