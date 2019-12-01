@@ -9,7 +9,7 @@ public class Spawn_Manager : MonoBehaviour
     public GameObject[] RangedEnemies;
 
     // 20 Spawns added to prefab for EnemyManager as of 11/2
-    public Transform[] SpawnPoints;
+    private Transform[] SpawnPoints;
 
     private int currWave;
     [SerializeField]
@@ -34,6 +34,12 @@ public class Spawn_Manager : MonoBehaviour
 
     private void Awake()
     {
+        SpawnPoints = new Transform[transform.childCount];
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            SpawnPoints[i] = transform.GetChild(i);
+        }
+
         enemiesLeftInWave = 0;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
