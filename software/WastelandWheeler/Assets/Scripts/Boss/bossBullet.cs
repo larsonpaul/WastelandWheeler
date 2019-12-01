@@ -37,7 +37,7 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
         GameObject obj = other.gameObject;
 
         // cases where bullet is not destroyed
-        string[] tags = { "Enemy", "Power_Up", "bullet", "boss"};
+        string[] tags = { "Enemy", "Power_Up", "bullet", "boss", "Magnet" };
         for (int i = 0; i < tags.Length; i++)
         {
             if (obj.CompareTag(tags[i])) return;

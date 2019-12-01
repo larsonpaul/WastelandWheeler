@@ -53,7 +53,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     [SerializeField] private float maxHealth;
     public Transform firePoint; // firePoint for projectiles
 
-    private GameObject projectile;  // Boss's projectiles
+    private GameObject sawShot;  // Boss's projectiles
     public GameObject bulletPrefab;
     public int burst = 5;
     public int baseBurst;
@@ -229,21 +229,18 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                         fireBullet();
                         yield return new WaitForSeconds(burstTimer);
                         j++;
-
                     }
 
                     yield return new WaitForSeconds(.7f);
                     shotReturns[0] = fireProjectile(0);
 
                     yield return new WaitForSeconds(.7f);
-                        if (shotReturns[0] != null)
+                        if (projArray[0] != null)
                         {
                             returnProjectile(shotReturns[0], 0);
-
+                            yield return new WaitForSeconds(.7f);
+                            Destroy(projArray[0]);
                         }
-
-                    yield return new WaitForSeconds(.7f);
-                    Destroy(projArray[0]);
 
                     i--;
                 }
@@ -281,7 +278,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
                 thrownCars[bossPoint - 1].GetComponent<ThrowCar>().thrown = true;
                 sawAction = 0;
-
             }// else if - walk to car
 
             else
@@ -289,7 +285,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 //start throwing saws again
                 sawAction = 0;
             }
-
         }// while boss health > 0
 
         yield return null;
