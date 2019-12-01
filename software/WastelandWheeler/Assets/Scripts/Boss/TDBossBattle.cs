@@ -413,6 +413,8 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 public void StartDifficulty(int difficulty)
     {
         float difficulty_mod = (1 + 0.1f * difficulty);
+        speed = baseSpeed + (0.05f * difficulty);
+        spawnRate = baseSpawnRate - difficulty_mod;
 
     }
 

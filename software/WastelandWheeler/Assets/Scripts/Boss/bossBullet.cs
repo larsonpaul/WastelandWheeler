@@ -28,12 +28,10 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
             Destroy(gameObject);
         }
         lifetime--;
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         //GameObject effect = Instantiate(hit_effect, transform.position, Quaternion.identity);
         //Destroy(effect, 5f);
         GameObject obj = other.gameObject;
@@ -52,7 +50,7 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
 
             Rigidbody2D playerRB = obj.gameObject.GetComponent<Rigidbody2D>();
 
-            Debug.Log("bullet push back");
+            //Debug.Log("bullet push back");
             Vector2 knockback = gameObject.GetComponent<Rigidbody2D>().velocity;
             playerRB.AddForce(knockback * 30);
 
