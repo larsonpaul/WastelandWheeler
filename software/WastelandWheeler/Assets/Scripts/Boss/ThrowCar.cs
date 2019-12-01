@@ -14,7 +14,8 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
     int rotationMultiplier = 1; // used to determine which way to rotate the car
 
     private bool dazed;
-    private float dazedTime = 5.0f;
+    private float dazedLength = 4.0f;
+    private float dazedTime;
     private float baseDaze;
     private Player_stats ps;
 
@@ -29,7 +30,7 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
     {
 
         baseCarDamage = carDamage;
-        baseDaze = dazedTime;
+        baseDaze = dazedLength;
 
         ps = FindObjectOfType<Player_stats>();
 
@@ -39,7 +40,7 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
         dda.Subscribe(this);
 
-        icon = GameObject.Find("GameUI").transform.Find("SpeedIcon").gameObject;
+        icon = GameObject.Find("GameUI").transform.Find("DownSpeedIcon").gameObject;
     }
 
     private void Update()
@@ -93,9 +94,9 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
             collision = true;
             Debug.Log("Thrown car hit player");
             if ((ps.healthCurrent - carDamage) > 0)
-            { 
+            {
                 dazed = true;
-                dazedTime += Time.time;
+                dazedTime = Time.time + dazedLength;
             }
 
             ps.RemoveHealth(carDamage);
@@ -135,10 +136,10 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
         carDamage =  (baseCarDamage + (difficulty * 5.0f));
         Debug.Log("car damge: " + carDamage);
 
-        if(dazedTime > 1.0f)
+        if(dazedLength > 1.0f)
         {
-            dazedTime = baseDaze + difficulty;
-            Debug.Log("DazeTime: " + dazedTime);
+            dazedLength = baseDaze + difficulty;
+            Debug.Log("DazeTime: " );
         }
     }
 
@@ -146,7 +147,7 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
     {
         if(Time.time < dazedTime)
         {
-            Debug.Log("Dazed");
+            Debug.Log("Dazed " );
             ps.move_speed = 40;
             icon.SetActive(true);
         }
@@ -155,7 +156,7 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
             Debug.Log(" Not Dazed anymore");
             ps.move_speed = 80;
             dazed = false;
-            icon.SetActive(false);
+
         }
         
     }
