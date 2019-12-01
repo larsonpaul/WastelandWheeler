@@ -132,6 +132,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         if (gameManager.gameIsOver())
         {
             Debug.Log("No more lives ");
+            //mainCam.orthographicSize = 10;
             StopCoroutine(bossMethod);
         }
 
@@ -195,6 +196,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         thrownCars[8].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         player.GetComponent<NewPlayerMovementForce>().enabled = true;
         player.GetComponent<PlayerAim>().enabled = true;
+        //mainCam.orthographicSize = 13;
         openingScene = false;
 
         while (bossHealth > 0)
