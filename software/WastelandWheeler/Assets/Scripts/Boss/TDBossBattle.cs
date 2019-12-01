@@ -20,7 +20,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public Transform playerPoint;
     public Transform carPoint;
 
-    private float spawnRate;
+    private float spawnRate = 5.0f;
     private float spawnMinion;
     private int maximumSpawn = 6;
     public GameObject minions;
@@ -28,7 +28,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     private float deathCount;
 
     public GameObject[] thrownCars;
-    private float throwSpeed = 45.0f;
+    private float throwSpeed = 40.0f;
     private float baseThrowSpeed;
     Transform carTarget;
     Vector2 playerTarget;
@@ -89,7 +89,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         //startRoutine = FindObjectOfType<startBossFight>();
         rb = GetComponent<Rigidbody2D>();
 
-        spawnRate = 8.0f;
         spawnMinion = Time.time;
 
         carTarget = thrownCars[0].GetComponent<Transform>();
@@ -130,7 +129,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         if (gameManager.gameIsOver())
         {
             Debug.Log("No more lives ");
-            //mainCam.orthographicSize = 10;
+            mainCam.orthographicSize = 10;
             StopCoroutine(bossMethod);
         }
 
@@ -194,7 +193,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         thrownCars[8].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         player.GetComponent<NewPlayerMovementForce>().enabled = true;
         player.GetComponent<PlayerAim>().enabled = true;
-        //mainCam.orthographicSize = 13;
+        mainCam.orthographicSize = 13;
         openingScene = false;
 
         while (bossHealth > 0)
