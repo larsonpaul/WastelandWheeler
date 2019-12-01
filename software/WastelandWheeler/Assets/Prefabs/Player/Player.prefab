@@ -314,6 +314,10 @@ MonoBehaviour:
   fireTrail: {fileID: 0}
   game: {fileID: 0}
   player_lives: 0
+  speedPrefab: {fileID: 3495408223341771378, guid: c2389464dd25cfe4da96f950048a1a9d,
+    type: 3}
+  invincibilityPrefab: {fileID: 164698073786857767, guid: a7abba22ca1df70439595c9838d17948,
+    type: 3}
 --- !u!114 &8827529717738458480
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -66,6 +66,9 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     private float adrenaline_scale;
     private float hurt_scale;
 
+    [SerializeField]
+    private GameObject speedPrefab, invincibilityPrefab;
+
     private void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -102,7 +105,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         ChangeDifficulty(total_difficulty);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (iFrameCur > 0)
         {
@@ -187,8 +190,14 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         // reset player transform to starting position of level 
         this.transform.position = new Vector3(0, 0, 0);
         healthCurrent = healthMax;
-        iFrameCur = 2f; // 2 seconds of invuln
+        iFrameCur = 2f * Time.fixedDeltaTime; // 2 seconds of invuln
         gameObject.GetComponent<PulseAbility>().Respawn();
+
+        GameObject speedup = Instantiate(speedPrefab, transform.position, transform.rotation);
+        speedup.GetComponent<Speed_up>().duration = 5f;
+
+        GameObject invup = Instantiate(invincibilityPrefab, transform.position, transform.rotation);
+        invup.GetComponent<Invincibility_up>().duration = 5f;
 
         game.SetHealth(healthCurrent / healthMax);
     }
