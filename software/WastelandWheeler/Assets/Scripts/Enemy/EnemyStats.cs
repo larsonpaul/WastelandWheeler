@@ -207,6 +207,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         // moved changes to health to StartDifficulty 
         speed = baseSpeed * (1.0f + (0.05f * difficulty));
         firerate = baseFirerate * (1.0f + (0.05f * difficulty));
+        damage = baseDamage * (1.0f + (0.05f * difficulty));
     }
 
 

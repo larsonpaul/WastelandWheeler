@@ -4,9 +4,25 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
+    private GameManager gameManager;
+
+    private Stat_Manager stat_manager;
+    private int difficulty;
+    private int dynamicDifficulty;
     public float damage = 10f;
     private int lifetime = 200;
-    
+
+
+    private void Start()
+    {
+        stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
+        difficulty = stat_manager.GetDifficulty();
+        dynamicDifficulty = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
+        damage = damage * (1 + 0.15f * difficulty);
+    }
+
+
+
     void Update()
     {
         //eventually, bullet dies
