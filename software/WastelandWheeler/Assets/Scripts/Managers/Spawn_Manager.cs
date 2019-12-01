@@ -22,6 +22,7 @@ public class Spawn_Manager : MonoBehaviour
     [SerializeField]
     int enemy_types_per_wave;
     [SerializeField]
+    [Range(6f, 100f)]
     private int totalEnemiesInWave;
     [SerializeField]
     private int enemiesLeftInWave;
@@ -63,18 +64,18 @@ public class Spawn_Manager : MonoBehaviour
         {
             enemy_types_per_wave = 2;
             TimeBetweenEnemies = 1.0f;
-            totalEnemiesInWave = 30;
+            totalEnemiesInWave = 20;
         }   
         else if (difficulty <= 2)
         {
-            enemy_types_per_wave = Random.Range(2, 5);
-            TimeBetweenEnemies = ((float)Random.Range(5, 9)) / 10;
-            totalEnemiesInWave = Random.Range(30, 41);
+            enemy_types_per_wave = 3;
+            TimeBetweenEnemies = Random.Range(0.5f, 0.9f);
+            totalEnemiesInWave = 30;
         }
         else
         {
-            enemy_types_per_wave = 5;
-            TimeBetweenEnemies = ((float)Random.Range(5, 9)) / 10;
+            enemy_types_per_wave = 4;
+            TimeBetweenEnemies = Random.Range(0.5f, 0.9f);
             totalEnemiesInWave = 40;
         }
     }
@@ -144,6 +145,7 @@ public class Spawn_Manager : MonoBehaviour
         // Start the next wave once we have spawned and defeated them all (BUGGY!!!)
         if (enemiesLeftInWave <= 0 && spawnedEnemies == totalEnemiesInWave)
         {
+            DifficultySetup();
             StartNextWave();
         }
     }
