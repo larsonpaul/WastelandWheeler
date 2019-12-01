@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    private GameManager gameManager;
-
     private Stat_Manager stat_manager;
     private int difficulty;
     private int dynamicDifficulty;
@@ -13,7 +11,7 @@ public class BulletBehaviour : MonoBehaviour
     private int lifetime = 200;
 
 
-    private void Start()
+    void Start()
     {
         stat_manager = GameObject.Find("StatManager").GetComponent<Stat_Manager>();
         difficulty = stat_manager.GetDifficulty();
