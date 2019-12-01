@@ -20,7 +20,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public Transform playerPoint;
     public Transform carPoint;
 
-    private float spawnRate;
+    private float spawnRate = 5.0f;
     private float spawnMinion;
     private int maximumSpawn = 6;
     public GameObject minions;
@@ -28,7 +28,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     private float deathCount;
 
     public GameObject[] thrownCars;
-    private float throwSpeed = 30.0f;
+    private float throwSpeed = 40.0f;
     private float baseThrowSpeed;
     Transform carTarget;
     Vector2 playerTarget;
@@ -46,22 +46,20 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     //calculate player postion
     Vector2 throwAtTarget;
-    private bool actionTaken;
-    private float actionTime = 10.0f;
 
     [SerializeField] public float bossHealth;
     [SerializeField] private float maxHealth;
     public Transform firePoint; // firePoint for projectiles
 
-    private GameObject projectile;  // Boss's projectiles
+    private GameObject sawShot;  // Boss's projectiles
     public GameObject bulletPrefab;
     public int burst = 5;
     public int baseBurst;
 
     public GameObject projPrefab;
     public int shots = 5;// number of projecties the boss will fire
-    private GameObject[] projArray = new GameObject[5];
-    private Vector2[] shotReturns = new Vector2[5];
+    private GameObject proj;
+    private Vector2 shotReturn;
 
     Coroutine bossMethod;
 
@@ -91,7 +89,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         //startRoutine = FindObjectOfType<startBossFight>();
         rb = GetComponent<Rigidbody2D>();
 
-        spawnRate = 8.0f;
         spawnMinion = Time.time;
 
         carTarget = thrownCars[0].GetComponent<Transform>();
@@ -132,6 +129,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         if (gameManager.gameIsOver())
         {
             Debug.Log("No more lives ");
+            mainCam.orthographicSize = 10;
             StopCoroutine(bossMethod);
         }
 
@@ -195,6 +193,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         thrownCars[8].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         player.GetComponent<NewPlayerMovementForce>().enabled = true;
         player.GetComponent<PlayerAim>().enabled = true;
+        mainCam.orthographicSize = 13;
         openingScene = false;
 
         while (bossHealth > 0)
@@ -227,28 +226,24 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                         fireBullet();
                         yield return new WaitForSeconds(burstTimer);
                         j++;
-
                     }
 
                     yield return new WaitForSeconds(.7f);
-                    shotReturns[0] = fireProjectile(0);
+                    shotReturn = fireProjectile(0);
 
                     yield return new WaitForSeconds(.7f);
-                        if (shotReturns[0] != null)
+                        if (proj != null)
                         {
-                            returnProjectile(shotReturns[0], 0);
-
+                            returnProjectile(shotReturn);
+                            yield return new WaitForSeconds(.7f);
+                            Destroy(proj);
                         }
-
-                    yield return new WaitForSeconds(.7f);
-                    Destroy(projArray[0]);
-
                     i--;
                 }
 
                 sawAction++;
 
-            }// if sawAction >2
+            }// if sawAction >1
 
             else if (sawAction >= 1 && bossPoint != 0 &&
                 thrownCars[bossPoint - 1].GetComponent<ThrowCar>().thrown == false)
@@ -279,7 +274,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
                 thrownCars[bossPoint - 1].GetComponent<ThrowCar>().thrown = true;
                 sawAction = 0;
-
             }// else if - walk to car
 
             else
@@ -287,7 +281,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 //start throwing saws again
                 sawAction = 0;
             }
-
         }// while boss health > 0
 
         yield return null;
@@ -341,16 +334,16 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     Vector2 fireProjectile(int index)
     {
         Vector2 trgt = (target.transform.position - bossTrans.position).normalized * 30;
-        projArray[index] = Instantiate(projPrefab, firePoint.position, Quaternion.identity) as GameObject;
-        projArray[index].GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
+        proj = Instantiate(projPrefab, firePoint.position, Quaternion.identity) as GameObject;
+        proj.GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
         return trgt;
     }
 
     //return saw blade
-    void returnProjectile(Vector2 vect, int index)
+    void returnProjectile(Vector2 vect)
     {
         //Vector2 trgt = transform.position - target.transform.position;
-        projArray[index].GetComponent<Rigidbody2D>().velocity = new Vector2(-vect.x, -vect.y);
+        proj.GetComponent<Rigidbody2D>().velocity = new Vector2(-vect.x, -vect.y);
     }
 
 
@@ -413,6 +406,8 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 public void StartDifficulty(int difficulty)
     {
         float difficulty_mod = (1 + 0.1f * difficulty);
+        speed = baseSpeed + (0.05f * difficulty);
+        spawnRate = baseSpawnRate - difficulty_mod;
 
     }
 
@@ -421,7 +416,7 @@ public void StartDifficulty(int difficulty)
         if (speed > 0)
         {
             speed = baseSpeed + (0.05f * difficulty);
-            Debug.Log("speed: " + speed);
+            //Debug.Log("speed: " + speed);
         }
         else
         {
@@ -469,8 +464,8 @@ public void StartDifficulty(int difficulty)
 
             foreach (GameObject s in leftOverSpawn)
             {
-            s.GetComponent<EnemyStats>().speed = 50 + (difficulty * 5);
-            //Debug.Log("Minion speed" + s.GetComponent<EnemyStats>().speed);
+            s.GetComponent<EnemyStats>().speed = 60 + (difficulty * 5);
+            Debug.Log("Minion speed" + s.GetComponent<EnemyStats>().speed);
         }
         
     }
