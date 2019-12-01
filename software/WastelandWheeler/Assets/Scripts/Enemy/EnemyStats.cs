@@ -99,6 +99,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
 
     public void RemoveHealth(float num)
     {
+        if (health <= 0) return;
         if (num <= 0 || iframe > 0)
         {
             if (num < 0)
