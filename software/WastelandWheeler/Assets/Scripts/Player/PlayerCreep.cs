@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerCreep : MonoBehaviour
 {
+    // made public to test damage values
     public float damage = 5f;
     private int lifetime = 100;
 
-    void Update() // called each frame
+    // checked each frame
+    void Update() 
     {
         // check if it has burned out
         if (lifetime == 0)
@@ -17,11 +19,11 @@ public class PlayerCreep : MonoBehaviour
         lifetime--;
     }
 
-    //collided with something 
+    // collided with something 
     void OnTriggerStay2D(Collider2D col)
     {
 
-        //check if what is has collided wwith should destroy it or not
+        // Check enemy collision and remove its health
         if (col.gameObject.CompareTag("Enemy"))
         {
             col.gameObject.GetComponent<EnemyStats>().RemoveHealth(damage);
