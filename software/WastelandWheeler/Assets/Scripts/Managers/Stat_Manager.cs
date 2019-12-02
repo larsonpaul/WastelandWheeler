@@ -33,7 +33,6 @@ public class Stat_Manager : MonoBehaviour
     float baseshotsize = 1f;
     int baselives = 3;
     int basedifficulty = 0;
-    private int persistent_difficulty = 0;
 
     // stats for the game that need to persist between levels
     private float max_health = 100f;
@@ -42,9 +41,10 @@ public class Stat_Manager : MonoBehaviour
     private float rate_of_fire = .2f;
     private float damage = 7f;
     private float bullet_size = 1f;
-    private int coins = 0;
     private int lives = 3;
+    private int coins = 0;
     private float score = 0;
+    private int persistent_difficulty = 0;
 
     private Score scoreRecord;
 
@@ -64,8 +64,8 @@ public class Stat_Manager : MonoBehaviour
         bullet_size = baseshotsize;
         lives = baselives;
         coins = 0;
-        persistent_difficulty = 0;
         score = 0;
+        persistent_difficulty = 0;
     }
 
     // Start is called before the first frame update
