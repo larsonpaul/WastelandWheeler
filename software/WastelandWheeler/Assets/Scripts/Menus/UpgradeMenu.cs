@@ -11,6 +11,8 @@ public class UpgradeMenu : MonoBehaviour
     private const int ROAD = 2;
 
     private const int ARENA = 3;
+
+    [SerializeField]
     private int arenaWeight = 30;
 
     private const int BOSS = 4;
