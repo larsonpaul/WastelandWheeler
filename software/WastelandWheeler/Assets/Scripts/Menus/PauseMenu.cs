@@ -12,7 +12,6 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        Application.Quit();
         SceneManager.LoadScene(0);
     }
 
