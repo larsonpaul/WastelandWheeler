@@ -446,16 +446,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
-        type: 3}
-      propertyPath: num_waves
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
-        type: 3}
-      propertyPath: TimeBetweenEnemies
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 5888371970722764106, guid: 3234a098679bc7b4a96fa008ee775ea6,
         type: 3}
       propertyPath: m_RootOrder
@@ -476,6 +466,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+        type: 3}
+      propertyPath: MeleeEnemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+        type: 3}
+      propertyPath: RangedEnemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+        type: 3}
+      propertyPath: num_waves
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+        type: 3}
+      propertyPath: TimeBetweenEnemies
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+        type: 3}
+      propertyPath: MeleeEnemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 1014893128181177944, guid: 7da05357e48fa5d4fb86d1ff10a339d5,
+        type: 3}
+    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+        type: 3}
+      propertyPath: MeleeEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 1014893128181177944, guid: e9c9127ca080d8b4783dd7dbeb209b55,
+        type: 3}
+    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+        type: 3}
+      propertyPath: MeleeEnemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 1014893128181177944, guid: 781b5d6a3c81318418438d126d5ff169,
+        type: 3}
+    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+        type: 3}
+      propertyPath: RangedEnemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 1014893128181177944, guid: a815ea79d3c310842b7b0138729ce7a5,
+        type: 3}
+    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+        type: 3}
+      propertyPath: RangedEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 1014893128181177944, guid: 17c3786e974ddc04793b2584a5fc55e1,
+        type: 3}
+    - target: {fileID: 5888371970722764107, guid: 3234a098679bc7b4a96fa008ee775ea6,
+        type: 3}
+      propertyPath: RangedEnemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 1014893128181177944, guid: c8caa750010b23b45ac4d20f9fc0b26a,
+        type: 3}
     - target: {fileID: 5888371971256873971, guid: 3234a098679bc7b4a96fa008ee775ea6,
         type: 3}
       propertyPath: m_LocalPosition.x
