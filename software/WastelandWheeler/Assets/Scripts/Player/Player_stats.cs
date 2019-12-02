@@ -76,23 +76,25 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         // initialize the players stats from the Stat_Manager
         stats = Stat_Manager.Instance;
         healthMax = stats.GetMaxHealth();
-        healthCurrent = stats.GetMaxHealth(); // change this if the player health is not reseting on level load
-        baseSpeed = stats.GetSpeed();
-        move_speed = baseSpeed;
-        baseROF = stats.GetROF();
-        rate_of_fire = baseROF;
-        bullet_size = stats.GetBulletSize();
         adrenalineMax = stats.GetMaxAdrenaline();
-        adrenalineCurrent = stats.GetCurrentAdrenaline();
+        baseSpeed = stats.GetSpeed();
+        baseROF = stats.GetROF();
+        bullet_size = stats.GetBulletSize();
         baseDamage = stats.GetDamage();
-        damage = baseDamage;
         totalCoins = stats.GetCoins();
         player_lives = stats.GetLives();
+
+        // values that are local to the player object
+        healthCurrent = healthMax;
+        adrenalineCurrent = adrenalineMax;
+        move_speed = baseSpeed;
+        rate_of_fire = baseROF;
+        damage = baseDamage;
 
         // update canvas objects 
         lifeUI = GameObject.Find("LifeText").GetComponent<LifeUI>();
         lifeUI.UpdateUI();
-        game.SetAdrenaline(stats.GetCurrentAdrenaline() / stats.GetMaxAdrenaline());
+        game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
         game.SetHealth(healthCurrent / healthMax);
 
         audio = gameObject.GetComponent<AudioSource>();

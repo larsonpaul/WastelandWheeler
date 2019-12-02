@@ -24,24 +24,23 @@ public class Stat_Manager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    // base values that the player should start the game with
     float basehealth = 100f;
+    float baseadrenaline = 100f;
     float basespeed = 75f;
     float baserof = .2f;
     float basedamage = 7f;
     float baseshotsize = 1f;
-    float baseadrenaline = 100f;
     int baselives = 3;
     int basedifficulty = 0;
 
     // base stats for the game that need to persist between levels
     private float max_health = 100f;
-    private float cur_health = 100f;
+    private float max_adrenaline = 100f;
     private float speed = 75f;
     private float rate_of_fire = .2f;
     private float damage = 7f;
     private float bullet_size = 1f;
-    private float max_adrenaline = 100f;
-    private float cur_adrenaline = 100f;
     private int coins = 0;
     private int lives = 3;
     private float score = 0;
@@ -59,13 +58,11 @@ public class Stat_Manager : MonoBehaviour
     public void Reset()
     {
         max_health = basehealth;
-        cur_health = max_health;
+        max_adrenaline = baseadrenaline;
         speed = basespeed;
         rate_of_fire = baserof;
         damage = basedamage;
         bullet_size = baseshotsize;
-        max_adrenaline = baseadrenaline;
-        cur_adrenaline = max_adrenaline;
         lives = baselives;
         coins = 0;
         persistent_difficulty = 0;
@@ -90,18 +87,6 @@ public class Stat_Manager : MonoBehaviour
         max_health += value;
     }
 
-    // Function to grab the current health of the player
-    public float GetCurrentHealth()
-    {
-        return cur_health;
-    }
-
-    // Function to set the current health of the player
-    public void SetCurrentHealth(float value)
-    {
-        cur_health = value;
-    }
-
     // Function to grab the current adrenaline of the player
     public float GetMaxAdrenaline()
     {
@@ -112,18 +97,6 @@ public class Stat_Manager : MonoBehaviour
     public void SetMaxAdrenaline(float value)
     {
         max_adrenaline = value;
-    }
-
-    // Function to grab the current adrenaline of the player
-    public float GetCurrentAdrenaline()
-    {
-        return cur_adrenaline;
-    }
-
-    // Function to set how much adrenaline the player has
-    public void SetCurrentAdrenaline(float value)
-    {
-        cur_adrenaline = value;
     }
 
     // Function to get the total coins of the player
@@ -244,7 +217,6 @@ public class Stat_Manager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player_stats>();
         lives = player.GetLives();
         coins = (int)player.GetCoins();
-        cur_adrenaline = player.GetAdrenaline();
         // modify how hard the next wave will be 
         end_level_difficulty = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>().GetDifficulty();
         if (end_level_difficulty >= 5) { // player did very well
