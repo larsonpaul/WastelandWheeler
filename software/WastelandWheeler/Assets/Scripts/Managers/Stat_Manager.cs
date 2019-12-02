@@ -54,7 +54,7 @@ public class Stat_Manager : MonoBehaviour
 
     private int end_level_difficulty;
 
-    public static int levelsCompleted = 0;
+    public int levelsCompleted = 0;
 
     public void Reset()
     {
