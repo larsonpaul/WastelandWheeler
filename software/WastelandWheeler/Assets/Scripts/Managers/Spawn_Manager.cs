@@ -60,13 +60,13 @@ public class Spawn_Manager : MonoBehaviour
     void DifficultySetup()
     {
         difficulty = GameObject.Find("StatManager").GetComponent<Stat_Manager>().GetDifficulty();
-        if (difficulty <= -2)
+        if (difficulty <= 3)
         {
             enemy_types_per_wave = 2;
             TimeBetweenEnemies = 1.0f;
             totalEnemiesInWave = 20;
         }   
-        else if (difficulty <= 2)
+        else if (difficulty <= 7)
         {
             enemy_types_per_wave = 3;
             TimeBetweenEnemies = Random.Range(0.5f, 0.9f);
