@@ -6,16 +6,17 @@ using UnityEngine.SceneManagement;
 public class UpgradeMenu : MonoBehaviour
 {
     private int first_scene = 2;
-    private int last_scene = 2; // this will need to be changed as more levels are added
+    private int last_scene = 3; // this will need to be changed as more levels are added
 
     private const int ROAD = 2;
+    private const int PCG = 3;
 
-    private const int ARENA = 3;
+    private const int ARENA = 4;
 
     [SerializeField]
     private int arenaWeight = 30;
 
-    private const int BOSS = 4;
+    private const int BOSS = 5;
 
     public Stat_Manager statManager;
 
@@ -51,10 +52,11 @@ public class UpgradeMenu : MonoBehaviour
         {
             arenaWeight += 10;
         }
-        
+
 
         // default to road level
-        SceneManager.LoadScene(ROAD);
+        int choice = Random.Range(first_scene, last_scene + 1);
+        SceneManager.LoadScene(choice);
         PrepareScene();
         return;
     }
