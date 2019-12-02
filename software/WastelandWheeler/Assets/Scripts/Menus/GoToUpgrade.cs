@@ -7,14 +7,21 @@ public class GoToUpgrade : MonoBehaviour
 {
     [SerializeField]
     private bool waves_defeated = true;
+
+    private LevelChanger fade_animator;
+
+    void Start()
+    {
+        fade_animator = FindObjectOfType<LevelChanger>();   
+    }
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
         // when there are no enemies do this
         if (collision.CompareTag("Player"))
         {
-            yield return new WaitForSeconds(2);
-            GameObject.Find("StatManager").GetComponent<Stat_Manager>().EndOfLevel(); 
-            SceneManager.LoadScene(1);
+            GameObject.Find("StatManager").GetComponent<Stat_Manager>().EndOfLevel();
+            fade_animator.FadeToPlatformer();
+            yield return new WaitForSeconds(1);
         }
 
         // if not return 
