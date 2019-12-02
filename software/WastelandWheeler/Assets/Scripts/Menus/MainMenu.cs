@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject MainCanvas;
     public GameObject TutorialPanel;
+    public GameObject PowerupsPanel;
 
     private Stat_Manager stats;
 
@@ -29,6 +30,16 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void ContinueTutorial()
+    {
+        TutorialPanel.SetActive(false);
+        PowerupsPanel.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartGame();
+        }
+    }
+
     public void StartGame()
     {
         stats.Reset();
@@ -36,7 +47,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(2);
         Time.timeScale = 1f;
         PauseMenu.GameIsPaused = false;
-        TutorialPanel.SetActive(false);
+        PowerupsPanel.SetActive(false);
     }
 
     // Stop application 
