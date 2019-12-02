@@ -11,7 +11,14 @@ public class LifeUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+        if (stats.Equals(null))
+        {
+            return;
+        }
+        else
+        {
+            stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+        }
     }
 
     // Update is called once per frame
