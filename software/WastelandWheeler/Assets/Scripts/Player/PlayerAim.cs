@@ -22,8 +22,7 @@ public class PlayerAim : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         stats = GetComponent<Player_stats>();
         statManager = Stat_Manager.Instance;
-        bullet_size = stats.GetBulletSize();
-        statManager.SetBulletSize(bullet_size);
+        bullet_size = statManager.GetBulletSize();
         bulletPrefab.GetComponent<Transform>().localScale = Vector3.one * bullet_size;
         blaster = GetComponent<AudioSource>();
     }
@@ -51,7 +50,6 @@ public class PlayerAim : MonoBehaviour
 
     private void Shoot(float angle)
     {
-        statManager.GetBulletSize();
         GameObject bullet = Instantiate(bulletPrefab, playerRB.position, Quaternion.AngleAxis(angle, Vector3.forward));
         bullet.transform.Translate(Vector3.up * 0.5f);
 
