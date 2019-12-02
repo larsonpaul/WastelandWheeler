@@ -34,29 +34,13 @@ public class BulletBehaviour : MonoBehaviour
     //collided with something
     void OnTriggerStay2D(Collider2D col)
     {
-        // check if it should pass through collider
-        if (col.CompareTag("Enemy"))
-        {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(),col);
-        }
-        else if (col.CompareTag("Shot"))
-        {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(),col);
-        }
-        else if (col.CompareTag("Power_Up"))
-        {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(),col);
-        }
-        else if (col.CompareTag("Magnet"))
-        {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), col);
-        }
-        else if (col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
-            Destroy(gameObject);
         }
-        else
+
+        // check if it should pass through collider
+        if (!col.isTrigger && !col.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }
