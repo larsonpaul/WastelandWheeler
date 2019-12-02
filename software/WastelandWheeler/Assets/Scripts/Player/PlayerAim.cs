@@ -9,7 +9,7 @@ public class PlayerAim : MonoBehaviour
 
     public GameObject bulletPrefab;
     public float bullet_size;
-    public float bullet_force = 20f;
+    public float bullet_force = 25f;
     private float timer = 0f;
     private Player_stats stats;
     private Stat_Manager statManager;
