@@ -11,6 +11,8 @@ public class Invincibility_up : MonoBehaviour
     private static Player_stats stats;
 
     private bool used = false;
+
+    [SerializeField]
     private static int active = 0;
 
     private GameObject icon;
@@ -37,6 +39,8 @@ public class Invincibility_up : MonoBehaviour
 
     private IEnumerator Power()
     {
+        if (!stats.isInvincible) active = 0;
+
         active += 1;
 
         stats.isInvincible = true;

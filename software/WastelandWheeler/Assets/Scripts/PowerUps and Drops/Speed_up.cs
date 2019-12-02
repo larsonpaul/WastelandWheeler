@@ -38,6 +38,8 @@ public class Speed_up : MonoBehaviour
 
     private IEnumerator Power()
     {
+        if (stats.move_speed == stats.baseSpeed) active = 0;
+
         active += 1;
         
         if (active == 1)

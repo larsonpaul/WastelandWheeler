@@ -38,6 +38,8 @@ public class ROF_up : MonoBehaviour
 
     private IEnumerator Power()
     {
+        if (stats.rate_of_fire == stats.baseROF) active = 0;
+
         active += 1;
 
         if (active == 1)
@@ -51,7 +53,7 @@ public class ROF_up : MonoBehaviour
         active -= 1;
         if (active == 0)
         {
-            stats.rate_of_fire *= multiplier;
+            stats.rate_of_fire = stats.baseROF;
             icon.SetActive(false);
         }
         Destroy(gameObject);

@@ -40,6 +40,8 @@ public class Thorns : MonoBehaviour
 
     private IEnumerator Power()
     {
+        if (!stats.isThorny) active = 0;
+
         active += 1;
 
         stats.isThorny = true;

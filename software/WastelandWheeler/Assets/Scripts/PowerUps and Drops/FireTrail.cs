@@ -33,6 +33,8 @@ public class FireTrail : MonoBehaviour
 
     private IEnumerator FlameOn()
     {
+        if (!stats.onFire) active = 0;
+
         active += 1;
 
         if (active == 1)
