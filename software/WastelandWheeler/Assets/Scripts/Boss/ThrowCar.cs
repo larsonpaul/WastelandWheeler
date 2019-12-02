@@ -14,7 +14,8 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
     int rotationMultiplier = 1; // used to determine which way to rotate the car
 
     private bool dazed;
-    public  float dazedTime = 6.0f;
+    private float dazedLength = 4.0f;
+    private float dazedTime;
     private float baseDaze;
     private Player_stats ps;
 
@@ -23,11 +24,13 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
     private Stat_Manager stat_manager;
     private int difficulty;
 
+    private GameObject icon;
+
     private void Start()
     {
 
         baseCarDamage = carDamage;
-        baseDaze = dazedTime;
+        baseDaze = dazedLength;
 
         ps = FindObjectOfType<Player_stats>();
 
@@ -36,6 +39,8 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
         StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
         dda.Subscribe(this);
+
+        icon = GameObject.Find("GameUI").transform.Find("DownSpeedIcon").gameObject;
     }
 
     private void Update()
@@ -45,7 +50,6 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
         {
             rotateCar();
         }
-
         // slow down player if hit by car
         if (dazed)
         {
@@ -55,7 +59,6 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
 
     void rotateCar()
     {
-
         transform.eulerAngles = Vector3.forward * 45 * rotationMultiplier;
         rotationTime = Time.time + .2f;
 
@@ -67,7 +70,6 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
         {
             rotationMultiplier++;
         }
-
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -89,15 +91,15 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
 
         else if (col.gameObject.CompareTag("Player") && !collision && thrown)
         {
-            ps.RemoveHealth(carDamage);
-            if (ps.healthCurrent <= 0)
-        { 
-            dazed = true;
-            dazedTime += Time.time;
-        }
             collision = true;
-
             Debug.Log("Thrown car hit player");
+            if ((ps.healthCurrent - carDamage) > 0)
+            {
+                dazed = true;
+                dazedTime = Time.time + dazedLength;
+            }
+
+            ps.RemoveHealth(carDamage);
         }
         else
         {
@@ -127,7 +129,6 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
     public void StartDifficulty(int difficulty)
     {
         float difficulty_mod = (1 + 0.1f * difficulty);
-
     }
 
     public void ChangeDifficulty(int difficulty)
@@ -135,26 +136,27 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
         carDamage =  (baseCarDamage + (difficulty * 5.0f));
         Debug.Log("car damge: " + carDamage);
 
-        if(dazedTime > 1.0f)
+        if(dazedLength > 1.0f)
         {
-            dazedTime = baseDaze + difficulty;
-            Debug.Log("DazeTime: " + dazedTime);
+            dazedLength = baseDaze + difficulty;
+            Debug.Log("DazeTime: " );
         }
-
     }
 
     public void slowDown()
     {
         if(Time.time < dazedTime)
         {
-            Debug.Log("Dazed");
+            Debug.Log("Dazed " );
             ps.move_speed = 40;
+            icon.SetActive(true);
         }
         else
         {
             Debug.Log(" Not Dazed anymore");
             ps.move_speed = 80;
             dazed = false;
+
         }
         
     }
