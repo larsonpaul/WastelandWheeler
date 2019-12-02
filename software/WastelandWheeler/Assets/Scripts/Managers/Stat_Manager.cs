@@ -69,7 +69,7 @@ public class Stat_Manager : MonoBehaviour
         lives = baselives;
         coins = 0;
         persistent_difficulty = 0;
-        score = 1000;
+        score = 0;
     }
 
     // Start is called before the first frame update
