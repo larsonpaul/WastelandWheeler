@@ -33,8 +33,9 @@ public class Stat_Manager : MonoBehaviour
     float baseshotsize = 1f;
     int baselives = 3;
     int basedifficulty = 0;
+    private int persistent_difficulty = 0;
 
-    // base stats for the game that need to persist between levels
+    // stats for the game that need to persist between levels
     private float max_health = 100f;
     private float max_adrenaline = 100f;
     private float speed = 75f;
@@ -46,8 +47,6 @@ public class Stat_Manager : MonoBehaviour
     private float score = 0;
 
     private Score scoreRecord;
-
-    private int persistent_difficulty = 0;
 
     private Player_stats player;
 
@@ -209,7 +208,6 @@ public class Stat_Manager : MonoBehaviour
         levelsCompleted = 0;
         Debug.Log("Level now: " + levelsComplete());
     }
-
 
     // method called when the level so that the Stat_Manager can read and save values from the current level
     public void EndOfLevel()
