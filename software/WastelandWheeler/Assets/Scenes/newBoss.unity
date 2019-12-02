@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5a3bb05d90b7948b3d911d57fbf7c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelsCompleted: 0
 --- !u!4 &222095025
 Transform:
   m_ObjectHideFlags: 0
@@ -2482,20 +2483,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: DownSpeedIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 8170096380325215240, guid: 111f0aad087f4403293483d7b5ac2863,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8170096380325215241, guid: 111f0aad087f4403293483d7b5ac2863,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 367.12897
+      value: 30.8
       objectReference: {fileID: 0}
     - target: {fileID: 8170096380325215241, guid: 111f0aad087f4403293483d7b5ac2863,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.415268
+      value: -104.3
       objectReference: {fileID: 0}
     - target: {fileID: 8170096380325215241, guid: 111f0aad087f4403293483d7b5ac2863,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2136.8157
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8170096380325215241, guid: 111f0aad087f4403293483d7b5ac2863,
         type: 3}
@@ -2537,20 +2543,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8170096380325215241, guid: 111f0aad087f4403293483d7b5ac2863,
+    - target: {fileID: 8170096380325215242, guid: 111f0aad087f4403293483d7b5ac2863,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 12.0009985
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8170096380325215241, guid: 111f0aad087f4403293483d7b5ac2863,
+    - target: {fileID: 8170096380325215242, guid: 111f0aad087f4403293483d7b5ac2863,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 12.0009985
+      propertyPath: m_SortingLayerID
+      value: 1335910525
       objectReference: {fileID: 0}
-    - target: {fileID: 8170096380325215241, guid: 111f0aad087f4403293483d7b5ac2863,
+    - target: {fileID: 8170096380325215242, guid: 111f0aad087f4403293483d7b5ac2863,
         type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.0000832
+      propertyPath: m_SortingLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 111f0aad087f4403293483d7b5ac2863, type: 3}
@@ -58534,5 +58540,15 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 8938487132578554078, guid: 989b12522570e4145b27e398c7c50310,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9098048288128178505, guid: 989b12522570e4145b27e398c7c50310,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989b12522570e4145b27e398c7c50310, type: 3}

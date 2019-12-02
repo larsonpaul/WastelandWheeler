@@ -156,9 +156,10 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
             Debug.Log(" Not Dazed anymore");
             ps.move_speed = 80;
             dazed = false;
+            icon.SetActive(false);
 
         }
-        
+
     }
 
 }
