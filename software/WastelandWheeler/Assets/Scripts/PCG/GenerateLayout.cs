@@ -20,6 +20,9 @@ public class GenerateLayout : MonoBehaviour
     //container to hold obstacle prefabs
     public GameObject[] obstacles;
 
+    // parent GameObject that all the obstacles spawn under to keep game inspector clean
+    private Transform ObstacleHolder;
+
     private Spawn_Manager spawnManager;
     void Start()
     {
@@ -28,6 +31,22 @@ public class GenerateLayout : MonoBehaviour
 
     public void SpawnObstacles()
     {
+        int count = 0;
+        int numObstacles = Random.Range(minObstacles, maxObstacles + 1);
+        int x;
+        int y;
+        while (count < numObstacles)
+        {
+            // get a random coordinate
+            x = Random.Range(lowerX, upperX + 1);
+            y = Random.Range(lowerY, upperY + 1);
 
+            // choose a random obstacle to instantiate
+            GameObject toInstantiate = obstacles[Random.Range(0, obstacles.Length)];
+
+            GameObject instance = Instantiate(toInstantiate, new Vector3(x,y,0), Quaternion.identity, ObstacleHolder) 
+                as GameObject;
+            count++;
+        }
     }
 }

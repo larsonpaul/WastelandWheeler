@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
 
     private bool playerIsDead;
 
+    public bool pcgEnabled = false;
+    private GenerateLayout pcgScript;
+
     void Awake()
     {
         spawnManager = GameObject.Find("Spawn Manager").GetComponent<Spawn_Manager>();
@@ -53,6 +56,12 @@ public class GameManager : MonoBehaviour
         dropSpawner = GameObject.Find("DropManager").GetComponent<DropSpawner>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
         death = GetComponent<AudioSource>();
+
+        if (pcgEnabled)
+        {
+            pcgScript = GetComponent<GenerateLayout>();
+            pcgScript.SpawnObstacles();
+        } 
     }
 
     public void SetHealth(float scale)
