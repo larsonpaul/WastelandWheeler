@@ -12,7 +12,7 @@ public class PlayerAim : MonoBehaviour
     public float bullet_force = 20f;
     private float timer = 0f;
     private Player_stats stats;
-    private Stat_Manager constStats;
+    private Stat_Manager statManager;
     private AudioSource blaster;
 
     // Start is called before the first frame update
@@ -21,9 +21,9 @@ public class PlayerAim : MonoBehaviour
         cam = Camera.main;
         playerRB = GetComponent<Rigidbody2D>();
         stats = GetComponent<Player_stats>();
-        constStats = Stat_Manager.Instance;
+        statManager = Stat_Manager.Instance;
         bullet_size = stats.GetBulletSize();
-        constStats.SetBulletSize(bullet_size);
+        statManager.SetBulletSize(bullet_size);
         bulletPrefab.GetComponent<Transform>().localScale = Vector3.one * bullet_size;
         blaster = GetComponent<AudioSource>();
     }
@@ -51,12 +51,12 @@ public class PlayerAim : MonoBehaviour
 
     private void Shoot(float angle)
     {
-        constStats.SetBulletSize(bullet_size);
+        statManager.GetBulletSize();
         GameObject bullet = Instantiate(bulletPrefab, playerRB.position, Quaternion.AngleAxis(angle, Vector3.forward));
         bullet.transform.Translate(Vector3.up * 0.5f);
 
-        bullet.GetComponent<Bullet>().SetDamage(stats.GetDamage());
-        bullet.GetComponent<Bullet>().SetSize(stats.GetBulletSize());
+        bullet.GetComponent<Bullet>().SetDamage(statManager.GetDamage());
+        bullet.GetComponent<Bullet>().SetSize(statManager.GetBulletSize());
 
         Vector2 bulletForce = (Vector2)(bullet.transform.up * bullet_force) + playerRB.velocity / 2;
 
