@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GenerateLayout : MonoBehaviour
 {
+    private enum DIRECTION {UP, DOWN, LEFT, RIGHT}
+
     // the transform limits of the area where obstacles can be placed 
     // these numbers have been chosen to leave a corridor around the outer edge 
     // of the environment so that there is always a path through
@@ -23,10 +25,16 @@ public class GenerateLayout : MonoBehaviour
     // parent GameObject that all the obstacles spawn under to keep game inspector clean
     private Transform ObstacleHolder;
 
+    // needed to update spawn points so that they dont overlap with obstacles
+    private List<Vector3> spawnLocations;
     private Spawn_Manager spawnManager;
-    void Start()
+    private GameObject[] spawnPoints;
+
+    void Awake()
     {
         spawnManager = FindObjectOfType<Spawn_Manager>();
+        spawnLocations = new List<Vector3>();
+        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
     }
 
     public void SpawnObstacles()
@@ -40,7 +48,7 @@ public class GenerateLayout : MonoBehaviour
             // get a random coordinate
             x = Random.Range(lowerX, upperX + 1);
             y = Random.Range(lowerY, upperY + 1);
-
+            spawnLocations.Add(new Vector3(x, y+3, 0));
             // choose a random obstacle to instantiate
             GameObject toInstantiate = obstacles[Random.Range(0, obstacles.Length)];
 
@@ -48,5 +56,26 @@ public class GenerateLayout : MonoBehaviour
                 as GameObject;
             count++;
         }
+
+        UpdateSpawnPoints();
+    }
+
+    public void UpdateSpawnPoints()
+    {
+        //float[] direction = { 1.5f, -1.5f };
+        Vector3 location;
+        int idx;
+        GameObject spawn;
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            idx = Random.Range(0, spawnLocations.Count);
+            location = spawnLocations[idx];
+            spawnLocations.RemoveAt(idx);
+            location.y += 1.5f;
+
+            spawn = spawnPoints[i];
+            spawn.transform.SetPositionAndRotation(location, Quaternion.identity);
+        }
+
     }
 }
