@@ -163,9 +163,8 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             healthCurrent -= num*hurt_scale;
             iFrameCur = iFrameMax;
             game.SetHealth(healthCurrent / healthMax);
-            damageCanvas.SetActive(true); 
             audio.PlayOneShot(hit, 0.8f);
-            damageCanvas.SetActive(false);
+            StartCoroutine(DamageFlash());
             if (healthCurrent <= 0)
             {
                 player_lives--;
@@ -183,6 +182,13 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
                 }
             }
         }
+    }
+
+    IEnumerator DamageFlash()
+    {
+        damageCanvas.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        damageCanvas.SetActive(false);
     }
 
     private void Respawn()
