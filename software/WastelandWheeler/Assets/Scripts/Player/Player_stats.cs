@@ -147,6 +147,27 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
     }
 
+    // function that increases player health by a percent value of max health
+    public void HealPercent(float percent)
+    {
+        float healAmount;
+        if (percent <= 0)
+        {
+            if (percent < 0)
+            {
+                string error = gameObject.name + ".AddHealth() given negative float " + percent;
+                Debug.LogError(error);
+            }
+            return;
+        }
+        else if (percent > 0)
+        {
+            healAmount = healthMax * percent;
+            healthCurrent = Mathf.Min(healthCurrent + (healthMax * percent), healthMax);
+            game.SetHealth(healthCurrent / healthMax);
+        }
+    }
+
     public void RemoveHealth(float num)
     {
         if (num <= 0 || (isInvincible || iFrameCur > 0))

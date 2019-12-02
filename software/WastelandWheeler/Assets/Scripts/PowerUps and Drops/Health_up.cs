@@ -7,7 +7,7 @@ using UnityEngine;
  */
 public class Health_up : MonoBehaviour
 {
-    public float heal = 20f;
+    public float heal = 0.20f;
     private static Player_stats stats;
 
     private bool used = false;
@@ -27,7 +27,7 @@ public class Health_up : MonoBehaviour
             stats.playPowerup = true;
             Destroy(gameObject);
 
-            stats.AddHealth(heal);
+            stats.HealPercent(heal);
         }
     }
 }
