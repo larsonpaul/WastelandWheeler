@@ -305,9 +305,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 Destroy(b);
             }
 
-            //center camera on boss
-            //Debug.Log("Moving camera");
-            //Vector3 moveCam = transform.position - mainCam.transform.position;
             mainCam.transform.position = endShot;
             deathCount = Time.time + 7.0f;
             once = true;
@@ -325,7 +322,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     void fireBullet()
     {
         GameObject bullet;
-        Vector2 trgt = (target.transform.position - bossTrans.position).normalized * 30;
+        Vector2 trgt = (target.transform.position - bossTrans.position).normalized * 40;
         bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity) as GameObject;
         bullet.GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
     }
@@ -333,7 +330,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     // fire boss saw blade
     Vector2 fireProjectile(int index)
     {
-        Vector2 trgt = (target.transform.position - bossTrans.position).normalized * 30;
+        Vector2 trgt = (target.transform.position - bossTrans.position).normalized * 40;
         proj = Instantiate(projPrefab, firePoint.position, Quaternion.identity) as GameObject;
         proj.GetComponent<Rigidbody2D>().AddForce(trgt, ForceMode2D.Impulse);
         return trgt;

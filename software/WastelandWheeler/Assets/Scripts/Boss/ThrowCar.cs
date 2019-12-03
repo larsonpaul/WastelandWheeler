@@ -24,11 +24,13 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
     private Stat_Manager stat_manager;
     private int difficulty;
 
-    private GameObject icon;
+    private GameObject icon; // icon used to indicate player is slowed down
+    private float flickerTimer;
+    private float flickerCount = 10;
+    private bool destroyed;
 
     private void Start()
     {
-
         baseCarDamage = carDamage;
         baseDaze = dazedLength;
 
@@ -54,6 +56,16 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
         if (dazed)
         {
             slowDown();
+        }
+
+        if (thrown && collision && Time.time > flickerTimer)
+        {
+            destroyCar();
+            flickerCount--;
+            if (flickerCount == 0)
+            {
+                destroyed = true;
+            }
         }
     }
 
@@ -107,6 +119,7 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
             collision = true;
         }
 
+        flickerTimer = Time.time + 2.0f;
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -157,9 +170,26 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
             ps.move_speed = 80;
             dazed = false;
             icon.SetActive(false);
-
         }
-
     }
 
+    private void destroyCar()
+    {
+        if (destroyed)
+        {
+            //gameObject.active = false;
+        }
+        else if (gameObject.GetComponent<Renderer>().enabled == true)
+        {
+            gameObject.GetComponent<Renderer>().enabled = false;
+            flickerCount--;
+            flickerTimer = Time.time + .1f;
+        }
+        else if (gameObject.GetComponent<Renderer>().enabled == false)
+        {
+            gameObject.GetComponent<Renderer>().enabled = true;
+            flickerCount--;
+            flickerTimer = Time.time + .1f;
+        }
+    }
 }
