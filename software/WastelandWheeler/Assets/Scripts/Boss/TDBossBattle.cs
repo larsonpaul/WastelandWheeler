@@ -9,8 +9,8 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public Transform[] spawnPoints;  //points where boss will move to
     public Transform[] bossPoints;
 
-    public float speed; // boss's speed
-    public float waitTime = .5f;
+    private float speed = .8f; // boss's speed
+    public float waitTime = .4f;
     public GameObject boss;
     private Transform bossTrans;
 
@@ -37,7 +37,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public float burstTimer = .1f;  //rate of fire for smaller bullets
     private float baseBurstTimer;
     
-    public float pauseTime = .7f;  // the pause time between shots
+    public float pauseTime = .4f;  // the pause time between shots
     private float basePause;
     Vector3 endShot;
 
@@ -53,7 +53,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
     private GameObject sawShot;  // Boss's projectiles
     public GameObject bulletPrefab;
-    public int burst = 5;
+    public int burst = 6;
     public int baseBurst;
 
     public GameObject projPrefab;
