@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 {
-
     public Transform[] spawnPoints;  //points where boss will move to
     public Transform[] bossPoints;
 
@@ -20,7 +19,7 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     public Transform playerPoint;
     public Transform carPoint;
 
-    private float spawnRate = 5.0f;
+    private float spawnRate = 4.0f;
     private float spawnMinion;
     private int maximumSpawn = 6;
     public GameObject minions;
@@ -31,7 +30,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
     private float throwSpeed = 40.0f;
     private float baseThrowSpeed;
     Transform carTarget;
-    Vector2 playerTarget;
 
     public int bossAction = 4;
     public float burstTimer = .1f;  //rate of fire for smaller bullets
@@ -116,7 +114,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         gameManager = FindObjectOfType<GameManager>();
 
         difficulty = stat_manager.GetDifficulty();
-        StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
         dda.Subscribe(this);
     }
@@ -127,7 +124,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
 
         if (gameManager.gameIsOver())
         {
-            Debug.Log("No more lives ");
             mainCam.orthographicSize = 10;
             StopCoroutine(bossMethod);
         }
@@ -339,7 +335,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         proj.GetComponent<Rigidbody2D>().velocity = new Vector2(-vect.x, -vect.y);
     }
 
-
     // Random action for boss
     public int actionChoice()
     {
@@ -460,6 +455,5 @@ public void StartDifficulty(int difficulty)
             s.GetComponent<EnemyStats>().speed = 60 + (difficulty * 5);
             Debug.Log("Minion speed" + s.GetComponent<EnemyStats>().speed);
         }
-        
     }
 }
