@@ -55,8 +55,7 @@ public class UpgradeMenu : MonoBehaviour
 
 
         // default to road level
-        int choice = Random.Range(first_scene, last_scene + 1);
-        SceneManager.LoadScene(choice);
+        SceneManager.LoadScene(PCG);
         PrepareScene();
         return;
     }
