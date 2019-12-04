@@ -119,7 +119,7 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
             collision = true;
         }
 
-        flickerTimer = Time.time + 2.0f;
+        flickerTimer = Time.time + dazedLength;
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -141,7 +141,7 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
 
     public void StartDifficulty(int difficulty)
     {
-        float difficulty_mod = (1 + 0.1f * difficulty);
+
     }
 
     public void ChangeDifficulty(int difficulty)
@@ -177,7 +177,8 @@ public class ThrowCar : MonoBehaviour, IDiffcultyAdjuster
     {
         if (destroyed)
         {
-            //gameObject.active = false;
+            dda.Unsubscribe(this);
+            gameObject.active = false;
         }
         else if (gameObject.GetComponent<Renderer>().enabled == true)
         {
