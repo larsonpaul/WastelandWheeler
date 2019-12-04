@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Top_Game.unity
     guid: c5972b7a78e33e545a8df770454205db
   - enabled: 1
+    path: Assets/Scenes/PCG_Level.unity
+    guid: ea21f8590f864354bb22d1601181057d
+  - enabled: 1
     path: Assets/Scenes/Arena.unity
     guid: fd9b1bcb08d8c0349995f97a78a5c0d0
   - enabled: 1
