@@ -119,7 +119,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         StartDifficulty(difficulty); // will make enemies harder as player progresses through the game
         dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
         dda.Subscribe(this);
-
     }
 
     // Update is called once per frame
@@ -155,7 +154,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
         {
             endLevel();
         }
-
     }
 
     // Coroutine for boss actions
@@ -184,8 +182,6 @@ public class TDBossBattle : MonoBehaviour, IDiffcultyAdjuster
                 new Vector2(carPoint.transform.position.x, carPoint.transform.position.y), 1.0f);
             yield return null;
         }
-
-        //Debug.Log("Exit blocked");
 
         yield return new WaitForSeconds(waitTime);
 

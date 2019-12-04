@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
+public class bossBullet : MonoBehaviour
 {
     public float damage;
 
@@ -17,7 +17,6 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
     }
 
     void Update()
@@ -32,8 +31,6 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //GameObject effect = Instantiate(hit_effect, transform.position, Quaternion.identity);
-        //Destroy(effect, 5f);
         GameObject obj = other.gameObject;
 
         // cases where bullet is not destroyed
@@ -62,19 +59,5 @@ public class bossBullet : MonoBehaviour, IDiffcultyAdjuster
         {
             return;
         }
-
     }
-
-    public void StartDifficulty(int difficulty)
-    {
-        float difficulty_mod = (1 + 0.1f * difficulty);
-
-    }
-
-    public void ChangeDifficulty(int difficulty)
-    {
-        damage += difficulty;
-        Debug.Log("Bullet Damage: " + damage);
-    }
-
 }
