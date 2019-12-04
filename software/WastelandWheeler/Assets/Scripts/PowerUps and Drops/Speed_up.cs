@@ -45,6 +45,7 @@ public class Speed_up : MonoBehaviour
         if (active == 1)
         {
             stats.move_speed = speed;
+            if (stats.isSlowed) stats.move_speed /= 2;
             icon.SetActive(true);
         }
 
@@ -54,6 +55,7 @@ public class Speed_up : MonoBehaviour
         if (active == 0)
         {
             stats.move_speed = stats.baseSpeed;
+            if (stats.isSlowed) stats.move_speed /= 2;
             icon.SetActive(false);
         }
         Destroy(gameObject);
