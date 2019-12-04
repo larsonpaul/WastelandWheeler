@@ -168,6 +168,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
             healthCurrent = Mathf.Min(healthCurrent + (healthMax * percent), healthMax);
             game.SetHealth(healthCurrent / healthMax);
         }
+
     }
 
     public void RemoveHealth(float num)
@@ -426,14 +427,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     {
         difficulty = amount;
         adrenaline_scale = 1.0f + (-0.05f * difficulty);
-        //if (difficulty <= 0)
-        //{
-        //    rate_of_fire = baseROF * (1.0f + (0.01f * difficulty));
-        //}
-        //else
-        //{
-        //    rate_of_fire = baseROF;
-        //}
         hurt_scale = 1.0f + (0.1f * difficulty);
     }
 

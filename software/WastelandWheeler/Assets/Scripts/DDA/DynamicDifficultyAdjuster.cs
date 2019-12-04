@@ -77,7 +77,7 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         subscribers.Add(sub);
     }
     // example of what subscriber needs to have in it to subscribe
-    // private DynamicDifficultyAdjuster dda = DynamicDifficultyAdjuster.Instance();
+    // private DynamicDifficultyAdjuster dda = DynamicDifficultyAdjuster.Instance;
     // dda.Subscribe();
 
 

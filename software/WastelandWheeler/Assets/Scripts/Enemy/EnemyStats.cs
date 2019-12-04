@@ -200,6 +200,7 @@ public class EnemyStats : MonoBehaviour, IDiffcultyAdjuster, ICreatureStats
         health = healthMax * (1.0f + (0.05f * dynamicDifficulty));
         speed = baseSpeed * (1.0f + (0.05f * dynamicDifficulty));
         firerate = baseFirerate * (1.0f + (0.05f * dynamicDifficulty));
+        damage = baseDamage * (1.0f + (0.05f * dynamicDifficulty));
     }
 
     public void ChangeDifficulty(int difficulty)
