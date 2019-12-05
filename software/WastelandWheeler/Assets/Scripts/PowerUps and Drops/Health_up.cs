@@ -14,16 +14,11 @@ public class Health_up : MonoBehaviour
 
     private DynamicDifficultyAdjuster dda;
 
-    // Start is called before the first frame update, get the player's stats
-    void Start()
-    {
-        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
-        dda = DynamicDifficultyAdjuster.Instance;
-    }
-
     // On collision, check for player tag and add health
     private void OnTriggerEnter2D(Collider2D col)
     {
+        stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
+        dda = GameObject.Find("DDA").GetComponent<DynamicDifficultyAdjuster>();
         if (col.CompareTag("Player") && used == false)
         {
             used = true;
