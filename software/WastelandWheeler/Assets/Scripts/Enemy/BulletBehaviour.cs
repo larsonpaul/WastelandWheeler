@@ -32,7 +32,7 @@ public class BulletBehaviour : MonoBehaviour
     }
 
     //collided with something
-    void OnTriggerStay2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
