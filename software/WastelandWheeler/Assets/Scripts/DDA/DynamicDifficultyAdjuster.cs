@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DynamicDifficultyAdjuster : MonoBehaviour
 {
-    private static DynamicDifficultyAdjuster instance;
     private HashSet<MonoBehaviour> subscribers;
     
     private float startTime = 0.0f;
@@ -29,23 +28,21 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
 
     public static DynamicDifficultyAdjuster Instance
     {
-        get
-        {
-            return instance;
-            
-        }
+        get;
+        set;
     }
 
     private void Awake()
     {
         subscribers = new HashSet<MonoBehaviour>();
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
 
     }
