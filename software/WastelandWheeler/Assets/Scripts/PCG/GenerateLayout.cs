@@ -33,12 +33,11 @@ public class GenerateLayout : MonoBehaviour
     void Awake()
     {
         spawnManager = FindObjectOfType<Spawn_Manager>();
-        spawnLocations = new List<Vector3>();
-        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
     }
 
     public void SpawnObstacles()
     {
+        spawnLocations = new List<Vector3>();
         int count = 0;
         int numObstacles = Random.Range(minObstacles, maxObstacles + 1);
         int x;
@@ -57,15 +56,16 @@ public class GenerateLayout : MonoBehaviour
             count++;
         }
 
-        UpdateSpawnPoints();
+        UpdateSpawnPoints(spawnLocations);
     }
 
-    public void UpdateSpawnPoints()
+    public void UpdateSpawnPoints(List<Vector3> spawnLocations)
     {
         //float[] direction = { 1.5f, -1.5f };
         Vector3 location;
         int idx;
         GameObject spawn;
+        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             idx = Random.Range(0, spawnLocations.Count);
