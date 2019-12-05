@@ -415,7 +415,6 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     // Game over state based on health (may have to make this its own script)
     void GameOver()
     {
-        dda.GetComponent<DynamicDifficultyAdjuster>().Unsubscribe(this);
         Destroy(gameObject);
         game.EndGame();
     }
@@ -430,6 +429,11 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         difficulty = amount;
         adrenaline_scale = 1.0f + (-0.05f * difficulty);
         hurt_scale = 1.0f + (0.1f * difficulty);
+    }
+
+    void OnDestroy()
+    {
+        dda.Unsubscribe(this);
     }
 
 }
