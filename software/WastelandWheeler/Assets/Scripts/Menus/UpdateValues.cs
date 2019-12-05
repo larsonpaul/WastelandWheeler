@@ -77,11 +77,11 @@ public class UpdateValues : MonoBehaviour
         {
             healthCost.text = "Cost: 2";
         }
-        if (stats.GetROF() <= .1f)
+        if (stats.GetROF() <= .15f)
         {
             rofCost.text = "Cost: 2";
         }
-        if (stats.GetDamage() >= .15f)
+        if (stats.GetDamage() >= 15f)
         {
             damageCost.text = "Cost: 2";
         }

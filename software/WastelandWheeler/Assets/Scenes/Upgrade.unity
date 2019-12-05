@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5a3bb05d90b7948b3d911d57fbf7c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelsCompleted: 0
 --- !u!4 &101791860
 Transform:
   m_ObjectHideFlags: 0
@@ -279,6 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9119d4670d6faa346b836cc599b216e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arenaWeight: 30
+  statManager: {fileID: 0}
 --- !u!114 &690277580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6883779106364315094, guid: bda9bd6cf8a710d4dac66f58934b5789,
@@ -1321,6 +1324,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5655720924590030389, guid: bda9bd6cf8a710d4dac66f58934b5789,
+        type: 3}
+      propertyPath: m_Name
+      value: Cost(ROF)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 624985544921610571, guid: bda9bd6cf8a710d4dac66f58934b5789, type: 3}
