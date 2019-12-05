@@ -77,6 +77,7 @@ public class UpdateValues : MonoBehaviour
         {
             healthCost.text = "Cost: 2";
         }
+        // Most recent change
         if (stats.GetROF() <= .15f)
         {
             rofCost.text = "Cost: 2";
