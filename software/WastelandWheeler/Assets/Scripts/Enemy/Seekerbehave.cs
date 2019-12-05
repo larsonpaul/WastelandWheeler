@@ -13,6 +13,7 @@ public class Seekerbehave : MonoBehaviour
     public GameObject bullet;
     public float range = 5.0f;
 
+    public int numShots = 12;
 
     // Start is called before the first frame update
     void Start()
@@ -33,34 +34,15 @@ public class Seekerbehave : MonoBehaviour
         }
         else
         {
-            //int shots = 10;
+            float angle = 360f / numShots;
 
-            //float angle = 360f / shots;
-
-            //for (float i=0f; i < 360; i += angle)
-            //{
-            //    Quaternion q = Quaternion.AngleAxis(i, Vector3.up);
-            //    Debug.Log(q.ToString());
-            //    GameObject projectile = (GameObject)Instantiate(bullet, transform.position, q);
-            //    projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.up * speed);
-            //}
-
-            GameObject projectile = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.7f * speed, 0.7f * speed));
-            GameObject projectile2 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile2.GetComponent<Rigidbody2D>().AddForce(new Vector2(-0.7f * speed, 0.7f * speed));
-            GameObject projectile3 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile3.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.7f * speed, -0.7f * speed));
-            GameObject projectile4 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile4.GetComponent<Rigidbody2D>().AddForce(new Vector2(-0.7f * speed, -0.7f * speed));
-            GameObject projectile5 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile5.GetComponent<Rigidbody2D>().AddForce(new Vector2(0 * speed, 1 * speed));
-            GameObject projectile6 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile6.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1 * speed, 0 * speed));
-            GameObject projectile7 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile7.GetComponent<Rigidbody2D>().AddForce(new Vector2(0 * speed, -1 * speed));
-            GameObject projectile8 = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
-            projectile8.GetComponent<Rigidbody2D>().AddForce(new Vector2(1 * speed, 0 * speed));
+            for (float i = 0f; i < 360; i += angle)
+            {
+                Quaternion q = Quaternion.AngleAxis(i, Vector3.forward);
+                Debug.Log(q.ToString());
+                GameObject projectile = (GameObject)Instantiate(bullet, transform.position, q);
+                projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.up * speed);
+            }
 
             stats.OnDeath();
         }
