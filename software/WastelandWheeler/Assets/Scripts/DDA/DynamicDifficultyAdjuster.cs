@@ -42,7 +42,6 @@ public class DynamicDifficultyAdjuster : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
 
     }

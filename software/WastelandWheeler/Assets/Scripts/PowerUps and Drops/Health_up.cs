@@ -24,14 +24,14 @@ public class Health_up : MonoBehaviour
     // On collision, check for player tag and add health
     private void OnTriggerEnter2D(Collider2D col)
     {
-        int difficulty = dda.GetDifficulty();
-        float heal = baseHeal *(1.0f - (0.01f * difficulty));
-
         if (col.CompareTag("Player") && used == false)
         {
             used = true;
             stats.playPowerup = true;
             Destroy(gameObject);
+
+            int difficulty = dda.GetDifficulty();
+            float heal = baseHeal * (1.0f - (0.01f * difficulty));
 
             stats.HealPercent(heal);
         }
