@@ -37,6 +37,7 @@ public class BulletBehaviour : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<Player_stats>().RemoveHealth(damage);
+            Destroy(gameObject);
         }
 
         // check if it should pass through collider
