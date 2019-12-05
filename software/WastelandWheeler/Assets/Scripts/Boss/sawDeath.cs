@@ -30,7 +30,7 @@ public class sawDeath : MonoBehaviour
 		if (obj.CompareTag("Player"))
 		{
             playerStats.SetHealth(0);
-            playerStats.RemoveHealth(playerStats.healthCurrent);
+            playerStats.RemoveHealth(playerStats.healthMax/2);
             Debug.Log("Player hit by saw");
             return;
 		}
