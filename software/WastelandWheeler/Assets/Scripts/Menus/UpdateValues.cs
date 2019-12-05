@@ -81,7 +81,7 @@ public class UpdateValues : MonoBehaviour
         {
             rofCost.text = "Cost: 2";
         }
-        if (stats.GetDamage() >= 15)
+        if (stats.GetDamage() >= .15f)
         {
             damageCost.text = "Cost: 2";
         }

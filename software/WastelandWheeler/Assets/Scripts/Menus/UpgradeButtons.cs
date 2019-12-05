@@ -58,7 +58,7 @@ public class UpgradeButtons : MonoBehaviour
         }
         else if (currCoins >= 1)
         {
-            if (stats.GetROF() <= .1f) return;
+            if (stats.GetROF() <= .15f) return;
             else
             {
                 stats.SetROF(ROF);
