@@ -43,6 +43,7 @@ public class UpgradeMenu : MonoBehaviour
         Debug.Log(roll);
         if (roll <= arenaWeight)
         {
+            Debug.Log("Playing arena at weight " + arenaWeight);
             arenaWeight = 30;
             SceneManager.LoadScene(ARENA);
             PrepareScene();
