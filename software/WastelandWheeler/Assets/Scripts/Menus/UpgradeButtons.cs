@@ -51,7 +51,7 @@ public class UpgradeButtons : MonoBehaviour
 
     public void AddROFVal()
     {
-        if (currCoins >= 2 && stats.GetROF() <= .1f)
+        if (currCoins >= 2 && stats.GetROF() <= .15f)
         {
             stats.SetROF(ROF);
             MinusOneToken(2);
