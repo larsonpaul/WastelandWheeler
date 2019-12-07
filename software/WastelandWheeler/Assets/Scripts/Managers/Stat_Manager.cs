@@ -44,6 +44,7 @@ public class Stat_Manager : MonoBehaviour
     private int lives = 3;
     private int coins = 0;
     private float score = 0;
+    [SerializeField]
     private int persistent_difficulty = 0;
 
     private Score scoreRecord;
