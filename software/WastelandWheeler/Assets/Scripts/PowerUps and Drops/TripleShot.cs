@@ -17,7 +17,6 @@ public class TripleShot : MonoBehaviour
     {
         stats = GameObject.FindWithTag("Player").GetComponent<Player_stats>();
         icon = GameObject.Find("GameUI").transform.Find("TripleShotIcon").gameObject;
-
     }
 
     // Upon collision, check for player tag and set player as tripleShot
@@ -35,15 +34,16 @@ public class TripleShot : MonoBehaviour
 
     private IEnumerator Tripler()
     {
-        active += 1;
+        if (!stats.tripleShot) active = 0;
+
+        active++;
 
         stats.tripleShot = true;
         icon.SetActive(true);
 
         yield return new WaitForSeconds(duration);
 
-        active -= 1;
-        if (active == 0)
+        if (--active == 0)
         {
             stats.tripleShot = false;
             icon.SetActive(false);
