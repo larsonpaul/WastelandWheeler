@@ -257,7 +257,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
         else if (num > 0)
         {
-            adrenalineCurrent = Mathf.Min(adrenalineCurrent + (num*adrenaline_scale), adrenalineMax);
+            adrenalineCurrent = Mathf.Min(adrenalineMax, adrenalineCurrent + (num*adrenaline_scale));
             game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
         }
     }
@@ -275,7 +275,9 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
         }
         else
         {
-            adrenalineCurrent -= num;
+            if (num > adrenalineCurrent)
+                Debug.LogError(gameObject.name + ".RemoveAdrenaline given too high value");
+            adrenalineCurrent = Mathf.Max(0, adrenalineCurrent - num);
             game.SetAdrenaline(adrenalineCurrent / adrenalineMax);
         }
     }
@@ -428,7 +430,7 @@ public class Player_stats : MonoBehaviour, IDiffcultyAdjuster
     {
         difficulty = amount;
         adrenaline_scale = 1.0f + (-0.05f * difficulty);
-        hurt_scale = 1.0f + (0.1f * difficulty);
+        hurt_scale = 1.0f + (0.05f * difficulty);
     }
 
     void OnDestroy()
